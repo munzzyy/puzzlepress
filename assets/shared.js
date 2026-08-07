@@ -1,0 +1,455 @@
+/*
+  Puzzle Press shared runtime. Every game imports from here instead of
+  reimplementing storage, modals, sharing, or the top bar.
+  No DOM work happens at import time except inside initChrome, which a page
+  calls explicitly once its own markup is ready.
+*/
+
+const DAY_MS = 86400000;
+const THEME_KEY = "pp.theme";
+
+function safeParse(raw, fallback) {
+  if (raw == null) return fallback;
+  try {
+    const value = JSON.parse(raw);
+    return value == null ? fallback : value;
+  } catch {
+    return fallback;
+  }
+}
+
+function readStorage(key) {
+  try {
+    return globalThis.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    globalThis.localStorage.setItem(key, value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function utcMidnight(d) {
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+}
+
+function localDateFromKey(key) {
+  const [y, m, d] = key.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function pad2(n) {
+  return String(n).padStart(2, "0");
+}
+
+/**
+ * UTC-date-based index: whole days between `epoch` ("YYYY-MM-DD") and now.
+ * `now` defaults to the real current time; tests may pass a fixed Date.
+ */
+export function dayIndex(epoch, now = new Date()) {
+  const epochDate = new Date(`${epoch}T00:00:00Z`);
+  return Math.floor((utcMidnight(now) - utcMidnight(epochDate)) / DAY_MS);
+}
+
+/** "YYYY-MM-DD" in the visitor's local calendar. */
+export function todayKey(now = new Date()) {
+  return `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+}
+
+/**
+ * Deterministic daily pick. Accepts a bank shaped { puzzles: [...] } (per
+ * contract) or a plain array. Stable forever: same epoch + same date always
+ * resolves to the same index, wrapping once the bank outgrows the run.
+ */
+export function pickDaily(bank, epoch, now = new Date()) {
+  const list = Array.isArray(bank) ? bank : bank.puzzles;
+  if (!list || list.length === 0) {
+    throw new Error("pickDaily: bank has no puzzles");
+  }
+  const idx = dayIndex(epoch, now);
+  const wrapped = ((idx % list.length) + list.length) % list.length;
+  return list[wrapped];
+}
+
+const DEFAULT_META = { played: 0, wins: 0, streak: 0, maxStreak: 0, last: null };
+
+/** Day-keyed progress + meta (stats), namespaced pp.<gameId>.* in localStorage. */
+export function store(gameId) {
+  const dayKeyFor = (key) => `pp.${gameId}.day.${key}`;
+  const metaKey = `pp.${gameId}.meta`;
+
+  return {
+    loadDay(key = todayKey()) {
+      return safeParse(readStorage(dayKeyFor(key)), null);
+    },
+    saveDay(state, key = todayKey()) {
+      writeStorage(dayKeyFor(key), JSON.stringify(state));
+    },
+    loadMeta() {
+      return { ...DEFAULT_META, ...safeParse(readStorage(metaKey), {}) };
+    },
+    saveMeta(meta) {
+      writeStorage(metaKey, JSON.stringify(meta));
+    },
+  };
+}
+
+/**
+ * Updates {played, wins, streak, maxStreak, last}. Idempotent per local day:
+ * calling this twice on the same day (e.g. a stats-page revisit) leaves the
+ * meta untouched the second time, so a game does not need its own guard.
+ */
+export function recordResult(gameId, won, now = new Date()) {
+  const s = store(gameId);
+  const meta = s.loadMeta();
+  const today = todayKey(now);
+
+  if (meta.last === today) {
+    return meta;
+  }
+
+  const wasYesterday = meta.last
+    ? Math.round((localDateFromKey(today) - localDateFromKey(meta.last)) / DAY_MS) === 1
+    : false;
+
+  const next = {
+    played: meta.played + 1,
+    wins: meta.wins + (won ? 1 : 0),
+    streak: won ? (wasYesterday ? meta.streak + 1 : 1) : 0,
+    maxStreak: meta.maxStreak,
+    last: today,
+  };
+  next.maxStreak = Math.max(next.maxStreak, next.streak);
+
+  s.saveMeta(next);
+  return next;
+}
+
+/** Small stats block markup, styled by .pp-stats in site.css. */
+export function statsHTML(gameId) {
+  const meta = store(gameId).loadMeta();
+  const winPct = meta.played > 0 ? Math.round((meta.wins / meta.played) * 100) : 0;
+  const stat = (value, label) =>
+    `<div class="pp-stat"><div class="pp-stat__value">${value}</div>` +
+    `<div class="pp-stat__label">${label}</div></div>`;
+
+  return (
+    `<div class="pp-stats">` +
+    stat(meta.played, "Played") +
+    stat(`${winPct}%`, "Win rate") +
+    stat(meta.streak, "Streak") +
+    stat(meta.maxStreak, "Best") +
+    `</div>`
+  );
+}
+
+let toastRegion = null;
+
+function getToastRegion() {
+  if (toastRegion && document.body.contains(toastRegion)) return toastRegion;
+  toastRegion = document.createElement("div");
+  toastRegion.className = "pp-toast-region";
+  toastRegion.setAttribute("aria-live", "polite");
+  toastRegion.setAttribute("role", "status");
+  document.body.appendChild(toastRegion);
+  return toastRegion;
+}
+
+/** Brief, non-blocking status message. */
+export function toast(msg) {
+  const region = getToastRegion();
+  const el = document.createElement("div");
+  el.className = "pp-toast";
+  el.textContent = msg;
+  region.appendChild(el);
+
+  requestAnimationFrame(() => el.classList.add("pp-toast--visible"));
+
+  window.setTimeout(() => {
+    el.classList.remove("pp-toast--visible");
+    window.setTimeout(() => el.remove(), 220);
+  }, 2200);
+}
+
+async function copyToClipboard(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch {
+    /* fall through to legacy path */
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** navigator.share on mobile when available, otherwise clipboard + toast. */
+export async function share(text) {
+  if (navigator.share) {
+    try {
+      await navigator.share({ text });
+      return;
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+      /* share failed or unsupported target: fall back to clipboard below */
+    }
+  }
+  const ok = await copyToClipboard(text);
+  toast(ok ? "Copied to clipboard" : "Could not copy");
+}
+
+let activeModal = null;
+
+function focusableIn(root) {
+  return Array.from(
+    root.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    )
+  );
+}
+
+/** Accessible dialog: Escape closes, focus is trapped and restored. */
+export function modal(title, bodyHTML) {
+  closeModal();
+
+  const previouslyFocused = document.activeElement;
+  const backdrop = document.createElement("div");
+  backdrop.className = "pp-modal-backdrop";
+
+  const titleId = `pp-modal-title-${Date.now()}`;
+  const dialog = document.createElement("div");
+  dialog.className = "pp-modal";
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-labelledby", titleId);
+
+  dialog.innerHTML =
+    `<div class="pp-modal__head">` +
+    `<h2 class="pp-modal__title" id="${titleId}">${title}</h2>` +
+    `<button type="button" class="pp-icon-btn pp-modal__close" aria-label="Close">` +
+    `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">` +
+    `<path d="M6 6l12 12M18 6L6 18"/></svg></button></div>` +
+    `<div class="pp-modal__body">${bodyHTML}</div>`;
+
+  backdrop.appendChild(dialog);
+  document.body.appendChild(backdrop);
+
+  function onKeydown(e) {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeModal();
+      return;
+    }
+    if (e.key === "Tab") {
+      const focusables = focusableIn(dialog);
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  function onBackdropClick(e) {
+    if (e.target === backdrop) closeModal();
+  }
+
+  dialog.querySelector(".pp-modal__close").addEventListener("click", closeModal);
+  backdrop.addEventListener("click", onBackdropClick);
+  document.addEventListener("keydown", onKeydown);
+
+  const firstFocusable = focusableIn(dialog)[0];
+  (firstFocusable || dialog).focus?.();
+  dialog.tabIndex = -1;
+  if (!firstFocusable) dialog.focus();
+
+  activeModal = { backdrop, onKeydown, previouslyFocused };
+
+  return closeModal;
+}
+
+function closeModal() {
+  if (!activeModal) return;
+  const { backdrop, onKeydown, previouslyFocused } = activeModal;
+  document.removeEventListener("keydown", onKeydown);
+  backdrop.remove();
+  activeModal = null;
+  if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+}
+
+/** Small canvas celebration. No-op under prefers-reduced-motion. */
+export function confettiBurst() {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "pp-confetti-canvas";
+  const dpr = window.devicePixelRatio || 1;
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = `${w}px`;
+  canvas.style.height = `${h}px`;
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    canvas.remove();
+    return;
+  }
+  ctx.scale(dpr, dpr);
+
+  const styles = getComputedStyle(document.documentElement);
+  const colors = [
+    styles.getPropertyValue("--tile-ink").trim() || "#1e3a5f",
+    styles.getPropertyValue("--tile-mark").trim() || "#b8791a",
+    styles.getPropertyValue("--accent-2").trim() || "#8a2e22",
+    styles.getPropertyValue("--good").trim() || "#35633f",
+  ];
+
+  const count = 90;
+  const originX = w / 2;
+  const originY = h * 0.35;
+  const particles = Array.from({ length: count }, () => {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 3 + Math.random() * 6;
+    return {
+      x: originX,
+      y: originY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 2,
+      size: 4 + Math.random() * 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      spin: Math.random() * Math.PI,
+      spinSpeed: (Math.random() - 0.5) * 0.4,
+    };
+  });
+
+  const duration = 1100;
+  const start = performance.now();
+
+  function frame(now) {
+    const t = now - start;
+    ctx.clearRect(0, 0, w, h);
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.18;
+      p.spin += p.spinSpeed;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.spin);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, 1 - t / duration);
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    }
+    if (t < duration) {
+      requestAnimationFrame(frame);
+    } else {
+      canvas.remove();
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
+function applyTheme(theme) {
+  if (theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+}
+
+function currentTheme() {
+  const stored = readStorage(THEME_KEY);
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function themeToggleSVG(theme) {
+  return theme === "dark"
+    ? `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
+        `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
+        `<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`;
+}
+
+function wireThemeToggle(btn) {
+  applyTheme(readStorage(THEME_KEY));
+  btn.innerHTML = themeToggleSVG(currentTheme());
+  btn.addEventListener("click", () => {
+    const next = currentTheme() === "dark" ? "light" : "dark";
+    writeStorage(THEME_KEY, next);
+    applyTheme(next);
+    btn.innerHTML = themeToggleSVG(next);
+  });
+}
+
+/**
+ * Builds the shared top bar (wordmark, game name, help, stats, theme toggle)
+ * into a `#pp-chrome` mount point, creating one at the top of <body> if the
+ * page did not provide one. gameMeta: { id, name, hubHref, helpHTML }.
+ */
+export function initChrome(gameMeta) {
+  const { id, name, hubHref = "../../index.html", helpHTML = "" } = gameMeta;
+
+  let mount = document.getElementById("pp-chrome");
+  if (!mount) {
+    mount = document.createElement("div");
+    mount.id = "pp-chrome";
+    document.body.insertBefore(mount, document.body.firstChild);
+  }
+
+  mount.innerHTML =
+    `<div class="pp-topbar"><div class="pp-topbar__inner">` +
+    `<a class="pp-topbar__wordmark" href="${hubHref}">Puzzle Press</a>` +
+    `<span class="pp-topbar__divider" aria-hidden="true"></span>` +
+    `<h1 class="pp-topbar__game">${name}</h1>` +
+    `<div class="pp-topbar__actions">` +
+    `<button type="button" class="pp-icon-btn" data-action="help" aria-label="How to play">` +
+    `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
+    `<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2.2"/>` +
+    `<circle cx="12" cy="17.2" r="0.6" fill="currentColor" stroke="none"/></svg></button>` +
+    `<button type="button" class="pp-icon-btn" data-action="stats" aria-label="Statistics">` +
+    `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
+    `<path d="M5 20V10M12 20V4M19 20v-7"/></svg></button>` +
+    `<button type="button" class="pp-theme-toggle" data-action="theme" aria-label="Toggle color theme"></button>` +
+    `</div></div></div>`;
+
+  mount.querySelector('[data-action="help"]').addEventListener("click", () => {
+    modal("How to play", helpHTML || "<p>Rules coming soon.</p>");
+  });
+  mount.querySelector('[data-action="stats"]').addEventListener("click", () => {
+    modal("Statistics", statsHTML(id));
+  });
+  wireThemeToggle(mount.querySelector('[data-action="theme"]'));
+}
