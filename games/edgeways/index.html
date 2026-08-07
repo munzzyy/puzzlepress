@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edgeways - Puzzle Press</title>
+<meta name="description" content="Twelve letters around a square. Chain words from side to side and use every letter.">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a class="pp-skip-link" href="#main">Skip to puzzle</a>
+
+<div id="pp-chrome"></div>
+
+<main id="main" class="pp-game">
+  <p class="ed-tagline pp-muted pp-center">Twelve letters around a square.</p>
+  <p class="ed-practice-note pp-muted pp-center" id="ed-practice-note" hidden>
+    Practice puzzle. Solving this will not affect your streak.
+  </p>
+
+  <div class="ed-meta" id="ed-meta">
+    <div class="ed-meta__item">
+      <span class="ed-meta__value" id="ed-progress">0 / 12</span>
+      <span class="ed-meta__label">Letters</span>
+    </div>
+    <div class="ed-meta__item">
+      <span class="ed-meta__value" id="ed-word-count">0</span>
+      <span class="ed-meta__label">Words</span>
+    </div>
+    <div class="ed-meta__item">
+      <span class="ed-meta__value" id="ed-par">2</span>
+      <span class="ed-meta__label">Par</span>
+    </div>
+  </div>
+
+  <div class="ed-board" id="ed-board" aria-label="Letter square">
+    <svg class="ed-board__lines" id="ed-lines" aria-hidden="true"></svg>
+    <div class="ed-board__square" aria-hidden="true"></div>
+    <div class="ed-board__side" data-side="0"></div>
+    <div class="ed-board__side" data-side="1"></div>
+    <div class="ed-board__side" data-side="2"></div>
+    <div class="ed-board__side" data-side="3"></div>
+  </div>
+
+  <p class="ed-current" id="ed-current" aria-live="polite">&nbsp;</p>
+  <p class="ed-message" id="ed-message" role="status"></p>
+
+  <div class="ed-controls" id="ed-controls">
+    <button type="button" class="pp-btn" id="ed-restart">Restart</button>
+    <button type="button" class="pp-btn" id="ed-backspace">Delete</button>
+    <button type="button" class="pp-btn pp-btn--primary" id="ed-enter">Enter</button>
+  </div>
+
+  <section class="ed-found" aria-label="Words found so far">
+    <h2 class="pp-visually-hidden">Words found</h2>
+    <ol class="ed-found__list" id="ed-found-list"></ol>
+  </section>
+
+  <section class="ed-done" id="ed-done" hidden>
+    <p class="ed-done__headline" id="ed-done-headline"></p>
+    <div class="ed-done__actions">
+      <button type="button" class="pp-btn pp-btn--primary" id="ed-share">Share result</button>
+      <button type="button" class="pp-btn" id="ed-practice">Play a random puzzle</button>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="./game.js"></script>
+</body>
+</html>
