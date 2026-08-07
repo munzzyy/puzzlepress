@@ -106,7 +106,9 @@ function startSession(puzzle, isDaily, existingState) {
 
 function persistIfDaily() {
   if (session.isDaily) {
-    store(GAME_ID).saveDay(session.state);
+    // The letters tag ties the payload to today's puzzle so a stale save is
+    // never restored against a different wheel.
+    store(GAME_ID).saveDay({ ...session.state, letters: session.puzzle.letters });
   }
 }
 
@@ -406,8 +408,13 @@ async function init() {
 
   const puzzle = pickDaily(bank, EPOCH);
   const saved = store(GAME_ID).loadDay(todayKey());
-  startSession(puzzle, true, saved || null);
-  if (!saved) {
+  let restored = null;
+  if (saved && saved.letters === puzzle.letters) {
+    const { letters, ...rest } = saved;
+    restored = rest;
+  }
+  startSession(puzzle, true, restored);
+  if (!restored) {
     setMessage("Find words using the required letter.", null);
   }
 }

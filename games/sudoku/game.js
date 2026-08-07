@@ -118,7 +118,11 @@ function loadToday() {
     const solution = parseCells(entry.solution);
     puzzles[difficulty] = { puzzle: entry.puzzle, solution };
 
-    const savedFor = saved[difficulty];
+    // Only restore state that was saved against this exact board. A stale
+    // payload (bank edit, epoch change) would otherwise lock wrong digits
+    // into the new puzzle's given cells.
+    const savedRaw = saved[difficulty];
+    const savedFor = savedRaw && savedRaw.puzzle === entry.puzzle ? savedRaw : null;
     const state = stateFromSaved(entry.puzzle, savedFor);
     states[difficulty] = state;
     timers[difficulty] = { elapsedMs: (savedFor && savedFor.elapsedMs) || 0, runningSince: null };
@@ -131,6 +135,7 @@ function saveToday() {
   const payload = {};
   for (const difficulty of DIFFICULTIES) {
     payload[difficulty] = {
+      puzzle: puzzles[difficulty].puzzle,
       values: states[difficulty].values,
       marks: states[difficulty].marks,
       elapsedMs: elapsedFor(difficulty),

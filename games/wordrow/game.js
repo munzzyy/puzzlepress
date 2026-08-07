@@ -408,7 +408,7 @@ async function boot() {
   }
 
   allowedSet = new Set(bank.allowed);
-  dayNumber = dayIndex(EPOCH) + 1;
+  dayNumber = Math.max(1, dayIndex(EPOCH) + 1);
   dailyAnswer = pickDaily(bank.answers, EPOCH);
 
   initGames();

@@ -39,7 +39,8 @@ installs as a PWA and keeps working offline once you have visited it.
 Each game ships with a committed bank of puzzles in `data/`. Your browser
 picks today's puzzle by counting days since the launch date and taking that
 index into the bank, wrapping around when it runs out. Same date, same puzzle,
-everywhere, with no server involved.
+everywhere, with no server involved. The day flips at your local midnight,
+the same moment your saved progress and streaks roll over.
 
 Fair warning: the banks are plain JSON in a public repo, so today's answers
 are one file away. Peeking only ruins your own streak.

@@ -58,6 +58,7 @@ function puzzleLabel() {
 function persist() {
   if (mode !== "daily") return;
   store(GAME_ID).saveDay({
+    puzzleIndex: dailyIndex,
     order: state.order,
     solvedGroups: state.solvedGroups,
     mistakes: state.mistakes,
@@ -97,7 +98,7 @@ function renderSolved() {
     .map((g) => {
       const words = g.words.join(", ");
       return (
-        `<li class="cl-solved__row" data-tier="${g.tier}" data-revealed="${g.revealed ? "true" : "false"}">` +
+        `<li class="cl-solved__row" data-tier="${esc(g.tier)}" data-revealed="${g.revealed ? "true" : "false"}">` +
         `<span class="cl-solved__name">${esc(g.name)}</span>` +
         `<span class="cl-solved__words">${esc(words)}</span>` +
         `</li>`
@@ -237,8 +238,15 @@ function restoreOrCreate(bank) {
   dailyIndex = ((dayIndex(EPOCH) % bank.puzzles.length) + bank.puzzles.length) % bank.puzzles.length;
   puzzle = bank.puzzles[dailyIndex];
 
+  // saved.puzzleIndex ties the payload to the puzzle it was played on, so a
+  // bank or epoch change never restores another puzzle's groups here.
   const saved = store(GAME_ID).loadDay();
-  if (saved && Array.isArray(saved.order) && Array.isArray(saved.solvedGroups)) {
+  if (
+    saved &&
+    saved.puzzleIndex === dailyIndex &&
+    Array.isArray(saved.order) &&
+    Array.isArray(saved.solvedGroups)
+  ) {
     state = {
       order: saved.order,
       selected: [],

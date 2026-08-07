@@ -69,15 +69,24 @@ function todaysPuzzle() {
   return pickDaily(bank, EPOCH);
 }
 
+function sameGrid(a, b) {
+  return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((row, i) => row === b[i]);
+}
+
 function loadOrCreateDailyState() {
+  // The saved grid ties the payload to the layout it was typed into; entries
+  // from a different puzzle would land in the wrong cells otherwise.
   const saved = store(GAME_ID).loadDay();
-  if (saved && Array.isArray(saved.entries)) return saved;
+  if (saved && Array.isArray(saved.entries) && sameGrid(saved.grid, puzzle.grid)) {
+    const { grid, ...rest } = saved;
+    return rest;
+  }
   return core.createInitialState(puzzle, Date.now());
 }
 
 function saveState() {
   if (isRandomMode) return;
-  store(GAME_ID).saveDay(state);
+  store(GAME_ID).saveDay({ ...state, grid: puzzle.grid });
 }
 
 function activeSlot() {

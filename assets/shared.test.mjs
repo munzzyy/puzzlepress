@@ -26,22 +26,43 @@ const { dayIndex, todayKey, pickDaily, store, recordResult, statsHTML } = await 
 );
 
 test("dayIndex is 0 on the epoch date itself", () => {
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-10T00:00:00Z")), 0);
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 10)), 0);
 });
 
-test("dayIndex counts whole UTC days forward", () => {
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-11T00:00:00Z")), 1);
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-11T23:59:59Z")), 1);
-  assert.equal(dayIndex("2026-08-10", new Date("2026-09-09T00:00:00Z")), 30);
+test("dayIndex counts whole local calendar days forward", () => {
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 11)), 1);
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 11, 23, 59, 59)), 1);
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 8, 9)), 30);
 });
 
 test("dayIndex is negative before the epoch", () => {
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-09T00:00:00Z")), -1);
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 9)), -1);
 });
 
-test("dayIndex ignores time-of-day, only the UTC calendar date matters", () => {
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-15T03:00:00Z")), 5);
-  assert.equal(dayIndex("2026-08-10", new Date("2026-08-15T23:59:59Z")), 5);
+test("dayIndex ignores time-of-day, only the local calendar date matters", () => {
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 15, 3)), 5);
+  assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 15, 23, 59, 59)), 5);
+});
+
+test("dayIndex rolls over at the same instant as todayKey (local midnight)", () => {
+  const lateEvening = new Date(2026, 7, 14, 23, 59, 59);
+  const justAfterMidnight = new Date(2026, 7, 15, 0, 0, 0);
+  assert.equal(dayIndex("2026-08-10", justAfterMidnight) - dayIndex("2026-08-10", lateEvening), 1);
+  assert.notEqual(todayKey(lateEvening), todayKey(justAfterMidnight));
+  const sameKey = todayKey(lateEvening) === todayKey(new Date(2026, 7, 14, 12));
+  const sameIdx =
+    dayIndex("2026-08-10", lateEvening) === dayIndex("2026-08-10", new Date(2026, 7, 14, 12));
+  assert.equal(sameKey, true);
+  assert.equal(sameIdx, true);
+});
+
+test("dayIndex stays exact across a DST transition", () => {
+  // 2026-03-08 is the US spring-forward date; the local day is 23 hours long
+  // in most US zones. Whole-day counting must not drift.
+  assert.equal(
+    dayIndex("2026-03-01", new Date(2026, 2, 9)) - dayIndex("2026-03-01", new Date(2026, 2, 7)),
+    2
+  );
 });
 
 test("todayKey formats local date as YYYY-MM-DD, zero-padded", () => {
@@ -51,22 +72,31 @@ test("todayKey formats local date as YYYY-MM-DD, zero-padded", () => {
 
 test("pickDaily is stable forever for a given date and wraps by length", () => {
   const bank = { puzzles: ["a", "b", "c", "d", "e"] };
-  const d0 = new Date("2026-08-10T00:00:00Z");
+  const d0 = new Date(2026, 7, 10);
   assert.equal(pickDaily(bank, "2026-08-10", d0), "a");
-  assert.equal(pickDaily(bank, "2026-08-10", new Date("2026-08-11T00:00:00Z")), "b");
-  assert.equal(pickDaily(bank, "2026-08-10", new Date("2026-08-15T00:00:00Z")), "a");
-  assert.equal(pickDaily(bank, "2026-08-10", new Date("2026-08-16T00:00:00Z")), "b");
+  assert.equal(pickDaily(bank, "2026-08-10", new Date(2026, 7, 11)), "b");
+  assert.equal(pickDaily(bank, "2026-08-10", new Date(2026, 7, 15)), "a");
+  assert.equal(pickDaily(bank, "2026-08-10", new Date(2026, 7, 16)), "b");
 });
 
 test("pickDaily accepts a plain array too", () => {
   const bank = ["x", "y", "z"];
-  assert.equal(pickDaily(bank, "2026-08-10", new Date("2026-08-10T00:00:00Z")), "x");
+  assert.equal(pickDaily(bank, "2026-08-10", new Date(2026, 7, 10)), "x");
 });
 
 test("pickDaily is stable for dates before the epoch (wraps negative indices)", () => {
   const bank = { puzzles: ["a", "b", "c"] };
-  const before = new Date("2026-08-09T00:00:00Z");
+  const before = new Date(2026, 7, 9);
   assert.equal(pickDaily(bank, "2026-08-10", before), "c");
+});
+
+test("pickDaily returns the same puzzle all local day, morning to midnight", () => {
+  const bank = { puzzles: ["a", "b", "c", "d", "e"] };
+  const morning = pickDaily(bank, "2026-08-10", new Date(2026, 7, 12, 8));
+  const evening = pickDaily(bank, "2026-08-10", new Date(2026, 7, 12, 19, 30));
+  const lastSecond = pickDaily(bank, "2026-08-10", new Date(2026, 7, 12, 23, 59, 59));
+  assert.equal(morning, evening);
+  assert.equal(morning, lastSecond);
 });
 
 test("pickDaily throws on an empty bank", () => {

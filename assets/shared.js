@@ -35,8 +35,8 @@ function writeStorage(key, value) {
   }
 }
 
-function utcMidnight(d) {
-  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+function localMidnightUTC(d) {
+  return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
 function localDateFromKey(key) {
@@ -49,12 +49,16 @@ function pad2(n) {
 }
 
 /**
- * UTC-date-based index: whole days between `epoch` ("YYYY-MM-DD") and now.
+ * Local-calendar-date index: whole days between `epoch` ("YYYY-MM-DD") and
+ * now, counted in the visitor's local calendar. Deliberately the same
+ * calendar as todayKey, so the daily puzzle and the day-keyed storage roll
+ * over together at local midnight. Mapping the local Y/M/D through Date.UTC
+ * keeps the difference an exact multiple of DAY_MS across DST changes.
  * `now` defaults to the real current time; tests may pass a fixed Date.
  */
 export function dayIndex(epoch, now = new Date()) {
-  const epochDate = new Date(`${epoch}T00:00:00Z`);
-  return Math.floor((utcMidnight(now) - utcMidnight(epochDate)) / DAY_MS);
+  const [y, m, d] = epoch.split("-").map(Number);
+  return Math.floor((localMidnightUTC(now) - Date.UTC(y, m - 1, d)) / DAY_MS);
 }
 
 /** "YYYY-MM-DD" in the visitor's local calendar. */
