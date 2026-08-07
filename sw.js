@@ -4,7 +4,7 @@
   PRECACHE changes so old caches get cleared on activate.
 */
 
-const CACHE_VERSION = 2;
+const CACHE_VERSION = 3;
 const CACHE_NAME = `puzzlepress-v${CACHE_VERSION}`;
 
 const GAMES = ["wordrow", "clusters", "heptagram", "minigrid", "wordweave", "edgeways", "sudoku"];
@@ -73,7 +73,13 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => cached);
+        .catch(
+          () =>
+            new Response("Offline and not cached yet.", {
+              status: 503,
+              headers: { "Content-Type": "text/plain" },
+            })
+        );
     })
   );
 });
