@@ -196,6 +196,10 @@
   color: var(--muted);
 }
 
+.sk-pad-btn--erase svg {
+  stroke: currentColor;
+}
+
 /* ---------- status + done panel ---------- */
 
 .sk-status {
