@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minigrid - Puzzle Press</title>
+<meta name="description" content="A little 5x5 crossword. New puzzle every day, free, no accounts.">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="pp-chrome"></div>
+
+<main class="pp-game pp-game--wide mg-main" id="main">
+  <div class="mg-status">
+    <span class="mg-status__timer" id="timer">0:00</span>
+    <span class="mg-status__badge" id="help-badge" hidden>Solved with help</span>
+    <span class="mg-status__badge" id="random-badge" hidden>Random puzzle &mdash; not scored</span>
+  </div>
+
+  <div class="mg-grid" id="grid" role="grid" aria-label="Minigrid crossword"></div>
+
+  <div class="mg-cluebar">
+    <button type="button" class="pp-icon-btn mg-cluebar__nav" id="clue-prev" aria-label="Previous clue">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="mg-cluebar__text" id="clue-active" aria-live="polite"></button>
+    <button type="button" class="pp-icon-btn mg-cluebar__nav" id="clue-next" aria-label="Next clue">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="mg-toolbar">
+    <button type="button" class="pp-btn" id="btn-direction">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10M7 7l3-3M7 7l3 3M17 17H7M17 17l-3-3M17 17l-3 3"/></svg>
+      Direction
+    </button>
+    <button type="button" class="pp-btn" id="btn-check">Check</button>
+    <button type="button" class="pp-btn" id="btn-reveal">Reveal</button>
+  </div>
+
+  <div class="mg-clues">
+    <div class="mg-clues__col">
+      <h2 class="mg-clues__heading">Across</h2>
+      <ul class="mg-clues__list" id="clues-across"></ul>
+    </div>
+    <div class="mg-clues__col">
+      <h2 class="mg-clues__heading">Down</h2>
+      <ul class="mg-clues__list" id="clues-down"></ul>
+    </div>
+  </div>
+
+  <div class="mg-complete" id="complete-panel" hidden>
+    <p class="mg-complete__title">Solved!</p>
+    <p class="mg-complete__time" id="complete-time"></p>
+    <button type="button" class="pp-btn pp-btn--primary" id="btn-share">Share</button>
+  </div>
+
+  <p class="mg-freeplay">
+    <button type="button" class="pp-btn pp-btn--ghost" id="btn-random">Play a random puzzle</button>
+  </p>
+</main>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>
