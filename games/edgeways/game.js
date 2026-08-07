@@ -22,6 +22,12 @@ import {
 const EPOCH = "2026-08-10";
 const GAME_ID = "edgeways";
 
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+  ));
+}
+
 const HELP_HTML = `
   <p>Twelve letters sit around a square, three to a side.</p>
   <p>Build a word by tapping letters in order, but you can never use two
@@ -171,7 +177,7 @@ function renderCurrent() {
 
 function renderFoundWords() {
   els.foundList.innerHTML = state.words
-    .map((w) => `<li>${w}</li>`)
+    .map((w) => `<li>${esc(w)}</li>`)
     .join("");
 }
 
