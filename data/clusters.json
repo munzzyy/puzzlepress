@@ -1,0 +1,6604 @@
+{
+  "puzzles": [
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "HAMMER",
+            "SCREWDRIVER",
+            "DRILL",
+            "CHISEL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "CANASTA",
+            "RUMMY",
+            "EUCHRE",
+            "HEARTS"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "VIOLIN",
+            "BANJO",
+            "GUITAR",
+            "HARP"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "HIGH",
+            "MOON",
+            "SPOT",
+            "DAY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "KING",
+            "PAWN",
+            "ROOK",
+            "BISHOP"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "SANDAL",
+            "MOCCASIN",
+            "SNEAKER",
+            "CLOG"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be broken",
+          "words": [
+            "HEART",
+            "RECORD",
+            "NEWS",
+            "ICE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "DASH",
+            "CHALK",
+            "SURF",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "COW",
+            "CHICKEN",
+            "HORSE",
+            "PIG"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "TUGBOAT",
+            "CANOE",
+            "SCHOONER",
+            "CATAMARAN"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "ELEPHANT",
+            "TREE",
+            "CAR",
+            "TORSO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "DAY",
+            "SOME",
+            "ANY",
+            "OVER"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SPRING",
+            "WINTER",
+            "SUMMER",
+            "AUTUMN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "POODLE",
+            "TERRIER",
+            "HUSKY",
+            "COLLIE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "LOBSTER",
+            "TURTLE",
+            "NUT",
+            "CRAB"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "NET",
+            "HOME",
+            "FRAME",
+            "PATCH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "IRIS",
+            "DAISY",
+            "ROSE",
+            "LILY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of laughter",
+          "words": [
+            "SNORT",
+            "GIGGLE",
+            "GUFFAW",
+            "CACKLE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a crown",
+          "words": [
+            "HAT",
+            "KING",
+            "TREE",
+            "HEAD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede CASE",
+          "words": [
+            "STAIR",
+            "SHOW",
+            "SUIT",
+            "BRIEF"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "words": [
+            "AZURE",
+            "NAVY",
+            "COBALT",
+            "TEAL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "SHREWD",
+            "CLEVER",
+            "BRIGHT",
+            "WITTY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "WIND",
+            "YACHT",
+            "SUBMARINE",
+            "AIRCRAFT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "OVER",
+            "BED",
+            "SOME",
+            "DAY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Things on a place setting",
+          "words": [
+            "PLATE",
+            "KNIFE",
+            "BOWL",
+            "FORK"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "TRUCKER",
+            "SQUARE",
+            "CLOVE",
+            "GRANNY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "PIANO",
+            "KEYBOARD",
+            "LOCK",
+            "CIPHER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "LIME",
+            "GALL",
+            "MILE",
+            "CORNER"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "FRIDGE",
+            "TOASTER",
+            "KETTLE",
+            "OVEN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "SQUARE",
+            "GRANNY",
+            "TRUCKER",
+            "CLOVE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "CRAB",
+            "EGG",
+            "SNAIL",
+            "LOBSTER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede COAT",
+          "words": [
+            "TOP",
+            "OVER",
+            "PETTI",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Citrus fruits",
+          "words": [
+            "ORANGE",
+            "LEMON",
+            "CLEMENTINE",
+            "LIME"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "PITA",
+            "RYE",
+            "CIABATTA",
+            "BRIOCHE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "OCEAN",
+            "HOSPITAL",
+            "FLOWER",
+            "TRUCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "EYE",
+            "BASE",
+            "BASKET",
+            "FOOT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SUMMER",
+            "SPRING",
+            "AUTUMN",
+            "WINTER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "TOPAZ",
+            "JADE",
+            "PEARL",
+            "OPAL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "SATURN",
+            "TREE",
+            "TELEPHONE",
+            "ONION"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STORM",
+          "words": [
+            "DUST",
+            "RAIN",
+            "BRAIN",
+            "FIRE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "MONDAY",
+            "THURSDAY",
+            "WEDNESDAY",
+            "TUESDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SHUFFLE",
+            "STRIDE",
+            "TROT",
+            "STROLL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "TRUCK",
+            "HOSPITAL",
+            "OCEAN",
+            "RIVER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STORM",
+          "words": [
+            "SNOW",
+            "BRAIN",
+            "FIRE",
+            "DUST"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Desert animals",
+          "words": [
+            "COYOTE",
+            "TORTOISE",
+            "LIZARD",
+            "CAMEL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "POKER",
+            "BRIDGE",
+            "HEARTS",
+            "RUMMY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "CIRCUS",
+            "TELEPHONE",
+            "BOXING",
+            "ONION"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "DAY",
+            "SUN",
+            "LAMP",
+            "HIGH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Citrus fruits",
+          "words": [
+            "LEMON",
+            "CLEMENTINE",
+            "GRAPEFRUIT",
+            "TANGERINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "TOPAZ",
+            "RUBY",
+            "OPAL",
+            "GARNET"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a face",
+          "words": [
+            "CLOCK",
+            "DIE",
+            "COIN",
+            "WATCH"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "CROSS",
+            "RAIN",
+            "LONG",
+            "OX"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "CIRRUS",
+            "CUMULUS",
+            "STRATUS",
+            "NIMBUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "BEAGLE",
+            "BOXER",
+            "POODLE",
+            "TERRIER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "BED",
+            "PIN",
+            "LETTUCE",
+            "NAIL"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "THUNDER",
+            "JAY",
+            "LADY",
+            "MOCKING"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "PINE",
+            "OAK",
+            "ELM",
+            "MAPLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Sewing terms",
+          "words": [
+            "NEEDLE",
+            "HEM",
+            "BUTTON",
+            "THREAD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "CACTUS",
+            "PERSON",
+            "PORCUPINE",
+            "BOOK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede OUT",
+          "words": [
+            "HAND",
+            "LAY",
+            "BLACK",
+            "CHECK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY",
+            "TUESDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "CONTENT",
+            "ELATED",
+            "CHEERFUL",
+            "JOYFUL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "DAMSON",
+            "APRICOT",
+            "CHERRY",
+            "NECTARINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STORM",
+          "words": [
+            "RAIN",
+            "THUNDER",
+            "BRAIN",
+            "SNOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "GOAT",
+            "COW",
+            "SHEEP",
+            "PIG"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "OASIS",
+            "DUNE",
+            "PLATEAU",
+            "MESA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "ROSE",
+            "VIOLET",
+            "MARIGOLD",
+            "LILAC"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede OUT",
+          "words": [
+            "CHECK",
+            "BLACK",
+            "WORK",
+            "LAY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "TULIP",
+            "LILY",
+            "ORCHID",
+            "DAISY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "OREGANO",
+            "SAGE",
+            "THYME",
+            "CUMIN"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "NEWS",
+            "CHIPS",
+            "JOKE",
+            "IDEA"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "DASH",
+            "KEY",
+            "CHALK",
+            "CARD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "MACARONI",
+            "RIGATONI",
+            "FUSILLI",
+            "LINGUINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "SAUTE",
+            "GRILL",
+            "BRAISE",
+            "ROAST"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "SEAL",
+            "DOG",
+            "TREE",
+            "FOX"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "LAMP",
+            "MOON",
+            "DAY",
+            "HIGH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "GREEN",
+            "ORANGE",
+            "BLUE",
+            "PURPLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Combat sports",
+          "words": [
+            "SUMO",
+            "BOXING",
+            "AIKIDO",
+            "KARATE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "NAIL",
+            "PIN",
+            "LETTUCE",
+            "DEPARTMENT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "CHALK",
+            "SNOW",
+            "DASH",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "KNIGHT",
+            "QUEEN",
+            "ROOK",
+            "BISHOP"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "PITA",
+            "SOURDOUGH",
+            "BAGUETTE",
+            "RYE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "DEPARTMENT",
+            "BED",
+            "NAIL",
+            "PIN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "THUNDER",
+            "BLACK",
+            "JAY",
+            "LADY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "SHEEP",
+            "CHICKEN",
+            "GOAT",
+            "HORSE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Sewing terms",
+          "words": [
+            "NEEDLE",
+            "SEAM",
+            "THREAD",
+            "HEM"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "MURDER",
+            "POD",
+            "HERD",
+            "SWARM"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "BLACK",
+            "THUNDER",
+            "MOCKING",
+            "LADY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "HAMMER",
+            "SCREWDRIVER",
+            "DRILL",
+            "PLIERS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for angry",
+          "words": [
+            "FURIOUS",
+            "IRATE",
+            "ENRAGED",
+            "LIVID"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "CRAB",
+            "TURTLE",
+            "LOBSTER",
+            "EGG"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STORM",
+          "words": [
+            "RAIN",
+            "BRAIN",
+            "FIRE",
+            "SNOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "HAIL",
+            "RAIN",
+            "WIND",
+            "SNOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SHUFFLE",
+            "TROT",
+            "STOMP",
+            "SAUNTER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "CRAB",
+            "LOBSTER",
+            "EGG",
+            "NUT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede FALL",
+          "words": [
+            "FREE",
+            "PIT",
+            "SHORT",
+            "WATER"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "SUGAR",
+            "EGGS",
+            "FLOUR",
+            "SALT"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Sewing terms",
+          "words": [
+            "SEAM",
+            "NEEDLE",
+            "BUTTON",
+            "HEM"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "NEWS",
+            "BREAD",
+            "AIR",
+            "CHIPS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede MARK",
+          "words": [
+            "HALL",
+            "BENCH",
+            "TRADE",
+            "BOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "GREEN",
+            "ORANGE",
+            "PURPLE",
+            "YELLOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "CHEERFUL",
+            "MERRY",
+            "JOYFUL",
+            "CONTENT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "JOKE",
+            "IDEA",
+            "BREAD",
+            "CHIPS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow SUN",
+          "words": [
+            "GLASSES",
+            "RISE",
+            "FLOWER",
+            "BURN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "YELLOW",
+            "ORANGE",
+            "BLUE",
+            "PURPLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "FEDORA",
+            "BEANIE",
+            "VISOR",
+            "SOMBRERO"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "NAIL",
+            "DEPARTMENT",
+            "BED",
+            "LETTUCE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow SUN",
+          "words": [
+            "BURN",
+            "RISE",
+            "GLASSES",
+            "SET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "PINE",
+            "ELM",
+            "OAK",
+            "BIRCH"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "SCALE",
+            "COMPASS",
+            "ROUTE",
+            "BORDER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "EGG",
+            "NUT",
+            "LOBSTER",
+            "TURTLE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "ALL",
+            "DUE",
+            "SEE",
+            "LOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "CLUBS",
+            "DIAMONDS",
+            "HEARTS",
+            "SPADES"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dance styles",
+          "words": [
+            "SALSA",
+            "JIVE",
+            "FOXTROT",
+            "WALTZ"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be broken",
+          "words": [
+            "PROMISE",
+            "RECORD",
+            "ICE",
+            "HEART"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow SUN",
+          "words": [
+            "FLOWER",
+            "SET",
+            "GLASSES",
+            "BURN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "SATURDAY",
+            "THURSDAY",
+            "WEDNESDAY",
+            "TUESDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SHUFFLE",
+            "STRIDE",
+            "STROLL",
+            "SAUNTER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be cracked",
+          "words": [
+            "WHIP",
+            "EGG",
+            "JOKE",
+            "CODE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "BOARD",
+            "THROW",
+            "LOOK",
+            "DUE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Breakfast foods",
+          "words": [
+            "BACON",
+            "OMELET",
+            "CEREAL",
+            "WAFFLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "DROUGHT",
+            "THUNDER",
+            "TORNADO",
+            "BLIZZARD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "RIDGE",
+            "BOOK",
+            "PERSON",
+            "HEDGEHOG"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "PUNCH",
+            "DEAD",
+            "HAIR",
+            "SIDE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "ORCHID",
+            "LILY",
+            "TULIP",
+            "IRIS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "GLANCE",
+            "PEEK",
+            "GAZE",
+            "PEER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "HARP",
+            "CELLO",
+            "BANJO",
+            "GUITAR"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "LONG",
+            "CROSS",
+            "OX",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Musical instruments",
+          "words": [
+            "TRUMPET",
+            "FLUTE",
+            "VIOLIN",
+            "GUITAR"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "GLANCE",
+            "PEEK",
+            "GAZE",
+            "STARE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "OCEAN",
+            "RIVER",
+            "HOSPITAL",
+            "TRUCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "DUE",
+            "BOARD",
+            "SEE",
+            "LOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "MICROWAVE",
+            "TOASTER",
+            "BLENDER",
+            "OVEN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SAUNTER",
+            "STROLL",
+            "SHUFFLE",
+            "STRIDE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "NEWS",
+            "CHIPS",
+            "BREAD",
+            "JOKE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede OUT",
+          "words": [
+            "WORK",
+            "LAY",
+            "CHECK",
+            "BLACK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Things on a place setting",
+          "words": [
+            "KNIFE",
+            "PLATE",
+            "FORK",
+            "SPOON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "SAUTE",
+            "SIMMER",
+            "ROAST",
+            "GRILL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "BANJO",
+            "HARP",
+            "CELLO",
+            "UKULELE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "OVER",
+            "ANY",
+            "DAY",
+            "SOME"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "SATURDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "PEARL",
+            "JADE",
+            "TOPAZ",
+            "GARNET"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "CACTUS",
+            "HEDGEHOG",
+            "PORCUPINE",
+            "BOOK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow WATER",
+          "words": [
+            "MARK",
+            "LOGGED",
+            "MELON",
+            "PROOF"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "CARDS",
+            "CHESS",
+            "BACKGAMMON",
+            "DOMINOES"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "OPAL",
+            "JADE",
+            "GARNET",
+            "TOPAZ"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "VIOLET",
+            "MARIGOLD",
+            "ROSE",
+            "LAVENDER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow SUN",
+          "words": [
+            "SET",
+            "BURN",
+            "RISE",
+            "GLASSES"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "PIG",
+            "CHICKEN",
+            "GOAT",
+            "COW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "TRUCKER",
+            "SLIPKNOT",
+            "BOWLINE",
+            "CLOVE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "DEPARTMENT",
+            "BED",
+            "PIN",
+            "LETTUCE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow WATER",
+          "words": [
+            "LOGGED",
+            "PROOF",
+            "MARK",
+            "SHED"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "RIGATONI",
+            "MACARONI",
+            "PENNE",
+            "LINGUINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "RUBY",
+            "PEARL",
+            "OPAL",
+            "TOPAZ"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a neck",
+          "words": [
+            "VIOLIN",
+            "GIRAFFE",
+            "GUITAR",
+            "SHIRT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "THUNDER",
+            "BLACK",
+            "LOVE",
+            "MOCKING"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "words": [
+            "CERULEAN",
+            "SKY",
+            "AZURE",
+            "TEAL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "COMPASS",
+            "KEY",
+            "ROUTE",
+            "SCALE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "FOX",
+            "SEAL",
+            "COYOTE",
+            "TREE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "CRAN",
+            "BLUE",
+            "STRAW",
+            "GOOSE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "BACKGAMMON",
+            "MANCALA",
+            "DOMINOES",
+            "CHESS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "SOURDOUGH",
+            "RYE",
+            "BAGUETTE",
+            "CIABATTA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "PIN",
+            "LETTUCE",
+            "NAIL",
+            "DEPARTMENT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "LAMP",
+            "MOON",
+            "SUN",
+            "SPOT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "FRIDAY",
+            "SATURDAY",
+            "THURSDAY",
+            "MONDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "SCALE",
+            "COMPASS",
+            "KEY",
+            "BORDER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "ELEPHANT",
+            "TORSO",
+            "CAR",
+            "SWIMSUIT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "BATH",
+            "BED",
+            "REST",
+            "SHOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "CIRRUS",
+            "NIMBUS",
+            "STRATUS",
+            "CUMULUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "MOCCASIN",
+            "SANDAL",
+            "BOOT",
+            "LOAFER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "MURDER",
+            "HERD",
+            "POD",
+            "PRIDE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "SOME",
+            "DAY",
+            "ANY",
+            "LIFE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "GREEN",
+            "ORANGE",
+            "BLUE",
+            "RED"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "BORDER",
+            "KEY",
+            "ROUTE",
+            "LEGEND"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "SHIP",
+            "YACHT",
+            "AIRCRAFT",
+            "SUBMARINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "LONG",
+            "OX",
+            "RAIN",
+            "CROSS"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "words": [
+            "TEAL",
+            "AZURE",
+            "NAVY",
+            "COBALT"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "GLAD",
+            "JOYFUL",
+            "CHEERFUL",
+            "MERRY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "RIVER",
+            "FLOWER",
+            "HOSPITAL",
+            "OCEAN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "MUSH",
+            "CLASS",
+            "REST",
+            "BED"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "DOMINOES",
+            "MANCALA",
+            "CHECKERS",
+            "BACKGAMMON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "BASIL",
+            "THYME",
+            "OREGANO",
+            "PAPRIKA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "SATURN",
+            "ONION",
+            "CIRCUS",
+            "BOXING"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "GREEN",
+            "WARE",
+            "TREE",
+            "DOG"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "SCREWDRIVER",
+            "HAMMER",
+            "WRENCH",
+            "DRILL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for angry",
+          "words": [
+            "IRATE",
+            "IRKED",
+            "ENRAGED",
+            "FURIOUS"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "PERSON",
+            "BOOK",
+            "CACTUS",
+            "PORCUPINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede CASE",
+          "words": [
+            "UPPER",
+            "BRIEF",
+            "SUIT",
+            "STAIR"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "SPADES",
+            "HEARTS",
+            "CLUBS",
+            "DIAMONDS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "ELATED",
+            "CHEERFUL",
+            "JOYFUL",
+            "GLAD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "JOKE",
+            "NEWS",
+            "IDEA",
+            "AIR"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "SURF",
+            "CHALK",
+            "SNOW",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Units of time",
+          "words": [
+            "HOUR",
+            "WEEK",
+            "MINUTE",
+            "MONTH"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "GARNET",
+            "OPAL",
+            "PEARL",
+            "RUBY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "ROSE",
+            "MARIGOLD",
+            "IRIS",
+            "LILAC"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "BASE",
+            "EYE",
+            "BASKET",
+            "HAND"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "LILY",
+            "ORCHID",
+            "ROSE",
+            "DAISY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "POKER",
+            "HEARTS",
+            "BRIDGE",
+            "CANASTA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "DEPARTMENT",
+            "PIN",
+            "NAIL",
+            "BED"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "ANY",
+            "DAY",
+            "OVER",
+            "SOME"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "CHESS",
+            "BACKGAMMON",
+            "CARDS",
+            "CHECKERS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "PAPRIKA",
+            "BASIL",
+            "OREGANO",
+            "SAGE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a crown",
+          "words": [
+            "TOOTH",
+            "TREE",
+            "HAT",
+            "KING"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "LIGHT",
+            "WARE",
+            "GREEN",
+            "DOG"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "MANCALA",
+            "DOMINOES",
+            "CHECKERS",
+            "BACKGAMMON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dance styles",
+          "words": [
+            "JIVE",
+            "WALTZ",
+            "SALSA",
+            "RUMBA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "SNAIL",
+            "TURTLE",
+            "EGG",
+            "LOBSTER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow WATER",
+          "words": [
+            "LOGGED",
+            "MARK",
+            "MELON",
+            "WAY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "RED",
+            "PURPLE",
+            "ORANGE",
+            "YELLOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "BAGUETTE",
+            "RYE",
+            "CIABATTA",
+            "PITA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "NEWS",
+            "BREAD",
+            "JOKE",
+            "IDEA"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "PENT",
+            "WARE",
+            "LIGHT",
+            "GREEN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Units of time",
+          "words": [
+            "HOUR",
+            "SECOND",
+            "DAY",
+            "MONTH"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "TUGBOAT",
+            "DINGHY",
+            "SCHOONER",
+            "KAYAK"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "RIDGE",
+            "PORCUPINE",
+            "CACTUS",
+            "PERSON"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "GOOSE",
+            "CRAN",
+            "BLACK",
+            "BLUE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "TOASTER",
+            "FRIDGE",
+            "OVEN",
+            "KETTLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "BOOT",
+            "CLOG",
+            "SNEAKER",
+            "LOAFER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in carats",
+          "words": [
+            "SAPPHIRE",
+            "DIAMOND",
+            "GARNET",
+            "EMERALD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "PATCH",
+            "FRAME",
+            "TEAM",
+            "NET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "BIRCH",
+            "ELM",
+            "PINE",
+            "MAPLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "PEEK",
+            "GLANCE",
+            "GAZE",
+            "STARE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be cracked",
+          "words": [
+            "WHIP",
+            "CODE",
+            "EGG",
+            "KNUCKLE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "REST",
+            "CLASS",
+            "BED",
+            "BATH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "PINE",
+            "BIRCH",
+            "CEDAR",
+            "OAK"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "POKER",
+            "BRIDGE",
+            "RUMMY",
+            "EUCHRE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "TREE",
+            "CIRCUS",
+            "BOXING",
+            "ONION"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "CROSS",
+            "RAIN",
+            "LONG",
+            "OX"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "GREEN",
+            "ORANGE",
+            "PURPLE",
+            "YELLOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "KEY",
+            "BORDER",
+            "COMPASS",
+            "SCALE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "HERD",
+            "FLOCK",
+            "MURDER",
+            "POD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "EYE",
+            "FOOT",
+            "HAND",
+            "SNOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "WRENCH",
+            "HAMMER",
+            "SCREWDRIVER",
+            "DRILL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Shades of purple",
+          "words": [
+            "AMETHYST",
+            "MAUVE",
+            "VIOLET",
+            "INDIGO"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "TREE",
+            "TORSO",
+            "CAR",
+            "SWIMSUIT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede COAT",
+          "words": [
+            "PETTI",
+            "TOP",
+            "OVER",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "SNOW",
+            "FOG",
+            "WIND",
+            "SLEET"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "CHEERFUL",
+            "JOYFUL",
+            "CONTENT",
+            "GLAD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "LOBSTER",
+            "TURTLE",
+            "SNAIL",
+            "CRAB"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede FALL",
+          "words": [
+            "WATER",
+            "RAIN",
+            "PIT",
+            "SHORT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "SPADES",
+            "CLUBS",
+            "HEARTS",
+            "DIAMONDS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dance styles",
+          "words": [
+            "TANGO",
+            "SALSA",
+            "RUMBA",
+            "FOXTROT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "SWIMSUIT",
+            "TREE",
+            "TORSO",
+            "ELEPHANT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "KEY",
+            "CORNER",
+            "LIME",
+            "MILE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "DRILL",
+            "HAMMER",
+            "WRENCH",
+            "SCREWDRIVER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "BUTTE",
+            "OASIS",
+            "PLATEAU",
+            "MESA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "FLOCK",
+            "HERD",
+            "PRIDE",
+            "SWARM"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "LONG",
+            "CROSS",
+            "RAIN",
+            "OX"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "PLIERS",
+            "CHISEL",
+            "SCREWDRIVER",
+            "HAMMER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "STRIDE",
+            "STOMP",
+            "SHUFFLE",
+            "SAUNTER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "SEAL",
+            "COYOTE",
+            "DOG",
+            "FOX"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "UP",
+            "OUT",
+            "IN",
+            "DOWN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Body parts",
+          "words": [
+            "KNEE",
+            "ARM",
+            "FOOT",
+            "HAND"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "CLOVE",
+            "SLIPKNOT",
+            "SQUARE",
+            "GRANNY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "MURDER",
+            "FLOCK",
+            "POD",
+            "PRIDE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "SURF",
+            "CARD",
+            "CHALK",
+            "DASH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Ocean creatures",
+          "words": [
+            "CRAB",
+            "EEL",
+            "WHALE",
+            "DOLPHIN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "JOYFUL",
+            "CONTENT",
+            "MERRY",
+            "GLAD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "TELEPHONE",
+            "TREE",
+            "CIRCUS",
+            "ONION"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "HAIR",
+            "HEAD",
+            "DEAD",
+            "PUNCH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "BISHOP",
+            "ROOK",
+            "PAWN",
+            "KNIGHT"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "CLEVER",
+            "BRIGHT",
+            "SHARP",
+            "ASTUTE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "SWIMSUIT",
+            "CAR",
+            "TORSO",
+            "TREE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "DUE",
+            "BOARD",
+            "LOOK",
+            "THROW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Units of time",
+          "words": [
+            "SECOND",
+            "HOUR",
+            "MONTH",
+            "WEEK"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "BAGUETTE",
+            "RYE",
+            "SOURDOUGH",
+            "PITA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "EGG",
+            "CRAB",
+            "SNAIL",
+            "LOBSTER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "MUSH",
+            "CLASS",
+            "BATH",
+            "REST"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Breakfast foods",
+          "words": [
+            "OMELET",
+            "WAFFLE",
+            "PANCAKE",
+            "BACON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "BUTTE",
+            "OASIS",
+            "PLATEAU",
+            "DUNE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a neck",
+          "words": [
+            "GUITAR",
+            "VIOLIN",
+            "SHIRT",
+            "GIRAFFE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede PACK",
+          "words": [
+            "SIX",
+            "BACK",
+            "ICE",
+            "FANNY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "HEARTS",
+            "DIAMONDS",
+            "SPADES",
+            "CLUBS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "BOXER",
+            "COLLIE",
+            "BEAGLE",
+            "TERRIER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "AIRCRAFT",
+            "SHIP",
+            "WIND",
+            "SUBMARINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "CORNER",
+            "KEY",
+            "LIME",
+            "MILE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Musical instruments",
+          "words": [
+            "VIOLIN",
+            "PIANO",
+            "DRUMS",
+            "FLUTE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "GARNET",
+            "JADE",
+            "PEARL",
+            "OPAL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "IDEA",
+            "CHIPS",
+            "JOKE",
+            "NEWS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede FALL",
+          "words": [
+            "PIT",
+            "FREE",
+            "SHORT",
+            "NIGHT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SUMMER",
+            "AUTUMN",
+            "SPRING",
+            "WINTER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of laughter",
+          "words": [
+            "SNORT",
+            "GIGGLE",
+            "CACKLE",
+            "CHUCKLE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "APRICOT",
+            "DAMSON",
+            "PEACH",
+            "MANGO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "SNOW",
+            "CARD",
+            "CHALK",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "ELM",
+            "OAK",
+            "CEDAR",
+            "PINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "KAYAK",
+            "DINGHY",
+            "CANOE",
+            "SCHOONER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "DOG",
+            "TREE",
+            "COYOTE",
+            "SEAL"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "DEAD",
+            "HAIR",
+            "PUNCH",
+            "SIDE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Desert animals",
+          "words": [
+            "SCORPION",
+            "VULTURE",
+            "COYOTE",
+            "LIZARD"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "ELATED",
+            "CHEERFUL",
+            "MERRY",
+            "JOYFUL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be broken",
+          "words": [
+            "NEWS",
+            "HEART",
+            "PROMISE",
+            "HABIT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "BASE",
+            "EYE",
+            "SNOW",
+            "HAND"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "KETTLE",
+            "TOASTER",
+            "MICROWAVE",
+            "FRIDGE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "BAKE",
+            "SIMMER",
+            "SAUTE",
+            "ROAST"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a shell",
+          "words": [
+            "TURTLE",
+            "CRAB",
+            "NUT",
+            "EGG"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "THROW",
+            "DUE",
+            "SEE",
+            "BOARD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "MICROWAVE",
+            "KETTLE",
+            "FRIDGE",
+            "BLENDER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "TRUCKER",
+            "CLOVE",
+            "SQUARE",
+            "SLIPKNOT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "YACHT",
+            "AIRCRAFT",
+            "SUBMARINE",
+            "WIND"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "MUSH",
+            "BATH",
+            "SHOW",
+            "CLASS"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Breakfast foods",
+          "words": [
+            "CEREAL",
+            "BACON",
+            "PANCAKE",
+            "OMELET"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "SOMBRERO",
+            "FEDORA",
+            "BEANIE",
+            "BERET"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "PIANO",
+            "CAR",
+            "LOCK",
+            "CIPHER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "DEAD",
+            "SIDE",
+            "BASE",
+            "HEAD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SPRING",
+            "AUTUMN",
+            "SUMMER",
+            "WINTER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "SHREWD",
+            "BRIGHT",
+            "CLEVER",
+            "SHARP"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "KEYBOARD",
+            "CAR",
+            "CIPHER",
+            "LOCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede PACK",
+          "words": [
+            "WOLF",
+            "BACK",
+            "FANNY",
+            "ICE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "OVEN",
+            "MICROWAVE",
+            "TOASTER",
+            "BLENDER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "DROUGHT",
+            "TORNADO",
+            "MONSOON",
+            "THUNDER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be cracked",
+          "words": [
+            "CODE",
+            "WHIP",
+            "EGG",
+            "JOKE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "TREE",
+            "PENT",
+            "LIGHT",
+            "DOG"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "OVEN",
+            "FRIDGE",
+            "MICROWAVE",
+            "KETTLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "MOCCASIN",
+            "LOAFER",
+            "SNEAKER",
+            "BOOT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "CIRCUS",
+            "ONION",
+            "SATURN",
+            "TELEPHONE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "CROSS",
+            "RAIN",
+            "LONG",
+            "OX"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Desert animals",
+          "words": [
+            "TORTOISE",
+            "COYOTE",
+            "CAMEL",
+            "SCORPION"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "SAUTE",
+            "BRAISE",
+            "ROAST",
+            "GRILL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "GUITAR",
+            "BANJO",
+            "VIOLIN",
+            "UKULELE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "BED",
+            "DOWN",
+            "OUT",
+            "COUNTRY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "ROOK",
+            "KNIGHT",
+            "PAWN",
+            "KING"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "STOMP",
+            "STRIDE",
+            "STROLL",
+            "SAUNTER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "IRIS",
+            "LILAC",
+            "ROSE",
+            "VIOLET"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "LOOK",
+            "DUE",
+            "SEE",
+            "BOARD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "RIGATONI",
+            "MACARONI",
+            "FUSILLI",
+            "LINGUINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SHUFFLE",
+            "STRIDE",
+            "TROT",
+            "SAUNTER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "SWARM",
+            "PRIDE",
+            "POD",
+            "HERD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow WATER",
+          "words": [
+            "MARK",
+            "MELON",
+            "LOGGED",
+            "WAY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "BUTTER",
+            "YEAST",
+            "FLOUR",
+            "SALT"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "PEARL",
+            "JADE",
+            "OPAL",
+            "GARNET"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a crown",
+          "words": [
+            "TOOTH",
+            "HEAD",
+            "KING",
+            "HAT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "DASH",
+            "SURF",
+            "KEY",
+            "CHALK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "CUMULUS",
+            "NIMBUS",
+            "CIRRUS",
+            "STRATUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "MOCCASIN",
+            "LOAFER",
+            "BOOT",
+            "CLOG"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "HEDGEHOG",
+            "RIDGE",
+            "BOOK",
+            "CACTUS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede OUT",
+          "words": [
+            "LAY",
+            "CHECK",
+            "WORK",
+            "HAND"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Things on a place setting",
+          "words": [
+            "BOWL",
+            "PLATE",
+            "NAPKIN",
+            "SPOON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "POODLE",
+            "BOXER",
+            "TERRIER",
+            "HUSKY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "ELEPHANT",
+            "TORSO",
+            "SWIMSUIT",
+            "CAR"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "DOG",
+            "GREEN",
+            "WARE",
+            "PENT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SPRING",
+            "SUMMER",
+            "WINTER",
+            "AUTUMN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "BOWLER",
+            "BEANIE",
+            "SOMBRERO",
+            "BERET"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "DAMSON",
+            "CHERRY",
+            "MANGO",
+            "PEACH"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "CLASS",
+            "BATH",
+            "BED",
+            "REST"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "CIRRUS",
+            "CUMULUS",
+            "STRATUS",
+            "NIMBUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "THUNDER",
+            "TORNADO",
+            "MONSOON",
+            "BLIZZARD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "LETTUCE",
+            "NAIL",
+            "DEPARTMENT",
+            "PIN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede CASE",
+          "words": [
+            "SHOW",
+            "UPPER",
+            "STAIR",
+            "BOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "CLUBS",
+            "DIAMONDS",
+            "HEARTS",
+            "SPADES"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "BOOT",
+            "SNEAKER",
+            "LOAFER",
+            "SANDAL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "HEDGEHOG",
+            "RIDGE",
+            "CACTUS",
+            "BOOK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "CORNER",
+            "LIME",
+            "MILE",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Units of time",
+          "words": [
+            "MINUTE",
+            "SECOND",
+            "MONTH",
+            "HOUR"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "KEY",
+            "BORDER",
+            "ROUTE",
+            "SCALE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "FLOWER",
+            "RIVER",
+            "OCEAN",
+            "TRUCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "REST",
+            "BATH",
+            "BED",
+            "CLASS"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "ROOK",
+            "KNIGHT",
+            "BISHOP",
+            "QUEEN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "BOOT",
+            "MOCCASIN",
+            "LOAFER",
+            "SNEAKER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "CHERRY",
+            "MANGO",
+            "NECTARINE",
+            "PEACH"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "CHALK",
+            "KEY",
+            "DASH",
+            "CARD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Body parts",
+          "words": [
+            "HAND",
+            "ELBOW",
+            "LEG",
+            "KNEE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "ROUTE",
+            "BORDER",
+            "SCALE",
+            "KEY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a neck",
+          "words": [
+            "SHIRT",
+            "VIOLIN",
+            "GUITAR",
+            "BOTTLE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede CASE",
+          "words": [
+            "BRIEF",
+            "SHOW",
+            "STAIR",
+            "BOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "AUTUMN",
+            "WINTER",
+            "SPRING",
+            "SUMMER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "TUGBOAT",
+            "KAYAK",
+            "SCHOONER",
+            "DINGHY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "TELEPHONE",
+            "SATURN",
+            "ONION",
+            "TREE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "MUSH",
+            "BED",
+            "CLASS",
+            "REST"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Units of time",
+          "words": [
+            "SECOND",
+            "MINUTE",
+            "MONTH",
+            "DAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "SNEAKER",
+            "SANDAL",
+            "LOAFER",
+            "MOCCASIN"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "RIVER",
+            "FLOWER",
+            "TRUCK",
+            "OCEAN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "CROSS",
+            "LONG",
+            "OX",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "KING",
+            "ROOK",
+            "KNIGHT",
+            "QUEEN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "KAYAK",
+            "CATAMARAN",
+            "CANOE",
+            "SCHOONER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "DAMSON",
+            "APRICOT",
+            "PEACH",
+            "MANGO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "BED",
+            "UP",
+            "IN",
+            "DOWN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Citrus fruits",
+          "words": [
+            "GRAPEFRUIT",
+            "CLEMENTINE",
+            "LIME",
+            "LEMON"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "MONSOON",
+            "TORNADO",
+            "THUNDER",
+            "DROUGHT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "MARIGOLD",
+            "ROSE",
+            "VIOLET",
+            "IRIS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "BIRTH",
+            "GALL",
+            "CORNER",
+            "KEY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Things on a place setting",
+          "words": [
+            "KNIFE",
+            "SPOON",
+            "PLATE",
+            "FORK"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "CLEVER",
+            "ASTUTE",
+            "WITTY",
+            "BRIGHT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "HOSPITAL",
+            "TRUCK",
+            "RIVER",
+            "FLOWER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow SUN",
+          "words": [
+            "GLASSES",
+            "BURN",
+            "SHINE",
+            "RISE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "SNOW",
+            "WIND",
+            "HAIL",
+            "FOG"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "SIMMER",
+            "GRILL",
+            "BAKE",
+            "SAUTE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "CIPHER",
+            "LOCK",
+            "CAR",
+            "MAP"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "STRAW",
+            "GOOSE",
+            "BLUE",
+            "CRAN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Citrus fruits",
+          "words": [
+            "TANGERINE",
+            "GRAPEFRUIT",
+            "ORANGE",
+            "CLEMENTINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "POKER",
+            "CANASTA",
+            "HEARTS",
+            "RUMMY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "IRIS",
+            "LILAC",
+            "ROSE",
+            "VIOLET"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "HIGH",
+            "DAY",
+            "SPOT",
+            "LAMP"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "DAISY",
+            "LILY",
+            "IRIS",
+            "TULIP"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "PLATEAU",
+            "OASIS",
+            "DUNE",
+            "CANYON"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a neck",
+          "words": [
+            "BOTTLE",
+            "VIOLIN",
+            "GIRAFFE",
+            "SHIRT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "WARE",
+            "DOG",
+            "LIGHT",
+            "PENT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "SHEEP",
+            "PIG",
+            "COW",
+            "HORSE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "KEY",
+            "BORDER",
+            "LEGEND",
+            "SCALE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Animal group names",
+          "words": [
+            "FLOCK",
+            "POD",
+            "PRIDE",
+            "MURDER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "REST",
+            "SHOW",
+            "MUSH",
+            "BED"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "GOAT",
+            "COW",
+            "CHICKEN",
+            "HORSE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "BRIOCHE",
+            "SOURDOUGH",
+            "PITA",
+            "CIABATTA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "NECTARINE",
+            "PEACH",
+            "APRICOT",
+            "CHERRY"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "FOOT",
+            "BASKET",
+            "HAND",
+            "BASE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Ocean creatures",
+          "words": [
+            "DOLPHIN",
+            "WHALE",
+            "OCTOPUS",
+            "CRAB"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of shoes",
+          "words": [
+            "SNEAKER",
+            "CLOG",
+            "MOCCASIN",
+            "BOOT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "PEACH",
+            "APRICOT",
+            "NECTARINE",
+            "MANGO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "BASE",
+            "HEAD",
+            "SIDE",
+            "DEAD"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "GREEN",
+            "ORANGE",
+            "YELLOW",
+            "BLUE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "LIGHTNING",
+            "TORNADO",
+            "DROUGHT",
+            "THUNDER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "SWIMSUIT",
+            "TORSO",
+            "TREE",
+            "CAR"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "BIRTH",
+            "CORNER",
+            "MILE",
+            "GALL"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Body parts",
+          "words": [
+            "FOOT",
+            "KNEE",
+            "LEG",
+            "HAND"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "SAUTE",
+            "ROAST",
+            "BRAISE",
+            "SIMMER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "CACTUS",
+            "HEDGEHOG",
+            "PORCUPINE",
+            "RIDGE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "CRAN",
+            "BLACK",
+            "STRAW",
+            "GOOSE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Farm animals",
+          "words": [
+            "PIG",
+            "HORSE",
+            "COW",
+            "SHEEP"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "BEANIE",
+            "BOWLER",
+            "BERET",
+            "VISOR"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "BANJO",
+            "VIOLIN",
+            "HARP",
+            "CELLO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede MARK",
+          "words": [
+            "BENCH",
+            "LAND",
+            "POST",
+            "HALL"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "WINTER",
+            "AUTUMN",
+            "SUMMER",
+            "SPRING"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "GLANCE",
+            "GAZE",
+            "PEER",
+            "STARE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "GUITAR",
+            "VIOLIN",
+            "HARP",
+            "UKULELE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "DASH",
+            "KEY",
+            "CARD",
+            "CHALK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "BACKGAMMON",
+            "MANCALA",
+            "CHESS",
+            "DOMINOES"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "CIABATTA",
+            "BRIOCHE",
+            "PITA",
+            "SOURDOUGH"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "HOSPITAL",
+            "RIVER",
+            "FLOWER",
+            "TRUCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BALL",
+          "words": [
+            "SNOW",
+            "EYE",
+            "FOOT",
+            "BASKET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "RIGATONI",
+            "PENNE",
+            "LINGUINE",
+            "RAVIOLI"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "PEARL",
+            "GARNET",
+            "JADE",
+            "RUBY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "LOCK",
+            "CAR",
+            "PIANO",
+            "CIPHER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "ANY",
+            "LIFE",
+            "BED",
+            "OVER"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "FUSILLI",
+            "RAVIOLI",
+            "RIGATONI",
+            "MACARONI"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "PEEK",
+            "GAZE",
+            "PEER",
+            "GLANCE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "LILAC",
+            "VIOLET",
+            "MARIGOLD",
+            "IRIS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "MUSH",
+            "REST",
+            "BATH",
+            "SHOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "AUTUMN",
+            "WINTER",
+            "SPRING",
+            "SUMMER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to walk",
+          "words": [
+            "SAUNTER",
+            "SHUFFLE",
+            "STROLL",
+            "STOMP"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "SHIP",
+            "AIRCRAFT",
+            "YACHT",
+            "BOAT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "NET",
+            "FRAME",
+            "TEAM",
+            "HOME"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "SATURDAY",
+            "THURSDAY",
+            "WEDNESDAY",
+            "MONDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "CUMIN",
+            "SAGE",
+            "BASIL",
+            "PAPRIKA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "ROSE",
+            "LILAC",
+            "MARIGOLD",
+            "LAVENDER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LINE",
+          "words": [
+            "HEAD",
+            "SIDE",
+            "HAIR",
+            "BASE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "words": [
+            "COBALT",
+            "SKY",
+            "AZURE",
+            "TEAL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "SCHOONER",
+            "CANOE",
+            "KAYAK",
+            "DINGHY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "DAMSON",
+            "APRICOT",
+            "MANGO",
+            "NECTARINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "DOWN",
+            "UP",
+            "IN",
+            "OUT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "SNOW",
+            "SLEET",
+            "HAIL",
+            "WIND"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "SHARP",
+            "ASTUTE",
+            "BRIGHT",
+            "SHREWD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "HEDGEHOG",
+            "BOOK",
+            "CACTUS",
+            "PORCUPINE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede ROOM",
+          "words": [
+            "SHOW",
+            "REST",
+            "MUSH",
+            "BATH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "WIND",
+            "SLEET",
+            "RAIN",
+            "HAIL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dance styles",
+          "words": [
+            "WALTZ",
+            "FOXTROT",
+            "JIVE",
+            "RUMBA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "HARP",
+            "VIOLIN",
+            "BANJO",
+            "CELLO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede CASE",
+          "words": [
+            "BRIEF",
+            "UPPER",
+            "SUIT",
+            "STAIR"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "DRILL",
+            "PLIERS",
+            "SCREWDRIVER",
+            "HAMMER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Cooking methods",
+          "words": [
+            "BRAISE",
+            "SIMMER",
+            "ROAST",
+            "SAUTE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in carats",
+          "words": [
+            "EMERALD",
+            "GARNET",
+            "SAPPHIRE",
+            "RUBY"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "GALL",
+            "CORNER",
+            "MILE",
+            "BIRTH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Chess pieces",
+          "words": [
+            "ROOK",
+            "BISHOP",
+            "QUEEN",
+            "PAWN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Sewing terms",
+          "words": [
+            "SEAM",
+            "THREAD",
+            "NEEDLE",
+            "ZIPPER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stone fruits",
+          "words": [
+            "APRICOT",
+            "DAMSON",
+            "CHERRY",
+            "PEACH"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "HIGH",
+            "SPOT",
+            "SUN",
+            "MOON"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Trees",
+          "words": [
+            "OAK",
+            "MAPLE",
+            "BIRCH",
+            "ELM"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "GRANNY",
+            "SLIPKNOT",
+            "TRUCKER",
+            "CLOVE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "SATURN",
+            "CIRCUS",
+            "BOXING",
+            "ONION"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "LIGHT",
+            "PENT",
+            "GREEN",
+            "DOG"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Things on a place setting",
+          "words": [
+            "SPOON",
+            "KNIFE",
+            "PLATE",
+            "NAPKIN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "STARE",
+            "PEEK",
+            "GAZE",
+            "GLIMPSE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "MARIGOLD",
+            "LAVENDER",
+            "VIOLET",
+            "IRIS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "MOCKING",
+            "LOVE",
+            "THUNDER",
+            "LADY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "SUGAR",
+            "FLOUR",
+            "BUTTER",
+            "SALT"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Card games",
+          "words": [
+            "CANASTA",
+            "EUCHRE",
+            "BRIDGE",
+            "POKER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "PORCUPINE",
+            "BOOK",
+            "RIDGE",
+            "CACTUS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "LIME",
+            "MILE",
+            "GALL",
+            "BIRTH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Breakfast foods",
+          "words": [
+            "CEREAL",
+            "BACON",
+            "WAFFLE",
+            "OMELET"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "BOXER",
+            "POODLE",
+            "COLLIE",
+            "HUSKY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "MARIGOLD",
+            "LILAC",
+            "IRIS",
+            "LAVENDER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "FRAME",
+            "PATCH",
+            "TEAM",
+            "NET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "OVEN",
+            "MICROWAVE",
+            "KETTLE",
+            "BLENDER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Severe weather",
+          "words": [
+            "LIGHTNING",
+            "THUNDER",
+            "DROUGHT",
+            "MONSOON"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "TRUCK",
+            "HOSPITAL",
+            "FLOWER",
+            "OCEAN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow OVER",
+          "words": [
+            "DUE",
+            "ALL",
+            "THROW",
+            "LOOK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SUMMER",
+            "WINTER",
+            "AUTUMN",
+            "SPRING"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "BRIOCHE",
+            "PITA",
+            "CIABATTA",
+            "RYE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "TORSO",
+            "TREE",
+            "ELEPHANT",
+            "SWIMSUIT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOARD",
+          "words": [
+            "DASH",
+            "KEY",
+            "SURF",
+            "SNOW"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "CHISEL",
+            "DRILL",
+            "HAMMER",
+            "WRENCH"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "DUNE",
+            "MESA",
+            "OASIS",
+            "PLATEAU"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "BREAD",
+            "IDEA",
+            "CHIPS",
+            "JOKE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "MOON",
+            "SPOT",
+            "DAY",
+            "LAMP"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "EGGS",
+            "BUTTER",
+            "SALT",
+            "SUGAR"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "BEANIE",
+            "FEDORA",
+            "SOMBRERO",
+            "VISOR"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Colors named after flowers",
+          "words": [
+            "LILAC",
+            "ROSE",
+            "LAVENDER",
+            "IRIS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "UP",
+            "OUT",
+            "DOWN",
+            "IN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Body parts",
+          "words": [
+            "LEG",
+            "HAND",
+            "KNEE",
+            "ELBOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "BOXER",
+            "POODLE",
+            "HUSKY",
+            "COLLIE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be broken",
+          "words": [
+            "HEART",
+            "RECORD",
+            "PROMISE",
+            "ICE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STORM",
+          "words": [
+            "SNOW",
+            "BRAIN",
+            "FIRE",
+            "DUST"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SUMMER",
+            "WINTER",
+            "AUTUMN",
+            "SPRING"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "LEGEND",
+            "KEY",
+            "ROUTE",
+            "BORDER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have keys",
+          "words": [
+            "LOCK",
+            "MAP",
+            "CAR",
+            "CIPHER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "PATCH",
+            "FRAME",
+            "HOME",
+            "NET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Musical instruments",
+          "words": [
+            "DRUMS",
+            "VIOLIN",
+            "FLUTE",
+            "PIANO"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "PEER",
+            "PEEK",
+            "GAZE",
+            "STARE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a head",
+          "words": [
+            "PIN",
+            "DEPARTMENT",
+            "LETTUCE",
+            "NAIL"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede MARK",
+          "words": [
+            "BOOK",
+            "LAND",
+            "POST",
+            "BENCH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "THURSDAY",
+            "FRIDAY",
+            "TUESDAY",
+            "MONDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "PEARL",
+            "GARNET",
+            "JADE",
+            "TOPAZ"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "BOAT",
+            "SHIP",
+            "SUBMARINE",
+            "AIRCRAFT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "GALL",
+            "KEY",
+            "CORNER",
+            "MILE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "CHISEL",
+            "WRENCH",
+            "HAMMER",
+            "PLIERS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "LEGEND",
+            "ROUTE",
+            "COMPASS",
+            "KEY"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bed",
+          "words": [
+            "TRUCK",
+            "HOSPITAL",
+            "OCEAN",
+            "RIVER"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "OX",
+            "LONG",
+            "CROSS",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "BLUE",
+            "GREEN",
+            "PURPLE",
+            "RED"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Ways to look at something",
+          "words": [
+            "GLANCE",
+            "STARE",
+            "PEER",
+            "GAZE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be cracked",
+          "words": [
+            "JOKE",
+            "SAFE",
+            "WHIP",
+            "CODE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "BED",
+            "DOWN",
+            "COUNTRY",
+            "IN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Seasons",
+          "words": [
+            "SPRING",
+            "WINTER",
+            "SUMMER",
+            "AUTUMN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of hats",
+          "words": [
+            "BERET",
+            "FEDORA",
+            "SOMBRERO",
+            "VISOR"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "FOX",
+            "TREE",
+            "SEAL",
+            "DOG"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede MARK",
+          "words": [
+            "BOOK",
+            "LAND",
+            "POST",
+            "TRADE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "NIMBUS",
+            "STRATUS",
+            "CIRRUS",
+            "CUMULUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of laughter",
+          "words": [
+            "CACKLE",
+            "GIGGLE",
+            "SNICKER",
+            "CHUCKLE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "COYOTE",
+            "DOG",
+            "SEAL",
+            "TREE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "CROSS",
+            "OX",
+            "LONG",
+            "RAIN"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "SUGAR",
+            "SALT",
+            "BUTTER",
+            "EGGS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "MERRY",
+            "GLAD",
+            "CONTENT",
+            "JOYFUL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a face",
+          "words": [
+            "WATCH",
+            "CLIFF",
+            "DIE",
+            "CLOCK"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "TEAM",
+            "HOME",
+            "NET",
+            "PATCH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Ocean creatures",
+          "words": [
+            "WHALE",
+            "EEL",
+            "SHARK",
+            "DOLPHIN"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Combat sports",
+          "words": [
+            "AIKIDO",
+            "SUMO",
+            "KENDO",
+            "BOXING"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "YACHT",
+            "SUBMARINE",
+            "WIND",
+            "AIRCRAFT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BOW",
+          "words": [
+            "LONG",
+            "CROSS",
+            "RAIN",
+            "OX"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Breakfast foods",
+          "words": [
+            "OMELET",
+            "TOAST",
+            "PANCAKE",
+            "CEREAL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Things on a map",
+          "words": [
+            "BORDER",
+            "LEGEND",
+            "SCALE",
+            "ROUTE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "TORSO",
+            "SWIMSUIT",
+            "TREE",
+            "ELEPHANT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "RASP",
+            "STRAW",
+            "CRAN",
+            "GOOSE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Shades of blue",
+          "words": [
+            "COBALT",
+            "TEAL",
+            "SKY",
+            "AZURE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "SHARP",
+            "BRIGHT",
+            "CLEVER",
+            "SHREWD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in knots",
+          "words": [
+            "BOAT",
+            "AIRCRAFT",
+            "SHIP",
+            "WIND"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede HOUSE",
+          "words": [
+            "WARE",
+            "GREEN",
+            "DOG",
+            "TREE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Days of the week",
+          "words": [
+            "TUESDAY",
+            "FRIDAY",
+            "WEDNESDAY",
+            "SATURDAY"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Constellations",
+          "words": [
+            "PERSEUS",
+            "HYDRA",
+            "ORION",
+            "LYRA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in carats",
+          "words": [
+            "SAPPHIRE",
+            "GARNET",
+            "TOPAZ",
+            "EMERALD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BIRD",
+          "words": [
+            "JAY",
+            "LOVE",
+            "MOCKING",
+            "LADY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Card suits",
+          "words": [
+            "CLUBS",
+            "HEARTS",
+            "SPADES",
+            "DIAMONDS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "PEARL",
+            "RUBY",
+            "JADE",
+            "OPAL"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a spine",
+          "words": [
+            "RIDGE",
+            "CACTUS",
+            "PERSON",
+            "HEDGEHOG"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede PACK",
+          "words": [
+            "ICE",
+            "BACK",
+            "FANNY",
+            "RAT"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Desert animals",
+          "words": [
+            "COYOTE",
+            "LIZARD",
+            "TORTOISE",
+            "CAMEL"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Desert landforms",
+          "words": [
+            "BUTTE",
+            "CANYON",
+            "PLATEAU",
+            "MESA"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a neck",
+          "words": [
+            "GIRAFFE",
+            "VIOLIN",
+            "GUITAR",
+            "SHIRT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "HIGH",
+            "MOON",
+            "SUN",
+            "LAMP"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Primary and secondary colors",
+          "words": [
+            "PURPLE",
+            "BLUE",
+            "GREEN",
+            "YELLOW"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for happy",
+          "words": [
+            "CHEERFUL",
+            "GLAD",
+            "MERRY",
+            "CONTENT"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Stringed instruments",
+          "words": [
+            "GUITAR",
+            "HARP",
+            "UKULELE",
+            "CELLO"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede COAT",
+          "words": [
+            "TOP",
+            "RAIN",
+            "PETTI",
+            "OVER"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "RAVIOLI",
+            "RIGATONI",
+            "FUSILLI",
+            "LINGUINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of bread",
+          "words": [
+            "BRIOCHE",
+            "BAGUETTE",
+            "CIABATTA",
+            "RYE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a face",
+          "words": [
+            "CLOCK",
+            "WATCH",
+            "COIN",
+            "CARD"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "SOME",
+            "BED",
+            "DAY",
+            "ANY"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Citrus fruits",
+          "words": [
+            "LEMON",
+            "GRAPEFRUIT",
+            "ORANGE",
+            "TANGERINE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of boats",
+          "words": [
+            "DINGHY",
+            "TUGBOAT",
+            "CATAMARAN",
+            "KAYAK"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can be cracked",
+          "words": [
+            "SAFE",
+            "KNUCKLE",
+            "WHIP",
+            "CODE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede WORK",
+          "words": [
+            "HOME",
+            "PATCH",
+            "TEAM",
+            "NET"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Flowers",
+          "words": [
+            "ROSE",
+            "LILY",
+            "ORCHID",
+            "IRIS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Gemstones",
+          "words": [
+            "OPAL",
+            "GARNET",
+            "RUBY",
+            "TOPAZ"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a trunk",
+          "words": [
+            "TREE",
+            "TORSO",
+            "CAR",
+            "ELEPHANT"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede OUT",
+          "words": [
+            "WORK",
+            "LAY",
+            "BLACK",
+            "CHECK"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Cloud types",
+          "words": [
+            "CUMULUS",
+            "NIMBUS",
+            "STRATUS",
+            "CIRRUS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Dog breeds",
+          "words": [
+            "BEAGLE",
+            "TERRIER",
+            "BOXER",
+            "COLLIE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things measured in carats",
+          "words": [
+            "GARNET",
+            "SAPPHIRE",
+            "DIAMOND",
+            "RUBY"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede SIDE",
+          "words": [
+            "OUT",
+            "IN",
+            "UP",
+            "BED"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Kitchen appliances",
+          "words": [
+            "OVEN",
+            "TOASTER",
+            "BLENDER",
+            "KETTLE"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "PAPRIKA",
+            "SAGE",
+            "THYME",
+            "CUMIN"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "ONION",
+            "TREE",
+            "SATURN",
+            "BOXING"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede STONE",
+          "words": [
+            "CORNER",
+            "BIRTH",
+            "GALL",
+            "MILE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Tabletop games",
+          "words": [
+            "MANCALA",
+            "DOMINOES",
+            "CHESS",
+            "CARDS"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Kinds of knots",
+          "words": [
+            "BOWLINE",
+            "SLIPKNOT",
+            "TRUCKER",
+            "CLOVE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a bark",
+          "words": [
+            "SEAL",
+            "TREE",
+            "COYOTE",
+            "FOX"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede BERRY",
+          "words": [
+            "STRAW",
+            "BLUE",
+            "BLACK",
+            "GOOSE"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Pasta shapes",
+          "words": [
+            "PENNE",
+            "LINGUINE",
+            "FUSILLI",
+            "RIGATONI"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of laughter",
+          "words": [
+            "SNORT",
+            "GUFFAW",
+            "CACKLE",
+            "SNICKER"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that can go stale",
+          "words": [
+            "IDEA",
+            "AIR",
+            "NEWS",
+            "CHIPS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede PACK",
+          "words": [
+            "BACK",
+            "ICE",
+            "RAT",
+            "WOLF"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Types of weather",
+          "words": [
+            "SNOW",
+            "FOG",
+            "RAIN",
+            "WIND"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Words for smart",
+          "words": [
+            "ASTUTE",
+            "BRIGHT",
+            "WITTY",
+            "SHREWD"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "SATURN",
+            "TELEPHONE",
+            "ONION",
+            "CIRCUS"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede LIGHT",
+          "words": [
+            "SUN",
+            "LAMP",
+            "SPOT",
+            "HIGH"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Baking ingredients",
+          "words": [
+            "SUGAR",
+            "SALT",
+            "BUTTER",
+            "YEAST"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Herbs and spices",
+          "words": [
+            "PAPRIKA",
+            "OREGANO",
+            "BASIL",
+            "SAGE"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have rings",
+          "words": [
+            "BOXING",
+            "CIRCUS",
+            "ONION",
+            "TELEPHONE"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that precede TIME",
+          "words": [
+            "DAY",
+            "OVER",
+            "LIFE",
+            "SOME"
+          ],
+          "tier": "plum"
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "name": "Household tools",
+          "words": [
+            "CHISEL",
+            "DRILL",
+            "SCREWDRIVER",
+            "HAMMER"
+          ],
+          "tier": "sand"
+        },
+        {
+          "name": "Types of laughter",
+          "words": [
+            "GIGGLE",
+            "SNORT",
+            "CACKLE",
+            "GUFFAW"
+          ],
+          "tier": "amber"
+        },
+        {
+          "name": "Things that have a face",
+          "words": [
+            "CLOCK",
+            "DIE",
+            "CARD",
+            "COIN"
+          ],
+          "tier": "ink"
+        },
+        {
+          "name": "Words that follow WATER",
+          "words": [
+            "MELON",
+            "WAY",
+            "PROOF",
+            "LOGGED"
+          ],
+          "tier": "plum"
+        }
+      ]
+    }
+  ]
+}

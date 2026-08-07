@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clusters - Puzzle Press</title>
+<meta name="description" content="Four groups of four. Sort sixteen tiles into their hidden categories before you run out of mistakes.">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="icon" href="../../assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="pp-skip-link" href="#main">Skip to game</a>
+<div id="pp-chrome"></div>
+
+<main id="main" class="pp-game" data-game="clusters">
+  <p class="cl-intro">Select four tiles that share a connection, then submit. Four wrong guesses and the round ends.</p>
+
+  <p class="cl-banner" id="cl-banner" role="status" aria-live="polite"></p>
+
+  <ol class="cl-solved" id="cl-solved" aria-label="Solved groups"></ol>
+
+  <div class="cl-grid" id="cl-grid" role="group" aria-label="Puzzle tiles"></div>
+
+  <div class="cl-meta">
+    <div class="cl-mistakes" id="cl-mistakes" aria-label="Mistakes remaining"></div>
+    <div class="cl-controls">
+      <button type="button" class="pp-btn" id="cl-deselect">Deselect</button>
+      <button type="button" class="pp-btn" id="cl-shuffle">Shuffle</button>
+      <button type="button" class="pp-btn pp-btn--primary" id="cl-submit" disabled>Submit</button>
+    </div>
+  </div>
+
+  <div class="cl-endgame" id="cl-endgame" hidden>
+    <p class="cl-endgame__text" id="cl-endgame-text"></p>
+    <div class="cl-endgame__actions">
+      <button type="button" class="pp-btn pp-btn--primary" id="cl-share">Share result</button>
+      <button type="button" class="pp-btn" id="cl-random">Play a random puzzle</button>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>

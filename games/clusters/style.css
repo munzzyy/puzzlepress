@@ -1,0 +1,239 @@
+/*
+  Clusters: game-specific styling layered on top of site.css. Tier colors
+  only ever appear on a SOLVED row, never on an unplayed tile, so the board
+  never spoils its own groupings.
+*/
+
+:root {
+  --cl-sand: #8c6a3f;
+  --cl-sand-text: #fff;
+  --cl-amber: var(--tile-mark);
+  --cl-amber-text: #241a04;
+  --cl-ink: var(--tile-ink);
+  --cl-ink-text: #fff;
+  --cl-plum: #6b3368;
+  --cl-plum-text: #fff;
+}
+
+[data-theme="dark"] {
+  --cl-sand: #c9a670;
+  --cl-sand-text: #241a04;
+  --cl-amber: var(--tile-mark);
+  --cl-amber-text: #241a04;
+  --cl-ink: #3f668d;
+  --cl-ink-text: #fff;
+  --cl-plum: #9d439d;
+  --cl-plum-text: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cl-sand: #c9a670;
+    --cl-sand-text: #241a04;
+    --cl-ink: #3f668d;
+    --cl-ink-text: #fff;
+    --cl-plum: #9d439d;
+    --cl-plum-text: #fff;
+  }
+}
+
+.cl-intro {
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.cl-banner {
+  min-height: 1.6rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent-2);
+  margin: 0 0 0.6rem;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity var(--motion-fast) var(--ease), transform var(--motion-fast) var(--ease);
+}
+
+.cl-banner--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cl-solved {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 0.6rem;
+}
+
+.cl-solved:empty {
+  margin: 0;
+}
+
+.cl-solved__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.65rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  animation: cl-settle var(--motion-med) var(--ease);
+}
+
+.cl-solved__row[data-tier="sand"] {
+  background: var(--cl-sand);
+  color: var(--cl-sand-text);
+}
+
+.cl-solved__row[data-tier="amber"] {
+  background: var(--cl-amber);
+  color: var(--cl-amber-text);
+}
+
+.cl-solved__row[data-tier="ink"] {
+  background: var(--cl-ink);
+  color: var(--cl-ink-text);
+}
+
+.cl-solved__row[data-tier="plum"] {
+  background: var(--cl-plum);
+  color: var(--cl-plum-text);
+}
+
+.cl-solved__row[data-revealed="true"] {
+  opacity: 0.88;
+}
+
+.cl-solved__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.cl-solved__words {
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  opacity: 0.92;
+}
+
+@keyframes cl-settle {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.cl-tile {
+  font-size: 0.92rem;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.cl-tile[data-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.cl-tile:disabled {
+  cursor: default;
+}
+
+.cl-controls button:disabled,
+.cl-endgame__actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cl-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+}
+
+.cl-mistakes {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cl-mistakes__label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-right: 0.15rem;
+}
+
+.cl-mistakes__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.cl-mistakes__dot[data-used="true"] {
+  background: var(--bad);
+  border-color: var(--bad);
+}
+
+.cl-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cl-endgame {
+  margin-top: 1.5rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-align: center;
+}
+
+.cl-endgame__text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.cl-endgame__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 380px) {
+  .cl-tile {
+    font-size: 0.8rem;
+    padding: 0.3rem;
+  }
+
+  .cl-meta {
+    justify-content: center;
+    text-align: center;
+  }
+}
