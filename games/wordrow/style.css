@@ -1,0 +1,239 @@
+/*
+  Wordrow: layers on top of assets/site.css. The tile look (color, ring/dot
+  glyphs, flip animation) all comes from .pp-tile in the shared sheet; this
+  file only lays out the board, the on-screen keyboard, and the toolbar.
+*/
+
+[data-game="wordrow"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+/*
+  Elements here set their own `display` (flex/grid/inline-flex) at the same
+  specificity as the browser's default [hidden] rule, so the later one in
+  the cascade would otherwise win even while the `hidden` attribute is set.
+  ID selectors force [hidden] back to the top regardless of source order.
+*/
+#wr-random[hidden],
+#wr-result[hidden],
+#wr-result-stats[hidden] {
+  display: none;
+}
+
+.wr-status {
+  min-height: 1.2em;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ---------- board ---------- */
+
+.wr-board {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 330px;
+}
+
+.wr-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+
+.wr-row--shake {
+  animation: wr-shake 320ms var(--ease);
+}
+
+@keyframes wr-shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.wr-board .pp-tile:empty {
+  color: var(--muted);
+}
+
+/* ---------- toolbar ---------- */
+
+.wr-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.wr-hardmode {
+  cursor: pointer;
+}
+
+.wr-hardmode:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.wr-hardmode[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+}
+
+/* ---------- keyboard ---------- */
+
+.wr-keyboard {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.wr-keyboard__row {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+}
+
+.wr-key {
+  position: relative;
+  flex: 1;
+  min-height: 46px;
+  max-width: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  transition: transform var(--motion-fast) var(--ease), background-color var(--motion-fast) var(--ease);
+}
+
+.wr-key:hover {
+  transform: translateY(-1px);
+}
+
+.wr-key:active {
+  transform: translateY(0);
+}
+
+.wr-key--wide {
+  flex: 1.6;
+  max-width: 64px;
+  font-size: 0.7rem;
+}
+
+.wr-key--wide svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: currentColor;
+}
+
+.wr-key[data-state="correct"] {
+  background: var(--tile-ink);
+  color: #fff;
+}
+
+.wr-key[data-state="present"] {
+  background: var(--tile-mark);
+  color: #241a04;
+}
+
+.wr-key[data-state="absent"] {
+  background: var(--tile-absent);
+  color: #fff;
+}
+
+.wr-key[data-state="correct"]::after,
+.wr-key[data-state="present"]::after {
+  content: "";
+  position: absolute;
+  right: 0.2em;
+  bottom: 0.2em;
+  width: 0.3em;
+  height: 0.3em;
+  pointer-events: none;
+}
+
+.wr-key[data-state="correct"]::after {
+  border: 0.08em solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+}
+
+.wr-key[data-state="present"]::after {
+  border-radius: 50%;
+  background: rgba(36, 26, 4, 0.7);
+}
+
+/* ---------- result ---------- */
+
+.wr-result {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: pp-rise var(--motion-med) var(--ease);
+}
+
+.wr-result__headline {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.wr-result__sub {
+  color: var(--muted);
+  font-size: 0.88rem;
+  min-height: 1em;
+}
+
+.wr-share {
+  align-self: center;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 380px) {
+  .wr-board {
+    max-width: 290px;
+  }
+
+  .wr-key {
+    min-height: 44px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (min-width: 560px) {
+  .wr-board {
+    max-width: 360px;
+  }
+}
