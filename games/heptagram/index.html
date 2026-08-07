@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heptagram - Puzzle Press</title>
+<meta name="description" content="Seven letters, one required. Build words and hunt for the pangram.">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="pp-skip-link" href="#main">Skip to game</a>
+
+<main id="main" class="pp-game" aria-live="off">
+  <section class="hg-board" id="hg-board">
+    <div class="hg-score-row">
+      <div>
+        <p class="hg-rank" id="hg-rank">Newcomer</p>
+        <p class="hg-score" id="hg-score">0 points</p>
+      </div>
+      <p class="hg-found-count" id="hg-found-count">0 words found</p>
+    </div>
+
+    <div class="hg-progress" aria-hidden="true">
+      <div class="hg-progress__fill" id="hg-progress-fill"></div>
+    </div>
+
+    <p class="hg-message" id="hg-message" role="status" aria-live="polite">&nbsp;</p>
+
+    <div class="hg-guess" id="hg-guess" aria-label="Current guess"></div>
+
+    <div class="hg-wheel" id="hg-wheel" role="group" aria-label="Puzzle letters"></div>
+
+    <div class="hg-controls">
+      <button class="pp-btn" id="hg-delete" type="button">Delete</button>
+      <button class="pp-btn" id="hg-shuffle" type="button" aria-label="Shuffle letter positions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+          <path d="M3 7h4l3 4M3 17h4l7-10h4M17 3l3 2-3 2M17 19l3-2-3-2"/>
+        </svg>
+      </button>
+      <button class="pp-btn pp-btn--primary" id="hg-enter" type="button">Enter</button>
+    </div>
+
+    <div class="hg-finish-row">
+      <button class="pp-btn" id="hg-finish" type="button">Finish for today</button>
+    </div>
+
+    <div class="hg-found">
+      <h2 class="hg-found__title">Found words</h2>
+      <ul class="hg-found__list" id="hg-found-list"></ul>
+    </div>
+  </section>
+
+  <section class="hg-summary" id="hg-summary" hidden>
+    <p class="hg-summary__rank" id="hg-summary-rank"></p>
+    <p class="hg-summary__line" id="hg-summary-line"></p>
+    <div class="hg-summary__actions">
+      <button class="pp-btn pp-btn--primary" id="hg-share" type="button">Share result</button>
+      <button class="pp-btn" id="hg-random" type="button">Random puzzle</button>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>

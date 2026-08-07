@@ -1,0 +1,312 @@
+/* Heptagram: game-specific styles layered on assets/site.css. */
+
+.hg-board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.hg-board[hidden],
+.hg-summary[hidden] {
+  display: none;
+}
+
+.hg-score-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.hg-rank {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+.hg-score {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.hg-found-count {
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: right;
+}
+
+.hg-progress {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.hg-progress__fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width var(--motion-med) var(--ease);
+}
+
+.hg-message {
+  min-height: 1.4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--muted);
+  transition: color var(--motion-fast) var(--ease);
+}
+
+.hg-message[data-kind="good"] {
+  color: var(--good);
+}
+
+.hg-message[data-kind="bad"] {
+  color: var(--bad);
+}
+
+.hg-message[data-kind="pangram"] {
+  color: var(--accent-2);
+}
+
+.hg-guess {
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.hg-guess__caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 1.6rem;
+  background: var(--accent);
+  animation: hg-caret 1s step-end infinite;
+}
+
+@keyframes hg-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hg-guess--shake {
+  animation: hg-shake 320ms var(--ease);
+}
+
+@keyframes hg-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.hg-guess--pop {
+  animation: hg-pop 260ms var(--ease);
+}
+
+@keyframes hg-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.06);
+    color: var(--good);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- letter wheel ----------
+   All seven letters sit on a single circle; the required letter is marked
+   with a ring and fill, not pulled into a separate center slot, to keep
+   this shape distinct from any six-around-one honeycomb layout. */
+
+.hg-wheel {
+  position: relative;
+  width: min(300px, 82vw);
+  aspect-ratio: 1;
+  margin: 0.25rem auto 0.5rem;
+}
+
+.hg-wheel__star {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hg-wheel__star polygon {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.hg-wheel__btn {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+  transition: transform 120ms var(--ease), background-color 120ms var(--ease),
+    border-color 120ms var(--ease), color 120ms var(--ease);
+}
+
+.hg-wheel__btn:hover {
+  transform: translate(-50%, -50%) translateY(-2px);
+}
+
+.hg-wheel__btn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.hg-wheel__btn[data-center="true"] {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-2) 25%, transparent), var(--shadow-sm);
+}
+
+.hg-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.hg-controls .pp-btn {
+  min-width: 44px;
+}
+
+.hg-finish-row {
+  display: flex;
+  justify-content: center;
+}
+
+.hg-finish-row .pp-btn {
+  font-size: 0.88rem;
+}
+
+.hg-found {
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+}
+
+.hg-found__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hg-found__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.hg-found__list li {
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 0.88rem;
+  text-transform: capitalize;
+}
+
+.hg-found__list li[data-pangram="true"] {
+  background: color-mix(in srgb, var(--accent-2) 16%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent-2) 40%, var(--line));
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+.hg-found__list li.hg-found__empty {
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-transform: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ---------- summary ---------- */
+
+.hg-summary {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 0;
+}
+
+.hg-summary__rank {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.hg-summary__line {
+  color: var(--muted);
+}
+
+.hg-summary__actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 380px) {
+  .hg-guess {
+    font-size: 1.4rem;
+  }
+
+  .hg-wheel__btn {
+    width: 3.1rem;
+    height: 3.1rem;
+    font-size: 1.1rem;
+  }
+}
