@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku - Puzzle Press</title>
+<meta name="description" content="A daily 9x9 sudoku in easy, medium, and hard. Pencil marks, error highlighting, undo, and a timer.">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="icon" href="../../assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="pp-skip-link" href="#board">Skip to puzzle</a>
+<div id="pp-chrome"></div>
+
+<main class="pp-game pp-game--wide sk-game" id="main">
+  <div class="sk-tabs" role="tablist" aria-label="Difficulty">
+    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="easy" aria-selected="false">Easy</button>
+    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="medium" aria-selected="false">Medium</button>
+    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="hard" aria-selected="false">Hard</button>
+  </div>
+
+  <div class="sk-toolbar">
+    <div class="sk-timer" id="timer" aria-label="Time elapsed">0:00</div>
+    <div class="sk-tools">
+      <button type="button" class="pp-icon-btn" data-action="undo" aria-label="Undo">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-1"/>
+        </svg>
+      </button>
+      <button type="button" class="pp-icon-btn" data-action="notes" aria-label="Notes mode" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5V6a2 2 0 0 1 2-2h10l4 4v11.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/>
+          <path d="M14 4v4h4M9 13h6M9 16.5h4"/>
+        </svg>
+      </button>
+      <button type="button" class="pp-icon-btn" data-action="errors" aria-label="Highlight errors" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 9v4M12 16.5h.01"/>
+          <path d="M10.3 3.9 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sk-board" id="board" role="grid" aria-label="Sudoku board"></div>
+
+  <div class="sk-pad" id="pad" aria-label="Number pad"></div>
+
+  <p class="sk-status" id="status" role="status" aria-live="polite"></p>
+
+  <div class="sk-done" id="done-panel" hidden>
+    <p id="done-message"></p>
+    <div class="sk-done-actions">
+      <button type="button" class="pp-btn pp-btn--primary" data-action="share">Share result</button>
+      <button type="button" class="pp-btn" data-action="random">Play a random puzzle</button>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>

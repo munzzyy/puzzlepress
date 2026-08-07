@@ -1,0 +1,246 @@
+/* Sudoku: layered on assets/site.css. Class prefix sk- throughout. */
+
+.sk-game {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+.sk-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.sk-tab {
+  flex: 1;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.sk-tab[aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.sk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sk-timer {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  min-width: 3.6rem;
+}
+
+.sk-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sk-tools .pp-icon-btn[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  color: var(--accent);
+}
+
+.sk-tools .pp-icon-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* ---------- board ---------- */
+
+.sk-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 2px solid var(--text);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.sk-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 4.2vw, 1.4rem);
+  min-height: 0;
+  transition: background-color var(--motion-fast) var(--ease);
+}
+
+.sk-cell.sk-box-right {
+  border-right: 2px solid var(--text);
+}
+
+.sk-cell.sk-box-bottom {
+  border-bottom: 2px solid var(--text);
+}
+
+.sk-cell[data-given="true"] {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.sk-cell[data-given="false"] {
+  color: var(--accent);
+}
+
+.sk-cell[data-peer="true"] {
+  background: var(--surface-2);
+}
+
+.sk-cell[data-same="true"] {
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+}
+
+.sk-cell[data-selected="true"] {
+  background: color-mix(in srgb, var(--accent) 28%, var(--surface));
+  box-shadow: inset 0 0 0 2px var(--accent);
+  z-index: 1;
+}
+
+.sk-cell[data-conflict="true"] {
+  color: var(--bad);
+}
+
+.sk-cell[data-conflict="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--bad) 18%, transparent);
+  pointer-events: none;
+}
+
+.sk-cell--pop {
+  animation: pp-pop var(--motion-fast) var(--ease);
+}
+
+.sk-marks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 88%;
+  height: 88%;
+  place-items: center;
+}
+
+.sk-mark {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(0.5rem, 1.8vw, 0.68rem);
+  color: var(--muted);
+  line-height: 1;
+}
+
+.sk-mark--empty {
+  visibility: hidden;
+}
+
+/* ---------- number pad ---------- */
+
+.sk-pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.sk-pad-btn {
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--motion-fast) var(--ease), background-color var(--motion-fast) var(--ease);
+}
+
+.sk-pad-btn:hover {
+  transform: translateY(-1px);
+}
+
+.sk-pad-btn:active {
+  transform: translateY(0);
+}
+
+.sk-pad-btn[data-exhausted="true"] {
+  opacity: 0.35;
+}
+
+.sk-pad-btn--erase {
+  color: var(--muted);
+}
+
+/* ---------- status + done panel ---------- */
+
+.sk-status {
+  margin-top: 0.6rem;
+  min-height: 1.2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.sk-done {
+  margin-top: 1.1rem;
+  padding: 1.1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.sk-done p {
+  margin-bottom: 0.85rem;
+  font-size: 1.02rem;
+}
+
+.sk-done-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sk-help-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 400px) {
+  .sk-pad {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.3rem;
+  }
+
+  .sk-pad-btn {
+    font-size: 1rem;
+  }
+}
