@@ -16,6 +16,7 @@ import {
   toggleMark,
   undo,
   sameValueCells,
+  savedMatchesPuzzle,
 } from "./core.js";
 
 const SOLVED =
@@ -279,4 +280,34 @@ test("sameValueCells finds every cell sharing a digit", () => {
 test("sameValueCells is empty for a blank cell", () => {
   const cells = parseCells(PUZZLE);
   assert.deepEqual(sameValueCells(cells, 79), []);
+});
+
+test("savedMatchesPuzzle compares v2 payloads by their puzzle field", () => {
+  assert.ok(savedMatchesPuzzle({ puzzle: PUZZLE, values: parseCells(PUZZLE) }, PUZZLE));
+  assert.ok(!savedMatchesPuzzle({ puzzle: SOLVED, values: parseCells(SOLVED) }, PUZZLE));
+});
+
+test("savedMatchesPuzzle accepts a v1 payload whose values agree with the givens", () => {
+  // A v1 day payload: values/marks/elapsedMs/done, no puzzle field. Player
+  // progress on top of the givens must not disqualify it.
+  const values = parseCells(PUZZLE);
+  values[79] = 7; // the player's own entry in a blank cell
+  const saved = { values, marks: values.map(() => []), elapsedMs: 123000, done: false };
+  assert.ok(savedMatchesPuzzle(saved, PUZZLE));
+});
+
+test("savedMatchesPuzzle rejects a v1 payload from a different board", () => {
+  const values = parseCells(PUZZLE);
+  values[0] = values[0] === 9 ? 1 : values[0] + 1; // disagree on a given cell
+  assert.ok(!savedMatchesPuzzle({ values, elapsedMs: 5 }, PUZZLE));
+});
+
+test("savedMatchesPuzzle rejects malformed payloads", () => {
+  assert.ok(!savedMatchesPuzzle(null, PUZZLE));
+  assert.ok(!savedMatchesPuzzle("nonsense", PUZZLE));
+  assert.ok(!savedMatchesPuzzle({}, PUZZLE));
+  assert.ok(!savedMatchesPuzzle({ values: [1, 2, 3] }, PUZZLE));
+  const bad = parseCells(PUZZLE);
+  bad[80] = "5"; // right board shape, wrong cell type
+  assert.ok(!savedMatchesPuzzle({ values: bad }, PUZZLE));
 });

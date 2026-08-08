@@ -152,6 +152,23 @@ export function undo(state) {
   return { ...state, values, marks, history };
 }
 
+/**
+ * Whether a saved day payload was written against `puzzleStr`. v2 saves
+ * carry the exact board string they were saved from, so those compare
+ * directly. Payloads carried over from the v1 storage migration predate the
+ * puzzle field; for those, fall back to matching the given cells, since a
+ * save from any other board disagrees on digits the player can never edit.
+ * Anything malformed is rejected rather than poured into a fresh board.
+ */
+export function savedMatchesPuzzle(saved, puzzleStr) {
+  if (!saved || typeof saved !== "object") return false;
+  if (typeof saved.puzzle === "string") return saved.puzzle === puzzleStr;
+  if (!Array.isArray(saved.values) || saved.values.length !== SIZE) return false;
+  if (!saved.values.every((v) => Number.isInteger(v) && v >= 0 && v <= 9)) return false;
+  const cells = parseCells(puzzleStr);
+  return cells.every((v, i) => v === 0 || saved.values[i] === v);
+}
+
 /** Cell indices carrying the same non-zero value as `index`, `index` included. */
 export function sameValueCells(cells, index) {
   const v = cells[index];

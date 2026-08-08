@@ -5,6 +5,7 @@ import {
   findConflicts,
   isSolved,
   sameValueCells,
+  savedMatchesPuzzle,
   setValue,
   toggleMark,
   undo,
@@ -176,9 +177,11 @@ function loadToday() {
 
     // Only restore state that was saved against this exact board. A stale
     // payload (bank edit, epoch change) would otherwise lock wrong digits
-    // into the new puzzle's given cells.
+    // into the new puzzle's given cells. Payloads carried over from v1 have
+    // no puzzle field, so savedMatchesPuzzle checks them against the givens
+    // instead of throwing that day's board and timer away.
     const savedRaw = dayStores[difficulty].loadDay();
-    const savedFor = savedRaw && savedRaw.puzzle === entry.puzzle ? savedRaw : null;
+    const savedFor = savedMatchesPuzzle(savedRaw, entry.puzzle) ? savedRaw : null;
     const state = stateFromSaved(entry.puzzle, savedFor);
     states[difficulty] = state;
     timers[difficulty] = { elapsedMs: (savedFor && savedFor.elapsedMs) || 0, runningSince: null };
