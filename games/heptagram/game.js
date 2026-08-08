@@ -56,6 +56,12 @@ let freePlay = null; // { puzzle, state } or null; never counts toward streaks
 let guess = "";
 let wheelOrder = [];
 
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+  ));
+}
+
 function $(id) {
   return document.getElementById(id);
 }
@@ -241,7 +247,7 @@ function renderFound() {
   list.innerHTML = words
     .map((w) => {
       const pangram = isPangram(w, letters);
-      return `<li data-pangram="${pangram}">${w}</li>`;
+      return `<li data-pangram="${pangram}">${esc(w)}</li>`;
     })
     .join("");
 }
