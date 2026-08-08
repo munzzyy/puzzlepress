@@ -173,6 +173,38 @@ function renderGrid() {
   els.grid.querySelectorAll(".cl-tile").forEach((btn) => {
     btn.addEventListener("click", onTileClick);
   });
+  fitTileWords();
+}
+
+/*
+  Long words (SCREWDRIVER, BACKGAMMON) outgrow a tile on narrow phones.
+  Breaking them mid-word looks broken, so instead each word keeps its normal
+  size when it fits and shrinks just enough when it does not. white-space:
+  nowrap in style.css keeps the word on one line; the measurement has to be
+  against the tile's content box, because an overflowing nowrap span grows
+  to its own min-content width and never reports scrollWidth > clientWidth.
+*/
+function fitTileWords() {
+  els.grid.querySelectorAll(".cl-tile").forEach((tile) => {
+    const span = tile.querySelector(".cl-tile__word");
+    if (!span) return;
+    span.style.fontSize = "";
+    const tileStyle = window.getComputedStyle(tile);
+    const available =
+      tile.clientWidth - parseFloat(tileStyle.paddingLeft) - parseFloat(tileStyle.paddingRight);
+    if (available <= 0) return;
+    // Text width does not scale perfectly linearly with font size (glyph
+    // rounding), so converge in a few passes instead of trusting one ratio.
+    // Target a pixel of slack so integer-rounded measurements stay inside
+    // the tile too.
+    let size = parseFloat(window.getComputedStyle(span).fontSize);
+    for (let pass = 0; pass < 4; pass++) {
+      const needed = span.getBoundingClientRect().width;
+      if (needed <= available - 0.5 || size <= 7) break;
+      size = Math.max(7, size * ((available - 1) / needed));
+      span.style.fontSize = `${size.toFixed(2)}px`;
+    }
+  });
 }
 
 function renderControls() {
@@ -339,6 +371,20 @@ async function init() {
   els.shareBtn.addEventListener("click", onShare);
   els.randomBtn.addEventListener("click", onRandom);
   els.grid.addEventListener("keydown", onGridKeydown);
+
+  // Refit whenever the grid's box actually changes: covers window resizes,
+  // orientation flips, and the scrollbar appearing after first paint (which
+  // narrows the layout without any window resize event).
+  let fitRaf = 0;
+  const queueFit = () => {
+    window.cancelAnimationFrame(fitRaf);
+    fitRaf = window.requestAnimationFrame(fitTileWords);
+  };
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(queueFit).observe(els.grid);
+  } else {
+    window.addEventListener("resize", queueFit);
+  }
 
   try {
     const res = await fetch(BANK_URL);

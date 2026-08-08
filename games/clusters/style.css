@@ -163,8 +163,11 @@
 .cl-tile__word {
   display: block;
   text-align: center;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  /* Tile words are single tokens (EYE .. SCREWDRIVER) and must never split
+     mid-word: an unhyphenated break reads like a typo. nowrap keeps a too-
+     long word on one line so fitTileWords() in game.js can measure it
+     against the tile's content box and shrink its font until it fits. */
+  white-space: nowrap;
 }
 
 .cl-tile[data-selected="true"] {
