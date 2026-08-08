@@ -13,15 +13,32 @@ https://munzzyy.github.io/puzzlepress/ or serve the folder yourself.
 Wordrow gives you six tries at a five letter word, with a hard mode if you
 want it. Clusters asks you to sort sixteen tiles into four themed groups
 before your fourth mistake. Heptagram hands you seven letters and one of them
-has to appear in every word you build. Minigrid is a 5x5 crossword with hand
-written clues. Wordweave hides theme words in a grid of letters; one of them
-spans the board and names the theme. Edgeways puts twelve letters around a
-square and you chain words until every letter is used. Sudoku is the classic,
-with easy, medium and hard boards each day plus pencil marks and undo.
+has to appear in every word you build. Minigrid is a 5x5 crossword
+with hand written clues. Wordweave hides theme words in a grid of letters;
+one of them spans the board and names the theme. Edgeways puts twelve letters
+around a square and you chain words until every letter is used. Sudoku is
+the classic, with pencil marks and undo.
 
 ![Wordrow mid-game](docs/shots/wordrow.png)
 
 More screenshots live in [docs/shots](docs/shots).
+
+## Difficulties
+
+Every game comes in easy, medium and hard, and each difficulty is its own
+daily: a separate puzzle drawn from a separate bank, with its own streak and
+stats. Progress you had before difficulties existed carries over as your
+medium record, nothing is lost. What "hard" means depends on the game:
+
+| Game | Easy | Medium | Hard |
+| --- | --- | --- | --- |
+| Wordrow | very common answers, 7 guesses | the original answer pool, 6 guesses | less common answers, hard mode always on |
+| Clusters | distinct themes, no decoys | the standard mix | words that plausibly fit another group |
+| Heptagram | common letters, short word list | the standard wheel | 40+ words or a rare letter, top rank needs the pangram |
+| Minigrid | everyday fill, plain clues | the standard bank | trickier fill and clue angles |
+| Wordweave | 6x6 grid, theme shown up front | 6x8 grid | theme hidden until you find the spanning word |
+| Edgeways | par 3, common letters | par 2 | par 2 with a J, Q, X or Z on the square |
+| Sudoku | few empty cells | more empty cells | needs real technique |
 
 ## Run it locally
 
@@ -66,18 +83,23 @@ clues matching their answers, and so on.
 
 ## Honest limits
 
-- Word "commonness" is human judgment. We found no permissively licensed
-  English frequency list, so the answer lists were curated by hand while the
-  full guess dictionaries come straight from the public domain ENABLE list,
-  which accepts words like ZOEAE. The occasional obscure but valid word will
-  show up.
+- Word "commonness" is judgment plus one data point. Wordrow's easy and hard
+  answer tiers were ranked against Peter Norvig's public word frequency
+  counts in a one time offline pass, then read word by word to drop proper
+  nouns, brands and slang; nothing from that corpus ships or runs here. The
+  other curated lists are hand picked, and the full guess dictionaries come
+  straight from the public domain ENABLE list, which accepts words like
+  ZOEAE. The occasional obscure but valid word will show up.
 - Profanity filtering on the big dictionaries is a best effort blocklist,
   not a linguistic audit. The curated answer lists are clean.
 - Sudoku's hard tier is one wide bucket, graded by solving technique rather
   than a full named-technique ladder. Some hard days are harder than others.
 - Minigrid uses two block layouts across its bank. The other valid 5x5
   shapes produced no clean fills from the curated vocabulary, so they are
-  not in there.
+  not in there. That vocabulary also caps the bank: an exhaustive search
+  finds 130 fully crossed grids, split 45/45/40 across the tiers. Hard
+  puzzles are picked for trickier entries and reclued where a trickier clue
+  exists, but some of their clues still read like medium ones.
 - Sudoku cells land around 38px on a 360px phone, under the 44px touch
   guideline. Nine cells across a small screen leaves no way around it; every
   other control is 44px or better.
