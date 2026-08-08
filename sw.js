@@ -4,7 +4,7 @@
   PRECACHE changes so old caches get cleared on activate.
 */
 
-const CACHE_VERSION = 3;
+const CACHE_VERSION = 4;
 const CACHE_NAME = `puzzlepress-v${CACHE_VERSION}`;
 
 const GAMES = ["wordrow", "clusters", "heptagram", "minigrid", "wordweave", "edgeways", "sudoku"];
@@ -12,6 +12,8 @@ const GAMES = ["wordrow", "clusters", "heptagram", "minigrid", "wordweave", "edg
 const PRECACHE = [
   "./",
   "./index.html",
+  "./404.html",
+  "./robots.txt",
   "./manifest.webmanifest",
   "./assets/site.css",
   "./assets/shared.js",
@@ -21,6 +23,8 @@ const PRECACHE = [
   "./assets/icons/icon-180.png",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
+  "./assets/icons/icon-192-maskable.png",
+  "./assets/icons/icon-512-maskable.png",
   "./assets/icons/wordrow.svg",
   "./assets/icons/clusters.svg",
   "./assets/icons/heptagram.svg",
