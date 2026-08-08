@@ -10,7 +10,7 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minigrid - Puzzle Press</title>
-<meta name="description" content="A little 5x5 crossword. New puzzle every day, free, no accounts.">
+<meta name="description" content="A little 5x5 crossword in Easy, Medium, and Hard. New puzzles every day, free, no accounts.">
 <meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="../../manifest.webmanifest">
@@ -20,13 +20,17 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="pp-skip-link" href="#grid">Skip to puzzle</a>
 <div id="pp-chrome"></div>
 
 <main class="pp-game pp-game--wide mg-main" id="main">
-  <div class="mg-status">
-    <span class="mg-status__timer" id="timer">0:00</span>
-    <span class="mg-status__badge" id="help-badge" hidden>Solved with help</span>
-    <span class="mg-status__badge" id="random-badge" hidden>Random puzzle &mdash; not scored</span>
+  <div class="pp-diff-row">
+    <div id="diff-tabs"></div>
+    <div class="pp-status-row">
+      <span class="mg-status__timer" id="timer" aria-label="Time elapsed">0:00</span>
+      <span class="mg-status__badge" id="help-badge" hidden>Solved with help</span>
+      <span class="mg-status__badge" id="random-badge" hidden>Random puzzle, not scored</span>
+    </div>
   </div>
 
   <div class="mg-grid" id="grid" role="grid" aria-label="Minigrid crossword"></div>

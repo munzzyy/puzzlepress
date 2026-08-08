@@ -10,20 +10,22 @@
   gap: 1rem;
 }
 
-/* ---------- status row ---------- */
-
-.mg-status {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  min-height: 1.6rem;
+/* Difficulty tabs get the flexible left slot in .pp-diff-row; the status
+   row (timer + badges) sits right-aligned on the same line, per the shared
+   in-game placement standard. */
+.pp-diff-row #diff-tabs {
+  flex: 1 1 auto;
+  min-width: 0;
 }
+
+/* ---------- status row ---------- */
 
 .mg-status__timer {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
   font-variant-numeric: tabular-nums;
+  color: var(--text);
 }
 
 .mg-status__badge {
@@ -34,12 +36,13 @@
   background: color-mix(in srgb, var(--tile-mark) 18%, var(--surface));
   color: var(--tile-mark);
   border: 1px solid color-mix(in srgb, var(--tile-mark) 40%, var(--line));
+  white-space: nowrap;
 }
 
 #random-badge {
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  background: var(--g-color-soft, color-mix(in srgb, var(--accent) 14%, var(--surface)));
+  color: var(--g-color, var(--accent));
+  border-color: color-mix(in srgb, var(--g-color, var(--accent)) 35%, var(--line));
 }
 
 /* ---------- grid ---------- */

@@ -220,11 +220,23 @@ test("formatTime renders M:SS with a zero-padded seconds field", () => {
 });
 
 test("shareText has no dashes beyond ASCII hyphen, no ellipsis, and reports time", () => {
-  const text = shareText({ dateLabel: "2026-08-10", ms: 82000, usedHelp: false, url: "https://x/y" });
+  const text = shareText({ dateLabel: "2026-08-10", diffLabel: "Medium", ms: 82000, usedHelp: false, url: "https://x/y" });
   assert.ok(text.includes("1:22"));
   assert.ok(!text.includes("\u2014")); // em dash
   assert.ok(!text.includes("\u2013")); // en dash
   assert.ok(!text.includes("\u2026")); // ellipsis char
-  const withHelp = shareText({ dateLabel: "2026-08-10", ms: 1000, usedHelp: true, url: "u" });
+  const withHelp = shareText({ dateLabel: "2026-08-10", diffLabel: "Medium", ms: 1000, usedHelp: true, url: "u" });
   assert.ok(withHelp.includes("with help"));
+});
+
+test("shareText includes the difficulty word right after the game name", () => {
+  const hard = shareText({ dateLabel: "2026-08-10", diffLabel: "Hard", ms: 5000, usedHelp: false, url: "u" });
+  assert.ok(hard.startsWith("Minigrid Hard - 2026-08-10"));
+  const easy = shareText({ dateLabel: "2026-08-10", diffLabel: "Easy", ms: 5000, usedHelp: false, url: "u" });
+  assert.ok(easy.startsWith("Minigrid Easy - 2026-08-10"));
+});
+
+test("shareText falls back to a plain game name when no difficulty label is given", () => {
+  const text = shareText({ dateLabel: "2026-08-10", ms: 5000, usedHelp: false, url: "u" });
+  assert.ok(text.startsWith("Minigrid - 2026-08-10"));
 });

@@ -3,6 +3,7 @@ import {
   pickDaily,
   store,
   recordResult,
+  diffTabs,
   share,
   toast,
   confettiBurst,
@@ -12,12 +13,17 @@ import * as core from "./core.js";
 
 const GAME_ID = "minigrid";
 const EPOCH = "2026-08-10";
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
+const DEFAULT_DIFFICULTY = "medium";
 
 const HELP_HTML =
   "<p>Fill the grid so every across and down answer matches its clue.</p>" +
   "<p>Tap a cell to select it, tap it again to switch between across and down, or use the arrow keys.</p>" +
   "<p>Type letters to fill a cell; Backspace clears one and steps back.</p>" +
   "<p>Check or Reveal a letter if you get stuck, but using either marks today's puzzle solved with help.</p>" +
+  "<p>Easy, Medium, and Hard each carry their own puzzle, streak, and stats for the day. Easy sticks to " +
+  "everyday fill with straight clues; Hard leans on trickier fill and a few wordplay clues.</p>" +
   "<p>Your time starts the moment you begin and stops the instant the grid is complete.</p>";
 
 initChrome({ id: GAME_ID, name: "Minigrid", hubHref: "../../index.html", helpHTML: HELP_HTML });
@@ -33,6 +39,7 @@ function key(r, c) {
 }
 
 const els = {
+  diffTabsMount: document.getElementById("diff-tabs"),
   timer: document.getElementById("timer"),
   helpBadge: document.getElementById("help-badge"),
   randomBadge: document.getElementById("random-badge"),
@@ -51,13 +58,37 @@ const els = {
   btnRandom: document.getElementById("btn-random"),
 };
 
-let bank = null;
-let puzzle = null;
-let meta = null;
-let state = null;
+let bank = null; // { easy: { puzzles }, medium: { puzzles }, hard: { puzzles } }
+let activeDifficulty = DEFAULT_DIFFICULTY;
 let isRandomMode = false;
 let timerId = null;
 let cellInputs = [];
+
+// Per-difficulty runtime data for today's puzzles, loaded once at boot so
+// switching tabs is instant (mirrors sudoku's dayStores/puzzles pattern).
+const dayStores = {}; // difficulty -> store(GAME_ID, difficulty)
+const puzzles = {}; // difficulty -> today's puzzle { grid, clues }
+const states = {}; // difficulty -> core state
+const metas = {}; // difficulty -> puzzle/meta derived from core.parsePuzzle
+
+let freePlay = null; // { difficulty, puzzle, meta, state } or null
+
+function activePuzzle() {
+  return freePlay ? freePlay.puzzle : puzzles[activeDifficulty];
+}
+
+function activeMeta() {
+  return freePlay ? freePlay.meta : metas[activeDifficulty];
+}
+
+function activeState() {
+  return freePlay ? freePlay.state : states[activeDifficulty];
+}
+
+function setActiveState(next) {
+  if (freePlay) freePlay.state = next;
+  else states[activeDifficulty] = next;
+}
 
 async function loadBank() {
   const res = await fetch("../../data/minigrid.json");
@@ -65,18 +96,15 @@ async function loadBank() {
   return res.json();
 }
 
-function todaysPuzzle() {
-  return pickDaily(bank, EPOCH);
-}
-
 function sameGrid(a, b) {
   return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((row, i) => row === b[i]);
 }
 
-function loadOrCreateDailyState() {
+function loadOrCreateDailyState(difficulty, puzzle) {
   // The saved grid ties the payload to the layout it was typed into; entries
-  // from a different puzzle would land in the wrong cells otherwise.
-  const saved = store(GAME_ID).loadDay();
+  // from a different puzzle (a bank edit, or a different difficulty's
+  // puzzle under a stale key) would land in the wrong cells otherwise.
+  const saved = dayStores[difficulty].loadDay();
   if (saved && Array.isArray(saved.entries) && sameGrid(saved.grid, puzzle.grid)) {
     const { grid, ...rest } = saved;
     return rest;
@@ -84,17 +112,29 @@ function loadOrCreateDailyState() {
   return core.createInitialState(puzzle, Date.now());
 }
 
+function loadToday() {
+  for (const difficulty of DIFFICULTIES) {
+    const puzzle = pickDaily(bank[difficulty], EPOCH);
+    puzzles[difficulty] = puzzle;
+    metas[difficulty] = core.parsePuzzle(puzzle);
+    states[difficulty] = loadOrCreateDailyState(difficulty, puzzle);
+  }
+}
+
 function saveState() {
-  if (isRandomMode) return;
-  store(GAME_ID).saveDay({ ...state, grid: puzzle.grid });
+  if (freePlay) return;
+  dayStores[activeDifficulty].saveDay({ ...states[activeDifficulty], grid: puzzles[activeDifficulty].grid });
 }
 
 function activeSlot() {
+  const state = activeState();
+  const meta = activeMeta();
   const slots = meta.cellSlot.get(key(state.cursor.r, state.cursor.c));
   return slots ? slots[state.direction] : null;
 }
 
 function buildGrid() {
+  const puzzle = activePuzzle();
   els.grid.innerHTML = "";
   cellInputs = Array.from({ length: 5 }, () => Array(5).fill(null));
 
@@ -111,7 +151,7 @@ function buildGrid() {
         continue;
       }
 
-      const num = meta.numbering.get(key(r, c));
+      const num = activeMeta().numbering.get(key(r, c));
       if (num) {
         const label = document.createElement("span");
         label.className = "mg-cell__num";
@@ -131,17 +171,19 @@ function buildGrid() {
 
       let pendingToggle = false;
       input.addEventListener("pointerdown", () => {
+        const state = activeState();
         pendingToggle = state.cursor.r === r && state.cursor.c === c;
       });
       input.addEventListener("focus", () => {
+        const state = activeState();
         if (state.cursor.r !== r || state.cursor.c !== c) {
-          state = core.selectCell(state, r, c);
+          setActiveState(core.selectCell(state, r, c));
           syncUI();
         }
       });
       input.addEventListener("click", () => {
         if (pendingToggle) {
-          state = core.toggleDirection(state);
+          setActiveState(core.toggleDirection(activeState()));
           syncUI();
         }
         pendingToggle = false;
@@ -161,25 +203,25 @@ function onKeydown(e, r, c) {
   if (k === "ArrowUp" || k === "ArrowDown" || k === "ArrowLeft" || k === "ArrowRight") {
     e.preventDefault();
     const [dr, dc] = { ArrowUp: [-1, 0], ArrowDown: [1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] }[k];
-    state = core.moveCursor(state, puzzle.grid, dr, dc);
+    setActiveState(core.moveCursor(activeState(), activePuzzle().grid, dr, dc));
     syncUI();
     return;
   }
   if (k === "Backspace") {
     e.preventDefault();
-    state = core.backspace(state, puzzle.grid);
+    setActiveState(core.backspace(activeState(), activePuzzle().grid));
     mutate();
     return;
   }
   if (k === " " || k === "Enter") {
     e.preventDefault();
-    state = core.toggleDirection(state);
+    setActiveState(core.toggleDirection(activeState()));
     syncUI();
     return;
   }
   if (k.length === 1 && /[a-zA-Z]/.test(k) && !e.metaKey && !e.ctrlKey && !e.altKey) {
     e.preventDefault();
-    state = core.typeLetter(state, puzzle.grid, k);
+    setActiveState(core.typeLetter(activeState(), activePuzzle().grid, k));
     mutate();
   }
 }
@@ -191,13 +233,15 @@ function onNativeInput(e, r, c) {
   if (!val) return;
   const letter = val[val.length - 1];
   if (/[a-zA-Z]/.test(letter)) {
-    state = core.selectCell(state, r, c);
-    state = core.typeLetter(state, puzzle.grid, letter);
+    setActiveState(core.selectCell(activeState(), r, c));
+    setActiveState(core.typeLetter(activeState(), activePuzzle().grid, letter));
     mutate();
   }
 }
 
 function updateCellVisuals() {
+  const state = activeState();
+  const meta = activeMeta();
   for (let r = 0; r < 5; r++) {
     for (let c = 0; c < 5; c++) {
       const input = cellInputs[r][c];
@@ -236,6 +280,7 @@ function renderClueBar() {
     els.clueActive.innerHTML = "";
     return;
   }
+  const puzzle = activePuzzle();
   const text = puzzle.clues[slot.dir][String(slot.number)];
   const dirLabel = slot.dir === "across" ? "Across" : "Down";
   els.clueActive.innerHTML =
@@ -243,6 +288,8 @@ function renderClueBar() {
 }
 
 function buildClueLists() {
+  const puzzle = activePuzzle();
+  const meta = activeMeta();
   els.cluesAcross.innerHTML = "";
   els.cluesDown.innerHTML = "";
   for (const dir of ["across", "down"]) {
@@ -260,7 +307,7 @@ function buildClueLists() {
       btn.innerHTML =
         `<span class="mg-clues__num">${slot.number}</span><span>${esc(puzzle.clues[dir][String(slot.number)])}</span>`;
       btn.addEventListener("click", () => {
-        state = core.jumpToSlot(state, slot);
+        setActiveState(core.jumpToSlot(activeState(), slot));
         syncUI();
       });
       li.appendChild(btn);
@@ -270,6 +317,9 @@ function buildClueLists() {
 }
 
 function updateClueListState() {
+  const state = activeState();
+  const meta = activeMeta();
+  const puzzle = activePuzzle();
   const active = activeSlot();
   const allSlots = [...meta.acrossSlots, ...meta.downSlots];
   document.querySelectorAll(".mg-clues__item").forEach((btn) => {
@@ -284,11 +334,11 @@ function updateClueListState() {
 }
 
 function updateHelpBadge() {
-  els.helpBadge.hidden = !state.usedHelp;
+  els.helpBadge.hidden = !activeState().usedHelp;
 }
 
 function updateTimerDisplay() {
-  els.timer.textContent = core.formatTime(core.elapsedMs(state, Date.now()));
+  els.timer.textContent = core.formatTime(core.elapsedMs(activeState(), Date.now()));
 }
 
 function startTimerLoop() {
@@ -305,7 +355,8 @@ function stopTimerLoop() {
 }
 
 function focusCursorCell() {
-  const input = cellInputs[state.cursor.r][state.cursor.c];
+  const state = activeState();
+  const input = cellInputs[state.cursor.r] && cellInputs[state.cursor.r][state.cursor.c];
   if (input && document.activeElement !== input) input.focus({ preventScroll: true });
 }
 
@@ -320,9 +371,12 @@ function syncUI() {
 
 function mutate() {
   syncUI();
+  const state = activeState();
+  const puzzle = activePuzzle();
   const wasSolved = state.solvedAt != null;
-  state = core.finishIfSolved(state, puzzle.grid, Date.now());
-  if (!wasSolved && state.solvedAt != null) {
+  const next = core.finishIfSolved(state, puzzle.grid, Date.now());
+  setActiveState(next);
+  if (!wasSolved && next.solvedAt != null) {
     saveState();
     showComplete(true);
   }
@@ -332,11 +386,11 @@ function showComplete(justSolved) {
   stopTimerLoop();
   updateTimerDisplay();
   els.completePanel.hidden = false;
-  const time = core.formatTime(core.elapsedMs(state));
-  els.completeTime.textContent = `Solved in ${time}${state.usedHelp ? " (with help)" : ""}`;
+  const time = core.formatTime(core.elapsedMs(activeState()));
+  els.completeTime.textContent = `Solved in ${time}${activeState().usedHelp ? " (with help)" : ""}`;
   if (justSolved) {
     confettiBurst();
-    if (!isRandomMode) recordResult(GAME_ID, true);
+    if (!isRandomMode) recordResult(GAME_ID, true, activeDifficulty);
     toast("Solved!");
   }
 }
@@ -350,27 +404,27 @@ function fullRender() {
 }
 
 els.btnDirection.addEventListener("click", () => {
-  state = core.toggleDirection(state);
+  setActiveState(core.toggleDirection(activeState()));
   syncUI();
 });
 
 els.cluePrev.addEventListener("click", () => {
-  state = core.advanceClue(state, meta, -1);
+  setActiveState(core.advanceClue(activeState(), activeMeta(), -1));
   syncUI();
 });
 
 els.clueNext.addEventListener("click", () => {
-  state = core.advanceClue(state, meta, 1);
+  setActiveState(core.advanceClue(activeState(), activeMeta(), 1));
   syncUI();
 });
 
 els.btnCheck.addEventListener("click", () => {
-  state = core.checkCell(state, puzzle.grid);
+  setActiveState(core.checkCell(activeState(), activePuzzle().grid));
   syncUI();
 });
 
 els.btnReveal.addEventListener("click", () => {
-  state = core.revealCell(state, puzzle.grid);
+  setActiveState(core.revealCell(activeState(), activePuzzle().grid));
   mutate();
 });
 
@@ -378,43 +432,22 @@ els.btnShare.addEventListener("click", async () => {
   const url = new URL("../../index.html", location.href).href;
   const text = core.shareText({
     dateLabel: todayKey(),
-    ms: core.elapsedMs(state),
-    usedHelp: state.usedHelp,
+    diffLabel: isRandomMode ? null : LABELS[activeDifficulty],
+    ms: core.elapsedMs(activeState()),
+    usedHelp: activeState().usedHelp,
     url,
   });
   await share(text);
 });
 
-function switchToRandom() {
-  isRandomMode = true;
-  stopTimerLoop();
-  const idx = Math.floor(Math.random() * bank.puzzles.length);
-  puzzle = bank.puzzles[idx];
-  meta = core.parsePuzzle(puzzle);
-  state = core.createInitialState(puzzle, Date.now());
-  els.btnRandom.textContent = "Back to today's puzzle";
-  els.randomBadge.hidden = false;
+function renderActive() {
+  els.randomBadge.hidden = !isRandomMode;
+  els.btnRandom.textContent = isRandomMode ? "Back to today's puzzle" : "Play a random puzzle";
   els.completePanel.hidden = true;
   buildGrid();
   buildClueLists();
   fullRender();
-  startTimerLoop();
-  focusCursorCell();
-}
-
-function switchToDaily() {
-  isRandomMode = false;
-  stopTimerLoop();
-  puzzle = todaysPuzzle();
-  meta = core.parsePuzzle(puzzle);
-  state = loadOrCreateDailyState();
-  els.btnRandom.textContent = "Play a random puzzle";
-  els.randomBadge.hidden = true;
-  els.completePanel.hidden = true;
-  buildGrid();
-  buildClueLists();
-  fullRender();
-  if (state.solvedAt != null) {
+  if (activeState().solvedAt != null) {
     showComplete(false);
   } else {
     startTimerLoop();
@@ -422,10 +455,44 @@ function switchToDaily() {
   focusCursorCell();
 }
 
+function switchToRandom() {
+  const difficulty = activeDifficulty;
+  const list = bank[difficulty].puzzles;
+  const todaysPuzzle = puzzles[difficulty];
+  let candidate = list[Math.floor(Math.random() * list.length)];
+  for (let attempt = 0; attempt < 8 && candidate === todaysPuzzle && list.length > 1; attempt++) {
+    candidate = list[Math.floor(Math.random() * list.length)];
+  }
+  isRandomMode = true;
+  stopTimerLoop();
+  freePlay = {
+    difficulty,
+    puzzle: candidate,
+    meta: core.parsePuzzle(candidate),
+    state: core.createInitialState(candidate, Date.now()),
+  };
+  renderActive();
+}
+
+function switchToDaily() {
+  isRandomMode = false;
+  freePlay = null;
+  stopTimerLoop();
+  renderActive();
+}
+
 els.btnRandom.addEventListener("click", () => {
   if (isRandomMode) switchToDaily();
   else switchToRandom();
 });
+
+function switchDifficulty(difficulty) {
+  isRandomMode = false;
+  freePlay = null;
+  stopTimerLoop();
+  activeDifficulty = difficulty;
+  renderActive();
+}
 
 async function init() {
   try {
@@ -434,18 +501,10 @@ async function init() {
     toast("Could not load today's puzzle");
     return;
   }
-  puzzle = todaysPuzzle();
-  meta = core.parsePuzzle(puzzle);
-  state = loadOrCreateDailyState();
-  buildGrid();
-  buildClueLists();
-  fullRender();
-  if (state.solvedAt != null) {
-    showComplete(false);
-  } else {
-    startTimerLoop();
-  }
-  focusCursorCell();
+  for (const difficulty of DIFFICULTIES) dayStores[difficulty] = store(GAME_ID, difficulty);
+  loadToday();
+  activeDifficulty = diffTabs(els.diffTabsMount, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
+  renderActive();
 }
 
 init();

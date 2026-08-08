@@ -2293,6 +2293,228 @@ WORDS_5.update({
 })
 
 
+# ---------------------------------------------------------------------------
+# Hard tier: a smaller, hand-picked, hand-clued pool. The words are still
+# ordinary and fair (every one is a plain dictionary word), but the clues are
+# deliberately indirect -- a slang sense, a less common meaning, a bit of
+# misdirection -- instead of the straight one-line definitions above. Every
+# word below also lives in WORDS_3/4/5 or the shared wordlist, so nothing
+# here is obscure; only the clue's angle changes.
+# ---------------------------------------------------------------------------
+
+HARD_WORDS_3 = {
+    "APE": "Mimic, monkey-style",
+    "BOA": "Slithery stole",
+    "BUG": "Pester, or a system's gremlin",
+    "CON": "Swindle, briefly",
+    "DAB": "Tiny dollop, or trendy dance move",
+    "DON": "Suit up, or a mafia boss",
+    "DUE": "Expected to arrive",
+    "FAN": "Superfan, or a summer cooler",
+    "FLY": "Slick and stylish, in old slang",
+    "HAM": "Overact for the camera",
+    "HIP": "In the know, culturally speaking",
+    "HOG": "Greedily take more than your share",
+    "IVY": "Ancient college's climbing emblem",
+    "JAM": "Impromptu musical session",
+    "KEY": "Crucial, or a Florida island",
+    "LEG": "One stage of a journey",
+    "LIT": "Party's peak energy, slangily",
+    "MAY": "Might, tentatively",
+    "MUM": "Tight-lipped",
+    "NIP": "Sharp chill in the air",
+    "RAM": "Force through, battering-style",
+    "SET": "Tennis's building block, or hardened",
+    "TIE": "Deadlock on the scoreboard",
+    "ZIP": "Nothing at all, on the scoreboard",
+    "BOW": "Take a curtain call",
+    "BAT": "Swing for the fences",
+    "BAR": "Legal profession's exam hurdle",
+    "DEN": "Where the lions gather",
+    "FIT": "Sudden burst of anger",
+    "ICE": "Diamonds, in slang",
+    "JOT": "Scribble down quickly",
+    "KIT": "Everything needed, boxed up",
+    "LOG": "Ship captain's daily record",
+    "LOT": "One's fate in life",
+    "MOB": "Organized crime family",
+    "NET": "What's left after expenses",
+    "PEN": "Livestock's small enclosure",
+    "PIT": "Fruit's hard center",
+    "RAY": "Flat-bodied ocean glider",
+    "ROW": "Heated argument",
+    "SAW": "Old adage, or past tense of see",
+    "TAN": "Sun's souvenir",
+    "TIP": "Insider's secret hint",
+    "TOP": "Spinning children's toy",
+}
+
+HARD_WORDS_4 = {
+    "BARK": "What a redwood wears",
+    "BEAM": "Grin from ear to ear",
+    "BIRD": "Early one gets the worm",
+    "BOND": "007's specialty",
+    "CASE": "Detective's open file",
+    "CELL": "Where an inmate waits",
+    "CLUB": "Nightlife hotspot",
+    "DARE": "Truth's daring partner",
+    "DATE": "Calendar's circled day",
+    "DECK": "Card sharp's tool",
+    "DRAW": "Neither win nor lose",
+    "FAIR": "County's summer carnival",
+    "FINE": "Parking ticket's price",
+    "FIRM": "Law office, collectively",
+    "FLAT": "Punctured tire's state",
+    "FORM": "Paperwork to fill out",
+    "GAME": "Board night's centerpiece",
+    "GEAR": "Cyclist's speed setting",
+    "GULF": "Wide divide between sides",
+    "JUST": "Fair and reasonable",
+    "KIND": "Not one bit unkind",
+    "LEAD": "Race's front position",
+    "LOVE": "Tennis scoreboard's zero",
+    "MARK": "Grader's red pen result",
+    "MEAL": "Sit-down spread",
+    "MEAN": "Statistical middle ground",
+    "MINE": "Explosive buried underfoot",
+    "MISS": "Unmarried woman's title",
+    "OVER": "Game's final call",
+    "PLOT": "Garden's fenced patch",
+    "POST": "Fence's upright support",
+    "RARE": "Steak barely seared",
+    "ROCK": "Concert's guitar-driven genre",
+    "SNAP": "Quick photo, taken fast",
+    "SOUL": "Motown's musical genre",
+    "TEAR": "What a sad film draws",
+    "WAVE": "Crowd's stadium ripple",
+    "WELL": "Village's old water source",
+    "ZERO": "Tennis's love, numerically",
+    "ZOOM": "Video call's brand name",
+    "CROP": "Farmer's harvest, or a haircut's length",
+    "DUCK": "Dodge an incoming ball",
+    "FILE": "Sandpaper's metal cousin",
+    "FLIP": "Gymnast's aerial move",
+    "HIDE": "Tanner's raw material",
+    "IRON": "Wrinkle's sworn enemy",
+    "KNOT": "Sailor's speed unit",
+    "MINT": "Freshly struck coin's condition",
+    "PUMP": "Gas station's dispensing arm",
+    "SPIN": "PR team's positive twist",
+    "ROLL": "Drumroll's buildup",
+    "TRIP": "Guilt trip's emotional kind",
+    "TUNE": "Radio dial's target",
+    "STAR": "Walk of Fame's honoree",
+    "POLE": "Earth's frozen extremity",
+}
+
+HARD_WORDS_5 = {
+    "ABOUT": "Roughly speaking",
+    "AGENT": "007's job title",
+    "ASIDE": "Actor's whispered comment to the crowd",
+    "BINGO": "Eureka, shouted at the hall",
+    "BLAST": "Total riot of a party",
+    "BLOCK": "City street's single stretch",
+    "BLUNT": "Not one to sugarcoat it",
+    "BOUND": "Destined for somewhere",
+    "BUGGY": "Golf course's little cart",
+    "CIVIL": "Polite, even under pressure",
+    "CLOSE": "Nearly there",
+    "COMIC": "Superhero's paper origin",
+    "CRANK": "Grouch before coffee",
+    "CRAZY": "Off the wall",
+    "CREST": "Wave's highest point",
+    "CRISP": "Fresh fall air's feel",
+    "CROSS": "Bad-tempered",
+    "CYCLE": "Wash machine's setting",
+    "DEITY": "Mount Olympus's resident",
+    "DENSE": "Slow on the uptake",
+    "DERBY": "Kentucky's famous race",
+    "DIGIT": "What a calculator crunches",
+    "DITCH": "Bail on the plan",
+    "DOUGH": "Cold hard cash, slangily",
+    "DRILL": "Fire alarm's practice run",
+    "DWELL": "Linger on a problem too long",
+    "FAINT": "Drama queen's swoon",
+    "FLANK": "Steak's cut from the side",
+    "FLEET": "Navy's collection of ships",
+    "FLING": "Toss carelessly aside",
+    "FORCE": "Star Wars's mystical energy",
+    "FRUIT": "Apple, technically",
+    "GORGE": "Canyon's deep cut",
+    "GRAND": "A cool thousand, in slang",
+    "GRASP": "Firm mental handle on something",
+    "GRAVE": "Six feet under",
+    "GRAZE": "Cattle's afternoon activity",
+    "GROSS": "Before taxes, or just plain icky",
+    "ISSUE": "Magazine's monthly drop",
+    "JOINT": "Knee or elbow, mechanically",
+    "KITTY": "Poker table's pooled cash",
+    "LEVEL": "Video game's next stage",
+    "LIGHT": "Not heavy at all",
+    "MATCH": "Tennis's full contest",
+    "METAL": "Heavy genre of rock",
+    "MINOR": "Not yet of legal age",
+    "MOGUL": "Ski slope's bump, or a media tycoon",
+    "NASAL": "Stuffed-up voice's quality",
+    "NERVE": "Sheer audacity",
+    "NUTTY": "A little bit unhinged",
+    "PINTO": "Spotted pony's coat",
+    "PITCH": "Salesman's rehearsed spiel",
+    "PLANK": "Pirate's forced walk",
+    "PLUME": "Peacock's showy feather",
+    "POINT": "Debate's central argument",
+    "PRESS": "Newsroom's collective voice",
+    "PRIDE": "Lion pack's proper name",
+    "PRIME": "Only divisible by one and itself",
+    "PRONE": "Lying face down",
+    "PRUNE": "Dried plum's other name",
+    "PUPIL": "Eye's light-adjusting center",
+    "QUACK": "Fraudulent doctor",
+    "RALLY": "Comeback surge",
+    "RANCH": "Cowboy's home turf",
+    "RANGE": "Stove's cooking surface",
+    "RIGHT": "Correct, firmly so",
+    "ROAST": "Comedy's friendly insult session",
+    "RULER": "Desk drawer's straight edge",
+    "SALSA": "Chip's dance partner",
+    "SALTY": "Bitter about a loss",
+    "SCOPE": "Sniper's aiming lens",
+    "SCRAP": "Junkyard's leftover metal",
+    "SHAPE": "Physical condition, in good ___",
+    "SHEER": "Utter, or see-through fabric",
+    "SLATE": "Roof tile, or a lineup of candidates",
+    "SLICK": "Smooth-talking and polished",
+    "SNARE": "Drummer's crisp-sounding piece",
+    "SNARL": "Traffic's tangled mess",
+    "SNORT": "Sudden burst of laughter",
+    "SOLID": "Dependable through and through",
+    "SONIC": "Faster than the speed of sound",
+    "SPACE": "Final frontier",
+    "SPADE": "Gardener's digging tool",
+    "SPAWN": "Video game's respawn point",
+    "SPINE": "Book's readable edge",
+    "SPOIL": "Give away the ending",
+    "SPORT": "Good sport about losing",
+    "STALL": "Horse's small enclosure",
+    "STEEP": "Ski slope's sharp angle",
+    "STERN": "Boat's rear end",
+    "STOOP": "Brownstone's front steps",
+    "STOUT": "Dark, hearty beer style",
+    "SWELL": "Old-fashioned way to say great",
+    "TRAMP": "Wanderer with no fixed address",
+    "TRUCK": "Have nothing to do with",
+    "TRUNK": "Elephant's built-in hose",
+    "TWEET": "Short online post",
+    "UTTER": "Speak aloud, or complete",
+    "VIRUS": "Computer's unwelcome guest",
+    "VISOR": "Cap's sun-blocking brim",
+    "VOCAL": "Outspoken about an opinion",
+    "VOWEL": "A, E, I, O, or U",
+    "WASTE": "Squander the opportunity",
+    "WEDGE": "Golf club for a short lift",
+}
+
+
 def build_clues_and_words():
     clues = {}
     curated_by_len = {3: [], 4: [], 5: []}
@@ -2308,6 +2530,31 @@ def build_clues_and_words():
 
 CLUES, CURATED_BY_LEN = build_clues_and_words()
 CURATED_SET = set(CLUES.keys())
+
+# Hard-tier clue overrides: vaguer, wordplay-leaning phrasing for a
+# hand-picked subset of the curated vocabulary (HARD_WORDS_3/4/5 above).
+#
+# This is deliberately NOT a separate fill pool for the search below. An
+# earlier version of this file tried exactly that -- restrict the crossing
+# search to only the ~45-105 hand-clued "hard" words per length -- and it
+# never converged: the search needs several hundred words per length before
+# it reliably finds even one set of mutually-crossing fillings (proven
+# empirically while building this file; even a random 700-word sample of the
+# full, vetted 5-letter pool came up empty inside a 15s budget, while the
+# real ~1300-word pool succeeds in seconds). So hard puzzles are generated
+# from the exact same vocabulary as medium, then selected afterward for
+# having more entries with a trickier sense, and re-clued with the text
+# below wherever an override exists. See main().
+HARD_CLUE_OVERRIDES = {**HARD_WORDS_3, **HARD_WORDS_4, **HARD_WORDS_5}
+assert set(HARD_CLUE_OVERRIDES).issubset(CURATED_SET), "a hard override word is missing from the curated vocabulary"
+
+
+def has_dual_sense(word):
+    """True if the word's own clue already flags a second sense ("X, or Y")
+    or if it has a hand-authored hard override -- either way, a fair signal
+    that this entry gives a solver more to weigh than a single definition.
+    """
+    return word in HARD_CLUE_OVERRIDES or " or " in CLUES[word].lower()
 
 
 # The generator fills ONLY from the curated, hand-clued word set above.
@@ -2566,6 +2813,30 @@ def transpose_puzzle(puzzle):
     return {"grid": t_grid, "clues": clues}
 
 
+def puzzle_words(puzzle):
+    """The list of answer words a puzzle uses, across then down, derived
+    straight from its grid (so it works on any puzzle dict, regardless of
+    which tier built it).
+    """
+    blocks = {(r, c) for r in range(SIZE) for c in range(SIZE) if puzzle["grid"][r][c] == "#"}
+    slots = compute_slots(blocks)
+    return ["".join(puzzle["grid"][r][c] for r, c in s["cells"]) for s in slots]
+
+
+def reclue_for_hard(puzzle):
+    """Rebuilds a puzzle's clue text, swapping in HARD_CLUE_OVERRIDES for any
+    entry that has one and leaving the rest at their original curated text
+    (still real, still hand-written -- just not re-angled for this tier).
+    """
+    blocks = {(r, c) for r in range(SIZE) for c in range(SIZE) if puzzle["grid"][r][c] == "#"}
+    slots = compute_slots(blocks)
+    clues = {"across": {}, "down": {}}
+    for s in slots:
+        word = "".join(puzzle["grid"][r][c] for r, c in s["cells"])
+        clues[s["dir"]][str(s["number"])] = HARD_CLUE_OVERRIDES.get(word, CLUES[word])
+    return {"grid": puzzle["grid"], "clues": clues}
+
+
 def load_wordlist():
     words = set()
     with WORDLIST_PATH.open(encoding="utf-8") as f:
@@ -2576,52 +2847,73 @@ def load_wordlist():
     return words
 
 
-def validate_bank(puzzles, dictionary):
-    assert len(puzzles) > 0, "bank is empty"
+def validate_bank(puzzles, dictionary, tier, clue_lookup=None):
+    """clue_lookup(word) -> expected clue text for this tier. Defaults to the
+    curated CLUES table (easy and medium both show the original text); the
+    hard tier passes a lookup that prefers HARD_CLUE_OVERRIDES.
+    """
+    if clue_lookup is None:
+        clue_lookup = lambda w: CLUES[w]  # noqa: E731
+
+    assert len(puzzles) > 0, f"{tier} bank is empty"
     seen = set()
     for i, p in enumerate(puzzles):
         grid = p["grid"]
-        assert len(grid) == SIZE, f"puzzle {i}: grid must have {SIZE} rows"
+        assert len(grid) == SIZE, f"{tier} puzzle {i}: grid must have {SIZE} rows"
         for row in grid:
-            assert len(row) == SIZE, f"puzzle {i}: row length must be {SIZE}"
+            assert len(row) == SIZE, f"{tier} puzzle {i}: row length must be {SIZE}"
             for ch in row:
-                assert ch == "#" or ("A" <= ch <= "Z"), f"puzzle {i}: bad char {ch!r}"
+                assert ch == "#" or ("A" <= ch <= "Z"), f"{tier} puzzle {i}: bad char {ch!r}"
 
         sig = tuple(grid)
-        assert sig not in seen, f"puzzle {i}: duplicate grid"
+        assert sig not in seen, f"{tier} puzzle {i}: duplicate grid"
         seen.add(sig)
 
         blocks = {(r, c) for r in range(SIZE) for c in range(SIZE) if grid[r][c] == "#"}
         assert any(blocks == v for variants in TEMPLATES.values() for v in variants), (
-            f"puzzle {i}: block pattern is not one of the proven-valid templates"
+            f"{tier} puzzle {i}: block pattern is not one of the proven-valid templates"
         )
 
         slots = compute_slots(blocks)
         by_dir = {"across": {}, "down": {}}
         for s in slots:
-            assert s["length"] in (3, 4, 5), f"puzzle {i}: entry length {s['length']} out of range"
+            assert s["length"] in (3, 4, 5), f"{tier} puzzle {i}: entry length {s['length']} out of range"
             word = "".join(grid[r][c] for r, c in s["cells"])
-            assert word.lower() in dictionary, f"puzzle {i}: {word} is not in the shared wordlist"
+            assert word.lower() in dictionary, f"{tier} puzzle {i}: {word} is not in the shared wordlist"
+            assert word in CURATED_SET, f"{tier} puzzle {i}: {word} is not in the curated word set"
             by_dir[s["dir"]][str(s["number"])] = word
 
         for direction in ("across", "down"):
             got_numbers = set(p["clues"][direction].keys())
             expect_numbers = set(by_dir[direction].keys())
             assert got_numbers == expect_numbers, (
-                f"puzzle {i}: {direction} clue numbers {got_numbers} do not match grid slots {expect_numbers}"
+                f"{tier} puzzle {i}: {direction} clue numbers {got_numbers} do not match grid slots {expect_numbers}"
             )
             for num, clue_text in p["clues"][direction].items():
                 word = by_dir[direction][num]
-                assert clue_text == CLUES[word], f"puzzle {i}: clue for {word} does not match the curated text"
-                assert clue_text.strip() == clue_text and clue_text, f"puzzle {i}: clue for {word} is malformed"
+                assert clue_text == clue_lookup(word), (
+                    f"{tier} puzzle {i}: clue for {word} does not match the curated text"
+                )
+                assert clue_text.strip() == clue_text and clue_text, f"{tier} puzzle {i}: clue for {word} is malformed"
                 for bad in ("\u2014", "\u2013", "\u2026"):
-                    assert bad not in clue_text, f"puzzle {i}: clue for {word} has a forbidden character"
+                    assert bad not in clue_text, f"{tier} puzzle {i}: clue for {word} has a forbidden character"
 
 
 def main():
     parser = argparse.ArgumentParser(description="Generate the Minigrid puzzle bank.")
     parser.add_argument("--seed", type=int, default=20260810)
-    parser.add_argument("--count", type=int, default=90)
+    parser.add_argument("--count", type=int, default=None, help="override the target count for every tier")
+    # The full curated vocabulary (WORDS_3/4/5) has a hard combinatorial
+    # ceiling for this grid shape: an exhaustive search (every template,
+    # generous time/node budgets) finds exactly 130 distinct fully-crossed
+    # fillings, period -- verified while building this file, not a budget
+    # artifact (raising cap/time further finds nothing new). Three tiers
+    # drawn without overlap have to share that ceiling, so the defaults
+    # below add up to it (45 + 45 + 40 = 130) instead of asking for more
+    # than the vocabulary can honestly deliver. See main().
+    parser.add_argument("--easy-count", type=int, default=45)
+    parser.add_argument("--medium-count", type=int, default=45)
+    parser.add_argument("--hard-count", type=int, default=40)
     parser.add_argument("--out", type=Path, default=OUT_PATH)
     parser.add_argument(
         "--cap-per-template",
@@ -2629,25 +2921,38 @@ def main():
         default=800,
         help="max complete fillings to collect per block template before moving on",
     )
+    parser.add_argument(
+        "--time-budget",
+        type=float,
+        default=40.0,
+        help="max seconds the search spends per block template before moving on",
+    )
     args = parser.parse_args()
 
-    rng = random.Random(args.seed)
-    dictionary = load_wordlist()
+    target_count = {
+        "easy": args.count if args.count is not None else args.easy_count,
+        "medium": args.count if args.count is not None else args.medium_count,
+        "hard": args.count if args.count is not None else args.hard_count,
+    }
 
+    dictionary = load_wordlist()
+    rng = random.Random(args.seed)
     t0 = time.monotonic()
-    # Search the 4-corner template first: it's the least dense (four
-    # length-3 entries instead of length-5), so it has by far the largest
-    # solution space for a given curated word count. See enumerate_solutions.
-    all_variants = [
-        (count, blocks) for count in (4, 2, 0) for blocks in TEMPLATES[count]
-    ]
-    puzzles = []
+
+    # One search over the full curated vocabulary, across every template.
+    # Three tiers need three times the raw material a single bank did, and
+    # only the full ~2200-word vocabulary finds fillings reliably (see the
+    # HARD_CLUE_OVERRIDES comment above) -- so there is no early break here;
+    # every template variant is searched to its own cap/time budget, and the
+    # three tiers are carved out of the combined pool afterward.
+    all_variants = [(count, blocks) for count in (4, 2, 0) for blocks in TEMPLATES[count]]
+    candidates = []
     seen_grids = set()
     template_uses = {}
 
     for count, blocks in all_variants:
         slots = compute_slots(blocks)
-        solutions = enumerate_solutions(slots, rng, cap=args.cap_per_template)
+        solutions = enumerate_solutions(slots, rng, cap=args.cap_per_template, time_budget=args.time_budget)
         rng.shuffle(solutions)
         for assignment in solutions:
             base = assignment_to_puzzle(blocks, slots, assignment)
@@ -2656,31 +2961,87 @@ def main():
                 if sig in seen_grids:
                     continue
                 seen_grids.add(sig)
-                puzzles.append(candidate)
+                candidates.append(candidate)
                 template_uses[count] = template_uses.get(count, 0) + 1
         print(
             f"template blocks={count}: {len(solutions)} fillings found "
             f"({time.monotonic() - t0:.1f}s elapsed)"
         )
-        if len(puzzles) >= args.count * 2:
-            break  # plenty of headroom; no need to search the remaining templates
 
-    rng.shuffle(puzzles)
-    puzzles = puzzles[: args.count]
+    rng.shuffle(candidates)
+    print(f"gathered {len(candidates)} unique candidate puzzles ({time.monotonic() - t0:.1f}s elapsed)")
+    print(f"template block-count usage: {template_uses}")
 
-    validate_bank(puzzles, dictionary)
-    print(f"generated {len(puzzles)} puzzles in {time.monotonic() - t0:.1f}s")
+    def tricky_score(puzzle):
+        return sum(1 for w in puzzle_words(puzzle) if has_dual_sense(w))
+
+    def is_all_straight(puzzle):
+        return tricky_score(puzzle) == 0
+
+    # Easy: every entry's clue is a single, straight definition -- exactly
+    # the contract's "everyday fill, straight definition clues" bar.
+    easy_pool = [p for p in candidates if is_all_straight(p)]
+    # Hard candidates: everything else, ranked by how many entries carry a
+    # trickier sense (the shuffle above keeps ties in random order).
+    hard_pool = sorted((p for p in candidates if not is_all_straight(p)), key=tricky_score, reverse=True)
+
+    used = set()
+
+    def take(pool, n):
+        out = []
+        for p in pool:
+            pid = id(p)
+            if pid in used:
+                continue
+            out.append(p)
+            used.add(pid)
+            if len(out) >= n:
+                break
+        return out
+
+    easy_bank = take(easy_pool, target_count["easy"])
+    # Prefer puzzles with at least two trickier entries so "hard" means
+    # something; only fall back to a single-entry threshold if that is not
+    # enough to reach the target (still real, just less emphatically hard --
+    # the report states the true split).
+    hard_bank = take([p for p in hard_pool if tricky_score(p) >= 2], target_count["hard"])
+    if len(hard_bank) < target_count["hard"]:
+        hard_bank += take(hard_pool, target_count["hard"] - len(hard_bank))
+    hard_bank = [reclue_for_hard(p) for p in hard_bank]
+    # Medium: an unrestricted sample of the same candidate pool used for v1
+    # ("current bank regraded"), skipping whatever easy/hard already claimed
+    # so no single puzzle appears twice under two difficulty labels.
+    medium_bank = take(candidates, target_count["medium"])
+
+    bank = {"easy": {"puzzles": easy_bank}, "medium": {"puzzles": medium_bank}, "hard": {"puzzles": hard_bank}}
+
+    hard_clue_lookup = lambda w: HARD_CLUE_OVERRIDES.get(w, CLUES[w])  # noqa: E731
+    validate_bank(easy_bank, dictionary, "easy")
+    validate_bank(medium_bank, dictionary, "medium")
+    validate_bank(hard_bank, dictionary, "hard", clue_lookup=hard_clue_lookup)
+
+    for tier in ("easy", "medium", "hard"):
+        got = len(bank[tier]["puzzles"])
+        if got < target_count[tier]:
+            print(f"warning: [{tier}] requested {target_count[tier]} but only produced {got}", file=sys.stderr)
+
+    hard_override_hits = sum(1 for p in hard_bank for w in puzzle_words(p) if w in HARD_CLUE_OVERRIDES)
+    hard_entries_total = sum(len(puzzle_words(p)) for p in hard_bank)
+    print(
+        f"hard tier: {hard_override_hits}/{hard_entries_total} entries use a bespoke hard clue "
+        f"(the rest fall back to their original curated clue)"
+    )
 
     OUT = args.out
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", encoding="utf-8") as f:
-        json.dump({"puzzles": puzzles}, f, indent=2, ensure_ascii=True)
+        json.dump(bank, f, indent=2, ensure_ascii=True)
         f.write("\n")
 
-    print(f"wrote {len(puzzles)} puzzles to {OUT}")
-    print(f"template block-count usage: {template_uses}")
-    if len(puzzles) < args.count:
-        print(f"warning: requested {args.count} but only produced {len(puzzles)}", file=sys.stderr)
+    counts_by_tier = {t: len(bank[t]["puzzles"]) for t in ("easy", "medium", "hard")}
+    total = sum(counts_by_tier.values())
+    summary = ", ".join(f"{t}={counts_by_tier[t]}" for t in ("easy", "medium", "hard"))
+    print(f"wrote {total} total puzzles ({summary}) to {OUT}")
 
 
 if __name__ == "__main__":

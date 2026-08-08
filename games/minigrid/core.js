@@ -248,8 +248,9 @@ export function formatTime(ms) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-export function shareText({ dateLabel, ms, usedHelp, url }) {
+export function shareText({ dateLabel, diffLabel, ms, usedHelp, url }) {
   const time = formatTime(ms);
   const note = usedHelp ? " (with help)" : "";
-  return `Minigrid - ${dateLabel}\nSolved in ${time}${note}\n${url}`;
+  const label = diffLabel ? ` ${diffLabel}` : "";
+  return `Minigrid${label} - ${dateLabel}\nSolved in ${time}${note}\n${url}`;
 }

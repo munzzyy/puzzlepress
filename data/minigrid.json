@@ -1,2254 +1,3264 @@
 {
-  "puzzles": [
-    {
-      "grid": [
-        "#GAP#",
-        "FLUID",
-        "LADLE",
-        "UNION",
-        "#DOT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Space between",
-          "4": "Liquid",
-          "6": "Soup's serving spoon",
-          "7": "Workers' collective",
-          "8": "Point on an i"
-        },
-        "down": {
-          "4": "Winter's common bug",
-          "1": "Body's hormone factory",
-          "2": "Sound recording",
-          "3": "Plane's flyer",
-          "5": "Cozy TV room"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CAT#",
-        "COLOR",
-        "OUTDO",
-        "TREAT",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Purring pet",
-          "4": "Crayon's job",
-          "6": "Beat at their own game",
-          "7": "Dog's reward",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Camping's fold-up bed",
-          "1": "Basketball's playing surface",
-          "2": "Change",
-          "3": "This very date",
-          "5": "Decay"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#HOP#",
-        "WOULD",
-        "ENTER",
-        "TODAY",
-        "#ROT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Bunny's move",
-          "4": "Conditional word",
-          "6": "Go inside",
-          "7": "This very date",
-          "8": "Decay"
-        },
-        "down": {
-          "4": "Not dry",
-          "1": "Deep respect",
-          "2": "Beat at their own game",
-          "3": "Skirt's folded crease",
-          "5": "Not wet"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#RED#",
-        "TIARA",
-        "AFTER",
-        "PLEAT",
-        "#END#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fire truck's color",
-          "4": "Pageant winner's crown",
-          "6": "Following",
-          "7": "Skirt's folded crease",
-          "8": "Story's last part"
-        },
-        "down": {
-          "4": "Faucet",
-          "1": "Long-barreled gun",
-          "2": "Past participle of eat",
-          "3": "Deep worry",
-          "5": "Museum wall filler"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#FLU#",
-        "GLAND",
-        "AUDIO",
-        "PILOT",
-        "#DEN#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Winter's common bug",
-          "4": "Body's hormone factory",
-          "6": "Sound recording",
-          "7": "Plane's flyer",
-          "8": "Cozy TV room"
-        },
-        "down": {
-          "4": "Space between",
-          "1": "Liquid",
-          "2": "Soup's serving spoon",
-          "3": "Workers' collective",
-          "5": "Point on an i"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COB#",
-        "COURT",
-        "ALTER",
-        "TODAY",
-        "#ROD#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Corn's core",
-          "4": "Basketball's playing surface",
-          "6": "Change",
-          "7": "This very date",
-          "8": "Fishing pole"
-        },
-        "down": {
-          "4": "Purring pet",
-          "1": "Crayon's job",
-          "2": "Beat at their own game",
-          "3": "Toast's raw form",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "BROOK",
-        "ARGUE",
-        "YOUNG",
-        "#WET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Small stream",
-          "6": "Bicker",
-          "7": "Not old",
-          "8": "Not dry"
-        },
-        "down": {
-          "4": "Spot to anchor a ship",
-          "1": "Bow's ammo",
-          "2": "Charming outlaw",
-          "3": "Tally up",
-          "5": "Party's beer barrel"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#PAW#",
-        "ARROW",
-        "ROGUE",
-        "COUNT",
-        "#FED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Dog's foot",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Gave dinner to"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Evidence",
-          "2": "Bicker",
-          "3": "Injury",
-          "5": "Not dry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAY#",
-        "APRON",
-        "ROGUE",
-        "COUNT",
-        "#KEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Speak",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Party's beer barrel"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Give a scare",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "PROOF",
-        "ARGUE",
-        "WOULD",
-        "#WED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Evidence",
-          "6": "Bicker",
-          "7": "Conditional word",
-          "8": "Marry"
-        },
-        "down": {
-          "4": "Dog's foot",
-          "1": "Bow's ammo",
-          "2": "Charming outlaw",
-          "3": "Might have",
-          "5": "Gave dinner to"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "SPOOF",
-        "ARGUE",
-        "WOUND",
-        "#NET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Comedy's parody",
-          "6": "Bicker",
-          "7": "Injury",
-          "8": "Basketball hoop's fabric"
-        },
-        "down": {
-          "4": "Carpenter's cutting tool",
-          "1": "Chef's cover-up",
-          "2": "Charming outlaw",
-          "3": "Tally up",
-          "5": "Gave dinner to"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#EWE#",
-        "CRAVE",
-        "OUTER",
-        "OPERA",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Female sheep",
-          "4": "Want intensely",
-          "6": "Not inner",
-          "7": "Sung stage drama",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Pigeon's sound",
-          "1": "Volcano's outburst",
-          "2": "H2O",
-          "3": "Each one",
-          "5": "Historical span"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#MET#",
-        "BOARD",
-        "ANGER",
-        "DELAY",
-        "#YET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Past tense of meet",
-          "4": "Chess's playing surface",
-          "6": "Rage",
-          "7": "Flight's setback",
-          "8": "Not now, but soon"
-        },
-        "down": {
-          "4": "Opposite of good",
-          "1": "Cash",
-          "2": "Bald bird on the dollar",
-          "3": "Dog's reward",
-          "5": "Not wet"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARM#",
-        "SPOOF",
-        "ARGUE",
-        "WOUND",
-        "#NET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Sleeve's contents",
-          "4": "Comedy's parody",
-          "6": "Bicker",
-          "7": "Injury",
-          "8": "Basketball hoop's fabric"
-        },
-        "down": {
-          "4": "Carpenter's cutting tool",
-          "1": "Chef's cover-up",
-          "2": "Charming outlaw",
-          "3": "Climb up",
-          "5": "Gave dinner to"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#NET#",
-        "REBEL",
-        "IVORY",
-        "DENSE",
-        "#RYE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Basketball hoop's fabric",
-          "4": "Cause defier",
-          "6": "Elephant tusk's material",
-          "7": "Thick, or slow to catch on",
-          "8": "Deli bread"
-        },
-        "down": {
-          "4": "Get rid of",
-          "1": "Not once",
-          "2": "Deep black wood",
-          "3": "Curt, few words",
-          "5": "Harsh soap-making chemical"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COD#",
-        "COWER",
-        "OUNCE",
-        "BREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fish and chips' fish",
-          "4": "Shrink back in fear",
-          "6": "Sixteenth of a pound",
-          "7": "Toast's raw form",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Corn's core",
-          "1": "Basketball's playing surface",
-          "2": "Property's holder",
-          "3": "Tooth's slow enemy",
-          "5": "Fire truck's color"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#RED#",
-        "TIARA",
-        "AFTER",
-        "GLEAM",
-        "#END#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fire truck's color",
-          "4": "Pageant winner's crown",
-          "6": "Following",
-          "7": "Soft shine",
-          "8": "Story's last part"
-        },
-        "down": {
-          "4": "Playground chase game",
-          "1": "Long-barreled gun",
-          "2": "Past participle of eat",
-          "3": "Deep worry",
-          "5": "Sleeve's contents"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#LOB#",
-        "COURT",
-        "OWNER",
-        "DECAY",
-        "#RED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tennis's soft high shot",
-          "4": "Basketball's playing surface",
-          "6": "Property's holder",
-          "7": "Tooth's slow enemy",
-          "8": "Fire truck's color"
-        },
-        "down": {
-          "4": "Fish and chips' fish",
-          "1": "Bring down",
-          "2": "Sixteenth of a pound",
-          "3": "Toast's raw form",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SET#",
-        "SCARF",
-        "ARGUE",
-        "PULSE",
-        "#BET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tennis chunk, or to place",
-          "4": "Winter neck wrap",
-          "6": "Bicker",
-          "7": "Heartbeat's rhythm",
-          "8": "Wager"
-        },
-        "down": {
-          "4": "Tree's sticky fluid",
-          "1": "Clean vigorously",
-          "2": "Bald bird on the dollar",
-          "3": "Faith in someone",
-          "5": "Charge"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAP#",
-        "ANGEL",
-        "FORCE",
-        "TREAT",
-        "#TEN#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tree's sticky fluid",
-          "4": "Halo wearer",
-          "6": "Push or pull",
-          "7": "Dog's reward",
-          "8": "Perfect score, in gymnastics"
-        },
-        "down": {
-          "4": "Toward a ship's stern",
-          "1": "Pig's sound, or a burst of laughter",
-          "2": "See eye to eye",
-          "3": "Southern pie's nut",
-          "5": "Allow"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TOP#",
-        "COULD",
-        "OWNER",
-        "DECAY",
-        "#LET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Spinning toy",
-          "4": "Might have",
-          "6": "Property's holder",
-          "7": "Tooth's slow enemy",
-          "8": "Allow"
-        },
-        "down": {
-          "4": "Fish and chips' fish",
-          "1": "Beach's drying cloth",
-          "2": "Sixteenth of a pound",
-          "3": "Skirt's folded crease",
-          "5": "Not wet"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#BOO#",
-        "ERUPT",
-        "WATER",
-        "EVERY",
-        "#ERA#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Halloween's greeting",
-          "4": "Volcano's outburst",
-          "6": "H2O",
-          "7": "Each one",
-          "8": "Historical span"
-        },
-        "down": {
-          "4": "Female sheep",
-          "1": "Fearless",
-          "2": "Not inner",
-          "3": "Sung stage drama",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#BAD#",
-        "MONEY",
-        "EAGLE",
-        "TREAT",
-        "#DRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Opposite of good",
-          "4": "Cash",
-          "6": "Bald bird on the dollar",
-          "7": "Dog's reward",
-          "8": "Not wet"
-        },
-        "down": {
-          "4": "Past tense of meet",
-          "1": "Chess's playing surface",
-          "2": "Rage",
-          "3": "Flight's setback",
-          "5": "Not now, but soon"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#BAY#",
-        "ARROW",
-        "ROGUE",
-        "COUNT",
-        "#KEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Spot to anchor a ship",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Party's beer barrel"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Small stream",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Not dry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#GAP#",
-        "FRUIT",
-        "LADLE",
-        "UNION",
-        "#DOT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Space between",
-          "4": "Apple or banana",
-          "6": "Soup's serving spoon",
-          "7": "Workers' collective",
-          "8": "Point on an i"
-        },
-        "down": {
-          "4": "Winter's common bug",
-          "1": "Impressive, or a thousand dollars",
-          "2": "Sound recording",
-          "3": "Plane's flyer",
-          "5": "Perfect score, in gymnastics"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#DEW#",
-        "ZEBRA",
-        "AVOID",
-        "PINTO",
-        "#LYE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Morning grass's moisture",
-          "4": "Striped African grazer",
-          "6": "Steer clear of",
-          "7": "Speckled bean or pony",
-          "8": "Harsh soap-making chemical"
-        },
-        "down": {
-          "4": "Zap with a laser",
-          "1": "Horned troublemaker",
-          "2": "Deep black wood",
-          "3": "Pen's job",
-          "5": "Fuss, without much"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#PAST",
-        "SINCE",
-        "WAGON",
-        "INEPT",
-        "MORE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Before now",
-          "5": "From that point on",
-          "6": "Little red kid-puller",
-          "7": "Clumsy at the task",
-          "8": "Additional"
-        },
-        "down": {
-          "5": "Pool's activity",
-          "1": "88-key instrument",
-          "2": "Rage",
-          "3": "Range, or a rifle's sight",
-          "4": "Camping shelter"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARM#",
-        "PROOF",
-        "ARGUE",
-        "WOUND",
-        "#WET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Sleeve's contents",
-          "4": "Evidence",
-          "6": "Bicker",
-          "7": "Injury",
-          "8": "Not dry"
-        },
-        "down": {
-          "4": "Dog's foot",
-          "1": "Bow's ammo",
-          "2": "Charming outlaw",
-          "3": "Climb up",
-          "5": "Gave dinner to"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "STEAL",
-        "ULTRA",
-        "MARRY",
-        "#SOY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Take without asking",
-          "6": "Extremely",
-          "7": "Say I do",
-          "8": "Tofu's source bean"
-        },
-        "down": {
-          "4": "Total",
-          "1": "Book of maps",
-          "2": "Throwback style",
-          "3": "Tote",
-          "5": "Set down"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COB#",
-        "COURT",
-        "OWNER",
-        "DECAY",
-        "#RED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Corn's core",
-          "4": "Basketball's playing surface",
-          "6": "Property's holder",
-          "7": "Tooth's slow enemy",
-          "8": "Fire truck's color"
-        },
-        "down": {
-          "4": "Fish and chips' fish",
-          "1": "Shrink back in fear",
-          "2": "Sixteenth of a pound",
-          "3": "Toast's raw form",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#MOD#",
-        "COURT",
-        "UTTER",
-        "TODAY",
-        "#ROD#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Stylish 1960s look",
-          "4": "Basketball's playing surface",
-          "6": "Say out loud, or complete",
-          "7": "This very date",
-          "8": "Fishing pole"
-        },
-        "down": {
-          "4": "Scissors' job",
-          "1": "Engine",
-          "2": "Beat at their own game",
-          "3": "Deep worry",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CUT#",
-        "MOTOR",
-        "OUTDO",
-        "PLEAT",
-        "#DRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Scissors' job",
-          "4": "Engine",
-          "6": "Beat at their own game",
-          "7": "Skirt's folded crease",
-          "8": "Not wet"
-        },
-        "down": {
-          "4": "Floor cleaner",
-          "1": "Might have",
-          "2": "Say out loud, or complete",
-          "3": "This very date",
-          "5": "Decay"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAP#",
-        "APRON",
-        "ROGUE",
-        "MOUNT",
-        "#FED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tree's sticky fluid",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Climb up",
-          "8": "Gave dinner to"
-        },
-        "down": {
-          "4": "Sleeve's contents",
-          "1": "Comedy's parody",
-          "2": "Bicker",
-          "3": "Sixteen ounces",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#DAY#",
-        "ARROW",
-        "ROGUE",
-        "COUNT",
-        "#PEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "24 hours",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Clothesline's clip"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Wilt",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Not dry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TAP#",
-        "VILLA",
-        "EATEN",
-        "TREAT",
-        "#ART#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Faucet",
-          "4": "Countryside vacation house",
-          "6": "Past participle of eat",
-          "7": "Dog's reward",
-          "8": "Museum wall filler"
-        },
-        "down": {
-          "4": "Animal doctor",
-          "1": "Pageant winner's crown",
-          "2": "Change",
-          "3": "Skirt's folded crease",
-          "5": "Picnic crasher"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAW#",
-        "APRON",
-        "ROGUE",
-        "MOUNT",
-        "#FED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Carpenter's cutting tool",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Climb up",
-          "8": "Gave dinner to"
-        },
-        "down": {
-          "4": "Sleeve's contents",
-          "1": "Comedy's parody",
-          "2": "Bicker",
-          "3": "Injury",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#BAR#",
-        "MONEY",
-        "EAGLE",
-        "TREAT",
-        "#DRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Where a bartender works",
-          "4": "Cash",
-          "6": "Bald bird on the dollar",
-          "7": "Dog's reward",
-          "8": "Not wet"
-        },
-        "down": {
-          "4": "Past tense of meet",
-          "1": "Chess's playing surface",
-          "2": "Rage",
-          "3": "Track team's baton race",
-          "5": "Not now, but soon"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SWIM",
-        "PIANO",
-        "ANGER",
-        "SCOPE",
-        "TENT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Pool's activity",
-          "5": "88-key instrument",
-          "6": "Rage",
-          "7": "Range, or a rifle's sight",
-          "8": "Camping shelter"
-        },
-        "down": {
-          "5": "Before now",
-          "1": "From that point on",
-          "2": "Little red kid-puller",
-          "3": "Clumsy at the task",
-          "4": "Additional"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CUT#",
-        "MOTOR",
-        "OUTDO",
-        "DREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Scissors' job",
-          "4": "Engine",
-          "6": "Beat at their own game",
-          "7": "Deep worry",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Stylish 1960s look",
-          "1": "Basketball's playing surface",
-          "2": "Say out loud, or complete",
-          "3": "This very date",
-          "5": "Fishing pole"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#NET#",
-        "SOBER",
-        "IVORY",
-        "TENSE",
-        "#LYE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Basketball hoop's fabric",
-          "4": "Not intoxicated",
-          "6": "Elephant tusk's material",
-          "7": "On edge",
-          "8": "Harsh soap-making chemical"
-        },
-        "down": {
-          "4": "Take a seat",
-          "1": "Full-length book",
-          "2": "Deep black wood",
-          "3": "Curt, few words",
-          "5": "Deli bread"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CAT#",
-        "COLOR",
-        "OUTDO",
-        "DREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Purring pet",
-          "4": "Crayon's job",
-          "6": "Beat at their own game",
-          "7": "Deep worry",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Fish and chips' fish",
-          "1": "Basketball's playing surface",
-          "2": "Change",
-          "3": "This very date",
-          "5": "Fishing pole"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ITS#",
-        "SNOUT",
-        "UNDER",
-        "BEADY",
-        "#RYE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Belonging to it",
-          "4": "Pig's nose",
-          "6": "Below",
-          "7": "Small and shiny, like eyes",
-          "8": "Deli bread"
-        },
-        "down": {
-          "4": "Submarine, for short",
-          "1": "Not outer",
-          "2": "This very date",
-          "3": "Soft napped leather",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COD#",
-        "LOWER",
-        "OUNCE",
-        "BREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fish and chips' fish",
-          "4": "Bring down",
-          "6": "Sixteenth of a pound",
-          "7": "Toast's raw form",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Tennis's soft high shot",
-          "1": "Basketball's playing surface",
-          "2": "Property's holder",
-          "3": "Tooth's slow enemy",
-          "5": "Fire truck's color"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#BAY#",
-        "ARROW",
-        "ROGUE",
-        "MOUND",
-        "#KEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Spot to anchor a ship",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Pitcher's raised spot",
-          "8": "Party's beer barrel"
-        },
-        "down": {
-          "4": "Sleeve's contents",
-          "1": "Small stream",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Marry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#LAY#",
-        "TUNIC",
-        "ANGER",
-        "RALLY",
-        "#RED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Set down",
-          "4": "Loose-fitting top",
-          "6": "Rage",
-          "7": "Comeback surge, or a protest gathering",
-          "8": "Fire truck's color"
-        },
-        "down": {
-          "4": "Road's paving material",
-          "1": "Moon-related",
-          "2": "Corner's measure",
-          "3": "Traffic sign's caution",
-          "5": "Shed tears"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#AFT#",
-        "SNORT",
-        "AGREE",
-        "PECAN",
-        "#LET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Toward a ship's stern",
-          "4": "Pig's sound, or a burst of laughter",
-          "6": "See eye to eye",
-          "7": "Southern pie's nut",
-          "8": "Allow"
-        },
-        "down": {
-          "4": "Tree's sticky fluid",
-          "1": "Halo wearer",
-          "2": "Push or pull",
-          "3": "Dog's reward",
-          "5": "Perfect score, in gymnastics"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TAR#",
-        "LUNAR",
-        "ANGLE",
-        "YIELD",
-        "#CRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Road's paving material",
-          "4": "Moon-related",
-          "6": "Corner's measure",
-          "7": "Traffic sign's caution",
-          "8": "Shed tears"
-        },
-        "down": {
-          "4": "Set down",
-          "1": "Loose-fitting top",
-          "2": "Rage",
-          "3": "Comeback surge, or a protest gathering",
-          "5": "Fire truck's color"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARM#",
-        "DROOP",
-        "ARGUE",
-        "YOUNG",
-        "#WED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Sleeve's contents",
-          "4": "Wilt",
-          "6": "Bicker",
-          "7": "Not old",
-          "8": "Marry"
-        },
-        "down": {
-          "4": "24 hours",
-          "1": "Bow's ammo",
-          "2": "Charming outlaw",
-          "3": "Pitcher's raised spot",
-          "5": "Clothesline's clip"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#DREW",
-        "LEAVE",
-        "EATEN",
-        "STINT",
-        "SHOT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Past tense of draw",
-          "5": "Head out",
-          "6": "Past participle of eat",
-          "7": "Short period of work",
-          "8": "Basketball's attempt"
-        },
-        "down": {
-          "5": "Not as much",
-          "1": "Life's end",
-          "2": "Comparison of two numbers",
-          "3": "Scheduled happening",
-          "4": "Past tense of go"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#FLU#",
-        "GRAND",
-        "AUDIO",
-        "PILOT",
-        "#TEN#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Winter's common bug",
-          "4": "Impressive, or a thousand dollars",
-          "6": "Sound recording",
-          "7": "Plane's flyer",
-          "8": "Perfect score, in gymnastics"
-        },
-        "down": {
-          "4": "Space between",
-          "1": "Apple or banana",
-          "2": "Soup's serving spoon",
-          "3": "Workers' collective",
-          "5": "Point on an i"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "SPOOL",
-        "ARGUE",
-        "YOUNG",
-        "#NET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Thread's wound-up holder",
-          "6": "Bicker",
-          "7": "Not old",
-          "8": "Basketball hoop's fabric"
-        },
-        "down": {
-          "4": "Speak",
-          "1": "Chef's cover-up",
-          "2": "Charming outlaw",
-          "3": "Tally up",
-          "5": "Table support, or a body part"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#POD#",
-        "COURT",
-        "OWNER",
-        "DECAY",
-        "#RED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Peas' home",
-          "4": "Basketball's playing surface",
-          "6": "Property's holder",
-          "7": "Tooth's slow enemy",
-          "8": "Fire truck's color"
-        },
-        "down": {
-          "4": "Fish and chips' fish",
-          "1": "Energy",
-          "2": "Sixteenth of a pound",
-          "3": "Deep worry",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#FARM",
-        "CANOE",
-        "ARGUE",
-        "SCENT",
-        "HELD#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Where crops grow",
-          "5": "Paddle boat",
-          "6": "Bicker",
-          "7": "Perfume's smell",
-          "8": "Past tense of hold"
-        },
-        "down": {
-          "5": "Paper money",
-          "1": "Ridiculous, over-the-top comedy",
-          "2": "Halo wearer",
-          "3": "Not square",
-          "4": "Get together"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#DAM#",
-        "ARROW",
-        "ROGUE",
-        "MOUND",
-        "#PET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Beaver's construction",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Pitcher's raised spot",
-          "8": "Household animal"
-        },
-        "down": {
-          "4": "Sleeve's contents",
-          "1": "Wilt",
-          "2": "Bicker",
-          "3": "Climb up",
-          "5": "Marry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CASH",
-        "FARCE",
-        "ANGEL",
-        "ROUND",
-        "MEET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Paper money",
-          "5": "Ridiculous, over-the-top comedy",
-          "6": "Halo wearer",
-          "7": "Not square",
-          "8": "Get together"
-        },
-        "down": {
-          "5": "Where crops grow",
-          "1": "Paddle boat",
-          "2": "Bicker",
-          "3": "Perfume's smell",
-          "4": "Past tense of hold"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TEA#",
-        "SINGE",
-        "EATEN",
-        "TREND",
-        "#ART#"
-      ],
-      "clues": {
-        "across": {
-          "1": "British afternoon drink",
-          "4": "Slightly burn",
-          "6": "Past participle of eat",
-          "7": "Fashion's fad",
-          "8": "Museum wall filler"
-        },
-        "down": {
-          "4": "Tennis chunk, or to place",
-          "1": "Pageant winner's crown",
-          "2": "Go inside",
-          "3": "Spy, or a Hollywood dealmaker",
-          "5": "Story's last part"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#HEW#",
-        "SAVOR",
-        "PROVE",
-        "ASKED",
-        "#HEN#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Chop with an axe",
-          "4": "Enjoy slowly",
-          "6": "Show it's true",
-          "7": "Requested",
-          "8": "Egg layer"
-        },
-        "down": {
-          "4": "Massage retreat",
-          "1": "Overly critical",
-          "2": "Bring to mind",
-          "3": "Interlaced, like a basket",
-          "5": "Fire truck's color"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#PAW#",
-        "ARROW",
-        "ROGUE",
-        "COULD",
-        "#FED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Dog's foot",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Might have",
-          "8": "Gave dinner to"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Evidence",
-          "2": "Bicker",
-          "3": "Conditional word",
-          "5": "Marry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAY#",
-        "APRON",
-        "ROGUE",
-        "MOUNT",
-        "#LEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Speak",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Climb up",
-          "8": "Table support, or a body part"
-        },
-        "down": {
-          "4": "Sleeve's contents",
-          "1": "Thread's wound-up holder",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CUT#",
-        "ROTOR",
-        "OUTDO",
-        "BREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Scissors' job",
-          "4": "Helicopter's spinning blade",
-          "6": "Beat at their own game",
-          "7": "Toast's raw form",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Steal from",
-          "1": "Basketball's playing surface",
-          "2": "Say out loud, or complete",
-          "3": "This very date",
-          "5": "Fishing pole"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TAP#",
-        "RIFLE",
-        "EATEN",
-        "DREAD",
-        "#ART#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Faucet",
-          "4": "Long-barreled gun",
-          "6": "Past participle of eat",
-          "7": "Deep worry",
-          "8": "Museum wall filler"
-        },
-        "down": {
-          "4": "Fire truck's color",
-          "1": "Pageant winner's crown",
-          "2": "Following",
-          "3": "Skirt's folded crease",
-          "5": "Story's last part"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#WET#",
-        "VIVID",
-        "ADORE",
-        "TOKEN",
-        "#WED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Not dry",
-          "4": "Bright and clear",
-          "6": "Love deeply",
-          "7": "Arcade's coin substitute",
-          "8": "Marry"
-        },
-        "down": {
-          "4": "Big brewing tank",
-          "1": "A late husband's spouse",
-          "2": "Bring to mind",
-          "3": "In need of sleep",
-          "5": "Cozy TV room"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COD#",
-        "COURT",
-        "ALTER",
-        "TODAY",
-        "#ROD#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fish and chips' fish",
-          "4": "Basketball's playing surface",
-          "6": "Change",
-          "7": "This very date",
-          "8": "Fishing pole"
-        },
-        "down": {
-          "4": "Purring pet",
-          "1": "Crayon's job",
-          "2": "Beat at their own game",
-          "3": "Deep worry",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAP#",
-        "SCRUB",
-        "EAGLE",
-        "TRUST",
-        "#FEE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tree's sticky fluid",
-          "4": "Clean vigorously",
-          "6": "Bald bird on the dollar",
-          "7": "Faith in someone",
-          "8": "Charge"
-        },
-        "down": {
-          "4": "Tennis chunk, or to place",
-          "1": "Winter neck wrap",
-          "2": "Bicker",
-          "3": "Heartbeat's rhythm",
-          "5": "Wager"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARM#",
-        "SPOOK",
-        "ARGUE",
-        "YOUNG",
-        "#NET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Sleeve's contents",
-          "4": "Give a scare",
-          "6": "Bicker",
-          "7": "Not old",
-          "8": "Basketball hoop's fabric"
-        },
-        "down": {
-          "4": "Speak",
-          "1": "Chef's cover-up",
-          "2": "Charming outlaw",
-          "3": "Climb up",
-          "5": "Party's beer barrel"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAW#",
-        "APRON",
-        "ROGUE",
-        "COUNT",
-        "#FED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Carpenter's cutting tool",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Gave dinner to"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Comedy's parody",
-          "2": "Bicker",
-          "3": "Injury",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COD#",
-        "POWER",
-        "OUNCE",
-        "DREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fish and chips' fish",
-          "4": "Energy",
-          "6": "Sixteenth of a pound",
-          "7": "Deep worry",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Peas' home",
-          "1": "Basketball's playing surface",
-          "2": "Property's holder",
-          "3": "Tooth's slow enemy",
-          "5": "Fire truck's color"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#TAG#",
-        "VILLA",
-        "EATEN",
-        "TREAT",
-        "#ARM#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Playground chase game",
-          "4": "Countryside vacation house",
-          "6": "Past participle of eat",
-          "7": "Dog's reward",
-          "8": "Sleeve's contents"
-        },
-        "down": {
-          "4": "Animal doctor",
-          "1": "Pageant winner's crown",
-          "2": "Change",
-          "3": "Soft shine",
-          "5": "Picnic crasher"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#WET#",
-        "HONOR",
-        "OUTDO",
-        "PLEAT",
-        "#DRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Not dry",
-          "4": "Deep respect",
-          "6": "Beat at their own game",
-          "7": "Skirt's folded crease",
-          "8": "Not wet"
-        },
-        "down": {
-          "4": "Bunny's move",
-          "1": "Conditional word",
-          "2": "Go inside",
-          "3": "This very date",
-          "5": "Decay"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CAT#",
-        "COLOR",
-        "OUTDO",
-        "BREAD",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Purring pet",
-          "4": "Crayon's job",
-          "6": "Beat at their own game",
-          "7": "Toast's raw form",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Corn's core",
-          "1": "Basketball's playing surface",
-          "2": "Change",
-          "3": "This very date",
-          "5": "Fishing pole"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SPA#",
-        "HARSH",
-        "EVOKE",
-        "MONEY",
-        "#RED#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Massage retreat",
-          "4": "Overly critical",
-          "6": "Bring to mind",
-          "7": "Cash",
-          "8": "Fire truck's color"
-        },
-        "down": {
-          "4": "Skirt's folded edge",
-          "1": "Enjoy slowly",
-          "2": "Lying face down, or likely to",
-          "3": "Requested",
-          "5": "Casual greeting"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#MOP#",
-        "COULD",
-        "UTTER",
-        "TODAY",
-        "#ROT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Floor cleaner",
-          "4": "Might have",
-          "6": "Say out loud, or complete",
-          "7": "This very date",
-          "8": "Decay"
-        },
-        "down": {
-          "4": "Scissors' job",
-          "1": "Engine",
-          "2": "Beat at their own game",
-          "3": "Skirt's folded crease",
-          "5": "Not wet"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARM#",
-        "SPOOL",
-        "ARGUE",
-        "YOUNG",
-        "#NET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Sleeve's contents",
-          "4": "Thread's wound-up holder",
-          "6": "Bicker",
-          "7": "Not old",
-          "8": "Basketball hoop's fabric"
-        },
-        "down": {
-          "4": "Speak",
-          "1": "Chef's cover-up",
-          "2": "Charming outlaw",
-          "3": "Climb up",
-          "5": "Table support, or a body part"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COT#",
-        "COURT",
-        "ALTER",
-        "TODAY",
-        "#ROT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Camping's fold-up bed",
-          "4": "Basketball's playing surface",
-          "6": "Change",
-          "7": "This very date",
-          "8": "Decay"
-        },
-        "down": {
-          "4": "Purring pet",
-          "1": "Crayon's job",
-          "2": "Beat at their own game",
-          "3": "Dog's reward",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "DROOP",
-        "ARGUE",
-        "MOUNT",
-        "#WET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Wilt",
-          "6": "Bicker",
-          "7": "Climb up",
-          "8": "Not dry"
-        },
-        "down": {
-          "4": "Beaver's construction",
-          "1": "Bow's ammo",
-          "2": "Charming outlaw",
-          "3": "Tally up",
-          "5": "Household animal"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SUB#",
-        "ENSUE",
-        "WEARY",
-        "EAGLE",
-        "#KEY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Submarine, for short",
-          "4": "Follow as a result",
-          "6": "Worn out",
-          "7": "Bald bird on the dollar",
-          "8": "Piano part, or a door opener"
-        },
-        "down": {
-          "4": "Female sheep",
-          "1": "Move quietly",
-          "2": "How something is used",
-          "3": "Big and strong",
-          "5": "Wink with it"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SET#",
-        "TIARA",
-        "ENTER",
-        "AGENT",
-        "#END#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Tennis chunk, or to place",
-          "4": "Pageant winner's crown",
-          "6": "Go inside",
-          "7": "Spy, or a Hollywood dealmaker",
-          "8": "Story's last part"
-        },
-        "down": {
-          "4": "British afternoon drink",
-          "1": "Slightly burn",
-          "2": "Past participle of eat",
-          "3": "Fashion's fad",
-          "5": "Museum wall filler"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#EWE#",
-        "BRAVE",
-        "OUTER",
-        "OPERA",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Female sheep",
-          "4": "Fearless",
-          "6": "Not inner",
-          "7": "Sung stage drama",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Halloween's greeting",
-          "1": "Volcano's outburst",
-          "2": "H2O",
-          "3": "Each one",
-          "5": "Historical span"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COD#",
-        "TOWEL",
-        "OUNCE",
-        "PLEAT",
-        "#DRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Fish and chips' fish",
-          "4": "Beach's drying cloth",
-          "6": "Sixteenth of a pound",
-          "7": "Skirt's folded crease",
-          "8": "Not wet"
-        },
-        "down": {
-          "4": "Spinning toy",
-          "1": "Might have",
-          "2": "Property's holder",
-          "3": "Tooth's slow enemy",
-          "5": "Allow"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COO#",
-        "ERUPT",
-        "WATER",
-        "EVERY",
-        "#ERA#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Pigeon's sound",
-          "4": "Volcano's outburst",
-          "6": "H2O",
-          "7": "Each one",
-          "8": "Historical span"
-        },
-        "down": {
-          "4": "Female sheep",
-          "1": "Want intensely",
-          "2": "Not inner",
-          "3": "Sung stage drama",
-          "5": "Give it a shot"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#VAT#",
-        "WIDOW",
-        "EVOKE",
-        "TIRED",
-        "#DEN#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Big brewing tank",
-          "4": "A late husband's spouse",
-          "6": "Bring to mind",
-          "7": "In need of sleep",
-          "8": "Cozy TV room"
-        },
-        "down": {
-          "4": "Not dry",
-          "1": "Bright and clear",
-          "2": "Love deeply",
-          "3": "Arcade's coin substitute",
-          "5": "Marry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SAY#",
-        "APRON",
-        "ROGUE",
-        "COUNT",
-        "#LEG#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Speak",
-          "4": "Chef's cover-up",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Table support, or a body part"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Thread's wound-up holder",
-          "2": "Bicker",
-          "3": "Not old",
-          "5": "Basketball hoop's fabric"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#VET#",
-        "MANOR",
-        "OUTDO",
-        "PLEAT",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Animal doctor",
-          "4": "Countryside estate",
-          "6": "Beat at their own game",
-          "7": "Skirt's folded crease",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Floor cleaner",
-          "1": "Bank's secure room",
-          "2": "Go inside",
-          "3": "This very date",
-          "5": "Decay"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#RID#",
-        "NEVER",
-        "EBONY",
-        "TERSE",
-        "#LYE#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Get rid of",
-          "4": "Not once",
-          "6": "Deep black wood",
-          "7": "Curt, few words",
-          "8": "Harsh soap-making chemical"
-        },
-        "down": {
-          "4": "Basketball hoop's fabric",
-          "1": "Cause defier",
-          "2": "Elephant tusk's material",
-          "3": "Thick, or slow to catch on",
-          "5": "Deli bread"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#DAM#",
-        "ARROW",
-        "ROGUE",
-        "COUNT",
-        "#PET#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Beaver's construction",
-          "4": "Bow's ammo",
-          "6": "Charming outlaw",
-          "7": "Tally up",
-          "8": "Household animal"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Wilt",
-          "2": "Bicker",
-          "3": "Climb up",
-          "5": "Not dry"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#CAT#",
-        "COLOR",
-        "OUTDO",
-        "GREAT",
-        "#TRY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Purring pet",
-          "4": "Crayon's job",
-          "6": "Beat at their own game",
-          "7": "Excellent",
-          "8": "Give it a shot"
-        },
-        "down": {
-          "4": "Gear's tooth",
-          "1": "Basketball's playing surface",
-          "2": "Change",
-          "3": "This very date",
-          "5": "Decay"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SUM#",
-        "ATLAS",
-        "RETRO",
-        "CARRY",
-        "#MAY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Total",
-          "4": "Book of maps",
-          "6": "Throwback style",
-          "7": "Tote",
-          "8": "Might, or the month before June"
-        },
-        "down": {
-          "4": "Rainbow's shape",
-          "1": "Kettle's hot vapor",
-          "2": "Extremely",
-          "3": "Say I do",
-          "5": "Tofu's source bean"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#SWIM",
-        "PIANO",
-        "ANGER",
-        "SCOPE",
-        "SENT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Pool's activity",
-          "5": "88-key instrument",
-          "6": "Rage",
-          "7": "Range, or a rifle's sight",
-          "8": "Past tense of send"
-        },
-        "down": {
-          "5": "Football's throw",
-          "1": "From that point on",
-          "2": "Little red kid-puller",
-          "3": "Clumsy at the task",
-          "4": "Additional"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#ARC#",
-        "STEAM",
-        "ULTRA",
-        "MARRY",
-        "#SOY#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Rainbow's shape",
-          "4": "Kettle's hot vapor",
-          "6": "Extremely",
-          "7": "Say I do",
-          "8": "Tofu's source bean"
-        },
-        "down": {
-          "4": "Total",
-          "1": "Book of maps",
-          "2": "Throwback style",
-          "3": "Tote",
-          "5": "Might, or the month before June"
-        }
-      }
-    },
-    {
-      "grid": [
-        "#COG#",
-        "COURT",
-        "ALTER",
-        "TODAY",
-        "#ROT#"
-      ],
-      "clues": {
-        "across": {
-          "1": "Gear's tooth",
-          "4": "Basketball's playing surface",
-          "6": "Change",
-          "7": "This very date",
-          "8": "Decay"
-        },
-        "down": {
-          "4": "Purring pet",
-          "1": "Crayon's job",
-          "2": "Beat at their own game",
-          "3": "Excellent",
-          "5": "Give it a shot"
-        }
-      }
-    }
-  ]
+  "easy": {
+    "puzzles": [
+      {
+        "grid": [
+          "#CAT#",
+          "COLOR",
+          "OUTDO",
+          "TREAT",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Purring pet",
+            "4": "Crayon's job",
+            "6": "Beat at their own game",
+            "7": "Dog's reward",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Camping's fold-up bed",
+            "1": "Basketball's playing surface",
+            "2": "Change",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#HOP#",
+          "WOULD",
+          "ENTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Bunny's move",
+            "4": "Conditional word",
+            "6": "Go inside",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Not dry",
+            "1": "Deep respect",
+            "2": "Beat at their own game",
+            "3": "Skirt's folded crease",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#RED#",
+          "TIARA",
+          "AFTER",
+          "PLEAT",
+          "#END#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fire truck's color",
+            "4": "Pageant winner's crown",
+            "6": "Following",
+            "7": "Skirt's folded crease",
+            "8": "Story's last part"
+          },
+          "down": {
+            "4": "Faucet",
+            "1": "Long-barreled gun",
+            "2": "Past participle of eat",
+            "3": "Deep worry",
+            "5": "Museum wall filler"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COB#",
+          "COURT",
+          "ALTER",
+          "TODAY",
+          "#ROD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Corn's core",
+            "4": "Basketball's playing surface",
+            "6": "Change",
+            "7": "This very date",
+            "8": "Fishing pole"
+          },
+          "down": {
+            "4": "Purring pet",
+            "1": "Crayon's job",
+            "2": "Beat at their own game",
+            "3": "Toast's raw form",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "BROOK",
+          "ARGUE",
+          "YOUNG",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Small stream",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "Spot to anchor a ship",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Party's beer barrel"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PAW#",
+          "ARROW",
+          "ROGUE",
+          "COUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Dog's foot",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Evidence",
+            "2": "Bicker",
+            "3": "Injury",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "PROOF",
+          "ARGUE",
+          "WOULD",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Evidence",
+            "6": "Bicker",
+            "7": "Conditional word",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "Dog's foot",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Might have",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#EWE#",
+          "CRAVE",
+          "OUTER",
+          "OPERA",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Female sheep",
+            "4": "Want intensely",
+            "6": "Not inner",
+            "7": "Sung stage drama",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Pigeon's sound",
+            "1": "Volcano's outburst",
+            "2": "H2O",
+            "3": "Each one",
+            "5": "Historical span"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MET#",
+          "BOARD",
+          "ANGER",
+          "DELAY",
+          "#YET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Past tense of meet",
+            "4": "Chess's playing surface",
+            "6": "Rage",
+            "7": "Flight's setback",
+            "8": "Not now, but soon"
+          },
+          "down": {
+            "4": "Opposite of good",
+            "1": "Cash",
+            "2": "Bald bird on the dollar",
+            "3": "Dog's reward",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COD#",
+          "COWER",
+          "OUNCE",
+          "BREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fish and chips' fish",
+            "4": "Shrink back in fear",
+            "6": "Sixteenth of a pound",
+            "7": "Toast's raw form",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Corn's core",
+            "1": "Basketball's playing surface",
+            "2": "Property's holder",
+            "3": "Tooth's slow enemy",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#RED#",
+          "TIARA",
+          "AFTER",
+          "GLEAM",
+          "#END#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fire truck's color",
+            "4": "Pageant winner's crown",
+            "6": "Following",
+            "7": "Soft shine",
+            "8": "Story's last part"
+          },
+          "down": {
+            "4": "Playground chase game",
+            "1": "Long-barreled gun",
+            "2": "Past participle of eat",
+            "3": "Deep worry",
+            "5": "Sleeve's contents"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#LOB#",
+          "COURT",
+          "OWNER",
+          "DECAY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tennis's soft high shot",
+            "4": "Basketball's playing surface",
+            "6": "Property's holder",
+            "7": "Tooth's slow enemy",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Fish and chips' fish",
+            "1": "Bring down",
+            "2": "Sixteenth of a pound",
+            "3": "Toast's raw form",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BOO#",
+          "ERUPT",
+          "WATER",
+          "EVERY",
+          "#ERA#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Halloween's greeting",
+            "4": "Volcano's outburst",
+            "6": "H2O",
+            "7": "Each one",
+            "8": "Historical span"
+          },
+          "down": {
+            "4": "Female sheep",
+            "1": "Fearless",
+            "2": "Not inner",
+            "3": "Sung stage drama",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BAD#",
+          "MONEY",
+          "EAGLE",
+          "TREAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Opposite of good",
+            "4": "Cash",
+            "6": "Bald bird on the dollar",
+            "7": "Dog's reward",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Past tense of meet",
+            "1": "Chess's playing surface",
+            "2": "Rage",
+            "3": "Flight's setback",
+            "5": "Not now, but soon"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BAY#",
+          "ARROW",
+          "ROGUE",
+          "COUNT",
+          "#KEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Spot to anchor a ship",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Party's beer barrel"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Small stream",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "PROOF",
+          "ARGUE",
+          "WOUND",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Evidence",
+            "6": "Bicker",
+            "7": "Injury",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "Dog's foot",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "STEAL",
+          "ULTRA",
+          "MARRY",
+          "#SOY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Take without asking",
+            "6": "Extremely",
+            "7": "Say I do",
+            "8": "Tofu's source bean"
+          },
+          "down": {
+            "4": "Total",
+            "1": "Book of maps",
+            "2": "Throwback style",
+            "3": "Tote",
+            "5": "Set down"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COB#",
+          "COURT",
+          "OWNER",
+          "DECAY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Corn's core",
+            "4": "Basketball's playing surface",
+            "6": "Property's holder",
+            "7": "Tooth's slow enemy",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Fish and chips' fish",
+            "1": "Shrink back in fear",
+            "2": "Sixteenth of a pound",
+            "3": "Toast's raw form",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DAY#",
+          "ARROW",
+          "ROGUE",
+          "COUNT",
+          "#PEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "24 hours",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Clothesline's clip"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Wilt",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TAP#",
+          "VILLA",
+          "EATEN",
+          "TREAT",
+          "#ART#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Faucet",
+            "4": "Countryside vacation house",
+            "6": "Past participle of eat",
+            "7": "Dog's reward",
+            "8": "Museum wall filler"
+          },
+          "down": {
+            "4": "Animal doctor",
+            "1": "Pageant winner's crown",
+            "2": "Change",
+            "3": "Skirt's folded crease",
+            "5": "Picnic crasher"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CAT#",
+          "COLOR",
+          "OUTDO",
+          "DREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Purring pet",
+            "4": "Crayon's job",
+            "6": "Beat at their own game",
+            "7": "Deep worry",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Fish and chips' fish",
+            "1": "Basketball's playing surface",
+            "2": "Change",
+            "3": "This very date",
+            "5": "Fishing pole"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ITS#",
+          "SNOUT",
+          "UNDER",
+          "BEADY",
+          "#RYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Belonging to it",
+            "4": "Pig's nose",
+            "6": "Below",
+            "7": "Small and shiny, like eyes",
+            "8": "Deli bread"
+          },
+          "down": {
+            "4": "Submarine, for short",
+            "1": "Not outer",
+            "2": "This very date",
+            "3": "Soft napped leather",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COD#",
+          "LOWER",
+          "OUNCE",
+          "BREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fish and chips' fish",
+            "4": "Bring down",
+            "6": "Sixteenth of a pound",
+            "7": "Toast's raw form",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Tennis's soft high shot",
+            "1": "Basketball's playing surface",
+            "2": "Property's holder",
+            "3": "Tooth's slow enemy",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BAY#",
+          "ARROW",
+          "ROGUE",
+          "MOUND",
+          "#KEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Spot to anchor a ship",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Pitcher's raised spot",
+            "8": "Party's beer barrel"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Small stream",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "DROOP",
+          "ARGUE",
+          "YOUNG",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Wilt",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "24 hours",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Pitcher's raised spot",
+            "5": "Clothesline's clip"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DREW",
+          "LEAVE",
+          "EATEN",
+          "STINT",
+          "SHOT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Past tense of draw",
+            "5": "Head out",
+            "6": "Past participle of eat",
+            "7": "Short period of work",
+            "8": "Basketball's attempt"
+          },
+          "down": {
+            "5": "Not as much",
+            "1": "Life's end",
+            "2": "Comparison of two numbers",
+            "3": "Scheduled happening",
+            "4": "Past tense of go"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#POD#",
+          "COURT",
+          "OWNER",
+          "DECAY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Peas' home",
+            "4": "Basketball's playing surface",
+            "6": "Property's holder",
+            "7": "Tooth's slow enemy",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Fish and chips' fish",
+            "1": "Energy",
+            "2": "Sixteenth of a pound",
+            "3": "Deep worry",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#FARM",
+          "CANOE",
+          "ARGUE",
+          "SCENT",
+          "HELD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Where crops grow",
+            "5": "Paddle boat",
+            "6": "Bicker",
+            "7": "Perfume's smell",
+            "8": "Past tense of hold"
+          },
+          "down": {
+            "5": "Paper money",
+            "1": "Ridiculous, over-the-top comedy",
+            "2": "Halo wearer",
+            "3": "Not square",
+            "4": "Get together"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DAM#",
+          "ARROW",
+          "ROGUE",
+          "MOUND",
+          "#PET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Beaver's construction",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Pitcher's raised spot",
+            "8": "Household animal"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Wilt",
+            "2": "Bicker",
+            "3": "Climb up",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CASH",
+          "FARCE",
+          "ANGEL",
+          "ROUND",
+          "MEET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Paper money",
+            "5": "Ridiculous, over-the-top comedy",
+            "6": "Halo wearer",
+            "7": "Not square",
+            "8": "Get together"
+          },
+          "down": {
+            "5": "Where crops grow",
+            "1": "Paddle boat",
+            "2": "Bicker",
+            "3": "Perfume's smell",
+            "4": "Past tense of hold"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#HEW#",
+          "SAVOR",
+          "PROVE",
+          "ASKED",
+          "#HEN#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Chop with an axe",
+            "4": "Enjoy slowly",
+            "6": "Show it's true",
+            "7": "Requested",
+            "8": "Egg layer"
+          },
+          "down": {
+            "4": "Massage retreat",
+            "1": "Overly critical",
+            "2": "Bring to mind",
+            "3": "Interlaced, like a basket",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PAW#",
+          "ARROW",
+          "ROGUE",
+          "COULD",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Dog's foot",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Might have",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Evidence",
+            "2": "Bicker",
+            "3": "Conditional word",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TAP#",
+          "RIFLE",
+          "EATEN",
+          "DREAD",
+          "#ART#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Faucet",
+            "4": "Long-barreled gun",
+            "6": "Past participle of eat",
+            "7": "Deep worry",
+            "8": "Museum wall filler"
+          },
+          "down": {
+            "4": "Fire truck's color",
+            "1": "Pageant winner's crown",
+            "2": "Following",
+            "3": "Skirt's folded crease",
+            "5": "Story's last part"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COD#",
+          "COURT",
+          "ALTER",
+          "TODAY",
+          "#ROD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fish and chips' fish",
+            "4": "Basketball's playing surface",
+            "6": "Change",
+            "7": "This very date",
+            "8": "Fishing pole"
+          },
+          "down": {
+            "4": "Purring pet",
+            "1": "Crayon's job",
+            "2": "Beat at their own game",
+            "3": "Deep worry",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COD#",
+          "POWER",
+          "OUNCE",
+          "DREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fish and chips' fish",
+            "4": "Energy",
+            "6": "Sixteenth of a pound",
+            "7": "Deep worry",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Peas' home",
+            "1": "Basketball's playing surface",
+            "2": "Property's holder",
+            "3": "Tooth's slow enemy",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TAG#",
+          "VILLA",
+          "EATEN",
+          "TREAT",
+          "#ARM#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Playground chase game",
+            "4": "Countryside vacation house",
+            "6": "Past participle of eat",
+            "7": "Dog's reward",
+            "8": "Sleeve's contents"
+          },
+          "down": {
+            "4": "Animal doctor",
+            "1": "Pageant winner's crown",
+            "2": "Change",
+            "3": "Soft shine",
+            "5": "Picnic crasher"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#WET#",
+          "HONOR",
+          "OUTDO",
+          "PLEAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Not dry",
+            "4": "Deep respect",
+            "6": "Beat at their own game",
+            "7": "Skirt's folded crease",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Bunny's move",
+            "1": "Conditional word",
+            "2": "Go inside",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CAT#",
+          "COLOR",
+          "OUTDO",
+          "BREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Purring pet",
+            "4": "Crayon's job",
+            "6": "Beat at their own game",
+            "7": "Toast's raw form",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Corn's core",
+            "1": "Basketball's playing surface",
+            "2": "Change",
+            "3": "This very date",
+            "5": "Fishing pole"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COT#",
+          "COURT",
+          "ALTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Camping's fold-up bed",
+            "4": "Basketball's playing surface",
+            "6": "Change",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Purring pet",
+            "1": "Crayon's job",
+            "2": "Beat at their own game",
+            "3": "Dog's reward",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "DROOP",
+          "ARGUE",
+          "MOUNT",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Wilt",
+            "6": "Bicker",
+            "7": "Climb up",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "Beaver's construction",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Household animal"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#EWE#",
+          "BRAVE",
+          "OUTER",
+          "OPERA",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Female sheep",
+            "4": "Fearless",
+            "6": "Not inner",
+            "7": "Sung stage drama",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Halloween's greeting",
+            "1": "Volcano's outburst",
+            "2": "H2O",
+            "3": "Each one",
+            "5": "Historical span"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COO#",
+          "ERUPT",
+          "WATER",
+          "EVERY",
+          "#ERA#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Pigeon's sound",
+            "4": "Volcano's outburst",
+            "6": "H2O",
+            "7": "Each one",
+            "8": "Historical span"
+          },
+          "down": {
+            "4": "Female sheep",
+            "1": "Want intensely",
+            "2": "Not inner",
+            "3": "Sung stage drama",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#VET#",
+          "MANOR",
+          "OUTDO",
+          "PLEAT",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Animal doctor",
+            "4": "Countryside estate",
+            "6": "Beat at their own game",
+            "7": "Skirt's folded crease",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Floor cleaner",
+            "1": "Bank's secure room",
+            "2": "Go inside",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DAM#",
+          "ARROW",
+          "ROGUE",
+          "COUNT",
+          "#PET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Beaver's construction",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Household animal"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Wilt",
+            "2": "Bicker",
+            "3": "Climb up",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CAT#",
+          "COLOR",
+          "OUTDO",
+          "GREAT",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Purring pet",
+            "4": "Crayon's job",
+            "6": "Beat at their own game",
+            "7": "Excellent",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Gear's tooth",
+            "1": "Basketball's playing surface",
+            "2": "Change",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      }
+    ]
+  },
+  "medium": {
+    "puzzles": [
+      {
+        "grid": [
+          "#SUB#",
+          "ENSUE",
+          "WEARY",
+          "EAGLE",
+          "#KEY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Submarine, for short",
+            "4": "Follow as a result",
+            "6": "Worn out",
+            "7": "Bald bird on the dollar",
+            "8": "Piano part, or a door opener"
+          },
+          "down": {
+            "4": "Female sheep",
+            "1": "Move quietly",
+            "2": "How something is used",
+            "3": "Big and strong",
+            "5": "Wink with it"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COD#",
+          "TOWEL",
+          "OUNCE",
+          "PLEAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fish and chips' fish",
+            "4": "Beach's drying cloth",
+            "6": "Sixteenth of a pound",
+            "7": "Skirt's folded crease",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Spinning toy",
+            "1": "Might have",
+            "2": "Property's holder",
+            "3": "Tooth's slow enemy",
+            "5": "Allow"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#VAT#",
+          "WIDOW",
+          "EVOKE",
+          "TIRED",
+          "#DEN#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Big brewing tank",
+            "4": "A late husband's spouse",
+            "6": "Bring to mind",
+            "7": "In need of sleep",
+            "8": "Cozy TV room"
+          },
+          "down": {
+            "4": "Not dry",
+            "1": "Bright and clear",
+            "2": "Love deeply",
+            "3": "Arcade's coin substitute",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SUM#",
+          "ATLAS",
+          "RETRO",
+          "CARRY",
+          "#MAY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Total",
+            "4": "Book of maps",
+            "6": "Throwback style",
+            "7": "Tote",
+            "8": "Might, or the month before June"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Kettle's hot vapor",
+            "2": "Extremely",
+            "3": "Say I do",
+            "5": "Tofu's source bean"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SWIM",
+          "PIANO",
+          "ANGER",
+          "SCOPE",
+          "SENT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Pool's activity",
+            "5": "88-key instrument",
+            "6": "Rage",
+            "7": "Range, or a rifle's sight",
+            "8": "Past tense of send"
+          },
+          "down": {
+            "5": "Football's throw",
+            "1": "From that point on",
+            "2": "Little red kid-puller",
+            "3": "Clumsy at the task",
+            "4": "Additional"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "STEAM",
+          "ULTRA",
+          "MARRY",
+          "#SOY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Kettle's hot vapor",
+            "6": "Extremely",
+            "7": "Say I do",
+            "8": "Tofu's source bean"
+          },
+          "down": {
+            "4": "Total",
+            "1": "Book of maps",
+            "2": "Throwback style",
+            "3": "Tote",
+            "5": "Might, or the month before June"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COG#",
+          "COURT",
+          "ALTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Gear's tooth",
+            "4": "Basketball's playing surface",
+            "6": "Change",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Purring pet",
+            "1": "Crayon's job",
+            "2": "Beat at their own game",
+            "3": "Excellent",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "BROOK",
+          "ARGUE",
+          "YOUNG",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Small stream",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "Spot to anchor a ship",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Pitcher's raised spot",
+            "5": "Party's beer barrel"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SIT#",
+          "NOVEL",
+          "EBONY",
+          "TERSE",
+          "#RYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Take a seat",
+            "4": "Full-length book",
+            "6": "Deep black wood",
+            "7": "Curt, few words",
+            "8": "Deli bread"
+          },
+          "down": {
+            "4": "Basketball hoop's fabric",
+            "1": "Not intoxicated",
+            "2": "Elephant tusk's material",
+            "3": "On edge",
+            "5": "Harsh soap-making chemical"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "PROOF",
+          "ARGUE",
+          "WOUND",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Evidence",
+            "6": "Bicker",
+            "7": "Injury",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "Dog's foot",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Pitcher's raised spot",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SUM#",
+          "ATLAS",
+          "RETRO",
+          "CARRY",
+          "#LAY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Total",
+            "4": "Book of maps",
+            "6": "Throwback style",
+            "7": "Tote",
+            "8": "Set down"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Take without asking",
+            "2": "Extremely",
+            "3": "Say I do",
+            "5": "Tofu's source bean"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ZAP#",
+          "DEVIL",
+          "EBONY",
+          "WRITE",
+          "#ADO#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Zap with a laser",
+            "4": "Horned troublemaker",
+            "6": "Deep black wood",
+            "7": "Pen's job",
+            "8": "Fuss, without much"
+          },
+          "down": {
+            "4": "Morning grass's moisture",
+            "1": "Striped African grazer",
+            "2": "Steer clear of",
+            "3": "Speckled bean or pony",
+            "5": "Harsh soap-making chemical"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#LESS",
+          "DEATH",
+          "RATIO",
+          "EVENT",
+          "WENT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Not as much",
+            "5": "Life's end",
+            "6": "Comparison of two numbers",
+            "7": "Scheduled happening",
+            "8": "Past tense of go"
+          },
+          "down": {
+            "5": "Past tense of draw",
+            "1": "Head out",
+            "2": "Past participle of eat",
+            "3": "Short period of work",
+            "4": "Basketball's attempt"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#COP#",
+          "COULD",
+          "ALTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Police officer",
+            "4": "Might have",
+            "6": "Change",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Purring pet",
+            "1": "Crayon's job",
+            "2": "Beat at their own game",
+            "3": "Skirt's folded crease",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MET#",
+          "BOARD",
+          "ANGER",
+          "RELAY",
+          "#YET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Past tense of meet",
+            "4": "Chess's playing surface",
+            "6": "Rage",
+            "7": "Track team's baton race",
+            "8": "Not now, but soon"
+          },
+          "down": {
+            "4": "Where a bartender works",
+            "1": "Cash",
+            "2": "Bald bird on the dollar",
+            "3": "Dog's reward",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DAY#",
+          "ARROW",
+          "ROGUE",
+          "MOUND",
+          "#PEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "24 hours",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Pitcher's raised spot",
+            "8": "Clothesline's clip"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Wilt",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "DROOP",
+          "ARGUE",
+          "MOUNT",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Wilt",
+            "6": "Bicker",
+            "7": "Climb up",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "Beaver's construction",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Pitcher's raised spot",
+            "5": "Household animal"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "SPOOK",
+          "ARGUE",
+          "YOUNG",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Give a scare",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Basketball hoop's fabric"
+          },
+          "down": {
+            "4": "Speak",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Party's beer barrel"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "SPOOF",
+          "ARGUE",
+          "POUND",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Comedy's parody",
+            "6": "Bicker",
+            "7": "Sixteen ounces",
+            "8": "Basketball hoop's fabric"
+          },
+          "down": {
+            "4": "Tree's sticky fluid",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "DROOP",
+          "ARGUE",
+          "YOUNG",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Wilt",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "24 hours",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Clothesline's clip"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#EWE#",
+          "SNEAK",
+          "USAGE",
+          "BURLY",
+          "#EYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Female sheep",
+            "4": "Move quietly",
+            "6": "How something is used",
+            "7": "Big and strong",
+            "8": "Wink with it"
+          },
+          "down": {
+            "4": "Submarine, for short",
+            "1": "Follow as a result",
+            "2": "Worn out",
+            "3": "Bald bird on the dollar",
+            "5": "Piano part, or a door opener"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "BROOK",
+          "ARGUE",
+          "YOUNG",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Small stream",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "Spot to anchor a ship",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Party's beer barrel"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#VET#",
+          "TIARA",
+          "ALTER",
+          "GLEAM",
+          "#ANT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Animal doctor",
+            "4": "Pageant winner's crown",
+            "6": "Change",
+            "7": "Soft shine",
+            "8": "Picnic crasher"
+          },
+          "down": {
+            "4": "Playground chase game",
+            "1": "Countryside vacation house",
+            "2": "Past participle of eat",
+            "3": "Dog's reward",
+            "5": "Sleeve's contents"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DAY#",
+          "ARROW",
+          "ROGUE",
+          "MOUNT",
+          "#PEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "24 hours",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Clothesline's clip"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Wilt",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TOP#",
+          "RIFLE",
+          "EATEN",
+          "DREAD",
+          "#ANT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Spinning toy",
+            "4": "Long-barreled gun",
+            "6": "Past participle of eat",
+            "7": "Deep worry",
+            "8": "Picnic crasher"
+          },
+          "down": {
+            "4": "Fire truck's color",
+            "1": "Pageant winner's crown",
+            "2": "Frequently",
+            "3": "Skirt's folded crease",
+            "5": "Story's last part"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ROB#",
+          "COURT",
+          "UTTER",
+          "TODAY",
+          "#ROD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Steal from",
+            "4": "Basketball's playing surface",
+            "6": "Say out loud, or complete",
+            "7": "This very date",
+            "8": "Fishing pole"
+          },
+          "down": {
+            "4": "Scissors' job",
+            "1": "Helicopter's spinning blade",
+            "2": "Beat at their own game",
+            "3": "Toast's raw form",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SPA#",
+          "HARSH",
+          "EVOKE",
+          "WOVEN",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Massage retreat",
+            "4": "Overly critical",
+            "6": "Bring to mind",
+            "7": "Interlaced, like a basket",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Chop with an axe",
+            "1": "Enjoy slowly",
+            "2": "Show it's true",
+            "3": "Requested",
+            "5": "Egg layer"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAY#",
+          "APRON",
+          "ROGUE",
+          "MOUNT",
+          "#KEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Speak",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Party's beer barrel"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Give a scare",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Basketball hoop's fabric"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PAW#",
+          "ARROW",
+          "ROGUE",
+          "MOUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Dog's foot",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Evidence",
+            "2": "Bicker",
+            "3": "Injury",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CAT#",
+          "COLOR",
+          "OUTDO",
+          "PLEAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Purring pet",
+            "4": "Crayon's job",
+            "6": "Beat at their own game",
+            "7": "Skirt's folded crease",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Police officer",
+            "1": "Might have",
+            "2": "Change",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "DROOP",
+          "ARGUE",
+          "YOUNG",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Wilt",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "24 hours",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Clothesline's clip"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BAY#",
+          "ARROW",
+          "ROGUE",
+          "MOUNT",
+          "#KEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Spot to anchor a ship",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Party's beer barrel"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Small stream",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "Not dry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PAW#",
+          "ARROW",
+          "ROGUE",
+          "MOUND",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Dog's foot",
+            "4": "Bow's ammo",
+            "6": "Charming outlaw",
+            "7": "Pitcher's raised spot",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Evidence",
+            "2": "Bicker",
+            "3": "Injury",
+            "5": "Marry"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#RED#",
+          "TIARA",
+          "OFTEN",
+          "PLEAT",
+          "#END#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Fire truck's color",
+            "4": "Pageant winner's crown",
+            "6": "Frequently",
+            "7": "Skirt's folded crease",
+            "8": "Story's last part"
+          },
+          "down": {
+            "4": "Spinning toy",
+            "1": "Long-barreled gun",
+            "2": "Past participle of eat",
+            "3": "Deep worry",
+            "5": "Picnic crasher"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SUB#",
+          "INNER",
+          "TODAY",
+          "SUEDE",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Submarine, for short",
+            "4": "Not outer",
+            "6": "This very date",
+            "7": "Soft napped leather",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Belonging to it",
+            "1": "Pig's nose",
+            "2": "Below",
+            "3": "Small and shiny, like eyes",
+            "5": "Deli bread"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MOP#",
+          "VAULT",
+          "ENTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Floor cleaner",
+            "4": "Bank's secure room",
+            "6": "Go inside",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Animal doctor",
+            "1": "Countryside estate",
+            "2": "Beat at their own game",
+            "3": "Skirt's folded crease",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ODD#",
+          "AWARD",
+          "INNER",
+          "DECAY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Not even",
+            "4": "Trophy",
+            "6": "Not outer",
+            "7": "Tooth's slow enemy",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Help, in a pinch",
+            "1": "Property's holder",
+            "2": "Prom's activity",
+            "3": "Deep worry",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PASS",
+          "SINCE",
+          "WAGON",
+          "INEPT",
+          "MORE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Football's throw",
+            "5": "From that point on",
+            "6": "Little red kid-puller",
+            "7": "Clumsy at the task",
+            "8": "Additional"
+          },
+          "down": {
+            "5": "Pool's activity",
+            "1": "88-key instrument",
+            "2": "Rage",
+            "3": "Range, or a rifle's sight",
+            "4": "Past tense of send"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAP#",
+          "APRON",
+          "ROGUE",
+          "COUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tree's sticky fluid",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Comedy's parody",
+            "2": "Bicker",
+            "3": "Sixteen ounces",
+            "5": "Basketball hoop's fabric"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#HEM#",
+          "SAVOR",
+          "PRONE",
+          "ASKED",
+          "#HEY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Skirt's folded edge",
+            "4": "Enjoy slowly",
+            "6": "Lying face down, or likely to",
+            "7": "Requested",
+            "8": "Casual greeting"
+          },
+          "down": {
+            "4": "Massage retreat",
+            "1": "Overly critical",
+            "2": "Bring to mind",
+            "3": "Cash",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#AID#",
+          "OWNER",
+          "DANCE",
+          "DREAD",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Help, in a pinch",
+            "4": "Property's holder",
+            "6": "Prom's activity",
+            "7": "Deep worry",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Not even",
+            "1": "Trophy",
+            "2": "Not outer",
+            "3": "Tooth's slow enemy",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "PROOF",
+          "ARGUE",
+          "WOUND",
+          "#WET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Evidence",
+            "6": "Bicker",
+            "7": "Injury",
+            "8": "Not dry"
+          },
+          "down": {
+            "4": "Dog's foot",
+            "1": "Bow's ammo",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "SPOOF",
+          "ARGUE",
+          "POUND",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Comedy's parody",
+            "6": "Bicker",
+            "7": "Sixteen ounces",
+            "8": "Basketball hoop's fabric"
+          },
+          "down": {
+            "4": "Tree's sticky fluid",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#VET#",
+          "TIARA",
+          "ALTER",
+          "PLEAT",
+          "#ANT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Animal doctor",
+            "4": "Pageant winner's crown",
+            "6": "Change",
+            "7": "Skirt's folded crease",
+            "8": "Picnic crasher"
+          },
+          "down": {
+            "4": "Faucet",
+            "1": "Countryside vacation house",
+            "2": "Past participle of eat",
+            "3": "Dog's reward",
+            "5": "Museum wall filler"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TAG#",
+          "RIFLE",
+          "EATEN",
+          "DREAD",
+          "#ARM#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Playground chase game",
+            "4": "Long-barreled gun",
+            "6": "Past participle of eat",
+            "7": "Deep worry",
+            "8": "Sleeve's contents"
+          },
+          "down": {
+            "4": "Fire truck's color",
+            "1": "Pageant winner's crown",
+            "2": "Following",
+            "3": "Soft shine",
+            "5": "Story's last part"
+          }
+        }
+      }
+    ]
+  },
+  "hard": {
+    "puzzles": [
+      {
+        "grid": [
+          "#ARC#",
+          "SPOOF",
+          "ARGUE",
+          "WOUND",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Comedy's parody",
+            "6": "Bicker",
+            "7": "Injury",
+            "8": "What's left after expenses"
+          },
+          "down": {
+            "4": "Old adage, or past tense of see",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "SPOOF",
+          "ARGUE",
+          "WOUND",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Comedy's parody",
+            "6": "Bicker",
+            "7": "Injury",
+            "8": "What's left after expenses"
+          },
+          "down": {
+            "4": "Old adage, or past tense of see",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Gave dinner to"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#NET#",
+          "REBEL",
+          "IVORY",
+          "DENSE",
+          "#RYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "What's left after expenses",
+            "4": "Cause defier",
+            "6": "Elephant tusk's material",
+            "7": "Slow on the uptake",
+            "8": "Deli bread"
+          },
+          "down": {
+            "4": "Get rid of",
+            "1": "Not once",
+            "2": "Deep black wood",
+            "3": "Curt, few words",
+            "5": "Harsh soap-making chemical"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAP#",
+          "ANGEL",
+          "FORCE",
+          "TREAT",
+          "#TEN#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tree's sticky fluid",
+            "4": "Halo wearer",
+            "6": "Star Wars's mystical energy",
+            "7": "Dog's reward",
+            "8": "Perfect score, in gymnastics"
+          },
+          "down": {
+            "4": "Toward a ship's stern",
+            "1": "Sudden burst of laughter",
+            "2": "See eye to eye",
+            "3": "Southern pie's nut",
+            "5": "Allow"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#GAP#",
+          "FRUIT",
+          "LADLE",
+          "UNION",
+          "#DOT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Space between",
+            "4": "Apple, technically",
+            "6": "Soup's serving spoon",
+            "7": "Workers' collective",
+            "8": "Point on an i"
+          },
+          "down": {
+            "4": "Winter's common bug",
+            "1": "A cool thousand, in slang",
+            "2": "Sound recording",
+            "3": "Plane's flyer",
+            "5": "Perfect score, in gymnastics"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAW#",
+          "APRON",
+          "ROGUE",
+          "MOUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Old adage, or past tense of see",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Comedy's parody",
+            "2": "Bicker",
+            "3": "Injury",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#AFT#",
+          "SNORT",
+          "AGREE",
+          "PECAN",
+          "#LET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Toward a ship's stern",
+            "4": "Sudden burst of laughter",
+            "6": "See eye to eye",
+            "7": "Southern pie's nut",
+            "8": "Allow"
+          },
+          "down": {
+            "4": "Tree's sticky fluid",
+            "1": "Halo wearer",
+            "2": "Star Wars's mystical energy",
+            "3": "Dog's reward",
+            "5": "Perfect score, in gymnastics"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#FLU#",
+          "GRAND",
+          "AUDIO",
+          "PILOT",
+          "#TEN#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Winter's common bug",
+            "4": "A cool thousand, in slang",
+            "6": "Sound recording",
+            "7": "Plane's flyer",
+            "8": "Perfect score, in gymnastics"
+          },
+          "down": {
+            "4": "Space between",
+            "1": "Apple, technically",
+            "2": "Soup's serving spoon",
+            "3": "Workers' collective",
+            "5": "Point on an i"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARC#",
+          "SPOOL",
+          "ARGUE",
+          "YOUNG",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Rainbow's shape",
+            "4": "Thread's wound-up holder",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "What's left after expenses"
+          },
+          "down": {
+            "4": "Speak",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Tally up",
+            "5": "One stage of a journey"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TEA#",
+          "SINGE",
+          "EATEN",
+          "TREND",
+          "#ART#"
+        ],
+        "clues": {
+          "across": {
+            "1": "British afternoon drink",
+            "4": "Slightly burn",
+            "6": "Past participle of eat",
+            "7": "Fashion's fad",
+            "8": "Museum wall filler"
+          },
+          "down": {
+            "4": "Tennis's building block, or hardened",
+            "1": "Pageant winner's crown",
+            "2": "Go inside",
+            "3": "007's job title",
+            "5": "Story's last part"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAY#",
+          "APRON",
+          "ROGUE",
+          "MOUNT",
+          "#LEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Speak",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "One stage of a journey"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Thread's wound-up holder",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAW#",
+          "APRON",
+          "ROGUE",
+          "COUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Old adage, or past tense of see",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Comedy's parody",
+            "2": "Bicker",
+            "3": "Injury",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "SPOOL",
+          "ARGUE",
+          "YOUNG",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Thread's wound-up holder",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "What's left after expenses"
+          },
+          "down": {
+            "4": "Speak",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "One stage of a journey"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SET#",
+          "TIARA",
+          "ENTER",
+          "AGENT",
+          "#END#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tennis's building block, or hardened",
+            "4": "Pageant winner's crown",
+            "6": "Go inside",
+            "7": "007's job title",
+            "8": "Story's last part"
+          },
+          "down": {
+            "4": "British afternoon drink",
+            "1": "Slightly burn",
+            "2": "Past participle of eat",
+            "3": "Fashion's fad",
+            "5": "Museum wall filler"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAY#",
+          "APRON",
+          "ROGUE",
+          "COUNT",
+          "#LEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Speak",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "One stage of a journey"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Thread's wound-up holder",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#RID#",
+          "NEVER",
+          "EBONY",
+          "TERSE",
+          "#LYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Get rid of",
+            "4": "Not once",
+            "6": "Deep black wood",
+            "7": "Curt, few words",
+            "8": "Harsh soap-making chemical"
+          },
+          "down": {
+            "4": "What's left after expenses",
+            "1": "Cause defier",
+            "2": "Elephant tusk's material",
+            "3": "Slow on the uptake",
+            "5": "Deli bread"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CUT#",
+          "MOTOR",
+          "OUTDO",
+          "BREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Scissors' job",
+            "4": "Engine",
+            "6": "Beat at their own game",
+            "7": "Toast's raw form",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Organized crime family",
+            "1": "Basketball's playing surface",
+            "2": "Speak aloud, or complete",
+            "3": "This very date",
+            "5": "Fishing pole"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MOB#",
+          "COURT",
+          "UTTER",
+          "TODAY",
+          "#ROD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Organized crime family",
+            "4": "Basketball's playing surface",
+            "6": "Speak aloud, or complete",
+            "7": "This very date",
+            "8": "Fishing pole"
+          },
+          "down": {
+            "4": "Scissors' job",
+            "1": "Engine",
+            "2": "Beat at their own game",
+            "3": "Toast's raw form",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#GAP#",
+          "FLUID",
+          "LADLE",
+          "UNION",
+          "#DOT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Space between",
+            "4": "Liquid",
+            "6": "Soup's serving spoon",
+            "7": "Workers' collective",
+            "8": "Point on an i"
+          },
+          "down": {
+            "4": "Winter's common bug",
+            "1": "Body's hormone factory",
+            "2": "Sound recording",
+            "3": "Plane's flyer",
+            "5": "Where the lions gather"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#FLU#",
+          "GLAND",
+          "AUDIO",
+          "PILOT",
+          "#DEN#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Winter's common bug",
+            "4": "Body's hormone factory",
+            "6": "Sound recording",
+            "7": "Plane's flyer",
+            "8": "Where the lions gather"
+          },
+          "down": {
+            "4": "Space between",
+            "1": "Liquid",
+            "2": "Soup's serving spoon",
+            "3": "Workers' collective",
+            "5": "Point on an i"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAY#",
+          "APRON",
+          "ROGUE",
+          "COUNT",
+          "#KEG#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Speak",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Tally up",
+            "8": "Party's beer barrel"
+          },
+          "down": {
+            "4": "Rainbow's shape",
+            "1": "Give a scare",
+            "2": "Bicker",
+            "3": "Not old",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SET#",
+          "SCARF",
+          "ARGUE",
+          "PULSE",
+          "#BET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tennis's building block, or hardened",
+            "4": "Winter neck wrap",
+            "6": "Bicker",
+            "7": "Heartbeat's rhythm",
+            "8": "Wager"
+          },
+          "down": {
+            "4": "Tree's sticky fluid",
+            "1": "Clean vigorously",
+            "2": "Bald bird on the dollar",
+            "3": "Faith in someone",
+            "5": "Charge"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TOP#",
+          "COULD",
+          "OWNER",
+          "DECAY",
+          "#LET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Spinning children's toy",
+            "4": "Might have",
+            "6": "Property's holder",
+            "7": "Tooth's slow enemy",
+            "8": "Allow"
+          },
+          "down": {
+            "4": "Fish and chips' fish",
+            "1": "Beach's drying cloth",
+            "2": "Sixteenth of a pound",
+            "3": "Skirt's folded crease",
+            "5": "Not wet"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#DEW#",
+          "ZEBRA",
+          "AVOID",
+          "PINTO",
+          "#LYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Morning grass's moisture",
+            "4": "Striped African grazer",
+            "6": "Steer clear of",
+            "7": "Spotted pony's coat",
+            "8": "Harsh soap-making chemical"
+          },
+          "down": {
+            "4": "Zap with a laser",
+            "1": "Horned troublemaker",
+            "2": "Deep black wood",
+            "3": "Pen's job",
+            "5": "Fuss, without much"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#PAST",
+          "SINCE",
+          "WAGON",
+          "INEPT",
+          "MORE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Before now",
+            "5": "From that point on",
+            "6": "Little red kid-puller",
+            "7": "Clumsy at the task",
+            "8": "Additional"
+          },
+          "down": {
+            "5": "Pool's activity",
+            "1": "88-key instrument",
+            "2": "Rage",
+            "3": "Sniper's aiming lens",
+            "4": "Camping shelter"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MOD#",
+          "COURT",
+          "UTTER",
+          "TODAY",
+          "#ROD#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Stylish 1960s look",
+            "4": "Basketball's playing surface",
+            "6": "Speak aloud, or complete",
+            "7": "This very date",
+            "8": "Fishing pole"
+          },
+          "down": {
+            "4": "Scissors' job",
+            "1": "Engine",
+            "2": "Beat at their own game",
+            "3": "Deep worry",
+            "5": "Give it a shot"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CUT#",
+          "MOTOR",
+          "OUTDO",
+          "PLEAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Scissors' job",
+            "4": "Engine",
+            "6": "Beat at their own game",
+            "7": "Skirt's folded crease",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Floor cleaner",
+            "1": "Might have",
+            "2": "Speak aloud, or complete",
+            "3": "This very date",
+            "5": "Decay"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAP#",
+          "APRON",
+          "ROGUE",
+          "MOUNT",
+          "#FED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tree's sticky fluid",
+            "4": "Chef's cover-up",
+            "6": "Charming outlaw",
+            "7": "Climb up",
+            "8": "Gave dinner to"
+          },
+          "down": {
+            "4": "Sleeve's contents",
+            "1": "Comedy's parody",
+            "2": "Bicker",
+            "3": "Sixteen ounces",
+            "5": "What's left after expenses"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#BAR#",
+          "MONEY",
+          "EAGLE",
+          "TREAT",
+          "#DRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Legal profession's exam hurdle",
+            "4": "Cash",
+            "6": "Bald bird on the dollar",
+            "7": "Dog's reward",
+            "8": "Not wet"
+          },
+          "down": {
+            "4": "Past tense of meet",
+            "1": "Chess's playing surface",
+            "2": "Rage",
+            "3": "Track team's baton race",
+            "5": "Not now, but soon"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SWIM",
+          "PIANO",
+          "ANGER",
+          "SCOPE",
+          "TENT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Pool's activity",
+            "5": "88-key instrument",
+            "6": "Rage",
+            "7": "Sniper's aiming lens",
+            "8": "Camping shelter"
+          },
+          "down": {
+            "5": "Before now",
+            "1": "From that point on",
+            "2": "Little red kid-puller",
+            "3": "Clumsy at the task",
+            "4": "Additional"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CUT#",
+          "MOTOR",
+          "OUTDO",
+          "DREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Scissors' job",
+            "4": "Engine",
+            "6": "Beat at their own game",
+            "7": "Deep worry",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Stylish 1960s look",
+            "1": "Basketball's playing surface",
+            "2": "Speak aloud, or complete",
+            "3": "This very date",
+            "5": "Fishing pole"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#NET#",
+          "SOBER",
+          "IVORY",
+          "TENSE",
+          "#LYE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "What's left after expenses",
+            "4": "Not intoxicated",
+            "6": "Elephant tusk's material",
+            "7": "On edge",
+            "8": "Harsh soap-making chemical"
+          },
+          "down": {
+            "4": "Take a seat",
+            "1": "Full-length book",
+            "2": "Deep black wood",
+            "3": "Curt, few words",
+            "5": "Deli bread"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#LAY#",
+          "TUNIC",
+          "ANGER",
+          "RALLY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Set down",
+            "4": "Loose-fitting top",
+            "6": "Rage",
+            "7": "Comeback surge",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Road's paving material",
+            "1": "Moon-related",
+            "2": "Corner's measure",
+            "3": "Traffic sign's caution",
+            "5": "Shed tears"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#TAR#",
+          "LUNAR",
+          "ANGLE",
+          "YIELD",
+          "#CRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Road's paving material",
+            "4": "Moon-related",
+            "6": "Corner's measure",
+            "7": "Traffic sign's caution",
+            "8": "Shed tears"
+          },
+          "down": {
+            "4": "Set down",
+            "1": "Loose-fitting top",
+            "2": "Rage",
+            "3": "Comeback surge",
+            "5": "Fire truck's color"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#CUT#",
+          "ROTOR",
+          "OUTDO",
+          "BREAD",
+          "#TRY#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Scissors' job",
+            "4": "Helicopter's spinning blade",
+            "6": "Beat at their own game",
+            "7": "Toast's raw form",
+            "8": "Give it a shot"
+          },
+          "down": {
+            "4": "Steal from",
+            "1": "Basketball's playing surface",
+            "2": "Speak aloud, or complete",
+            "3": "This very date",
+            "5": "Fishing pole"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#WET#",
+          "VIVID",
+          "ADORE",
+          "TOKEN",
+          "#WED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Not dry",
+            "4": "Bright and clear",
+            "6": "Love deeply",
+            "7": "Arcade's coin substitute",
+            "8": "Marry"
+          },
+          "down": {
+            "4": "Big brewing tank",
+            "1": "A late husband's spouse",
+            "2": "Bring to mind",
+            "3": "In need of sleep",
+            "5": "Where the lions gather"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SAP#",
+          "SCRUB",
+          "EAGLE",
+          "TRUST",
+          "#FEE#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Tree's sticky fluid",
+            "4": "Clean vigorously",
+            "6": "Bald bird on the dollar",
+            "7": "Faith in someone",
+            "8": "Charge"
+          },
+          "down": {
+            "4": "Tennis's building block, or hardened",
+            "1": "Winter neck wrap",
+            "2": "Bicker",
+            "3": "Heartbeat's rhythm",
+            "5": "Wager"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#ARM#",
+          "SPOOK",
+          "ARGUE",
+          "YOUNG",
+          "#NET#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Sleeve's contents",
+            "4": "Give a scare",
+            "6": "Bicker",
+            "7": "Not old",
+            "8": "What's left after expenses"
+          },
+          "down": {
+            "4": "Speak",
+            "1": "Chef's cover-up",
+            "2": "Charming outlaw",
+            "3": "Climb up",
+            "5": "Party's beer barrel"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#SPA#",
+          "HARSH",
+          "EVOKE",
+          "MONEY",
+          "#RED#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Massage retreat",
+            "4": "Overly critical",
+            "6": "Bring to mind",
+            "7": "Cash",
+            "8": "Fire truck's color"
+          },
+          "down": {
+            "4": "Skirt's folded edge",
+            "1": "Enjoy slowly",
+            "2": "Lying face down",
+            "3": "Requested",
+            "5": "Casual greeting"
+          }
+        }
+      },
+      {
+        "grid": [
+          "#MOP#",
+          "COULD",
+          "UTTER",
+          "TODAY",
+          "#ROT#"
+        ],
+        "clues": {
+          "across": {
+            "1": "Floor cleaner",
+            "4": "Might have",
+            "6": "Speak aloud, or complete",
+            "7": "This very date",
+            "8": "Decay"
+          },
+          "down": {
+            "4": "Scissors' job",
+            "1": "Engine",
+            "2": "Beat at their own game",
+            "3": "Skirt's folded crease",
+            "5": "Not wet"
+          }
+        }
+      }
+    ]
+  }
 }
