@@ -1,12 +1,12 @@
 import {
   dayIndex,
-  todayKey,
   store,
   recordResult,
   share,
   toast,
   confettiBurst,
   initChrome,
+  diffTabs,
 } from "../../assets/shared.js";
 import {
   createState,
@@ -21,27 +21,32 @@ import {
 
 const GAME_ID = "wordweave";
 const EPOCH = "2026-08-10";
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
+const DEFAULT_DIFFICULTY = "medium";
 const HELP_HTML =
   "<p>Drag or tap through adjacent letters, in any of eight directions, to spell one of the hidden theme words. Found words lock in place.</p>" +
-  "<p>One word touches two opposite edges of the grid. Find that spanning word and the theme is revealed.</p>" +
+  "<p>One word touches two opposite edges of the grid. Find that spanning word and the theme is revealed. On Easy, the theme is shown from the start.</p>" +
   "<p>Any other real word you spell earns hint progress; three of them buy a hint that reveals a theme word for you.</p>" +
   "<p>Solve every word to finish. Every letter in the grid belongs to exactly one word, so nothing is wasted.</p>" +
+  "<p>Easy, Medium, and Hard each carry their own puzzle, streak, and stats for the day.</p>" +
   "<p>On a keyboard: arrow keys move, space or enter selects, backspace undoes, escape clears.</p>";
 
-const dayStore = store(GAME_ID);
 const els = {};
 
-let bank = null;
-let puzzle = null;
-let state = createState();
-let mode = "daily";
-let dailyIndex = 0;
-let currentPuzzleIndex = 0;
+let bank = null; // { easy: {puzzles}, medium: {puzzles}, hard: {puzzles} }
+let activeDifficulty = DEFAULT_DIFFICULTY;
 let dayNumber = 1;
-let startedAt = Date.now();
-let finishedAt = null;
-let completionHandled = false;
-let timerHandle = null;
+
+// Per-difficulty runtime data for today's puzzles.
+const puzzles = {}; // difficulty -> puzzle
+const dailyIndexes = {}; // difficulty -> index into that difficulty's bank
+const states = {}; // difficulty -> core state
+const startedAts = {}; // difficulty -> timestamp
+const finishedAts = {}; // difficulty -> timestamp|null
+const completionHandled = {}; // difficulty -> bool
+
+let freePlay = null; // { difficulty, puzzleIndex, puzzle, state, startedAt, finishedAt } or null
 
 let tileEls = new Map();
 let foundCells = new Set();
@@ -50,12 +55,14 @@ let cursor = [0, 0];
 let gestureActive = false;
 let movedDuringGesture = false;
 let lastHoverKey = null;
+let timerHandle = null;
 
 function qs(id) {
   return document.getElementById(id);
 }
 
 function cacheEls() {
+  els.difftabs = qs("ww-difftabs");
   els.banner = qs("ww-theme-banner");
   els.progress = qs("ww-progress");
   els.timer = qs("ww-timer");
@@ -68,6 +75,7 @@ function cacheEls() {
   els.practice = qs("ww-practice");
   els.practiceBtn = qs("ww-practice-btn");
   els.complete = qs("ww-complete");
+  els.completeTitle = qs("ww-complete-title");
   els.completeSummary = qs("ww-complete-summary");
   els.shareBtn = qs("ww-share-btn");
 }
@@ -76,7 +84,7 @@ function cellKey(r, c) {
   return `${r},${c}`;
 }
 
-function wrappedDayIndex(length) {
+function wrappedIndex(length) {
   const idx = dayIndex(EPOCH);
   return ((idx % length) + length) % length;
 }
@@ -88,9 +96,40 @@ function formatTime(totalSeconds) {
 }
 
 function summaryText(elapsed) {
+  const state = currentState();
   const hints = state.hintsUsedCount;
   const hintNote = hints > 0 ? ` with ${hints} hint${hints === 1 ? "" : "s"}` : "";
   return `You wove every word in ${formatTime(elapsed)}${hintNote}.`;
+}
+
+// ---------------------------------------------------------------------
+// Current puzzle/state (daily per difficulty, or free play)
+// ---------------------------------------------------------------------
+
+function currentPuzzle() {
+  return freePlay ? freePlay.puzzle : puzzles[activeDifficulty];
+}
+
+function currentState() {
+  return freePlay ? freePlay.state : states[activeDifficulty];
+}
+
+function setCurrentState(next) {
+  if (freePlay) freePlay.state = next;
+  else states[activeDifficulty] = next;
+}
+
+function currentStartedAt() {
+  return freePlay ? freePlay.startedAt : startedAts[activeDifficulty];
+}
+
+function currentFinishedAt() {
+  return freePlay ? freePlay.finishedAt : finishedAts[activeDifficulty];
+}
+
+function setCurrentFinishedAt(ts) {
+  if (freePlay) freePlay.finishedAt = ts;
+  else finishedAts[activeDifficulty] = ts;
 }
 
 // ---------------------------------------------------------------------
@@ -98,10 +137,13 @@ function summaryText(elapsed) {
 // ---------------------------------------------------------------------
 
 function renderGrid() {
+  const puzzle = currentPuzzle();
   els.grid.innerHTML = "";
   tileEls = new Map();
   const rows = puzzle.grid.length;
   const cols = puzzle.grid[0].length;
+  els.grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+  els.grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
   const frag = document.createDocumentFragment();
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
@@ -122,6 +164,7 @@ function renderGrid() {
 }
 
 function paintGrid() {
+  const state = currentState();
   const selected = new Set(activeChain.map(([r, c]) => cellKey(r, c)));
   const foundType = {};
   for (const word of Object.keys(state.found)) {
@@ -147,6 +190,7 @@ function paintGrid() {
 }
 
 function updateFoundCells() {
+  const state = currentState();
   foundCells = new Set();
   for (const word of Object.keys(state.found)) {
     for (const [r, c] of state.found[word].cells) foundCells.add(cellKey(r, c));
@@ -159,17 +203,22 @@ function renderChainUI() {
     delete els.current.dataset.active;
     return;
   }
+  const puzzle = currentPuzzle();
   els.current.textContent = activeChain.map(([r, c]) => puzzle.grid[r][c]).join("");
   els.current.dataset.active = "true";
 }
 
 function renderProgress() {
+  const puzzle = currentPuzzle();
+  const state = currentState();
   const total = allTargetWords(puzzle).length;
   const found = total - remainingWords(puzzle, state).length;
   els.progress.textContent = `${found} / ${total} words`;
 }
 
 function renderFoundList() {
+  const puzzle = currentPuzzle();
+  const state = currentState();
   els.foundList.innerHTML = "";
   const order = [puzzle.spangram, ...puzzle.words];
   for (const word of order) {
@@ -184,6 +233,7 @@ function renderFoundList() {
 }
 
 function renderHintMeter() {
+  const state = currentState();
   const progress = state.bonusFound.length % 3;
   const charges = hintChargesAvailable(state);
   const dots = els.hintMeter.querySelectorAll(".ww-hint-dot");
@@ -198,14 +248,17 @@ function renderHintMeter() {
 }
 
 function renderBanner() {
-  if (state.found[puzzle.spangram]) {
+  const puzzle = currentPuzzle();
+  const state = currentState();
+  const diff = freePlay ? freePlay.difficulty : activeDifficulty;
+  const revealed = diff === "easy" || Boolean(state.found[puzzle.spangram]);
+  if (revealed) {
     els.banner.textContent = `Theme: ${puzzle.theme}`;
     els.banner.dataset.revealed = "true";
   } else {
-    els.banner.textContent =
-      mode === "practice"
-        ? "Practice puzzle: find the spanning word to reveal its theme."
-        : "Find the spanning word to reveal today's theme.";
+    els.banner.textContent = freePlay
+      ? "Practice puzzle: find the spanning word to reveal its theme."
+      : "Find the spanning word to reveal today's theme.";
     delete els.banner.dataset.revealed;
   }
 }
@@ -224,8 +277,10 @@ function renderAll() {
 // ---------------------------------------------------------------------
 
 function updateTimerDisplay() {
+  const state = currentState();
+  const finishedAt = currentFinishedAt();
   const now = state.complete && finishedAt ? finishedAt : Date.now();
-  els.timer.textContent = formatTime(Math.max(0, Math.round((now - startedAt) / 1000)));
+  els.timer.textContent = formatTime(Math.max(0, Math.round((now - currentStartedAt()) / 1000)));
 }
 
 function startTimer() {
@@ -239,7 +294,6 @@ function stopTimer() {
     window.clearInterval(timerHandle);
     timerHandle = null;
   }
-  updateTimerDisplay();
 }
 
 // ---------------------------------------------------------------------
@@ -247,12 +301,12 @@ function stopTimer() {
 // ---------------------------------------------------------------------
 
 function saveProgress() {
-  if (mode !== "daily") return;
-  dayStore.saveDay({
-    puzzleIndex: currentPuzzleIndex,
-    core: state,
-    startedAt,
-    finishedAt,
+  if (freePlay) return;
+  store(GAME_ID, activeDifficulty).saveDay({
+    puzzleIndex: dailyIndexes[activeDifficulty],
+    core: states[activeDifficulty],
+    startedAt: startedAts[activeDifficulty],
+    finishedAt: finishedAts[activeDifficulty],
   });
 }
 
@@ -260,59 +314,78 @@ function saveProgress() {
 // Puzzle lifecycle
 // ---------------------------------------------------------------------
 
-function loadPuzzle(idx, coreState, started, finished) {
-  currentPuzzleIndex = idx;
-  puzzle = bank.puzzles[idx];
-  state = coreState;
-  startedAt = started;
-  finishedAt = finished;
-  completionHandled = Boolean(state.complete);
+function refreshDisplay() {
   activeChain = [];
   cursor = [0, 0];
-
   updateFoundCells();
   renderGrid();
   renderAll();
 
+  const state = currentState();
   if (state.complete) {
-    els.complete.hidden = false;
-    const elapsed = finishedAt ? Math.max(0, Math.round((finishedAt - startedAt) / 1000)) : 0;
-    els.completeSummary.textContent = summaryText(elapsed);
-    els.practice.hidden = mode !== "daily";
-    stopTimer();
+    const finishedAt = currentFinishedAt();
+    const elapsed = finishedAt ? Math.max(0, Math.round((finishedAt - currentStartedAt()) / 1000)) : 0;
+    showComplete(elapsed);
   } else {
     els.complete.hidden = true;
     els.practice.hidden = true;
-    startTimer();
   }
+  startTimer();
+}
+
+function showComplete(elapsed) {
+  els.complete.hidden = false;
+  els.completeTitle.textContent = freePlay ? "Random puzzle solved" : `${LABELS[activeDifficulty]} solved`;
+  els.completeSummary.textContent = summaryText(elapsed);
+  els.practice.hidden = Boolean(freePlay);
 }
 
 function handleComplete() {
-  if (completionHandled) return;
-  completionHandled = true;
-  finishedAt = Date.now();
+  const diff = activeDifficulty;
+  if (freePlay) {
+    setCurrentFinishedAt(Date.now());
+    stopTimer();
+    updateTimerDisplay();
+    const elapsed = Math.max(0, Math.round((freePlay.finishedAt - freePlay.startedAt) / 1000));
+    confettiBurst();
+    showComplete(elapsed);
+    return;
+  }
+
+  if (completionHandled[diff]) return;
+  completionHandled[diff] = true;
+  finishedAts[diff] = Date.now();
   saveProgress();
   stopTimer();
+  updateTimerDisplay();
 
-  els.complete.hidden = false;
-  const elapsed = Math.max(0, Math.round((finishedAt - startedAt) / 1000));
-  els.completeSummary.textContent = summaryText(elapsed);
+  const elapsed = Math.max(0, Math.round((finishedAts[diff] - startedAts[diff]) / 1000));
   confettiBurst();
-
-  if (mode === "daily") {
-    recordResult(GAME_ID, true);
-    els.practice.hidden = false;
-  }
+  showComplete(elapsed);
+  recordResult(GAME_ID, true, diff);
 }
 
 function startPractice() {
-  const total = bank.puzzles.length;
-  let idx = dailyIndex;
-  if (total > 1) {
-    while (idx === dailyIndex) idx = Math.floor(Math.random() * total);
+  const diff = activeDifficulty;
+  const list = bank[diff].puzzles;
+  const todaysIndex = dailyIndexes[diff];
+  let idx = todaysIndex;
+  if (list.length > 1) {
+    while (idx === todaysIndex) idx = Math.floor(Math.random() * list.length);
   }
-  mode = "practice";
-  loadPuzzle(idx, createState(), Date.now(), null);
+  freePlay = {
+    difficulty: diff,
+    puzzleIndex: idx,
+    puzzle: list[idx],
+    state: createState(),
+    startedAt: Date.now(),
+    finishedAt: null,
+  };
+  refreshDisplay();
+}
+
+function exitFreePlay() {
+  freePlay = null;
 }
 
 // ---------------------------------------------------------------------
@@ -320,7 +393,7 @@ function startPractice() {
 // ---------------------------------------------------------------------
 
 function applyOutcome(outcome) {
-  state = outcome.state;
+  setCurrentState(outcome.state);
   activeChain = [];
   updateFoundCells();
   saveProgress();
@@ -337,7 +410,7 @@ function applyOutcome(outcome) {
     toast("Hint used: a word is revealed");
   }
 
-  if (state.complete) handleComplete();
+  if (currentState().complete) handleComplete();
 }
 
 function tryLiveMatch() {
@@ -346,7 +419,7 @@ function tryLiveMatch() {
     renderChainUI();
     return;
   }
-  const outcome = submitChain(puzzle, state, activeChain);
+  const outcome = submitChain(currentPuzzle(), currentState(), activeChain);
   if (["spangram", "theme", "bonus"].includes(outcome.result.status)) {
     applyOutcome(outcome);
   } else {
@@ -357,7 +430,7 @@ function tryLiveMatch() {
 
 function finalizeChain() {
   if (activeChain.length === 0) return;
-  const outcome = submitChain(puzzle, state, activeChain);
+  const outcome = submitChain(currentPuzzle(), currentState(), activeChain);
   if (["spangram", "theme", "bonus"].includes(outcome.result.status)) {
     applyOutcome(outcome);
     return;
@@ -450,6 +523,7 @@ function focusCursor() {
 }
 
 function moveCursor(dr, dc) {
+  const puzzle = currentPuzzle();
   const rows = puzzle.grid.length;
   const cols = puzzle.grid[0].length;
   const r = Math.min(rows - 1, Math.max(0, cursor[0] + dr));
@@ -509,7 +583,7 @@ function onGridKeydown(e) {
 }
 
 function onHintClick() {
-  const outcome = useHint(puzzle, state);
+  const outcome = useHint(currentPuzzle(), currentState());
   if (outcome.result.status === "hint") {
     applyOutcome(outcome);
   } else {
@@ -518,8 +592,39 @@ function onHintClick() {
 }
 
 async function onShareClick() {
-  const elapsed = finishedAt ? Math.max(0, Math.round((finishedAt - startedAt) / 1000)) : 0;
-  await share(shareText(puzzle, state, dayNumber, elapsed));
+  const finishedAt = currentFinishedAt();
+  const elapsed = finishedAt ? Math.max(0, Math.round((finishedAt - currentStartedAt()) / 1000)) : 0;
+  const diff = freePlay ? freePlay.difficulty : activeDifficulty;
+  await share(shareText(currentPuzzle(), currentState(), dayNumber, elapsed, diff));
+}
+
+// ---------------------------------------------------------------------
+// Difficulty tabs
+// ---------------------------------------------------------------------
+
+function switchDifficulty(next) {
+  if (freePlay) exitFreePlay();
+  activeDifficulty = next;
+  refreshDisplay();
+}
+
+function loadToday(diff) {
+  const list = bank[diff].puzzles;
+  const idx = wrappedIndex(list.length);
+  dailyIndexes[diff] = idx;
+  puzzles[diff] = list[idx];
+
+  const saved = store(GAME_ID, diff).loadDay();
+  if (saved && saved.puzzleIndex === idx && saved.core) {
+    states[diff] = saved.core;
+    startedAts[diff] = saved.startedAt || Date.now();
+    finishedAts[diff] = saved.finishedAt || null;
+  } else {
+    states[diff] = createState();
+    startedAts[diff] = Date.now();
+    finishedAts[diff] = null;
+  }
+  completionHandled[diff] = Boolean(states[diff].complete);
 }
 
 // ---------------------------------------------------------------------
@@ -539,30 +644,29 @@ async function main() {
     return;
   }
 
-  if (!bank.puzzles || bank.puzzles.length === 0) {
-    els.banner.textContent = "No puzzles available.";
-    return;
+  for (const diff of DIFFICULTIES) {
+    if (!bank[diff] || !bank[diff].puzzles || bank[diff].puzzles.length === 0) {
+      els.banner.textContent = "No puzzles available.";
+      return;
+    }
   }
 
-  dailyIndex = wrappedDayIndex(bank.puzzles.length);
   dayNumber = Math.max(1, dayIndex(EPOCH) + 1);
 
-  const saved = dayStore.loadDay();
-  if (saved && saved.puzzleIndex === dailyIndex && saved.core) {
-    loadPuzzle(dailyIndex, saved.core, saved.startedAt || Date.now(), saved.finishedAt || null);
-  } else {
-    loadPuzzle(dailyIndex, createState(), Date.now(), null);
-  }
+  for (const diff of DIFFICULTIES) loadToday(diff);
 
-  window.addEventListener("pointermove", onPointerMove, { passive: false });
-  window.addEventListener("pointerup", onPointerUp);
-  window.addEventListener("pointercancel", onPointerUp);
   els.grid.addEventListener("pointerdown", onPointerDown);
   els.grid.addEventListener("keydown", onGridKeydown);
   els.grid.addEventListener("focusin", onGridFocusIn);
+  window.addEventListener("pointermove", onPointerMove, { passive: false });
+  window.addEventListener("pointerup", onPointerUp);
+  window.addEventListener("pointercancel", onPointerUp);
   els.hintBtn.addEventListener("click", onHintClick);
   els.practiceBtn.addEventListener("click", startPractice);
   els.shareBtn.addEventListener("click", onShareClick);
+
+  activeDifficulty = diffTabs(els.difftabs, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
+  refreshDisplay();
 }
 
 main();

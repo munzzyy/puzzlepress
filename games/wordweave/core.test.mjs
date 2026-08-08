@@ -216,12 +216,24 @@ test("shareText is spoiler-free: no theme words, just an emoji grid and time", (
   }
 
   const text = shareText(puzzle, state, 42, 125);
-  assert.match(text, /Wordweave #42/);
+  assert.match(text, /Wordweave Medium #42/);
   assert.match(text, /2:05/);
   for (const word of allTargetWords(puzzle)) {
     assert.equal(text.includes(word), false, `share text leaked ${word}`);
   }
   assert.match(text, /[\u{1F7E8}\u{1F7E6}]/u);
+});
+
+test("shareText names the active difficulty when one is passed", () => {
+  const puzzle = makePuzzle();
+  let state = createState();
+  for (const word of allTargetWords(puzzle)) {
+    ({ state } = submitChain(puzzle, state, puzzle.solution[word]));
+  }
+
+  assert.match(shareText(puzzle, state, 7, 60, "easy"), /Wordweave Easy #7/);
+  assert.match(shareText(puzzle, state, 7, 60, "hard"), /Wordweave Hard #7/);
+  assert.match(shareText(puzzle, state, 7, 60, "nonsense"), /Wordweave Medium #7/);
 });
 
 test("shareText notes hint usage when a hint was spent", () => {

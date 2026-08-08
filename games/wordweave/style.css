@@ -12,23 +12,9 @@
 }
 
 .ww-banner[data-revealed="true"] {
-  color: var(--accent);
+  color: var(--g-color, var(--accent));
   font-style: normal;
   font-weight: 700;
-}
-
-.ww-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.ww-status__item {
-  padding: 0.1rem 0;
 }
 
 .ww-board-wrap {
@@ -37,9 +23,9 @@
 }
 
 .ww-grid {
+  /* grid-template-columns/rows are set inline per puzzle: 6x6 on Easy,
+     6x8 on Medium and Hard. */
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(8, 1fr);
   gap: 0.32rem;
   width: 100%;
   max-width: 420px;
@@ -72,9 +58,9 @@
 }
 
 .ww-tile[data-state="selected"] {
-  background: color-mix(in srgb, var(--accent) 22%, var(--surface));
-  border-color: var(--accent);
-  color: var(--accent-strong);
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 24%, var(--surface));
+  border-color: var(--g-color, var(--accent));
+  color: var(--g-color, var(--accent-strong));
   transform: scale(1.07);
   z-index: 1;
 }
@@ -158,7 +144,7 @@
 }
 
 .ww-current[data-active="true"] {
-  color: var(--accent);
+  color: var(--g-color, var(--accent));
 }
 
 .ww-hint-row {

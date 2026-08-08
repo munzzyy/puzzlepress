@@ -13,21 +13,27 @@
 <meta name="description" content="Every letter belongs. Find the theme words woven through a 6x8 grid and uncover the spanning word that ties them together.">
 <meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="../../manifest.webmanifest">
 <link rel="icon" href="../../assets/icons/favicon.png" type="image/png">
+<link rel="icon" href="../../assets/icons/icon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../../assets/icons/icon-180.png">
 <link rel="stylesheet" href="../../assets/site.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <a class="pp-skip-link" href="#main">Skip to puzzle</a>
+<div id="pp-chrome"></div>
 
-<main id="main" class="pp-game">
-  <p class="ww-banner" id="ww-theme-banner" aria-live="polite">Find the spanning word to reveal today's theme.</p>
-
-  <div class="ww-status">
-    <span class="ww-status__item" id="ww-progress">0 / 0 words</span>
-    <span class="ww-status__item" id="ww-timer">0:00</span>
+<main id="main" class="pp-game" data-game="wordweave">
+  <div class="pp-diff-row">
+    <div class="pp-difftabs" id="ww-difftabs"></div>
+    <div class="pp-status-row">
+      <span id="ww-progress">0 / 0 words</span>
+      <span id="ww-timer">0:00</span>
+    </div>
   </div>
+
+  <p class="ww-banner" id="ww-theme-banner" aria-live="polite">Find the spanning word to reveal today's theme.</p>
 
   <div class="ww-board-wrap">
     <div class="ww-grid" id="ww-grid" role="group" aria-label="Letter grid, use arrow keys to move and space to select"></div>
@@ -49,11 +55,11 @@
 
   <div class="ww-practice" id="ww-practice" hidden>
     <p>Today's puzzle is solved. Keep going with a puzzle that won't touch your streak.</p>
-    <button type="button" class="pp-btn pp-btn--primary" id="ww-practice-btn">Play a random puzzle</button>
+    <button type="button" class="pp-btn" id="ww-practice-btn">Play a random puzzle</button>
   </div>
 
   <div class="ww-complete" id="ww-complete" hidden>
-    <h2>Solved</h2>
+    <h2 id="ww-complete-title">Solved</h2>
     <p id="ww-complete-summary"></p>
     <button type="button" class="pp-btn pp-btn--primary" id="ww-share-btn">Share result</button>
   </div>

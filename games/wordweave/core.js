@@ -9,6 +9,7 @@
 */
 
 const HINT_BONUS_STEP = 3;
+const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 
 /** True if two cells are king-adjacent (any of 8 directions) and distinct. */
 export function cellsAdjacent(a, b) {
@@ -156,7 +157,7 @@ export function useHint(puzzle, state) {
 }
 
 /** Spoiler-free share text: shape of the solve, not the words themselves. */
-export function shareText(puzzle, state, dayNumber, elapsedSeconds) {
+export function shareText(puzzle, state, dayNumber, elapsedSeconds, diff = "medium") {
   const { rows, cols } = gridDims(puzzle);
   const cellType = {};
   for (const word of Object.keys(state.found)) {
@@ -181,5 +182,6 @@ export function shareText(puzzle, state, dayNumber, elapsedSeconds) {
   const time = `${mins}:${String(secs).padStart(2, "0")}`;
   const hintNote = state.hintsUsedCount > 0 ? ` (${state.hintsUsedCount} hint${state.hintsUsedCount === 1 ? "" : "s"})` : "";
 
-  return [`Puzzle Press Wordweave #${dayNumber}`, `${time}${hintNote}`, "", ...lines].join("\n");
+  const label = DIFF_LABELS[diff] || DIFF_LABELS.medium;
+  return [`Puzzle Press Wordweave ${label} #${dayNumber}`, `${time}${hintNote}`, "", ...lines].join("\n");
 }

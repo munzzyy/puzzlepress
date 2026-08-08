@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """Deterministic generator for data/wordweave.json.
 
-Wordweave is a 6x8 letter grid (8 rows of 6 columns). Every one of the 48
-cells belongs to exactly one theme word or the spangram: there is no filler.
-The spangram is a word that touches two opposite edges of the grid and
-names the theme.
+Wordweave is a letter grid where every cell belongs to exactly one theme
+word or the spangram: there is no filler. The spangram is a word that
+touches two opposite edges of the grid and names the theme.
+
+v2 ships three difficulties, each its own bank section:
+  easy   - 6x6 grid (36 cells), theme title shown from the start in-game.
+  medium - 6x8 grid (48 cells), the v1 behavior: title hidden until the
+           spanning word is found.
+  hard   - 6x8 grid (48 cells), title hidden the same way as medium, but
+           puzzles are drawn from a disjoint theme pool and required to
+           carry more target words (>= 6 total, spangram included) so the
+           grid is measurably busier to fully clear.
 
 Approach: build a randomized Hamiltonian path over the grid's king-move
 adjacency graph (every cell touches up to 8 neighbors), scan it for a
@@ -24,7 +32,6 @@ import random
 import sys
 from pathlib import Path
 
-ROWS, COLS = 8, 6
 REPO_ROOT = Path(__file__).resolve().parent.parent
 WORDLIST_PATH = REPO_ROOT / "data" / "wordlist.txt"
 OUT_PATH = REPO_ROOT / "data" / "wordweave.json"
@@ -34,6 +41,11 @@ MAX_BONUS_LEN = 9
 MAX_BONUS_PER_PUZZLE = 40
 MIN_THEME_WORDS = 4
 MAX_THEME_WORDS = 9
+HARD_MIN_THEME_WORDS = 6
+
+EASY_ROWS, EASY_COLS = 6, 6
+STD_ROWS, STD_COLS = 8, 6
+MIN_BANK_SIZE = 50
 
 BLOCKLIST = {
     "arse", "arsehole", "ass", "asses", "bastard", "bitch", "bitches",
@@ -49,7 +61,7 @@ BLOCKLIST = {
 
 # ---------------------------------------------------------------------
 # Curated theme pools. Each entry is (theme name, spangram, other words).
-# spangram length must be 6-11 (needs to span 6 columns or 8 rows). Every
+# spangram length must be 6-11 (needs to span 6 columns or 6-8 rows). Every
 # word (spangram included) must be >= MIN_WORD_LEN and a real dictionary
 # entry; that is enforced by validate_themes() below before generation.
 # ---------------------------------------------------------------------
@@ -204,7 +216,72 @@ THEMES = [
     ("Trivia night", "QUESTION", ["ANSWER", "BUZZER", "TEAM", "ROUND", "SCORE", "HOST", "CATEGORY", "POINT", "GUESS", "TABLE", "PRIZE", "CLEVER"]),
     ("Karaoke night", "MICROPHONE", ["LYRICS", "STAGE", "SCREEN", "CROWD", "SONG", "APPLAUSE", "DUET", "TUNE", "SPOTLIGHT", "VERSE", "ENCORE", "NERVOUS"]),
     ("Game night", "SCOREBOARD", ["DICE", "CARDS", "TIMER", "TEAM", "ROUND", "LAUGHTER", "TABLE", "RULES", "WINNER", "SNACK", "STRATEGY", "PLAYER"]),
+    # ---- v2 additions, curated the same way: real dictionary words only ----
+    ("Ice hockey", "HOCKEY", ["PUCK", "RINK", "SKATE", "STICK", "GOALIE", "HELMET", "JERSEY", "WHISTLE", "PENALTY", "BLADE", "CREASE", "COACH", "REFEREE", "ROSTER"]),
+    ("Amusement park", "CARNIVAL", ["RIDE", "TICKET", "COASTER", "WHEEL", "TUNNEL", "BOOTH", "PRIZE", "BALLOON", "CROWD", "LIGHTS", "GAMES", "QUEUE"]),
+    ("Aquarium visit", "DOLPHIN", ["TANK", "GLASS", "DIVER", "OTTER", "JELLYFISH", "STINGRAY", "PENGUIN", "EXHIBIT", "BUBBLE", "CORAL", "SHARK", "GUIDE"]),
+    ("Planetarium", "GALAXY", ["STAR", "DOME", "PROJECTOR", "COSMOS", "ORBIT", "COMET", "NEBULA", "UNIVERSE", "TELESCOPE", "DARKNESS", "SEATS", "SHOW"]),
+    ("Farm stand", "ROADSIDE", ["STAND", "CROPS", "BASKET", "PRODUCE", "TOMATO", "CORN", "PUMPKIN", "HONEY", "JAM", "EGGS", "FLOWERS", "SIGN"]),
+    ("County fair", "MIDWAY", ["RIDES", "GAMES", "PRIZE", "LIVESTOCK", "PIE", "RIBBON", "TRACTOR", "BOOTH", "FUNNEL", "CROWD", "TICKET", "STAGE"]),
+    ("Skate park", "GRINDING", ["RAMP", "RAIL", "BOARD", "WHEELS", "HELMET", "TRICK", "JUMP", "BOWL", "CONCRETE", "FLIP", "LEDGE", "SPIN"]),
+    ("Roller rink", "SKATING", ["WHEELS", "DISCO", "LACES", "RINK", "MUSIC", "GLIDE", "LIMBO", "RENTAL", "FLOOR", "LIGHTS", "TURN"]),
+    ("Bowling alley", "STRIKE", ["LANE", "PIN", "BALL", "GUTTER", "SCORE", "FRAME", "SPARE", "SHOE", "GLOVE", "GRIP", "GAME", "GLOSSY"]),
+    ("Arcade night", "JOYSTICK", ["TOKEN", "SCORE", "PIXEL", "CABINET", "BUTTON", "LEVEL", "PRIZE", "CLAW", "SCREEN", "GAME", "HIGH", "COMBO"]),
+    ("Food truck", "TAKEOUT", ["MENU", "WINDOW", "GRILL", "NAPKIN", "LINE", "SAUCE", "ORDER", "CASH", "PARKED", "SIZZLE", "TRUCK", "CRAVING"]),
+    ("Diner counter", "GRIDDLE", ["COFFEE", "MENU", "STOOL", "WAITER", "SYRUP", "HASH", "TOAST", "JUKEBOX", "BOOTH", "PIE", "COUNTER", "REFILL"]),
+    ("Campsite morning", "DAYBREAK", ["DEW", "MIST", "COFFEE", "TENT", "EMBERS", "CHILL", "STRETCH", "KETTLE", "TRAIL", "QUIET", "GOLDEN", "HORIZON"]),
+    ("Lake cabin", "LAKESIDE", ["CANOE", "DOCK", "LOON", "RIPPLE", "PORCH", "FISHING", "SUNSET", "PADDLE", "CABIN", "QUIET", "PINE", "WATER"]),
+    ("Mountain lodge", "ALPINE", ["LODGE", "SNOW", "PEAK", "FIRE", "COCOA", "BLANKET", "SKI", "TIMBER", "RUSTIC", "WARM", "VIEW", "CHALET"]),
+    ("City park", "PLAYGROUND", ["BENCH", "SWING", "PATH", "FOUNTAIN", "JOGGER", "TREES", "PICNIC", "DOG", "KITE", "SHADE", "POND", "GRASS"]),
+    ("Dog park", "RETRIEVE", ["LEASH", "BALL", "FENCE", "BREED", "SNIFF", "BARK", "ROMP", "PUDDLE", "TREAT", "COLLAR", "RUN", "TAIL"]),
+    ("Farmers coop", "CREAMERY", ["MILK", "CHURN", "BUTTER", "CHEESE", "DAIRY", "FARM", "BOTTLE", "CRATE", "DELIVERY", "FRESH", "COOLER", "TRUCK"]),
+    ("Greenhouse", "SEEDLING", ["SOIL", "POT", "WATER", "SPROUT", "GLASS", "SUNLIGHT", "TRAY", "LABEL", "TROWEL", "HUMID", "SHELF", "GROW"]),
+    ("Vineyard tour", "GRAPEVINE", ["BARREL", "CORK", "TASTE", "ROW", "HARVEST", "CELLAR", "SUNSET", "HILLSIDE", "POUR", "SWIRL", "ESTATE"]),
+    ("Brewery tour", "FERMENT", ["HOPS", "BARLEY", "KEG", "TAP", "YEAST", "VAT", "BOTTLE", "TASTING", "FLIGHT", "FOAM", "MALT", "BREW"]),
+    ("Distillery", "WHISKEY", ["BARREL", "MASH", "STILL", "OAK", "PROOF", "AGING", "BOTTLE", "LABEL", "SMOKY", "GRAIN", "POUR", "CASK"]),
+    ("Coffee roastery", "ROASTING", ["BEANS", "DRUM", "SMOKE", "AROMA", "BATCH", "GRIND", "COOLING", "SAMPLE", "CUP", "DARK", "BLEND", "CRACK"]),
+    ("Bakery kitchen", "KNEADING", ["DOUGH", "FLOUR", "OVEN", "YEAST", "RISE", "PROOF", "SHAPE", "BENCH", "TIMER", "BATCH", "CRUST", "STEAM"]),
+    ("Butcher shop", "CLEAVER", ["KNIFE", "COUNTER", "SCALE", "WRAP", "CUT", "PRIME", "SAUSAGE", "GRIND", "FRESH", "BLOCK", "APRON", "ORDER"]),
+    ("Fish market", "SEAFOOD", ["ICE", "CRATE", "SCALE", "FILLET", "SHRIMP", "CRAB", "LOBSTER", "VENDOR", "FRESH", "STALL", "COUNTER", "CATCH"]),
+    ("Spice market", "TURMERIC", ["CUMIN", "PEPPER", "STALL", "SACK", "AROMA", "BLEND", "VENDOR", "POWDER", "JAR", "SCOOP", "MARKET", "COLOR"]),
+    ("Toy store", "PUZZLES", ["BLOCKS", "DOLLS", "ROBOT", "GAME", "SHELF", "WRAP", "AISLE", "KIDS", "COLORFUL", "BOXED", "DISPLAY", "CART"]),
+    ("Hardware store", "FASTENER", ["NAILS", "SCREWS", "PAINT", "LADDER", "AISLE", "WRENCH", "BOLT", "HINGE", "CART", "SIGN", "COUNTER", "LUMBER"]),
+    ("Bike shop", "MECHANIC", ["CHAIN", "GEAR", "TIRE", "PEDAL", "WRENCH", "TUBE", "HELMET", "RACK", "REPAIR", "GREASE", "SPOKE", "PUMP"]),
 ]
+
+# Which curated themes go to which difficulty. Anything not listed in
+# EASY_NAMES or HARD_NAMES falls to medium. Kept as explicit name lists
+# (not index slices) so re-ordering THEMES above never silently reshuffles
+# a difficulty's pool.
+EASY_NAMES = frozenset({
+    "Coffee shop", "Bakery case", "Pizza night", "Breakfast table", "Farmers market",
+    "Ice cream shop", "Tea time", "Backyard barbecue", "Salad bar", "Soup kitchen",
+    "Camping trip", "Beach day", "Winter storm", "Thunderstorm", "Garden bed",
+    "Autumn walk", "Spring thaw", "Farm animals", "Bird watching", "Big cats",
+    "Ocean depths", "Dog breeds", "Cat behavior", "Zoo visit", "Laundry day",
+    "Spring cleaning", "Bedroom", "Living room", "Bathroom", "Toolshed",
+    "Attic clutter", "Moving day", "Home repair", "Road trip", "Airport",
+    "Train ride", "City streets", "Countryside", "Island getaway", "Mountain town",
+    "Desert town", "Chess club", "Board games", "Card games", "Jigsaw puzzles",
+    "Soccer match", "Basketball", "Baseball game", "Tennis match", "Swimming pool",
+    "Grocery run", "Birthday party", "Holiday feast", "Wedding day", "Rainy day",
+    "Snow day", "Lazy Sunday", "Chocolate shop", "Popcorn night", "Candy store",
+})
+
+HARD_NAMES = frozenset({
+    "Mountain climb", "Rainforest canopy", "Desert trek", "Insect world", "Reptile house",
+    "Arctic wildlife", "Sewing kit", "Sailing trip", "Road signs", "Painter's studio",
+    "Pottery class", "Knitting circle", "Photography", "Bookbinding", "Woodworking",
+    "Track and field", "Winter sports", "Gym workout", "Yoga class", "Cycling",
+    "Orchestra", "Rock band", "Jazz club", "Ballet", "Theater",
+    "Film set", "Museum", "Library visit", "Poetry night", "Comic books",
+    "Chemistry lab", "Astronomy", "Robotics", "Computer lab", "Weather station",
+    "Geology dig", "Marine biology", "Space mission", "Wind farm", "Recycling center",
+    "Baking contest", "Gardening club", "Model building", "Origami", "Scrapbooking",
+    "Beekeeping", "Backyard astronomy", "Bird photography", "Kite flying",
+    "Planetarium", "Vineyard tour", "Brewery tour", "Distillery", "Coffee roastery",
+    "Bakery kitchen", "Spice market", "Aquarium visit", "Greenhouse", "Farmers coop",
+})
 
 
 def load_wordset():
@@ -225,8 +302,11 @@ def validate_themes(wordset):
     clean = []
     problems = []
     seen_spangrams = set()
+    seen_names = set()
     for theme, spangram, pool in THEMES:
         bad = []
+        if theme in seen_names:
+            bad.append(f"duplicate theme name {theme}")
         if spangram in seen_spangrams:
             bad.append(f"duplicate spangram {spangram}")
         if not (6 <= len(spangram) <= 11):
@@ -253,6 +333,7 @@ def validate_themes(wordset):
             problems.append((theme, bad))
         else:
             seen_spangrams.add(spangram)
+            seen_names.add(theme)
             clean.append((theme, spangram, kept_pool))
     return clean, problems
 
@@ -261,28 +342,28 @@ def validate_themes(wordset):
 # Hamiltonian path over the king-move grid graph
 # ---------------------------------------------------------------------
 
-def neighbors(r, c):
+def neighbors(r, c, rows, cols):
     for dr in (-1, 0, 1):
         for dc in (-1, 0, 1):
             if dr == 0 and dc == 0:
                 continue
             nr, nc = r + dr, c + dc
-            if 0 <= nr < ROWS and 0 <= nc < COLS:
+            if 0 <= nr < rows and 0 <= nc < cols:
                 yield (nr, nc)
 
 
-def build_hamiltonian_path(rng, start, max_steps=20000):
-    """Randomized Warnsdorff-heuristic DFS. Returns a list of all ROWS*COLS
+def build_hamiltonian_path(rng, start, rows, cols, max_steps=20000):
+    """Randomized Warnsdorff-heuristic DFS. Returns a list of all rows*cols
     cells in visiting order (consecutive cells always king-adjacent), or
     None if it could not complete within max_steps backtracking steps."""
-    total = ROWS * COLS
+    total = rows * cols
     visited = {start}
     path = [start]
     steps = [0]
 
     def degree(cell):
         r, c = cell
-        return sum(1 for n in neighbors(r, c) if n not in visited)
+        return sum(1 for n in neighbors(r, c, rows, cols) if n not in visited)
 
     def dfs():
         steps[0] += 1
@@ -291,7 +372,7 @@ def build_hamiltonian_path(rng, start, max_steps=20000):
         if len(path) == total:
             return True
         r, c = path[-1]
-        cands = [n for n in neighbors(r, c) if n not in visited]
+        cands = [n for n in neighbors(r, c, rows, cols) if n not in visited]
         if not cands:
             return False
         scored = [(degree(n), n) for n in cands]
@@ -309,16 +390,16 @@ def build_hamiltonian_path(rng, start, max_steps=20000):
     return path[:] if dfs() else None
 
 
-def scan_spangram_windows(path, spanlen):
+def scan_spangram_windows(path, spanlen, rows, cols):
     """Contiguous windows of the path with the given length whose two ends
     sit on opposite grid edges (left/right or top/bottom)."""
     out = []
-    for i in range(0, ROWS * COLS - spanlen + 1):
+    for i in range(0, rows * cols - spanlen + 1):
         a = path[i]
         b = path[i + spanlen - 1]
-        if (a[1] == 0 and b[1] == COLS - 1) or (a[1] == COLS - 1 and b[1] == 0):
+        if (a[1] == 0 and b[1] == cols - 1) or (a[1] == cols - 1 and b[1] == 0):
             out.append(i)
-        elif (a[0] == 0 and b[0] == ROWS - 1) or (a[0] == ROWS - 1 and b[0] == 0):
+        elif (a[0] == 0 and b[0] == rows - 1) or (a[0] == rows - 1 and b[0] == 0):
             out.append(i)
     return out
 
@@ -344,22 +425,23 @@ def find_subset_sum(pool, target, max_count, rng, cap=800):
     return [pool[i][0] for i in combo]
 
 
-def generate_puzzle(theme_name, spangram, pool_words, rng, attempts=250):
+def generate_puzzle(theme_name, spangram, pool_words, rng, rows, cols,
+                     min_words=MIN_THEME_WORDS, max_words=MAX_THEME_WORDS, attempts=250):
     spanlen = len(spangram)
     pool_items = [(w, len(w)) for w in pool_words]
 
     for _ in range(attempts):
-        start = (rng.randrange(ROWS), rng.randrange(COLS))
-        path = build_hamiltonian_path(rng, start)
+        start = (rng.randrange(rows), rng.randrange(cols))
+        path = build_hamiltonian_path(rng, start, rows, cols)
         if not path:
             continue
-        windows = scan_spangram_windows(path, spanlen)
+        windows = scan_spangram_windows(path, spanlen, rows, cols)
         if not windows:
             continue
         rng.shuffle(windows)
         for i in windows:
             before_len = i
-            after_len = ROWS * COLS - spanlen - i
+            after_len = rows * cols - spanlen - i
             group_a = find_subset_sum(pool_items, before_len, 6, rng) if before_len else []
             if group_a is None:
                 continue
@@ -368,7 +450,7 @@ def generate_puzzle(theme_name, spangram, pool_words, rng, attempts=250):
             if group_b is None:
                 continue
             total_words = len(group_a) + len(group_b) + 1
-            if not (MIN_THEME_WORDS <= total_words <= MAX_THEME_WORDS):
+            if not (min_words <= total_words <= max_words):
                 continue
 
             words_a = list(group_a)
@@ -378,7 +460,7 @@ def generate_puzzle(theme_name, spangram, pool_words, rng, attempts=250):
 
             before_cells = path[0:i]
             spangram_cells = path[i:i + spanlen]
-            after_cells = path[i + spanlen:ROWS * COLS]
+            after_cells = path[i + spanlen:rows * cols]
 
             assignment = []
             pos = 0
@@ -391,14 +473,14 @@ def generate_puzzle(theme_name, spangram, pool_words, rng, attempts=250):
                 assignment.append((w, after_cells[pos:pos + len(w)]))
                 pos += len(w)
 
-            grid = [[None] * COLS for _ in range(ROWS)]
+            grid = [[None] * cols for _ in range(rows)]
             solution = {}
             for w, cells in assignment:
                 for ch, (r, c) in zip(w, cells):
                     grid[r][c] = ch
                 solution[w] = [[r, c] for (r, c) in cells]
 
-            if any(grid[r][c] is None for r in range(ROWS) for c in range(COLS)):
+            if any(grid[r][c] is None for r in range(rows) for c in range(cols)):
                 continue
 
             grid_strs = ["".join(row) for row in grid]
@@ -444,7 +526,7 @@ def find_bonus_words(grid_strs, trie, exclude, rng, max_len=MAX_BONUS_LEN, cap=M
     def dfs(r, c, node, visited, letters):
         if len(letters) >= max_len:
             return
-        for nr, nc in neighbors(r, c):
+        for nr, nc in neighbors(r, c, rows, cols):
             if (nr, nc) in visited:
                 continue
             ch = grid_strs[nr][nc].lower()
@@ -478,10 +560,10 @@ def find_bonus_words(grid_strs, trie, exclude, rng, max_len=MAX_BONUS_LEN, cap=M
 # Validation of a finished puzzle (mirrors the invariants pytest checks)
 # ---------------------------------------------------------------------
 
-def validate_puzzle(puzzle):
+def validate_puzzle(puzzle, rows, cols):
     grid = puzzle["grid"]
-    assert len(grid) == ROWS, "grid must have 8 rows"
-    assert all(len(row) == COLS for row in grid), "every row must have 6 columns"
+    assert len(grid) == rows, f"grid must have {rows} rows"
+    assert all(len(row) == cols for row in grid), f"every row must have {cols} columns"
 
     all_words = [puzzle["spangram"]] + puzzle["words"]
     assert len(all_words) == len(set(all_words)), "duplicate word in puzzle"
@@ -492,7 +574,7 @@ def validate_puzzle(puzzle):
         assert len(cells) == len(word), f"solution length mismatch for {word}"
         prev = None
         for (r, c), ch in zip(cells, word):
-            assert 0 <= r < ROWS and 0 <= c < COLS, "cell out of bounds"
+            assert 0 <= r < rows and 0 <= c < cols, "cell out of bounds"
             assert grid[r][c] == ch, f"grid/solution letter mismatch for {word}"
             cell_key = (r, c)
             assert cell_key not in used, f"cell {cell_key} used twice"
@@ -502,13 +584,41 @@ def validate_puzzle(puzzle):
                 assert abs(pr - r) <= 1 and abs(pc - c) <= 1, f"non-adjacent step in {word}"
             prev = (r, c)
 
-    assert len(used) == ROWS * COLS, "grid is not fully tiled"
+    assert len(used) == rows * cols, "grid is not fully tiled"
 
     span_cells = puzzle["solution"][puzzle["spangram"]]
     a, b = span_cells[0], span_cells[-1]
-    touches_h = (a[1] == 0 and b[1] == COLS - 1) or (a[1] == COLS - 1 and b[1] == 0)
-    touches_v = (a[0] == 0 and b[0] == ROWS - 1) or (a[0] == ROWS - 1 and b[0] == 0)
+    touches_h = (a[1] == 0 and b[1] == cols - 1) or (a[1] == cols - 1 and b[1] == 0)
+    touches_v = (a[0] == 0 and b[0] == rows - 1) or (a[0] == rows - 1 and b[0] == 0)
     assert touches_h or touches_v, "spangram does not span two opposite edges"
+
+
+def build_section(themes, rows, cols, seed, trie, min_words=MIN_THEME_WORDS, max_words=MAX_THEME_WORDS):
+    puzzles = []
+    failed = []
+    for theme_name, spangram, pool in themes:
+        rng = random.Random(f"{seed}:{rows}x{cols}:{theme_name}")
+        puzzle = generate_puzzle(theme_name, spangram, pool, rng, rows, cols,
+                                  min_words=min_words, max_words=max_words)
+        if puzzle is None:
+            failed.append(theme_name)
+            continue
+        validate_puzzle(puzzle, rows, cols)
+        exclude = {puzzle["spangram"]} | set(puzzle["words"])
+        bonus_rng = random.Random(f"{seed}:{rows}x{cols}:{theme_name}:bonus")
+        puzzle["bonusWords"] = find_bonus_words(puzzle["grid"], trie, exclude, bonus_rng)
+        puzzles.append(puzzle)
+
+    grids_seen = set()
+    dedup = []
+    for p in puzzles:
+        key = tuple(p["grid"])
+        if key in grids_seen:
+            continue
+        grids_seen.add(key)
+        dedup.append(p)
+
+    return dedup, failed
 
 
 def main():
@@ -527,40 +637,33 @@ def main():
     trie_words = [w for w in wordset if MIN_WORD_LEN <= len(w) <= MAX_BONUS_LEN]
     trie = build_trie(trie_words)
 
-    puzzles = []
-    failed = []
-    for theme_name, spangram, pool in clean_themes:
-        rng = random.Random(f"{args.seed}:{theme_name}")
-        puzzle = generate_puzzle(theme_name, spangram, pool, rng)
-        if puzzle is None:
-            failed.append(theme_name)
-            continue
-        validate_puzzle(puzzle)
-        exclude = {puzzle["spangram"]} | set(puzzle["words"])
-        bonus_rng = random.Random(f"{args.seed}:{theme_name}:bonus")
-        puzzle["bonusWords"] = find_bonus_words(puzzle["grid"], trie, exclude, bonus_rng)
-        puzzles.append(puzzle)
+    easy_themes = [t for t in clean_themes if t[0] in EASY_NAMES]
+    hard_themes = [t for t in clean_themes if t[0] in HARD_NAMES]
+    medium_themes = [t for t in clean_themes if t[0] not in EASY_NAMES and t[0] not in HARD_NAMES]
 
-    if failed:
-        print(f"Could not place {len(failed)} theme(s): {', '.join(failed)}", file=sys.stderr)
+    easy_puzzles, easy_failed = build_section(easy_themes, EASY_ROWS, EASY_COLS, args.seed, trie)
+    medium_puzzles, medium_failed = build_section(medium_themes, STD_ROWS, STD_COLS, args.seed, trie)
+    hard_puzzles, hard_failed = build_section(
+        hard_themes, STD_ROWS, STD_COLS, args.seed, trie,
+        min_words=HARD_MIN_THEME_WORDS, max_words=MAX_THEME_WORDS,
+    )
 
-    grids_seen = set()
-    dedup = []
-    for p in puzzles:
-        key = tuple(p["grid"])
-        if key in grids_seen:
-            continue
-        grids_seen.add(key)
-        dedup.append(p)
-    puzzles = dedup
+    for label, failed in (("easy", easy_failed), ("medium", medium_failed), ("hard", hard_failed)):
+        if failed:
+            print(f"Could not place {len(failed)} {label} theme(s): {', '.join(failed)}", file=sys.stderr)
 
-    bank = {"puzzles": puzzles}
+    bank = {
+        "easy": {"puzzles": easy_puzzles},
+        "medium": {"puzzles": medium_puzzles},
+        "hard": {"puzzles": hard_puzzles},
+    }
     out_path = Path(args.out)
     out_path.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")
 
-    print(f"Wrote {len(puzzles)} puzzles to {out_path}")
-    if len(puzzles) < 100:
-        print(f"WARNING: bank has only {len(puzzles)} puzzles, below the 100 target.", file=sys.stderr)
+    print(f"Wrote {len(easy_puzzles)} easy, {len(medium_puzzles)} medium, {len(hard_puzzles)} hard puzzles to {out_path}")
+    for label, puzzles in (("easy", easy_puzzles), ("medium", medium_puzzles), ("hard", hard_puzzles)):
+        if len(puzzles) < MIN_BANK_SIZE:
+            print(f"WARNING: {label} bank has only {len(puzzles)} puzzles, below the {MIN_BANK_SIZE} target.", file=sys.stderr)
 
 
 if __name__ == "__main__":
