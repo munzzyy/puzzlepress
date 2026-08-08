@@ -8,6 +8,8 @@ import {
   wordScore,
   legalShape,
   totalScore,
+  maxScoreWithoutPangram,
+  pangramRequiredForWin,
   rankForScore,
   nextRank,
   createState,
@@ -95,6 +97,31 @@ test("nextRank returns null once Luminary is reached", () => {
   assert.equal(nextRank(0, 100).name, "Beginner");
 });
 
+test("maxScoreWithoutPangram sums every non-pangram word, pangrams excluded", () => {
+  // PUZZLE's only pangram is "planets" (14 pts); everything else is non-pangram.
+  const expected = PUZZLE.maxScore - wordScore("planets", "PLANETS");
+  assert.equal(maxScoreWithoutPangram(PUZZLE), expected);
+});
+
+test("pangramRequiredForWin: false for an easy-shaped puzzle where non-pangram words alone clear Master", () => {
+  // 9 plain words worth plenty on their own, one small pangram bonus on top.
+  const easyPuzzle = {
+    letters: "PLANETS",
+    center: "A",
+    words: ["plant", "plate", "petal", "atlas", "salt", "leap", "tale", "seal", "pants", "steal", "planets"],
+    maxScore: 0,
+  };
+  easyPuzzle.maxScore = easyPuzzle.words.reduce((s, w) => s + wordScore(w, easyPuzzle.letters), 0);
+  assert.equal(pangramRequiredForWin(easyPuzzle), false);
+});
+
+test("pangramRequiredForWin: true for a hard-shaped puzzle where the pangram is required", () => {
+  // Only the pangram is a valid word: finding everything except it is 0 points.
+  const hardPuzzle = { letters: "PLANETS", center: "A", words: ["planets"], maxScore: 0 };
+  hardPuzzle.maxScore = wordScore("planets", hardPuzzle.letters);
+  assert.equal(pangramRequiredForWin(hardPuzzle), true);
+});
+
 test("submitGuess accepts a valid answer-list word and updates state immutably", () => {
   const state = createState();
   const { state: next, result } = submitGuess(PUZZLE, state, "plate");
@@ -170,4 +197,10 @@ test("shareText has no spoilers and is ASCII only", () => {
   assert.ok(!text.includes("plate"));
   assert.ok(!/[^\x00-\x7f]/.test(text));
   assert.ok(text.includes("Words: 1/9"));
+});
+
+test("shareText defaults to Medium and includes the given difficulty word", () => {
+  const state = createState();
+  assert.ok(shareText(PUZZLE, state, "Aug 10").includes("Heptagram Medium - Aug 10"));
+  assert.ok(shareText(PUZZLE, state, "Aug 10", "Hard").includes("Heptagram Hard - Aug 10"));
 });

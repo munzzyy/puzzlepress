@@ -70,6 +70,24 @@ export function totalScore(found, letters) {
   return found.reduce((sum, w) => sum + wordScore(w, letters), 0);
 }
 
+/** Total score if every non-pangram word in the puzzle were found, pangrams excluded. */
+export function maxScoreWithoutPangram(puzzle) {
+  return puzzle.words
+    .filter((w) => !isPangram(w, puzzle.letters))
+    .reduce((sum, w) => sum + wordScore(w, puzzle.letters), 0);
+}
+
+/**
+ * True when finding every non-pangram word still falls short of the Master
+ * rank threshold, i.e. this puzzle can only be won by finding a pangram.
+ * The generator (tools/gen_heptagram.py) enforces this for hard puzzles and
+ * its opposite (win reachable without the pangram) for easy ones.
+ */
+export function pangramRequiredForWin(puzzle) {
+  const masterPct = RANKS.find((r) => r.name === WIN_RANK).pct;
+  return maxScoreWithoutPangram(puzzle) < masterPct * puzzle.maxScore;
+}
+
 /** Highest rank whose threshold the score meets, given the puzzle's maxScore. */
 export function rankForScore(score, maxScore) {
   let current = RANKS[0];
@@ -135,14 +153,14 @@ export function didWin(puzzle, state) {
   return rankIdx >= winIdx;
 }
 
-/** Spoiler-free share text: no words revealed, ASCII only. */
-export function shareText(puzzle, state, dateLabel) {
+/** Spoiler-free share text: no words revealed, ASCII only. diffLabel e.g. "Hard". */
+export function shareText(puzzle, state, dateLabel, diffLabel = "Medium") {
   const score = totalScore(state.found, puzzle.letters);
   const rank = rankForScore(score, puzzle.maxScore);
   const rankIdx = RANKS.findIndex((r) => r.name === rank.name);
   const bar = RANKS.map((_, i) => (i <= rankIdx ? "#" : "-")).join("");
   return (
-    `Heptagram - ${dateLabel}\n` +
+    `Heptagram ${diffLabel} - ${dateLabel}\n` +
     `${rank.name} - ${score} points\n` +
     `Words: ${state.found.length}/${puzzle.words.length}\n` +
     bar

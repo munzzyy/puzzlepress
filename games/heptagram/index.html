@@ -21,15 +21,18 @@
 </head>
 <body>
 <a class="pp-skip-link" href="#main">Skip to game</a>
+<div id="pp-chrome"></div>
 
 <main id="main" class="pp-game" aria-live="off">
+  <div class="pp-diff-row">
+    <div id="diff-tabs"></div>
+    <div class="pp-status-row" id="hg-status" aria-label="Words found"></div>
+  </div>
+
   <section class="hg-board" id="hg-board">
     <div class="hg-score-row">
-      <div>
-        <p class="hg-rank" id="hg-rank">Newcomer</p>
-        <p class="hg-score" id="hg-score">0 points</p>
-      </div>
-      <p class="hg-found-count" id="hg-found-count">0 words found</p>
+      <p class="hg-rank" id="hg-rank">Newcomer</p>
+      <p class="hg-score" id="hg-score">0 points</p>
     </div>
 
     <div class="hg-progress" aria-hidden="true">

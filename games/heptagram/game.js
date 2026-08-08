@@ -2,6 +2,7 @@ import {
   todayKey,
   pickDaily,
   store,
+  diffTabs,
   recordResult,
   share,
   confettiBurst,
@@ -25,6 +26,9 @@ import {
 const GAME_ID = "heptagram";
 const EPOCH = "2026-08-10";
 const BANK_URL = "../../data/heptagram.json";
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
+const DEFAULT_DIFFICULTY = "medium";
 
 const HELP_HTML =
   "<p>Seven letters sit on the wheel, and every word must include the one " +
@@ -35,20 +39,22 @@ const HELP_HTML =
   "and a word using all seven letters is a pangram worth a seven point " +
   "bonus.</p>" +
   `<p>Reach ${WIN_RANK} rank to close out the day, or finish anytime to lock ` +
-  "in your score.</p>";
+  "in your score.</p>" +
+  "<p>Easy, Medium, and Hard each carry their own puzzle, streak, and stats " +
+  "for the day.</p>";
 
 const els = {};
 
-/** Mutable session for whichever puzzle is currently on screen. */
-const session = {
-  puzzle: null,
-  state: createState(),
-  isDaily: true,
-  guess: "",
-  wheelOrder: [],
-};
+let bank = null; // { easy: { puzzles }, medium: { puzzles }, hard: { puzzles } }
+let dayStores = null; // difficulty -> store(GAME_ID, difficulty)
+let activeDifficulty = DEFAULT_DIFFICULTY;
 
-let bank = null;
+// Per-difficulty daily puzzle + progress, kept alive across tab switches.
+const sessions = {}; // difficulty -> { puzzle, state }
+
+let freePlay = null; // { puzzle, state } or null; never counts toward streaks
+let guess = "";
+let wheelOrder = [];
 
 function $(id) {
   return document.getElementById(id);
@@ -56,10 +62,11 @@ function $(id) {
 
 function cacheEls() {
   [
+    "diff-tabs",
+    "hg-status",
     "hg-board",
     "hg-rank",
     "hg-score",
-    "hg-found-count",
     "hg-progress-fill",
     "hg-message",
     "hg-guess",
@@ -94,28 +101,46 @@ function shuffledOuterOrder(letters) {
   return arr;
 }
 
-function startSession(puzzle, isDaily, existingState) {
-  session.puzzle = puzzle;
-  session.state = existingState || createState();
-  session.isDaily = isDaily;
-  session.guess = "";
-  session.wheelOrder = shuffledOuterOrder(puzzle.letters);
-  els["hg-finish"].textContent = isDaily ? "Finish for today" : "Finish this puzzle";
-  renderAll();
+/* ---------- current-view helpers ---------- */
+
+function currentPuzzle() {
+  return freePlay ? freePlay.puzzle : sessions[activeDifficulty].puzzle;
 }
 
-function persistIfDaily() {
-  if (session.isDaily) {
-    // The letters tag ties the payload to today's puzzle so a stale save is
-    // never restored against a different wheel.
-    store(GAME_ID).saveDay({ ...session.state, letters: session.puzzle.letters });
-  }
+function currentState() {
+  return freePlay ? freePlay.state : sessions[activeDifficulty].state;
+}
+
+function setCurrentState(next) {
+  if (freePlay) freePlay.state = next;
+  else sessions[activeDifficulty].state = next;
+}
+
+function isDailyView() {
+  return !freePlay;
+}
+
+function updateFinishLabel() {
+  els["hg-finish"].textContent = isDailyView() ? "Finish for today" : "Finish this puzzle";
+}
+
+function loadPuzzle(puzzle) {
+  guess = "";
+  wheelOrder = shuffledOuterOrder(puzzle.letters);
+}
+
+function persistCurrent() {
+  if (!isDailyView()) return;
+  const { puzzle, state } = sessions[activeDifficulty];
+  // The letters tag ties the payload to today's puzzle so a stale save is
+  // never restored against a different wheel.
+  dayStores[activeDifficulty].saveDay({ ...state, letters: puzzle.letters });
 }
 
 /* ---------- rendering ---------- */
 
 function renderAll() {
-  const finishedNow = session.state.finished;
+  const finishedNow = currentState().finished;
 
   els["hg-board"].hidden = finishedNow;
   els["hg-summary"].hidden = !finishedNow;
@@ -132,16 +157,15 @@ function renderAll() {
 }
 
 function renderScore() {
-  const { puzzle, state } = session;
+  const puzzle = currentPuzzle();
+  const state = currentState();
   const score = totalScore(state.found, puzzle.letters);
   const rank = rankForScore(score, puzzle.maxScore);
   const next = nextRank(score, puzzle.maxScore);
 
   els["hg-rank"].textContent = rank.name;
   els["hg-score"].textContent = `${score} point${score === 1 ? "" : "s"}`;
-  els["hg-found-count"].textContent = `${state.found.length} word${
-    state.found.length === 1 ? "" : "s"
-  } found`;
+  els["hg-status"].textContent = `${state.found.length}/${puzzle.words.length} words`;
 
   const floor = rank.pct * puzzle.maxScore;
   const ceiling = next ? next.pct * puzzle.maxScore : puzzle.maxScore;
@@ -151,7 +175,7 @@ function renderScore() {
 }
 
 function renderGuess() {
-  const text = session.guess.toUpperCase();
+  const text = guess.toUpperCase();
   els["hg-guess"].textContent = text;
   const caret = document.createElement("span");
   caret.className = "hg-guess__caret";
@@ -161,8 +185,8 @@ function renderGuess() {
 function renderWheel() {
   const wheel = els["hg-wheel"];
   wheel.innerHTML = "";
-  const letters = session.wheelOrder;
-  const center = session.puzzle.center;
+  const letters = wheelOrder;
+  const center = currentPuzzle().center;
   const count = letters.length;
   const radiusPct = 37;
 
@@ -208,34 +232,36 @@ function renderWheel() {
 
 function renderFound() {
   const list = els["hg-found-list"];
-  const words = sortedFound(session.state);
+  const words = sortedFound(currentState());
   if (words.length === 0) {
     list.innerHTML = '<li class="hg-found__empty">Nothing yet. Start typing.</li>';
     return;
   }
+  const letters = currentPuzzle().letters;
   list.innerHTML = words
     .map((w) => {
-      const pangram = isPangram(w, session.puzzle.letters);
+      const pangram = isPangram(w, letters);
       return `<li data-pangram="${pangram}">${w}</li>`;
     })
     .join("");
 }
 
 function renderSummary() {
-  const { puzzle, state, isDaily } = session;
+  const puzzle = currentPuzzle();
+  const state = currentState();
   const score = totalScore(state.found, puzzle.letters);
   const rank = rankForScore(score, puzzle.maxScore);
   els["hg-summary-rank"].textContent = rank.name;
   els["hg-summary-line"].textContent =
     `${score} point${score === 1 ? "" : "s"} - ${state.found.length} of ${puzzle.words.length} words found`;
-  els["hg-random"].textContent = isDaily ? "Play a random puzzle" : "Another random puzzle";
+  els["hg-random"].textContent = isDailyView() ? "Play a random puzzle" : "Another random puzzle";
 }
 
 /* ---------- messaging ---------- */
 
 function setMessage(text, kind) {
   const el = els["hg-message"];
-  el.textContent = text || " ";
+  el.textContent = text || " ";
   if (kind) {
     el.dataset.kind = kind;
   } else {
@@ -260,19 +286,19 @@ function popGuess() {
 /* ---------- input ---------- */
 
 function appendLetter(letter) {
-  if (session.state.finished) return;
-  session.guess += letter.toLowerCase();
+  if (currentState().finished) return;
+  guess += letter.toLowerCase();
   renderGuess();
 }
 
 function deleteLetter() {
-  if (session.state.finished) return;
-  session.guess = session.guess.slice(0, -1);
+  if (currentState().finished) return;
+  guess = guess.slice(0, -1);
   renderGuess();
 }
 
 function clearGuess() {
-  session.guess = "";
+  guess = "";
   renderGuess();
 }
 
@@ -285,21 +311,22 @@ const REASON_TEXT = {
 };
 
 function submitCurrentGuess() {
-  if (session.state.finished) return;
-  const raw = session.guess;
+  if (currentState().finished) return;
+  const raw = guess;
   if (!raw) return;
 
-  const { state, result } = submitGuess(session.puzzle, session.state, raw);
+  const puzzle = currentPuzzle();
+  const { state, result } = submitGuess(puzzle, currentState(), raw);
 
   if (!result.ok) {
     const text = REASON_TEXT[result.reason];
-    setMessage(typeof text === "function" ? text(session.puzzle) : text, "bad");
+    setMessage(typeof text === "function" ? text(puzzle) : text, "bad");
     shakeGuess();
     clearGuess();
     return;
   }
 
-  session.state = state;
+  setCurrentState(state);
   clearGuess();
   popGuess();
 
@@ -309,47 +336,67 @@ function submitCurrentGuess() {
     setMessage(`Nice - +${result.score} point${result.score === 1 ? "" : "s"}`, "good");
   }
 
-  persistIfDaily();
+  persistCurrent();
   renderScore();
   renderFound();
 
-  if (isComplete(session.puzzle, session.state)) {
+  if (isComplete(puzzle, currentState())) {
     setMessage("Every word found. Amazing.", "pangram");
   }
 }
 
-function finishToday() {
-  if (session.state.finished) return;
-  const won = didWin(session.puzzle, session.state);
-  session.state = finish(session.state);
+function finishCurrent() {
+  const state = currentState();
+  if (state.finished) return;
+  const puzzle = currentPuzzle();
+  const won = didWin(puzzle, state);
+  setCurrentState(finish(state));
 
-  if (session.isDaily) {
-    recordResult(GAME_ID, won);
-    persistIfDaily();
+  if (isDailyView()) {
+    recordResult(GAME_ID, won, activeDifficulty);
+    persistCurrent();
   }
   if (won) confettiBurst();
   renderAll();
 }
 
 function startRandomPuzzle() {
-  if (!bank || !bank.puzzles || bank.puzzles.length === 0) return;
-  const currentLetters = session.puzzle ? session.puzzle.letters : null;
-  let idx = Math.floor(Math.random() * bank.puzzles.length);
+  const list = bank && bank[activeDifficulty] ? bank[activeDifficulty].puzzles : null;
+  if (!list || list.length === 0) return;
+  const currentLetters = currentPuzzle() ? currentPuzzle().letters : null;
+  let idx = Math.floor(Math.random() * list.length);
   let attempts = 0;
-  while (bank.puzzles.length > 1 && bank.puzzles[idx].letters === currentLetters && attempts < 20) {
-    idx = Math.floor(Math.random() * bank.puzzles.length);
+  while (list.length > 1 && list[idx].letters === currentLetters && attempts < 20) {
+    idx = Math.floor(Math.random() * list.length);
     attempts++;
   }
-  startSession(bank.puzzles[idx], false, null);
+  freePlay = { puzzle: list[idx], state: createState() };
+  loadPuzzle(freePlay.puzzle);
+  updateFinishLabel();
+  renderAll();
   setMessage("Random puzzle. Doesn't count toward your streak.", null);
 }
 
 function handleShare() {
-  const { puzzle, state, isDaily } = session;
-  const dateLabel = isDaily
+  const puzzle = currentPuzzle();
+  const state = currentState();
+  const diffLabel = LABELS[activeDifficulty];
+  const dateLabel = isDailyView()
     ? new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(new Date())
     : "Free play";
-  share(shareText(puzzle, state, dateLabel));
+  share(shareText(puzzle, state, dateLabel, diffLabel));
+}
+
+/* ---------- tab switching ---------- */
+
+function switchDifficulty(difficulty) {
+  freePlay = null;
+  activeDifficulty = difficulty;
+  const session = sessions[difficulty];
+  loadPuzzle(session.puzzle);
+  updateFinishLabel();
+  renderAll();
+  setMessage(session.state.found.length === 0 && !session.state.finished ? "Find words using the required letter." : null, null);
 }
 
 /* ---------- wiring ---------- */
@@ -358,15 +405,15 @@ function wireEvents() {
   els["hg-delete"].addEventListener("click", deleteLetter);
   els["hg-enter"].addEventListener("click", submitCurrentGuess);
   els["hg-shuffle"].addEventListener("click", () => {
-    session.wheelOrder = shuffledOuterOrder(session.wheelOrder.join(""));
+    wheelOrder = shuffledOuterOrder(wheelOrder.join(""));
     renderWheel();
   });
-  els["hg-finish"].addEventListener("click", finishToday);
+  els["hg-finish"].addEventListener("click", finishCurrent);
   els["hg-share"].addEventListener("click", handleShare);
   els["hg-random"].addEventListener("click", startRandomPuzzle);
 
   document.addEventListener("keydown", (e) => {
-    if (session.state.finished) return;
+    if (currentState().finished) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (document.querySelector(".pp-modal-backdrop")) return;
     const key = e.key;
@@ -386,7 +433,7 @@ function wireEvents() {
     }
     if (/^[a-zA-Z]$/.test(key)) {
       const upper = key.toUpperCase();
-      if (session.puzzle.letters.includes(upper)) {
+      if (currentPuzzle().letters.includes(upper)) {
         appendLetter(upper);
       }
     }
@@ -399,6 +446,8 @@ async function init() {
 
   initChrome({ id: GAME_ID, name: "Heptagram", helpHTML: HELP_HTML });
 
+  dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
+
   try {
     bank = await loadBank();
   } catch {
@@ -406,15 +455,24 @@ async function init() {
     return;
   }
 
-  const puzzle = pickDaily(bank, EPOCH);
-  const saved = store(GAME_ID).loadDay(todayKey());
-  let restored = null;
-  if (saved && saved.letters === puzzle.letters) {
-    const { letters, ...rest } = saved;
-    restored = rest;
+  for (const diff of DIFFICULTIES) {
+    const puzzle = pickDaily(bank[diff], EPOCH);
+    const saved = dayStores[diff].loadDay(todayKey());
+    let state = createState();
+    if (saved && saved.letters === puzzle.letters) {
+      const { letters, ...rest } = saved;
+      state = rest;
+    }
+    sessions[diff] = { puzzle, state };
   }
-  startSession(puzzle, true, restored);
-  if (!restored) {
+
+  activeDifficulty = diffTabs(els["diff-tabs"], GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
+  loadPuzzle(sessions[activeDifficulty].puzzle);
+  updateFinishLabel();
+  renderAll();
+
+  const state = sessions[activeDifficulty].state;
+  if (state.found.length === 0 && !state.finished) {
     setMessage("Find words using the required letter.", null);
   }
 }
