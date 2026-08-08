@@ -140,15 +140,37 @@
 }
 
 .cl-tile {
+  /* .pp-tile is a square (aspect-ratio: 1) built for single-letter tiles.
+     Clusters words vary a lot in length (EYE .. BACKGAMMON).
+     1) min-width: 0 stops a grid track sizing itself to its widest word's
+        min-content, which otherwise breaks the 1fr columns' equal widths
+        and (via aspect-ratio) makes some rows visibly taller than others.
+     2) justify-items: stretch overrides pp-tile's place-items: center on
+        the inline axis only, so the implicit single-column grid inside
+        the button resolves to the button's full definite width instead of
+        shrinking to the word's own max-content width. Without it, a
+        percentage width on .cl-tile__word resolves against an "auto"
+        (content-based) track and computes as auto too, so long words
+        never wrap, they just overflow past the tile's border. */
+  min-width: 0;
+  justify-items: stretch;
   font-size: 0.92rem;
+  line-height: 1.15;
   padding: 0.4rem;
   cursor: pointer;
 }
 
+.cl-tile__word {
+  display: block;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .cl-tile[data-selected="true"] {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--g-color, var(--accent));
+  border-color: var(--g-color, var(--accent));
+  color: var(--on-accent);
 }
 
 .cl-tile:disabled {
@@ -163,24 +185,8 @@
   box-shadow: none;
 }
 
-.cl-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 1.1rem;
-}
-
-.cl-mistakes {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
 .cl-mistakes__label {
   font-size: 0.78rem;
-  color: var(--muted);
   margin-right: 0.15rem;
 }
 
@@ -199,8 +205,10 @@
 
 .cl-controls {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: 1.1rem;
 }
 
 .cl-endgame {

@@ -25,6 +25,11 @@
 <div id="pp-chrome"></div>
 
 <main id="main" class="pp-game" data-game="clusters">
+  <div class="pp-diff-row">
+    <div class="pp-difftabs" id="cl-difftabs"></div>
+    <div class="pp-status-row" id="cl-status" aria-label="Mistakes remaining"></div>
+  </div>
+
   <p class="cl-intro">Select four tiles that share a connection, then submit. Four wrong guesses and the round ends.</p>
 
   <p class="cl-banner" id="cl-banner" role="status" aria-live="polite"></p>
@@ -33,13 +38,10 @@
 
   <div class="cl-grid" id="cl-grid" role="group" aria-label="Puzzle tiles"></div>
 
-  <div class="cl-meta">
-    <div class="cl-mistakes" id="cl-mistakes" aria-label="Mistakes remaining"></div>
-    <div class="cl-controls">
-      <button type="button" class="pp-btn" id="cl-deselect">Deselect</button>
-      <button type="button" class="pp-btn" id="cl-shuffle">Shuffle</button>
-      <button type="button" class="pp-btn pp-btn--primary" id="cl-submit" disabled>Submit</button>
-    </div>
+  <div class="cl-controls">
+    <button type="button" class="pp-btn" id="cl-deselect">Deselect</button>
+    <button type="button" class="pp-btn" id="cl-shuffle">Shuffle</button>
+    <button type="button" class="pp-btn pp-btn--primary" id="cl-submit" disabled>Submit</button>
   </div>
 
   <div class="cl-endgame" id="cl-endgame" hidden>

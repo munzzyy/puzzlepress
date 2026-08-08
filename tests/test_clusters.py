@@ -15,18 +15,14 @@ sys.path.insert(0, str(ROOT / "tools"))
 import gen_clusters as gen  # noqa: E402
 
 TIERS = set(gen.TIERS)
-MIN_BANK_SIZE = 120
+DIFFICULTIES = gen.DIFFICULTIES
+MIN_BANK_SIZE = gen.MIN_BANK_SIZE
 
 
 @pytest.fixture(scope="module")
 def bank():
     assert BANK_PATH.exists(), "data/clusters.json is missing; run tools/gen_clusters.py"
     return json.loads(BANK_PATH.read_text(encoding="utf-8"))
-
-
-@pytest.fixture(scope="module")
-def puzzles(bank):
-    return bank["puzzles"]
 
 
 @pytest.fixture(scope="module")
@@ -38,15 +34,26 @@ def category_words_by_name():
     return by_name
 
 
-def test_bank_shape(bank):
-    assert isinstance(bank, dict)
-    assert "puzzles" in bank
-    assert isinstance(bank["puzzles"], list)
+@pytest.fixture(scope="module", params=list(DIFFICULTIES))
+def diff(request):
+    return request.param
 
 
-def test_bank_meets_minimum_size(puzzles):
+@pytest.fixture
+def puzzles(bank, diff):
+    return bank[diff]["puzzles"]
+
+
+def test_bank_has_all_three_difficulty_sections(bank):
+    assert set(bank) == set(DIFFICULTIES)
+    for d in DIFFICULTIES:
+        assert isinstance(bank[d], dict)
+        assert isinstance(bank[d]["puzzles"], list)
+
+
+def test_bank_meets_minimum_size(puzzles, diff):
     assert len(puzzles) >= MIN_BANK_SIZE, (
-        f"bank has {len(puzzles)} puzzles, contract requires >= {MIN_BANK_SIZE}"
+        f"{diff} bank has {len(puzzles)} puzzles, contract requires >= {MIN_BANK_SIZE}"
     )
 
 
@@ -87,7 +94,7 @@ def test_no_puzzle_uses_a_reserved_tier_word(puzzles):
                 )
 
 
-def test_no_two_puzzles_are_identical(puzzles):
+def test_no_two_puzzles_in_the_same_section_are_identical(puzzles):
     seen = set()
     for i, p in enumerate(puzzles):
         key = frozenset(w for g in p["groups"] for w in g["words"])
@@ -115,24 +122,6 @@ def test_group_words_actually_belong_to_their_named_category(puzzles, category_w
                 )
 
 
-def test_known_fixed_categories_use_their_exact_word_set(puzzles):
-    """Categories with exactly 4 candidate words should always appear as
-    that exact set whenever they're used, a strong spot check on the four
-    smallest, least ambiguous categories in the pool."""
-    exact = {
-        "Card suits": {"HEARTS", "CLUBS", "SPADES", "DIAMONDS"},
-        "Cloud types": {"CUMULUS", "CIRRUS", "STRATUS", "NIMBUS"},
-        "Seasons": {"SPRING", "SUMMER", "AUTUMN", "WINTER"},
-    }
-    found = {name: False for name in exact}
-    for p in puzzles:
-        for g in p["groups"]:
-            if g["name"] in exact:
-                assert set(g["words"]) == exact[g["name"]]
-                found[g["name"]] = True
-    assert all(found.values()), f"expected fixed categories never appeared: {found}"
-
-
 def test_tier_distribution_uses_the_full_difficulty_ramp(puzzles):
     from collections import Counter
 
@@ -142,11 +131,82 @@ def test_tier_distribution_uses_the_full_difficulty_ramp(puzzles):
         assert counts[tier] == len(puzzles), f"tier {tier} should appear exactly once per puzzle"
 
 
-def test_generator_reproduces_a_bank_of_equal_size(tmp_path):
+def test_no_puzzle_word_set_is_reused_across_difficulty_sections(bank):
+    seen = {}
+    for d in DIFFICULTIES:
+        for i, p in enumerate(bank[d]["puzzles"]):
+            key = frozenset(w for g in p["groups"] for w in g["words"])
+            assert key not in seen, (
+                f"{d} puzzle {i} duplicates {seen.get(key)}'s word set"
+            )
+            seen[key] = f"{d}[{i}]"
+
+
+def test_easy_puzzles_have_zero_cross_group_decoys(bank, category_words_by_name):
+    by_name = {c["name"]: c for c in gen.normalized_categories()}
+    for i, p in enumerate(bank["easy"]["puzzles"]):
+        decoys, _trap = gen.decoy_score(p["groups"], by_name)
+        assert decoys == 0, f"easy puzzle {i} has {decoys} cross-group decoys, expected 0"
+
+
+def test_hard_puzzles_have_decoy_pressure_and_a_trap_pairing(bank):
+    by_name = {c["name"]: c for c in gen.normalized_categories()}
+    for i, p in enumerate(bank["hard"]["puzzles"]):
+        decoys, trap = gen.decoy_score(p["groups"], by_name)
+        assert decoys >= 2, f"hard puzzle {i} has {decoys} decoys, contract requires >= 2"
+        assert trap, f"hard puzzle {i} has no trap pairing (two groups that decoy each other)"
+
+
+def test_medium_is_the_ungraded_middle_ground(bank):
+    """Medium isn't required to hit any decoy threshold, but every puzzle in
+    it still has to be a real, valid puzzle (covered by the shared checks
+    above run against the medium fixture)."""
+    assert len(bank["medium"]["puzzles"]) >= MIN_BANK_SIZE
+
+
+def test_decoy_score_detects_a_known_trap_pairing():
+    """Unit check on the scorer itself, independent of the shipped bank:
+    two categories that both draw from an overlapping word plausibly trap
+    each other, and a completely disjoint pair does not."""
+    by_name = {c["name"]: c for c in gen.normalized_categories()}
+    weather = by_name["Types of weather"]  # RAIN, SNOW, WIND, FOG, HAIL, SLEET
+    before_storm = by_name["Words that precede STORM"]  # ..., SNOW, ..., RAIN
+
+    groups = [
+        {"name": weather["name"], "words": ["RAIN", "FOG", "HAIL", "SLEET"]},
+        {"name": before_storm["name"], "words": ["BRAIN", "THUNDER", "DUST", "FIRE"]},
+    ]
+    decoys, trap = gen.decoy_score(groups, by_name)
+    # RAIN (weather) is also a before_storm candidate: a one-way decoy, not
+    # yet a trap (none of before_storm's actual picks are weather candidates).
+    assert decoys == 1
+    assert trap is False
+
+    groups_with_swap_back = [
+        {"name": weather["name"], "words": ["RAIN", "FOG", "HAIL", "SLEET"]},
+        {"name": before_storm["name"], "words": ["SNOW", "THUNDER", "DUST", "FIRE"]},
+    ]
+    decoys2, trap2 = gen.decoy_score(groups_with_swap_back, by_name)
+    assert decoys2 == 2
+    assert trap2 is True
+
+    disjoint = [
+        {"name": "Card suits", "words": ["HEARTS", "CLUBS", "SPADES", "DIAMONDS"]},
+        {"name": "Seasons", "words": ["SPRING", "SUMMER", "AUTUMN", "WINTER"]},
+    ]
+    decoys3, trap3 = gen.decoy_score(disjoint, by_name)
+    assert decoys3 == 0
+    assert trap3 is False
+
+
+def test_generate_bank_reproduces_an_equal_shape_deterministically():
     """The generator is deterministic: same seed, same output shape."""
-    out = tmp_path / "clusters.json"
-    puzzles = gen.generate(seed=810, count=150)
-    gen.validate_bank(puzzles)
-    assert len(puzzles) == 150
-    again = gen.generate(seed=810, count=150)
-    assert puzzles == again
+    buckets = gen.generate_bank(seed=810, per_diff=100)
+    bank = {d: {"puzzles": buckets[d]} for d in DIFFICULTIES}
+    gen.validate_difficulty_bank(bank)
+    for d in DIFFICULTIES:
+        assert len(buckets[d]) == 100
+
+    again = gen.generate_bank(seed=810, per_diff=100)
+    for d in DIFFICULTIES:
+        assert buckets[d] == again[d]

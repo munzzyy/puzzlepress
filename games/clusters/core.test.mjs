@@ -202,3 +202,17 @@ test("formatShare reports a perfect solve distinctly from a solve with mistakes"
   }
   assert.match(formatShare("Clusters #1", state), /Perfect solve/);
 });
+
+// v2 difficulty tiers (easy/medium/hard) are a bank-selection and UI
+// concern owned by game.js, not a reducer concept: every difficulty plays
+// the same puzzle shape through the same state machine above. The one
+// integration point core.js owns is the opaque puzzleLabel formatShare
+// takes, so this pins the exact difficulty-tagged label game.js builds
+// (e.g. "Clusters Hard #3") flows through unchanged.
+test("formatShare passes a difficulty-tagged label through untouched", () => {
+  let state = createState(initialOrder(puzzle()));
+  for (const i of [0, 1, 2, 3]) state = toggleTile(state, i);
+  state = submitGuess(puzzle(), state);
+  const text = formatShare("Clusters Hard #3", state);
+  assert.match(text, /^Clusters Hard #3\n/);
+});

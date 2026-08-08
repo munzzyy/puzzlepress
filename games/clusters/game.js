@@ -6,25 +6,34 @@ import {
   share,
   toast,
   confettiBurst,
+  diffTabs,
 } from "../../assets/shared.js";
 import * as core from "./core.js";
 
 const GAME_ID = "clusters";
 const EPOCH = "2026-08-10";
 const BANK_URL = new URL("../../data/clusters.json", import.meta.url);
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 
 const HELP_HTML =
   "<p>Sixteen tiles hide four groups of four. Pick four tiles that share a connection, then submit.</p>" +
   "<p>A correct guess locks in a colored row, ordered easiest (sand) to trickiest (plum).</p>" +
   "<p>You get four mistakes before the round ends and the remaining groups are revealed.</p>" +
-  "<p>Watch for tiles that could plausibly belong to more than one group. That overlap is the trap.</p>";
+  "<p>Watch for tiles that could plausibly belong to more than one group. That overlap is the trap, " +
+  "and Hard puzzles lean into it hardest.</p>" +
+  "<p>Easy, Medium, and Hard each carry their own puzzle for the day and their own streak.</p>";
 
 const els = {};
-let puzzle = null;
-let state = null;
-let mode = "daily"; // "daily" | "random"
-let bankRef = null;
-let dailyIndex = 0;
+let bank = null; // { easy: {puzzles}, medium: {puzzles}, hard: {puzzles} }
+let activeDifficulty = "medium";
+
+// Per-difficulty runtime data for today's puzzles.
+const puzzles = {}; // difficulty -> puzzle
+const states = {}; // difficulty -> state
+const dailyIndexes = {}; // difficulty -> index into that difficulty's bank
+
+let freePlay = null; // { difficulty, puzzle, state } or null
 let bannerTimer = null;
 
 function q(id) {
@@ -38,10 +47,11 @@ function esc(s) {
 }
 
 function cacheEls() {
+  els.difftabs = q("cl-difftabs");
+  els.status = q("cl-status");
   els.banner = q("cl-banner");
   els.solved = q("cl-solved");
   els.grid = q("cl-grid");
-  els.mistakes = q("cl-mistakes");
   els.deselect = q("cl-deselect");
   els.shuffle = q("cl-shuffle");
   els.submit = q("cl-submit");
@@ -51,14 +61,35 @@ function cacheEls() {
   els.randomBtn = q("cl-random");
 }
 
-function puzzleLabel() {
-  return mode === "daily" ? `Clusters #${dailyIndex + 1}` : "Clusters, random puzzle";
+// ---------- current puzzle/state (daily per difficulty, or free play) ----------
+
+function currentPuzzle() {
+  return freePlay ? freePlay.puzzle : puzzles[activeDifficulty];
 }
 
+function currentState() {
+  return freePlay ? freePlay.state : states[activeDifficulty];
+}
+
+function setCurrentState(next) {
+  if (freePlay) freePlay.state = next;
+  else states[activeDifficulty] = next;
+}
+
+function puzzleLabel() {
+  const label = LABELS[activeDifficulty];
+  return freePlay
+    ? `Clusters ${label}, random puzzle`
+    : `Clusters ${label} #${dailyIndexes[activeDifficulty] + 1}`;
+}
+
+// ---------- persistence ----------
+
 function persist() {
-  if (mode !== "daily") return;
-  store(GAME_ID).saveDay({
-    puzzleIndex: dailyIndex,
+  if (freePlay) return;
+  const state = states[activeDifficulty];
+  store(GAME_ID, activeDifficulty).saveDay({
+    puzzleIndex: dailyIndexes[activeDifficulty],
     order: state.order,
     solvedGroups: state.solvedGroups,
     mistakes: state.mistakes,
@@ -66,11 +97,14 @@ function persist() {
   });
 }
 
-function persistStatsIfDone() {
-  if (mode !== "daily") return;
+function persistStatsIfDone(difficulty) {
+  if (freePlay) return;
+  const state = states[difficulty];
   if (!core.isOver(state)) return;
-  recordResult(GAME_ID, state.status === "won");
+  recordResult(GAME_ID, state.status === "won", difficulty);
 }
+
+// ---------- rendering ----------
 
 function showBanner(msg) {
   if (!msg) return;
@@ -82,6 +116,11 @@ function showBanner(msg) {
   }, 1800);
 }
 
+function hideBanner() {
+  window.clearTimeout(bannerTimer);
+  els.banner.classList.remove("cl-banner--visible");
+}
+
 function bannerMessage(lastResult) {
   if (!lastResult) return "";
   if (lastResult.type === "oneAway") return "One away.";
@@ -90,10 +129,11 @@ function bannerMessage(lastResult) {
 }
 
 function tileWord(flatIndex) {
-  return core.flattenPuzzle(puzzle)[flatIndex].word;
+  return core.flattenPuzzle(currentPuzzle())[flatIndex].word;
 }
 
 function renderSolved() {
+  const state = currentState();
   els.solved.innerHTML = state.solvedGroups
     .map((g) => {
       const words = g.words.join(", ");
@@ -107,15 +147,17 @@ function renderSolved() {
     .join("");
 }
 
-function renderMistakes() {
+function renderStatus() {
+  const state = currentState();
   const used = state.mistakes;
   const dots = Array.from({ length: core.MAX_MISTAKES }, (_, i) =>
     `<span class="cl-mistakes__dot" data-used="${i < used ? "true" : "false"}"></span>`
   ).join("");
-  els.mistakes.innerHTML = `<span class="cl-mistakes__label">Mistakes</span>${dots}`;
+  els.status.innerHTML = `<span class="cl-mistakes__label">Mistakes</span>${dots}`;
 }
 
 function renderGrid() {
+  const state = currentState();
   els.grid.innerHTML = state.order
     .map((flatIndex) => {
       const word = tileWord(flatIndex);
@@ -123,7 +165,7 @@ function renderGrid() {
       return (
         `<button type="button" class="pp-tile cl-tile" data-flat="${flatIndex}" ` +
         `data-selected="${selected ? "true" : "false"}" aria-pressed="${selected ? "true" : "false"}">` +
-        `${esc(word)}</button>`
+        `<span class="cl-tile__word">${esc(word)}</span></button>`
       );
     })
     .join("");
@@ -134,6 +176,7 @@ function renderGrid() {
 }
 
 function renderControls() {
+  const state = currentState();
   const over = core.isOver(state);
   els.submit.disabled = over || state.selected.length !== core.GROUP_SIZE;
   els.deselect.disabled = over || state.selected.length === 0;
@@ -141,6 +184,7 @@ function renderControls() {
 }
 
 function renderEndgame() {
+  const state = currentState();
   if (!core.isOver(state)) {
     els.endgame.hidden = true;
     return;
@@ -158,16 +202,18 @@ function renderEndgame() {
 function renderAll() {
   renderSolved();
   renderGrid();
-  renderMistakes();
+  renderStatus();
   renderControls();
   renderEndgame();
 }
 
+// ---------- gameplay actions ----------
+
 function onTileClick(e) {
   const flatIndex = Number(e.currentTarget.dataset.flat);
-  state = core.toggleTile(state, flatIndex);
+  setCurrentState(core.toggleTile(currentState(), flatIndex));
   const btn = e.currentTarget;
-  const selected = state.selected.includes(flatIndex);
+  const selected = currentState().selected.includes(flatIndex);
   btn.dataset.selected = selected ? "true" : "false";
   btn.setAttribute("aria-pressed", selected ? "true" : "false");
   if (selected) {
@@ -194,60 +240,83 @@ function onGridKeydown(e) {
 }
 
 function onSubmit() {
-  const prevStatus = state.status;
-  state = core.submitGuess(puzzle, state);
-  showBanner(bannerMessage(state.lastResult));
+  const prevStatus = currentState().status;
+  const next = core.submitGuess(currentPuzzle(), currentState());
+  setCurrentState(next);
+  showBanner(bannerMessage(next.lastResult));
   renderAll();
   persist();
-  persistStatsIfDone();
-  if (state.status === "won" && prevStatus === "playing") confettiBurst();
+  persistStatsIfDone(activeDifficulty);
+  if (next.status === "won" && prevStatus === "playing") confettiBurst();
 }
 
 function onDeselect() {
-  state = core.deselectAll(state);
+  setCurrentState(core.deselectAll(currentState()));
   renderGrid();
   renderControls();
 }
 
 function onShuffle() {
-  state = core.shuffleBoard(state);
+  setCurrentState(core.shuffleBoard(currentState()));
   renderGrid();
   persist();
 }
 
 function onRandom() {
-  const puzzles = bankRef.puzzles;
-  let idx = dailyIndex;
-  if (puzzles.length > 1) {
-    while (idx === dailyIndex) idx = Math.floor(Math.random() * puzzles.length);
+  const list = bank[activeDifficulty].puzzles;
+  const todaysIndex = dailyIndexes[activeDifficulty];
+  let idx = todaysIndex;
+  if (list.length > 1) {
+    while (idx === todaysIndex) idx = Math.floor(Math.random() * list.length);
   } else {
     idx = 0;
   }
-  puzzle = puzzles[idx];
-  mode = "random";
-  state = core.createState(core.shuffle(core.initialOrder(puzzle)));
-  els.banner.classList.remove("cl-banner--visible");
+  const puzzle = list[idx];
+  freePlay = {
+    difficulty: activeDifficulty,
+    puzzle,
+    state: core.createState(core.shuffle(core.initialOrder(puzzle))),
+  };
+  hideBanner();
   renderAll();
 }
 
-async function onShare() {
-  await share(core.formatShare(puzzleLabel(), state));
+function exitFreePlay() {
+  freePlay = null;
 }
 
-function restoreOrCreate(bank) {
-  dailyIndex = ((dayIndex(EPOCH) % bank.puzzles.length) + bank.puzzles.length) % bank.puzzles.length;
-  puzzle = bank.puzzles[dailyIndex];
+async function onShare() {
+  await share(core.formatShare(puzzleLabel(), currentState()));
+}
+
+// ---------- difficulty tabs ----------
+
+function switchDifficulty(difficulty) {
+  if (freePlay) exitFreePlay();
+  activeDifficulty = difficulty;
+  hideBanner();
+  renderAll();
+}
+
+// ---------- boot ----------
+
+function restoreOrCreate(difficulty, section) {
+  const list = section.puzzles;
+  const idx = ((dayIndex(EPOCH) % list.length) + list.length) % list.length;
+  dailyIndexes[difficulty] = idx;
+  const puzzle = list[idx];
+  puzzles[difficulty] = puzzle;
 
   // saved.puzzleIndex ties the payload to the puzzle it was played on, so a
   // bank or epoch change never restores another puzzle's groups here.
-  const saved = store(GAME_ID).loadDay();
+  const saved = store(GAME_ID, difficulty).loadDay();
   if (
     saved &&
-    saved.puzzleIndex === dailyIndex &&
+    saved.puzzleIndex === idx &&
     Array.isArray(saved.order) &&
     Array.isArray(saved.solvedGroups)
   ) {
-    state = {
+    states[difficulty] = {
       order: saved.order,
       selected: [],
       solvedGroups: saved.solvedGroups,
@@ -256,7 +325,7 @@ function restoreOrCreate(bank) {
       lastResult: null,
     };
   } else {
-    state = core.createState(core.shuffle(core.initialOrder(puzzle)));
+    states[difficulty] = core.createState(core.shuffle(core.initialOrder(puzzle)));
   }
 }
 
@@ -273,11 +342,19 @@ async function init() {
 
   try {
     const res = await fetch(BANK_URL);
-    const bank = await res.json();
-    bankRef = bank;
-    restoreOrCreate(bank);
+    bank = await res.json();
+
+    for (const difficulty of DIFFICULTIES) {
+      restoreOrCreate(difficulty, bank[difficulty]);
+    }
+
+    activeDifficulty = diffTabs(els.difftabs, GAME_ID, switchDifficulty, "medium");
+
+    for (const difficulty of DIFFICULTIES) {
+      persistStatsIfDone(difficulty);
+    }
+
     renderAll();
-    persistStatsIfDone();
   } catch (err) {
     toast("Could not load today's puzzle.");
   }

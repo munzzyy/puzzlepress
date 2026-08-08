@@ -2,9 +2,11 @@
 """Deterministic generator for the Clusters puzzle bank.
 
 Builds daily puzzles from a hand-curated category pool below. Each puzzle
-is four categories, one per difficulty tier (sand, amber, ink, plum from
-easiest to hardest), four unique words per category, sixteen unique words
-total on the board.
+is four categories, one per within-puzzle tier (sand, amber, ink, plum from
+easiest to hardest group), four unique words per category, sixteen unique
+words total on the board. That tier ramp is a separate axis from the v2
+easy/medium/hard bank difficulty below: every puzzle in every difficulty
+still has one group of each tier.
 
 Categories deliberately share candidate words with each other on purpose
 (a stone-fruit category and a color category both offer PLUM, several
@@ -15,7 +17,17 @@ whichever category was assigned first and falling back to another of that
 category's candidates for the loser, so the finished puzzle still reads as
 a deliberate near-miss trap for the player rather than a generation bug.
 
-Usage: python3 tools/gen_clusters.py [--seed N] [--count N] [--out PATH]
+v2 bank difficulty (easy/medium/hard) grades that same overlap instead of
+just avoiding it: a "decoy" is a word placed in one group that also
+appears on ANOTHER of the puzzle's groups' candidate lists, so a player
+could plausibly (if wrongly) sort it there. A "trap pairing" is the
+stronger, two-way case: two groups that each contain a decoy for the
+other, so the pair of categories could plausibly swap a word. Easy
+puzzles have zero decoys (the four themes are cleanly distinct). Hard
+puzzles need at least 2 decoys AND one trap pairing. Medium is the
+generator's un-graded standard output, same as v1.
+
+Usage: python3 tools/gen_clusters.py [--seed N] [--per-diff N] [--out PATH]
 """
 import argparse
 import json
@@ -296,6 +308,9 @@ def build_puzzle(rng, by_tier, used_combos, used_word_sets, max_attempts=200):
 
 
 def generate(seed, count):
+    """Un-graded generation: `count` distinct puzzles, no difficulty scoring.
+    Kept for its determinism guarantee (tested); `generate_bank` below is
+    what actually ships the v2 easy/medium/hard bank."""
     rng = random.Random(seed)
     cats = normalized_categories()
     by_tier = categories_by_tier(cats)
@@ -313,6 +328,96 @@ def generate(seed, count):
             continue
         puzzles.append(puzzle)
     return puzzles
+
+
+DIFFICULTIES = ("easy", "medium", "hard")
+
+
+def decoy_score(groups, by_name):
+    """(decoy_count, has_trap_pairing) for one puzzle's groups.
+
+    A word is a decoy if it was placed in group X but also appears on the
+    full candidate list of some other group Y in the same puzzle (a player
+    could plausibly sort it into Y instead). decoy_count is the number of
+    distinct (group, word) decoys on the board. A trap pairing is a pair of
+    groups X != Y that decoy each other both ways: some word in X is a Y
+    candidate AND some word in Y is an X candidate, so the pair could
+    plausibly swap a tile.
+    """
+    n = len(groups)
+    candidates = [set(by_name[g["name"]]["words"]) for g in groups]
+    decoys = set()
+    for i in range(n):
+        others = set()
+        for j in range(n):
+            if j != i:
+                others |= candidates[j]
+        for w in groups[i]["words"]:
+            if w in others:
+                decoys.add((i, w))
+
+    trap = False
+    for i in range(n):
+        for j in range(i + 1, n):
+            i_into_j = any(w in candidates[j] for w in groups[i]["words"])
+            j_into_i = any(w in candidates[i] for w in groups[j]["words"])
+            if i_into_j and j_into_i:
+                trap = True
+                break
+        if trap:
+            break
+
+    return len(decoys), trap
+
+
+def classify(groups, by_name):
+    decoys, trap = decoy_score(groups, by_name)
+    if decoys == 0:
+        return "easy"
+    if decoys >= 2 and trap:
+        return "hard"
+    return "medium"
+
+
+def generate_bank(seed, per_diff, max_attempts=400000):
+    """Builds the v2 bank: >= per_diff distinct puzzles per difficulty,
+    drawn from one shared RNG stream so no puzzle (word set) repeats across
+    difficulties either. easy/hard are graded by decoy_score; whatever
+    doesn't match either bucket (or overflow once a bucket is full) lands
+    in medium, same distribution the un-graded v1 generator always shipped.
+    """
+    rng = random.Random(seed)
+    cats = normalized_categories()
+    by_tier = categories_by_tier(cats)
+    by_name = {c["name"]: c for c in cats}
+    for tier in TIERS:
+        assert len(by_tier[tier]) >= 4, f"need more {tier} categories"
+
+    used_combos = set()
+    used_word_sets = set()
+    buckets = {d: [] for d in DIFFICULTIES}
+
+    attempts = 0
+    while attempts < max_attempts and any(len(buckets[d]) < per_diff for d in DIFFICULTIES):
+        attempts += 1
+        puzzle = build_puzzle(rng, by_tier, used_combos, used_word_sets)
+        if puzzle is None:
+            continue
+        diff = classify(puzzle["groups"], by_name)
+        if len(buckets[diff]) < per_diff:
+            buckets[diff].append(puzzle)
+        elif len(buckets["medium"]) < per_diff:
+            # a full easy/hard bucket's overflow is unremarkable medium fare
+            buckets["medium"].append(puzzle)
+
+    for d in DIFFICULTIES:
+        if len(buckets[d]) < per_diff:
+            print(
+                f"warning: only generated {len(buckets[d])} of {per_diff} {d} puzzles "
+                "(category pool exhausted before hitting the target)",
+                file=sys.stderr,
+            )
+    return buckets
 
 
 def validate_bank(puzzles):
@@ -344,27 +449,58 @@ def validate_bank(puzzles):
         seen_word_sets.add(word_set_key)
 
 
+MIN_BANK_SIZE = 80
+
+
+def validate_difficulty_bank(bank, by_name=None):
+    """Validates the shipped {easy, medium, hard} shape: every section
+    passes the plain per-puzzle checks, meets the contract's >= 80 minimum,
+    matches its difficulty's decoy predicate, and no puzzle's word set is
+    reused across sections."""
+    if by_name is None:
+        by_name = {c["name"]: c for c in normalized_categories()}
+
+    assert set(bank) == set(DIFFICULTIES), f"bank sections {set(bank)} != {set(DIFFICULTIES)}"
+
+    seen_across_sections = set()
+    for diff in DIFFICULTIES:
+        section = bank[diff]
+        puzzles = section["puzzles"] if isinstance(section, dict) else section
+        assert len(puzzles) >= MIN_BANK_SIZE, (
+            f"{diff}: {len(puzzles)} puzzles, contract requires >= {MIN_BANK_SIZE}"
+        )
+        validate_bank(puzzles)
+
+        for i, p in enumerate(puzzles):
+            key = frozenset(w for g in p["groups"] for w in g["words"])
+            assert key not in seen_across_sections, f"{diff} puzzle {i} duplicates a puzzle in another section"
+            seen_across_sections.add(key)
+
+            decoys, trap = decoy_score(p["groups"], by_name)
+            if diff == "easy":
+                assert decoys == 0, f"easy puzzle {i} has {decoys} decoys, expected 0"
+            elif diff == "hard":
+                assert decoys >= 2, f"hard puzzle {i} has {decoys} decoys, expected >= 2"
+                assert trap, f"hard puzzle {i} has no trap pairing"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=810, help="RNG seed (default 810)")
-    parser.add_argument("--count", type=int, default=150, help="target puzzle count")
+    parser.add_argument("--per-diff", type=int, default=100, help="target puzzle count per difficulty")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT, help="output JSON path")
     args = parser.parse_args()
 
-    puzzles = generate(args.seed, args.count)
-    validate_bank(puzzles)
+    buckets = generate_bank(args.seed, args.per_diff)
+    bank = {d: {"puzzles": buckets[d]} for d in DIFFICULTIES}
+    validate_difficulty_bank(bank)
 
-    bank = {"puzzles": puzzles}
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(bank, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    if len(puzzles) < args.count:
-        print(
-            f"warning: only generated {len(puzzles)} of {args.count} requested puzzles "
-            "(category pool exhausted before hitting the target)",
-            file=sys.stderr,
-        )
-    print(f"wrote {len(puzzles)} puzzles to {args.out}")
+    for d in DIFFICULTIES:
+        print(f"{d}: {len(buckets[d])} puzzles")
+    print(f"wrote bank to {args.out}")
 
 
 if __name__ == "__main__":
