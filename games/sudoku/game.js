@@ -1,4 +1,4 @@
-import { pickDaily, store, recordResult, share, confettiBurst, initChrome } from "../../assets/shared.js";
+import { pickDaily, store, diffTabs, recordResult, share, confettiBurst, initChrome } from "../../assets/shared.js";
 import {
   parseCells,
   peersOf,
@@ -15,15 +15,72 @@ const GAME_ID = "sudoku";
 const DIFFICULTIES = ["easy", "medium", "hard"];
 const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 const SAVE_INTERVAL_MS = 4000;
+const DEFAULT_DIFFICULTY = "easy";
 
 const HELP_HTML =
   "<p>Fill every row, column, and 3x3 box with the digits 1 through 9, no repeats. " +
   "Given numbers are locked in place. Select a cell, then pick a number to fill it, " +
   "or switch on Notes first to jot pencil marks instead. Easy, Medium, and Hard each " +
-  "carry their own puzzle for the day, and your streak counts the first one you finish. " +
+  "carry their own puzzle, streak, and stats for the day. " +
   "Undo, erase, and the error highlight toggle are there whenever you want the help.</p>";
 
-const dayStore = store(GAME_ID);
+// Pre-v2 sudoku kept every difficulty's board under one combined day key and
+// one shared meta, so the generic shared.js migration skips this game
+// entirely (see shared.js's migrateLegacy). This carries that bespoke shape
+// onto the new pp.sudoku.<diff>.day.* / pp.sudoku.<diff>.meta keys once. Day
+// state already had a natural home per difficulty, so it moves there intact;
+// the old streak/played/wins meta was a single number with no per-difficulty
+// history to preserve, so it lands on medium, same as every other game's
+// legacy meta migration.
+function migrateLegacySudoku() {
+  try {
+    const flagKey = `pp.${GAME_ID}.migrated`;
+    if (localStorage.getItem(flagKey) === "1") return;
+
+    const dayPrefix = `pp.${GAME_ID}.day.`;
+    const legacyDayKeys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(dayPrefix)) legacyDayKeys.push(key);
+    }
+    for (const key of legacyDayKeys) {
+      const dateKey = key.slice(dayPrefix.length);
+      let payload = null;
+      try {
+        payload = JSON.parse(localStorage.getItem(key));
+      } catch {
+        payload = null;
+      }
+      if (payload && typeof payload === "object") {
+        for (const difficulty of DIFFICULTIES) {
+          const diffPayload = payload[difficulty];
+          if (!diffPayload) continue;
+          const newKey = `pp.${GAME_ID}.${difficulty}.day.${dateKey}`;
+          if (localStorage.getItem(newKey) == null) {
+            localStorage.setItem(newKey, JSON.stringify(diffPayload));
+          }
+        }
+      }
+      localStorage.removeItem(key);
+    }
+
+    const legacyMetaKey = `pp.${GAME_ID}.meta`;
+    const legacyMeta = localStorage.getItem(legacyMetaKey);
+    if (legacyMeta != null) {
+      const newMetaKey = `pp.${GAME_ID}.medium.meta`;
+      if (localStorage.getItem(newMetaKey) == null) {
+        localStorage.setItem(newMetaKey, legacyMeta);
+      }
+      localStorage.removeItem(legacyMetaKey);
+    }
+
+    localStorage.setItem(flagKey, "1");
+  } catch {
+    /* storage unavailable: nothing to migrate, nothing to break */
+  }
+}
+
+let dayStores = null; // difficulty -> store(GAME_ID, difficulty), built after migration
 
 let bank = null;
 let activeDifficulty = "easy";
@@ -53,7 +110,7 @@ function cacheEls() {
   el.status = qs("status");
   el.donePanel = qs("done-panel");
   el.doneMessage = qs("done-message");
-  el.tabs = Array.from(document.querySelectorAll(".sk-tab"));
+  el.diffTabsMount = qs("diff-tabs");
   el.undoBtn = document.querySelector('[data-action="undo"]');
   el.notesBtn = document.querySelector('[data-action="notes"]');
   el.errorsBtn = document.querySelector('[data-action="errors"]');
@@ -112,7 +169,6 @@ function firstEditableIndex(state) {
 }
 
 function loadToday() {
-  const saved = dayStore.loadDay() || {};
   for (const difficulty of DIFFICULTIES) {
     const entry = pickDaily(bank[difficulty], EPOCH);
     const solution = parseCells(entry.solution);
@@ -121,7 +177,7 @@ function loadToday() {
     // Only restore state that was saved against this exact board. A stale
     // payload (bank edit, epoch change) would otherwise lock wrong digits
     // into the new puzzle's given cells.
-    const savedRaw = saved[difficulty];
+    const savedRaw = dayStores[difficulty].loadDay();
     const savedFor = savedRaw && savedRaw.puzzle === entry.puzzle ? savedRaw : null;
     const state = stateFromSaved(entry.puzzle, savedFor);
     states[difficulty] = state;
@@ -132,17 +188,15 @@ function loadToday() {
 }
 
 function saveToday() {
-  const payload = {};
   for (const difficulty of DIFFICULTIES) {
-    payload[difficulty] = {
+    dayStores[difficulty].saveDay({
       puzzle: puzzles[difficulty].puzzle,
       values: states[difficulty].values,
       marks: states[difficulty].marks,
       elapsedMs: elapsedFor(difficulty),
       done: solvedToday[difficulty],
-    };
+    });
   }
-  dayStore.saveDay(payload);
 }
 
 function scheduleSave() {
@@ -360,7 +414,7 @@ function checkWin() {
     t.elapsedMs += performance.now() - t.runningSince;
     t.runningSince = null;
   }
-  recordResult(GAME_ID, true);
+  recordResult(GAME_ID, true, activeDifficulty);
   confettiBurst();
   showDone(t.elapsedMs, false);
 }
@@ -389,10 +443,6 @@ function switchDifficulty(difficulty) {
   if (freePlay) exitFreePlay();
   pauseAllTimers();
   activeDifficulty = difficulty;
-  for (const tab of el.tabs) {
-    const isActive = tab.dataset.difficulty === difficulty;
-    tab.setAttribute("aria-selected", String(isActive));
-  }
   hideDone();
   if (solvedToday[difficulty]) {
     showDone(elapsedFor(difficulty), false);
@@ -465,10 +515,6 @@ function onBoardKeydown(e) {
 }
 
 function wireToolbar() {
-  for (const tab of el.tabs) {
-    tab.addEventListener("click", () => switchDifficulty(tab.dataset.difficulty));
-  }
-
   el.undoBtn.addEventListener("click", () => {
     if (isDone()) return;
     const state = currentState();
@@ -524,6 +570,9 @@ async function main() {
   cacheEls();
   initChrome({ id: GAME_ID, name: "Sudoku", hubHref: "../../index.html", helpHTML: HELP_HTML });
 
+  migrateLegacySudoku();
+  dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
+
   try {
     bank = await loadBank();
   } catch (err) {
@@ -536,11 +585,8 @@ async function main() {
   buildPad();
   wireToolbar();
 
-  activeDifficulty = "easy";
-  for (const tab of el.tabs) {
-    tab.setAttribute("aria-selected", String(tab.dataset.difficulty === "easy"));
-  }
-  if (solvedToday.easy) showDone(elapsedFor("easy"), false);
+  activeDifficulty = diffTabs(el.diffTabsMount, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
+  if (solvedToday[activeDifficulty]) showDone(elapsedFor(activeDifficulty), false);
   resumeActiveTimer();
   renderBoard();
   tick();

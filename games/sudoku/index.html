@@ -25,14 +25,14 @@
 <div id="pp-chrome"></div>
 
 <main class="pp-game pp-game--wide sk-game" id="main">
-  <div class="sk-tabs" role="tablist" aria-label="Difficulty">
-    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="easy" aria-selected="false">Easy</button>
-    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="medium" aria-selected="false">Medium</button>
-    <button type="button" class="sk-tab pp-btn" role="tab" data-difficulty="hard" aria-selected="false">Hard</button>
+  <div class="pp-diff-row">
+    <div id="diff-tabs"></div>
+    <div class="pp-status-row">
+      <span class="sk-timer" id="timer" aria-label="Time elapsed">0:00</span>
+    </div>
   </div>
 
   <div class="sk-toolbar">
-    <div class="sk-timer" id="timer" aria-label="Time elapsed">0:00</div>
     <div class="sk-tools">
       <button type="button" class="pp-icon-btn" data-action="undo" aria-label="Undo">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
