@@ -29,13 +29,53 @@
   --font-display: Georgia, "Times New Roman", Cambria, serif;
   --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
-  --focus-ring: 0 0 0 3px rgba(30, 58, 95, 0.35);
+  --on-accent: #fff;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--g-color, var(--accent)) 35%, transparent);
   --motion-fast: 120ms;
   --motion-med: 220ms;
   --motion-slow: 420ms;
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
   color-scheme: light;
+
+  /* Per-game identity colors. Light values here are dark/saturated enough
+     for white text at AA; dark-theme values below are light pastels meant
+     for --on-accent (dark ink) text instead. Soft tints are derived once,
+     from --surface, so they track theme changes automatically. */
+  --g-wordrow: #24478c;
+  --g-clusters: #7a3568;
+  --g-heptagram: #9c6210;
+  --g-minigrid: #1b6e68;
+  --g-wordweave: #4f6b28;
+  --g-edgeways: #a8480f;
+  --g-sudoku: #4b5768;
+  --g-wordrow-soft: color-mix(in srgb, var(--g-wordrow) 16%, var(--surface));
+  --g-clusters-soft: color-mix(in srgb, var(--g-clusters) 16%, var(--surface));
+  --g-heptagram-soft: color-mix(in srgb, var(--g-heptagram) 16%, var(--surface));
+  --g-minigrid-soft: color-mix(in srgb, var(--g-minigrid) 16%, var(--surface));
+  --g-wordweave-soft: color-mix(in srgb, var(--g-wordweave) 16%, var(--surface));
+  --g-edgeways-soft: color-mix(in srgb, var(--g-edgeways) 16%, var(--surface));
+  --g-sudoku-soft: color-mix(in srgb, var(--g-sudoku) 16%, var(--surface));
 }
+
+/* Maps the data-game attribute (set by initChrome on <html>, and by the hub
+   on each card) onto the two working custom properties every themed
+   component reads: --g-color and --g-color-soft. Components fall back to
+   --accent when neither is set, so untagged chrome is unaffected. */
+[data-game="wordrow"] { --g-color: var(--g-wordrow); --g-color-soft: var(--g-wordrow-soft); }
+[data-game="clusters"] { --g-color: var(--g-clusters); --g-color-soft: var(--g-clusters-soft); }
+[data-game="heptagram"] { --g-color: var(--g-heptagram); --g-color-soft: var(--g-heptagram-soft); }
+[data-game="minigrid"] { --g-color: var(--g-minigrid); --g-color-soft: var(--g-minigrid-soft); }
+[data-game="wordweave"] { --g-color: var(--g-wordweave); --g-color-soft: var(--g-wordweave-soft); }
+[data-game="edgeways"] { --g-color: var(--g-edgeways); --g-color-soft: var(--g-edgeways-soft); }
+[data-game="sudoku"] { --g-color: var(--g-sudoku); --g-color-soft: var(--g-sudoku-soft); }
+
+[data-game="wordrow"] .pp-card__glyph { mask-image: url(icons/wordrow.svg); -webkit-mask-image: url(icons/wordrow.svg); }
+[data-game="clusters"] .pp-card__glyph { mask-image: url(icons/clusters.svg); -webkit-mask-image: url(icons/clusters.svg); }
+[data-game="heptagram"] .pp-card__glyph { mask-image: url(icons/heptagram.svg); -webkit-mask-image: url(icons/heptagram.svg); }
+[data-game="minigrid"] .pp-card__glyph { mask-image: url(icons/minigrid.svg); -webkit-mask-image: url(icons/minigrid.svg); }
+[data-game="wordweave"] .pp-card__glyph { mask-image: url(icons/wordweave.svg); -webkit-mask-image: url(icons/wordweave.svg); }
+[data-game="edgeways"] .pp-card__glyph { mask-image: url(icons/edgeways.svg); -webkit-mask-image: url(icons/edgeways.svg); }
+[data-game="sudoku"] .pp-card__glyph { mask-image: url(icons/sudoku.svg); -webkit-mask-image: url(icons/sudoku.svg); }
 
 [data-theme="dark"] {
   --bg: #14161a;
@@ -54,8 +94,17 @@
   --tile-absent: #565048;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.45);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --focus-ring: 0 0 0 3px rgba(111, 156, 202, 0.45);
+  --on-accent: var(--bg);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--g-color, var(--accent)) 45%, transparent);
   color-scheme: dark;
+
+  --g-wordrow: #7fa6dc;
+  --g-clusters: #cf8ebd;
+  --g-heptagram: #e0a94a;
+  --g-minigrid: #6cc4bd;
+  --g-wordweave: #a9c37a;
+  --g-edgeways: #e08a52;
+  --g-sudoku: #9aa6b8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,8 +125,17 @@
     --tile-absent: #565048;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.45);
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-    --focus-ring: 0 0 0 3px rgba(111, 156, 202, 0.45);
+    --on-accent: var(--bg);
+    --focus-ring: 0 0 0 3px color-mix(in srgb, var(--g-color, var(--accent)) 45%, transparent);
     color-scheme: dark;
+
+    --g-wordrow: #7fa6dc;
+    --g-clusters: #cf8ebd;
+    --g-heptagram: #e0a94a;
+    --g-minigrid: #6cc4bd;
+    --g-wordweave: #a9c37a;
+    --g-edgeways: #e08a52;
+    --g-sudoku: #9aa6b8;
   }
 }
 
@@ -240,6 +298,18 @@ ul {
   font-size: 1.05rem;
 }
 
+.pp-progress {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pp-progress__count {
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ---------- theme toggle ---------- */
 
 .pp-theme-toggle {
@@ -270,8 +340,26 @@ ul {
 .pp-grid {
   padding: 2.25rem 0 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.1rem;
+}
+
+@media (min-width: 560px) {
+  .pp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 860px) {
+  .pp-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1180px) {
+  .pp-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .pp-card {
@@ -281,8 +369,9 @@ ul {
   gap: 0.85rem;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--g-color, var(--line));
   border-radius: var(--radius);
-  padding: 1.4rem 1.4rem 1.2rem;
+  padding: 1.3rem 1.4rem 1.2rem;
   text-decoration: none;
   color: var(--text);
   box-shadow: var(--shadow-sm);
@@ -293,13 +382,13 @@ ul {
 .pp-card:hover,
 .pp-card:focus-visible {
   transform: translateY(-3px);
-  box-shadow: var(--shadow);
-  border-color: var(--accent);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--g-color, var(--accent)) 24%, transparent), var(--shadow-sm);
+  border-color: var(--g-color, var(--accent));
 }
 
 .pp-card:focus-visible {
   outline: none;
-  box-shadow: var(--shadow), var(--focus-ring);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--g-color, var(--accent)) 24%, transparent), var(--focus-ring);
 }
 
 .pp-card__top {
@@ -310,18 +399,32 @@ ul {
 }
 
 .pp-card__icon {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  background: var(--g-color-soft, var(--surface-2));
   display: grid;
   place-items: center;
   flex: none;
+  transition: background-color var(--motion-med) var(--ease);
 }
 
-.pp-card__icon img {
-  width: 1.6rem;
-  height: 1.6rem;
+.pp-card__glyph {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--g-color, var(--accent));
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.pp-card__wide-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .pp-card__name {
@@ -352,22 +455,22 @@ ul {
   border: 1px solid var(--line);
 }
 
-.pp-chip[data-state="done"] {
+.pp-chip[data-state="solved"] {
   background: color-mix(in srgb, var(--good) 16%, var(--surface));
   color: var(--good);
   border-color: color-mix(in srgb, var(--good) 40%, var(--line));
 }
 
-.pp-chip[data-state="streak"] {
-  background: color-mix(in srgb, var(--accent-2) 14%, var(--surface));
-  color: var(--accent-2);
-  border-color: color-mix(in srgb, var(--accent-2) 35%, var(--line));
+.pp-chip[data-state="lost"] {
+  background: color-mix(in srgb, var(--bad) 14%, var(--surface));
+  color: var(--bad);
+  border-color: color-mix(in srgb, var(--bad) 35%, var(--line));
 }
 
-.pp-chip[data-state="progress"] {
-  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+.pp-chip[data-state="continue"] {
+  background: var(--g-color-soft, color-mix(in srgb, var(--accent) 12%, var(--surface)));
+  color: var(--g-color, var(--accent));
+  border-color: color-mix(in srgb, var(--g-color, var(--accent)) 32%, var(--line));
 }
 
 .pp-chip__dot {
@@ -375,6 +478,35 @@ ul {
   height: 0.4rem;
   border-radius: 50%;
   background: currentColor;
+}
+
+/* ---------- last card: the week's classic gets a deliberate wide finale
+   row instead of an orphaned single card trailing the grid. ---------- */
+
+@media (min-width: 560px) {
+  .pp-card--wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.1rem 1.5rem;
+  }
+
+  .pp-card--wide .pp-card__wide-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+  }
+
+  .pp-card--wide .pp-card__tagline {
+    flex: none;
+  }
+
+  .pp-card--wide .pp-chip {
+    align-self: center;
+  }
 }
 
 /* ---------- footer ---------- */
@@ -441,15 +573,31 @@ ul {
   flex: none;
 }
 
+.pp-topbar__title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  justify-content: center;
+}
+
 .pp-topbar__game {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.05rem;
-  flex: 1;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.pp-topbar__underline {
+  display: block;
+  width: 1.8rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--g-color, var(--accent));
 }
 
 .pp-topbar__actions {
@@ -492,6 +640,7 @@ ul {
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--text);
+  text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   transition: transform var(--motion-fast) var(--ease), box-shadow var(--motion-fast) var(--ease),
@@ -508,13 +657,14 @@ ul {
 }
 
 .pp-btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--g-color, var(--accent));
+  border-color: var(--g-color, var(--accent));
+  color: var(--on-accent);
 }
 
 .pp-btn--primary:hover {
-  background: var(--accent-strong);
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 85%, black);
+  border-color: color-mix(in srgb, var(--g-color, var(--accent)) 85%, black);
 }
 
 .pp-btn--ghost {
@@ -524,6 +674,68 @@ ul {
 
 .pp-btn--ghost:hover {
   background: var(--surface-2);
+}
+
+/* ---------- in-game placement standard: difficulty tabs + status row ---------- */
+
+.pp-diff-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.pp-difftabs {
+  display: flex;
+  gap: 0.4rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pp-difftabs__tab {
+  flex: 1;
+  min-height: 44px;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: transform var(--motion-fast) var(--ease), background-color var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease);
+}
+
+.pp-difftabs__tab:hover {
+  border-color: var(--g-color, var(--accent));
+}
+
+.pp-difftabs__tab[aria-selected="true"] {
+  background: var(--g-color, var(--accent));
+  border-color: var(--g-color, var(--accent));
+  color: var(--on-accent);
+}
+
+.pp-status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: none;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pp-stats-diff {
+  margin-bottom: 0.6rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* ---------- tiles (letter games) ---------- */
@@ -790,10 +1002,6 @@ ul {
 @media (max-width: 480px) {
   .pp-masthead {
     padding-top: 1.75rem;
-  }
-
-  .pp-grid {
-    grid-template-columns: 1fr;
   }
 
   .pp-modal {

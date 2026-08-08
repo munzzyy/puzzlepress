@@ -103,10 +103,20 @@ def lerp_rgb(c1, c2, t):
     return tuple(lerp(c1[i], c2[i], t) for i in range(3))
 
 
-def render_monogram(size, supersample=4):
+def render_monogram(size, supersample=4, maskable=False):
+    """maskable=True fills the full canvas edge to edge (no rounded corners,
+    no margin, no transparency) and shrinks the glyph toward the center so it
+    sits inside the ~80% safe-zone circle that Android's adaptive-icon mask
+    can crop to without clipping the P."""
     rgba = bytearray(size * size * 4)
     offsets = [(i + 0.5) / supersample for i in range(supersample)]
     samples = supersample * supersample
+    shrink = 0.8  # glyph render scale for the maskable safe zone
+
+    def to_content(u, v):
+        if not maskable:
+            return u, v
+        return 0.5 + (u - 0.5) / shrink, 0.5 + (v - 0.5) / shrink
 
     for y in range(size):
         for x in range(size):
@@ -117,12 +127,15 @@ def render_monogram(size, supersample=4):
                 v = (y + oy) / size
                 for ox in offsets:
                     u = (x + ox) / size
-                    if badge_contains(u, v):
-                        badge_hits += 1
-                        if p_glyph_contains(u, v, dx=0.018, dy=0.022):
-                            shadow_hits += 1
-                        if p_glyph_contains(u, v):
-                            glyph_hits += 1
+                    hit = True if maskable else badge_contains(u, v)
+                    if not hit:
+                        continue
+                    badge_hits += 1
+                    cu, cv = to_content(u, v)
+                    if p_glyph_contains(cu, cv, dx=0.018, dy=0.022):
+                        shadow_hits += 1
+                    if p_glyph_contains(cu, cv):
+                        glyph_hits += 1
 
             badge_cov = badge_hits / samples
             if badge_cov == 0:
@@ -153,6 +166,12 @@ def gen_monogram_pngs():
         write_png(path, size, size, rgba)
         w, h = read_png_size(path)
         assert (w, h) == (size, size), f"{name}: size mismatch after write"
+    for size, name in [(512, "icon-512-maskable.png"), (192, "icon-192-maskable.png")]:
+        rgba = render_monogram(size, maskable=True)
+        path = os.path.join(ICON_DIR, name)
+        write_png(path, size, size, rgba)
+        w, h = read_png_size(path)
+        assert (w, h) == (size, size), f"{name}: size mismatch after write"
     # favicon.png mirrors the 32px monogram
     with open(os.path.join(ICON_DIR, "icon-32.png"), "rb") as src:
         data = src.read()
@@ -161,34 +180,33 @@ def gen_monogram_pngs():
 
 
 # ---------- hand-authored game glyph SVGs ----------
+# Solid white shapes on a transparent canvas, no background badge: the hub
+# masks these with CSS (mask-image + background-color: var(--g-<id>)) so
+# each card medallion tints the same glyph in its own identity color instead
+# of baking one fixed badge color into the asset.
 
 def badge_open(size=48):
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {size} {size}" '
         f'role="img" aria-hidden="true" focusable="false">'
-        f'<rect x="1" y="1" width="{size - 2}" height="{size - 2}" rx="10" '
-        f'fill="#1e3a5f"/>'
     )
 
 
 BADGE_CLOSE = "</svg>"
+GLYPH = "#fff"
 
 
 def svg_wordrow():
     tiles = []
     xs = [5, 13.4, 21.8, 30.2, 38.6]
-    for i, x in enumerate(xs):
-        fill = "#b8791a" if i == 2 else "#f6f2e8"
-        tiles.append(f'<rect x="{x}" y="19" width="7.4" height="10" rx="1.6" fill="{fill}"/>')
+    for x in xs:
+        tiles.append(f'<rect x="{x}" y="19" width="7.4" height="10" rx="1.6" fill="{GLYPH}"/>')
     return badge_open() + "".join(tiles) + BADGE_CLOSE
 
 
 def svg_clusters():
-    cells = [
-        (7, 7, "#b8791a"), (25, 7, "#f6f2e8"),
-        (7, 25, "#f6f2e8"), (25, 25, "#8a2e22"),
-    ]
-    rects = [f'<rect x="{x}" y="{y}" width="16" height="16" rx="3" fill="{c}"/>' for x, y, c in cells]
+    cells = [(7, 7), (25, 7), (7, 25), (25, 25)]
+    rects = [f'<rect x="{x}" y="{y}" width="16" height="16" rx="3" fill="{GLYPH}"/>' for x, y in cells]
     return badge_open() + "".join(rects) + BADGE_CLOSE
 
 
@@ -201,8 +219,8 @@ def svg_heptagram():
     poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
     return (
         badge_open()
-        + f'<polygon points="{poly}" fill="none" stroke="#f6f2e8" stroke-width="2.4" stroke-linejoin="round"/>'
-        + f'<circle cx="{cx}" cy="{cy}" r="3.4" fill="#b8791a"/>'
+        + f'<polygon points="{poly}" fill="none" stroke="{GLYPH}" stroke-width="2.6" stroke-linejoin="round"/>'
+        + f'<circle cx="{cx}" cy="{cy}" r="3.4" fill="{GLYPH}"/>'
         + BADGE_CLOSE
     )
 
@@ -213,11 +231,11 @@ def svg_minigrid():
     ox, oy = 8, 8
     for i in range(6):
         p = ox + i * step
-        lines.append(f'<line x1="{p:.1f}" y1="{oy}" x2="{p:.1f}" y2="{oy + 32}" stroke="#f6f2e8" stroke-width="1.2"/>')
-        lines.append(f'<line x1="{ox}" y1="{p:.1f}" x2="{ox + 32}" y2="{p:.1f}" stroke="#f6f2e8" stroke-width="1.2"/>')
+        lines.append(f'<line x1="{p:.1f}" y1="{oy}" x2="{p:.1f}" y2="{oy + 32}" stroke="{GLYPH}" stroke-width="1.4"/>')
+        lines.append(f'<line x1="{ox}" y1="{p:.1f}" x2="{ox + 32}" y2="{p:.1f}" stroke="{GLYPH}" stroke-width="1.4"/>')
     blocks = [
-        f'<rect x="{ox + step:.1f}" y="{oy:.1f}" width="{step:.1f}" height="{step:.1f}" fill="#b8791a"/>',
-        f'<rect x="{ox + 3 * step:.1f}" y="{oy + 3 * step:.1f}" width="{step:.1f}" height="{step:.1f}" fill="#b8791a"/>',
+        f'<rect x="{ox + step:.1f}" y="{oy:.1f}" width="{step:.1f}" height="{step:.1f}" fill="{GLYPH}"/>',
+        f'<rect x="{ox + 3 * step:.1f}" y="{oy + 3 * step:.1f}" width="{step:.1f}" height="{step:.1f}" fill="{GLYPH}"/>',
     ]
     return badge_open() + "".join(blocks) + "".join(lines) + BADGE_CLOSE
 
@@ -225,10 +243,10 @@ def svg_minigrid():
 def svg_wordweave():
     pts = [(8, 34), (16, 16), (24, 30), (32, 12), (40, 22)]
     poly = " ".join(f"{x},{y}" for x, y in pts)
-    dots = "".join(f'<circle cx="{x}" cy="{y}" r="3" fill="#b8791a"/>' for x, y in pts)
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="3" fill="{GLYPH}"/>' for x, y in pts)
     return (
         badge_open()
-        + f'<polyline points="{poly}" fill="none" stroke="#f6f2e8" stroke-width="2.2" '
+        + f'<polyline points="{poly}" fill="none" stroke="{GLYPH}" stroke-width="2.2" '
         + 'stroke-linecap="round" stroke-linejoin="round"/>'
         + dots
         + BADGE_CLOSE
@@ -244,15 +262,15 @@ def svg_edgeways():
     for t in (0.5,):
         dots.append((x0, lerp(y0, y1, t)))
         dots.append((x1, lerp(y0, y1, t)))
-    circles = "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.1" fill="#f6f2e8"/>' for x, y in dots)
+    circles = "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.3" fill="{GLYPH}"/>' for x, y in dots)
     path = (
         f'<polyline points="{x0},{y0} {x1},{lerp(y0,y1,0.5):.1f} {lerp(x0,x1,0.5):.1f},{y1} {x0},{y0}" '
-        'fill="none" stroke="#b8791a" stroke-width="1.8" stroke-linejoin="round"/>'
+        f'fill="none" stroke="{GLYPH}" stroke-width="1.8" stroke-linejoin="round"/>'
     )
     return (
         badge_open()
         + f'<rect x="{x0}" y="{y0}" width="{x1 - x0}" height="{y1 - y0}" fill="none" '
-        + 'stroke="#f6f2e8" stroke-width="1.4" opacity="0.6"/>'
+        + f'stroke="{GLYPH}" stroke-width="1.4" opacity="0.55"/>'
         + path
         + circles
         + BADGE_CLOSE
@@ -266,11 +284,11 @@ def svg_sudoku():
     for i in range(7):
         p = ox + i * step
         w = "1.8" if i % 2 == 0 else "0.8"
-        lines.append(f'<line x1="{p:.1f}" y1="{oy}" x2="{p:.1f}" y2="{oy + size}" stroke="#f6f2e8" stroke-width="{w}"/>')
-        lines.append(f'<line x1="{ox}" y1="{p:.1f}" x2="{ox + size}" y2="{p:.1f}" stroke="#f6f2e8" stroke-width="{w}"/>')
+        lines.append(f'<line x1="{p:.1f}" y1="{oy}" x2="{p:.1f}" y2="{oy + size}" stroke="{GLYPH}" stroke-width="{w}"/>')
+        lines.append(f'<line x1="{ox}" y1="{p:.1f}" x2="{ox + size}" y2="{p:.1f}" stroke="{GLYPH}" stroke-width="{w}"/>')
     marks = [
-        f'<rect x="{ox + step * 1.5 - 1.6:.1f}" y="{oy + step * 1.5 - 1.6:.1f}" width="3.2" height="3.2" fill="#b8791a"/>',
-        f'<rect x="{ox + step * 4.5 - 1.6:.1f}" y="{oy + step * 3.5 - 1.6:.1f}" width="3.2" height="3.2" fill="#b8791a"/>',
+        f'<rect x="{ox + step * 1.5 - 1.6:.1f}" y="{oy + step * 1.5 - 1.6:.1f}" width="3.2" height="3.2" fill="{GLYPH}"/>',
+        f'<rect x="{ox + step * 4.5 - 1.6:.1f}" y="{oy + step * 3.5 - 1.6:.1f}" width="3.2" height="3.2" fill="{GLYPH}"/>',
     ]
     return badge_open() + "".join(lines) + "".join(marks) + BADGE_CLOSE
 

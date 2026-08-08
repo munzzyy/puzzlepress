@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>
+  try {
+    var t = localStorage.getItem("pp.theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found - Puzzle Press</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/icons/favicon.png" type="image/png">
+<link rel="icon" href="assets/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .pp-404 {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 3rem 1.25rem;
+  }
+  .pp-404__code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 12vw, 5rem);
+    color: var(--muted);
+    line-height: 1;
+  }
+  .pp-404__lede {
+    max-width: 32ch;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="pp-wrap">
+  <header class="pp-masthead">
+    <div class="pp-masthead__top">
+      <div>
+        <a class="pp-wordmark" href="index.html">Puzzle Press</a>
+        <div class="pp-masthead__rule">Daily games</div>
+      </div>
+      <button type="button" class="pp-theme-toggle" id="theme-toggle" aria-label="Switch to dark theme"></button>
+    </div>
+  </header>
+
+  <main class="pp-404">
+    <p class="pp-404__code">404</p>
+    <h1 class="pp-card__name">This edition never ran</h1>
+    <p class="pp-404__lede">There is no page here. The seven daily puzzles are all back on the front page.</p>
+    <a class="pp-btn pp-btn--primary" href="index.html">Back to the puzzles</a>
+  </main>
+
+  <footer class="pp-footer">
+    <p>Free, open source, no accounts, no ads, no tracking.</p>
+    <a href="https://github.com/munzzyy/puzzlepress">View source on GitHub</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var THEME_KEY = "pp.theme";
+    var btn = document.getElementById("theme-toggle");
+    var iconFor = function (theme) {
+      return theme === "dark"
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+    };
+    var currentTheme = function () {
+      var stored = null;
+      try {
+        stored = localStorage.getItem(THEME_KEY);
+      } catch (e) {}
+      if (stored === "light" || stored === "dark") return stored;
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    };
+    var apply = function (theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      btn.innerHTML = iconFor(theme);
+      btn.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    };
+    apply(currentTheme());
+    btn.addEventListener("click", function () {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem(THEME_KEY, next);
+      } catch (e) {}
+      apply(next);
+    });
+  })();
+</script>
+</body>
+</html>

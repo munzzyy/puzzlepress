@@ -32,6 +32,7 @@
       <button type="button" class="pp-theme-toggle" id="theme-toggle" aria-label="Switch to dark theme"></button>
     </div>
     <p class="pp-dateline" id="dateline"></p>
+    <p class="pp-progress" id="progress-line"></p>
   </header>
 
   <main id="main">
@@ -45,7 +46,7 @@
 </div>
 
 <script type="module">
-import { store, todayKey } from "./assets/shared.js";
+import { store, todayKey, lastDiff } from "./assets/shared.js";
 
 const GAMES = [
   { id: "wordrow", name: "Wordrow", tagline: "Six tries. Five letters." },
@@ -54,7 +55,7 @@ const GAMES = [
   { id: "minigrid", name: "Minigrid", tagline: "A little crossword." },
   { id: "wordweave", name: "Wordweave", tagline: "Every letter belongs." },
   { id: "edgeways", name: "Edgeways", tagline: "Twelve letters around a square." },
-  { id: "sudoku", name: "Sudoku", tagline: "The classic." },
+  { id: "sudoku", name: "Sudoku", tagline: "The classic.", defaultDiff: "easy" },
 ];
 
 const THEME_KEY = "pp.theme";
@@ -65,32 +66,63 @@ function esc(s) {
   ));
 }
 
-function chipFor(id) {
-  const meta = store(id).loadMeta();
+/**
+ * Four hub chip states, read from the player's last-used difficulty for
+ * this game: New (never played it), Continue (a saved day in progress),
+ * Solved (today's puzzle already won), Hard-luck (today's puzzle already
+ * lost). "Played today" for the progress line is solved-or-lost.
+ */
+function chipFor(game) {
+  const diff = lastDiff(game.id, game.defaultDiff || "medium");
+  const s = store(game.id, diff);
+  const meta = s.loadMeta();
   const today = todayKey();
-  if (meta.last === today) return { text: "Solved today", state: "done" };
-  if (store(id).loadDay()) return { text: "Continue", state: "progress" };
-  if (meta.streak > 0) return { text: `${meta.streak}-day streak`, state: "streak" };
-  if (meta.played > 0) return { text: "Played", state: "" };
+
+  if (meta.last === today) {
+    return meta.lastWon
+      ? { text: "Solved", state: "solved" }
+      : { text: "Hard luck", state: "lost" };
+  }
+  if (s.loadDay()) return { text: "Continue", state: "continue" };
   return { text: "New", state: "" };
 }
 
 function renderGrid() {
   const grid = document.getElementById("game-grid");
-  grid.innerHTML = GAMES.map((g) => {
-    const chip = chipFor(g.id);
-    return (
-      `<a class="pp-card" href="games/${g.id}/index.html">` +
-      `<div class="pp-card__top">` +
-      `<span class="pp-card__icon"><img src="assets/icons/${g.id}.svg" alt="" width="28" height="28"></span>` +
+  const chips = GAMES.map(chipFor);
+  const playedToday = chips.filter((c) => c.state === "solved" || c.state === "lost").length;
+
+  grid.innerHTML = GAMES.map((g, i) => {
+    const chip = chips[i];
+    const wide = i === GAMES.length - 1;
+    const cardClass = wide ? "pp-card pp-card--wide" : "pp-card";
+    const chipHTML =
       `<span class="pp-chip" data-state="${chip.state}">` +
-      `<span class="pp-chip__dot" aria-hidden="true"></span>${esc(chip.text)}</span>` +
-      `</div>` +
-      `<span class="pp-card__name">${esc(g.name)}</span>` +
-      `<span class="pp-card__tagline">${esc(g.tagline)}</span>` +
+      `<span class="pp-chip__dot" aria-hidden="true"></span>${esc(chip.text)}</span>`;
+    const iconHTML = `<span class="pp-card__icon"><span class="pp-card__glyph" aria-hidden="true"></span></span>`;
+    const nameHTML = `<span class="pp-card__name">${esc(g.name)}</span>`;
+    const taglineHTML = `<span class="pp-card__tagline">${esc(g.tagline)}</span>`;
+
+    if (wide) {
+      return (
+        `<a class="${cardClass}" data-game="${g.id}" href="games/${g.id}/index.html">` +
+        iconHTML +
+        `<span class="pp-card__wide-text">${nameHTML}${taglineHTML}</span>` +
+        chipHTML +
+        `</a>`
+      );
+    }
+    return (
+      `<a class="${cardClass}" data-game="${g.id}" href="games/${g.id}/index.html">` +
+      `<span class="pp-card__top">${iconHTML}${chipHTML}</span>` +
+      nameHTML +
+      taglineHTML +
       `</a>`
     );
   }).join("");
+
+  document.getElementById("progress-line").innerHTML =
+    `<span class="pp-progress__count">${playedToday}</span> of ${GAMES.length} played today`;
 }
 
 function renderDateline() {
