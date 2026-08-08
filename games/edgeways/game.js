@@ -1,6 +1,7 @@
 import {
   pickDaily,
   store,
+  diffTabs,
   recordResult,
   share,
   toast,
@@ -21,6 +22,8 @@ import {
 
 const EPOCH = "2026-08-10";
 const GAME_ID = "edgeways";
+const DEFAULT_DIFFICULTY = "medium";
+const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -35,9 +38,13 @@ const HELP_HTML = `
   <p>Each new word has to start with the last letter of the one before it.</p>
   <p>Get all twelve letters into your words and you have solved it.</p>
   <p>Words need at least three letters and have to be real ones.</p>
+  <p>Easy is a three-word chain using only common letters. Medium and Hard
+  both ask for a two-word chain, but Hard's square always carries a J, Q, X,
+  or Z. Each difficulty keeps its own puzzle, streak, and stats.</p>
 `;
 
 const els = {
+  diffTabs: document.getElementById("ed-diff-tabs"),
   progress: document.getElementById("ed-progress"),
   wordCount: document.getElementById("ed-word-count"),
   par: document.getElementById("ed-par"),
@@ -65,7 +72,7 @@ const REASON_MESSAGES = {
   "unknown-word": "Not a word we know.",
 };
 
-/** @type {{sides:string[], par:number, mode:"daily"|"random", words:string[], buffer:string[], solved:boolean}} */
+/** @type {{sides:string[], par:number, diff:string, mode:"daily"|"random", words:string[], buffer:string[], solved:boolean}} */
 let state = null;
 let dictionary = null;
 let bank = null;
@@ -76,25 +83,26 @@ function seedBuffer(words) {
   return start ? [start] : [];
 }
 
-function boardStore() {
-  return store(GAME_ID);
+function boardStore(diff) {
+  return store(GAME_ID, diff);
 }
 
-function loadDailyPuzzle() {
-  return pickDaily(bank, EPOCH);
+function loadDailyPuzzle(diff) {
+  return pickDaily(bank[diff], EPOCH);
 }
 
 function sameSides(a, b) {
   return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((s, i) => s === b[i]);
 }
 
-function initDailyState() {
-  const puzzle = loadDailyPuzzle();
-  const saved = boardStore().loadDay();
+function initDailyState(diff) {
+  const puzzle = loadDailyPuzzle(diff);
+  const saved = boardStore(diff).loadDay();
   if (saved && sameSides(saved.sides, puzzle.sides)) {
     return {
       sides: puzzle.sides,
       par: puzzle.par,
+      diff,
       mode: "daily",
       words: saved.words || [],
       buffer: saved.buffer || seedBuffer(saved.words || []),
@@ -104,6 +112,7 @@ function initDailyState() {
   return {
     sides: puzzle.sides,
     par: puzzle.par,
+    diff,
     mode: "daily",
     words: [],
     buffer: [],
@@ -112,14 +121,14 @@ function initDailyState() {
 }
 
 function randomPuzzle() {
-  const list = bank.puzzles;
+  const list = bank[state.diff].puzzles;
   const idx = Math.floor(Math.random() * list.length);
   return list[idx];
 }
 
 function persist() {
   if (state.mode !== "daily") return;
-  boardStore().saveDay({
+  boardStore(state.diff).saveDay({
     sides: state.sides,
     words: state.words,
     buffer: state.buffer,
@@ -150,7 +159,7 @@ function buildBoard() {
 
 function renderMeta() {
   const total = progressCount(state.words, state.sides);
-  els.progress.textContent = `${total} / 12`;
+  els.progress.textContent = `${total}/12`;
   els.wordCount.textContent = String(state.words.length);
   els.par.textContent = String(state.par);
 }
@@ -300,7 +309,7 @@ function submitCurrent() {
 function onSolved() {
   confettiBurst();
   if (state.mode === "daily") {
-    recordResult(GAME_ID, true);
+    recordResult(GAME_ID, true, state.diff);
   }
 }
 
@@ -311,8 +320,9 @@ function buildShareText() {
   const squares = state.words
     .map((_, i) => (i < summary.par ? "\u{1F7E6}" : "\u{1F7E7}"))
     .join("");
+  const diffLabel = DIFF_LABELS[state.diff] || DIFF_LABELS.medium;
   const label = state.mode === "daily" ? todayKey() : "practice";
-  return `Edgeways ${label}\n${squares} ${summary.count}/${summary.par}`;
+  return `Edgeways ${diffLabel} ${label}\n${squares} ${summary.count}/${summary.par}`;
 }
 
 function switchToRandomPuzzle() {
@@ -320,6 +330,7 @@ function switchToRandomPuzzle() {
   state = {
     sides: puzzle.sides,
     par: puzzle.par,
+    diff: state.diff,
     mode: "random",
     words: [],
     buffer: [],
@@ -331,10 +342,20 @@ function switchToRandomPuzzle() {
   renderAll();
 }
 
+function switchDifficulty(diff) {
+  state = initDailyState(diff);
+  showMessage("");
+  els.practiceNote.hidden = state.mode !== "random";
+  buildBoard();
+  renderAll();
+}
+
 /* ---------- boot ---------- */
 
 async function boot() {
   els.current.textContent = "Loading...";
+  initChrome({ id: GAME_ID, name: "Edgeways", helpHTML: HELP_HTML });
+
   const [bankRes, dictRes] = await Promise.all([
     fetch("../../data/edgeways.json"),
     fetch("./words.json"),
@@ -343,7 +364,8 @@ async function boot() {
   const words = await dictRes.json();
   dictionary = new Set(words);
 
-  state = initDailyState();
+  const initialDiff = diffTabs(els.diffTabs, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
+  state = initDailyState(initialDiff);
   els.practiceNote.hidden = state.mode !== "random";
 
   buildBoard();
@@ -380,8 +402,6 @@ async function boot() {
       drawLines();
     });
   });
-
-  initChrome({ id: GAME_ID, name: "Edgeways", helpHTML: HELP_HTML });
 }
 
 boot().catch((err) => {

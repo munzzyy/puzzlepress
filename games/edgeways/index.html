@@ -25,25 +25,18 @@
 <div id="pp-chrome"></div>
 
 <main id="main" class="pp-game">
-  <p class="ed-tagline pp-muted pp-center">Twelve letters around a square.</p>
+  <div class="pp-diff-row">
+    <div id="ed-diff-tabs"></div>
+    <div class="pp-status-row">
+      <span id="ed-progress" aria-label="Letters covered">0/12</span>
+      <span class="ed-status-divider" aria-hidden="true"></span>
+      <span>Par <span id="ed-par">2</span></span>
+    </div>
+  </div>
+
   <p class="ed-practice-note pp-muted pp-center" id="ed-practice-note" hidden>
     Practice puzzle. Solving this will not affect your streak.
   </p>
-
-  <div class="ed-meta" id="ed-meta">
-    <div class="ed-meta__item">
-      <span class="ed-meta__value" id="ed-progress">0 / 12</span>
-      <span class="ed-meta__label">Letters</span>
-    </div>
-    <div class="ed-meta__item">
-      <span class="ed-meta__value" id="ed-word-count">0</span>
-      <span class="ed-meta__label">Words</span>
-    </div>
-    <div class="ed-meta__item">
-      <span class="ed-meta__value" id="ed-par">2</span>
-      <span class="ed-meta__label">Par</span>
-    </div>
-  </div>
 
   <div class="ed-board" id="ed-board" aria-label="Letter square">
     <svg class="ed-board__lines" id="ed-lines" aria-hidden="true"></svg>
@@ -64,7 +57,7 @@
   </div>
 
   <section class="ed-found" aria-label="Words found so far">
-    <h2 class="pp-visually-hidden">Words found</h2>
+    <h2 class="ed-found__heading">Words found <span class="ed-found__count" id="ed-word-count">0</span></h2>
     <ol class="ed-found__list" id="ed-found-list"></ol>
   </section>
 

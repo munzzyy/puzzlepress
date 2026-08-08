@@ -1,20 +1,27 @@
 #!/usr/bin/env python3
 """
-Generates data/edgeways.json: a bank of Edgeways puzzles.
+Generates data/edgeways.json: three difficulty-graded banks of Edgeways
+puzzles (easy, medium, hard).
 
-Each puzzle is a square of twelve letters, three per side. A solution is a
-two-word chain (word2 starts with word1's last letter) whose combined
+Each puzzle is a square of twelve letters, three per side, solved by a
+chain of words (each starting where the last one ended) whose combined
 letters cover the board exactly. The sides are not chosen first: we pick a
-chaining word pair from the shared word list, then search for a way to
-split their combined letters into four groups of three such that no two
-letters that ever sit next to each other in either word land on the same
-side. That search is what actually proves the two-word solution works, so
-"par: 2" is never a guess.
+chaining word (or word pair, for hard) from the shared word list, then
+search for a way to split the combined letters into four groups of three
+such that no two letters that ever sit next to each other in any solution
+word land on the same side. That search is what actually proves the
+solution works, so "par" is never a guess.
+
+Difficulty semantics (V2-CONTRACT.md):
+  easy   - par 3 (a three-word solution chain), common letters only: no
+           J, Q, X, or Z on the board, so every letter is an easy reach.
+  medium - par 2 (a two-word solution chain), the original bank shape.
+  hard   - par 2, but the board always carries at least one of J/Q/X/Z.
 
 Also writes games/edgeways/words.json: the runtime dictionary game.js uses
-to validate any word a player tries, not just the two solution words.
+to validate any word a player tries, not just the committed solution words.
 
-Usage: python3 tools/gen_edgeways.py [--seed N] [--count N]
+Usage: python3 tools/gen_edgeways.py [--seed N]
 """
 import argparse
 import json
@@ -28,8 +35,16 @@ WORDLIST_PATH = ROOT / "data" / "wordlist.txt"
 BANK_PATH = ROOT / "data" / "edgeways.json"
 DICTIONARY_PATH = ROOT / "games" / "edgeways" / "words.json"
 
-MIN_BANK_SIZE = 120
-DEFAULT_COUNT = 150
+MIN_BANK_SIZE = 80  # per difficulty, per V2-CONTRACT.md
+
+# Target puzzle counts per difficulty. Hard is capped lower and given a
+# looser reuse cap below because it draws from a much smaller pool: only
+# words that carry a J, Q, X, or Z. Easy and medium draw from the full
+# common-word pool.
+TARGET_COUNTS = {"easy": 100, "medium": 140, "hard": 90}
+MAX_REUSE = {"easy": 3, "medium": 3, "hard": 6}
+
+RARE_LETTERS = set("JQXZ")
 
 # Candidate solution words: kept to lengths that read naturally and stay
 # clear of the more obscure corners of the word list.
@@ -300,19 +315,26 @@ def find_side_partition(letters, conflict_pairs):
     return None
 
 
-def make_puzzle(word1, word2):
-    combined_letters = set(word1) | set(word2)
+def make_puzzle(words):
+    """Builds a puzzle from an ordered chain of solution words (2 for
+    medium/hard, 3 for easy). par is always len(words): the puzzle commits
+    to exactly the solution it proves, no more."""
+    combined_letters = set()
+    for w in words:
+        combined_letters |= set(w)
     if len(combined_letters) != 12:
         return None
-    conflict_pairs = consecutive_pairs(word1) + consecutive_pairs(word2)
+    conflict_pairs = []
+    for w in words:
+        conflict_pairs += consecutive_pairs(w)
     groups = find_side_partition(sorted(combined_letters), conflict_pairs)
     if groups is None:
         return None
     sides = ["".join(g).upper() for g in groups]
     return {
         "sides": sides,
-        "par": 2,
-        "solution": [word1.upper(), word2.upper()],
+        "par": len(words),
+        "solution": [w.upper() for w in words],
     }
 
 
@@ -353,45 +375,61 @@ def verify_puzzle(puzzle, dictionary):
     assert used == set(all_letters), "solution does not cover all 12 letters"
 
 
-def generate_bank(dictionary, count, seed):
+def board_letters_of(puzzle):
+    return set("".join(puzzle["sides"]))
+
+
+def rare_ok(puzzle, rare_filter):
+    """rare_filter: "any" (no constraint), "forbid" (easy: no J/Q/X/Z on
+    the board), or "require" (hard: at least one of J/Q/X/Z on the board)."""
+    has_rare = bool(board_letters_of(puzzle) & RARE_LETTERS)
+    if rare_filter == "forbid":
+        return not has_rare
+    if rare_filter == "require":
+        return has_rare
+    return True
+
+
+def generate_pair_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="any"):
+    """Two-word chains: word2 starts with word1's last letter. Used for
+    medium (rare_filter="any") and hard (rare_filter="require")."""
     rng = random.Random(seed)
-    candidates = build_solution_candidates(dictionary)
-    rng.shuffle(candidates)
+    pool = list(candidates)
+    rng.shuffle(pool)
 
     by_first_letter = {}
-    for w in candidates:
+    for w in pool:
         by_first_letter.setdefault(w[0], []).append(w)
     for bucket in by_first_letter.values():
         rng.shuffle(bucket)
 
-    # A handful of long, letter-rich words (EDUCATION, TREMENDOUS...) can
-    # complete far more pairs than anything else in the pool. Capping how
-    # often any one word appears keeps 150 daily puzzles from turning into
-    # "EDUCATION" over and over.
-    MAX_REUSE = 3
     use_count = {}
 
     def under_cap(word):
-        return use_count.get(word, 0) < MAX_REUSE
+        return use_count.get(word, 0) < max_reuse
 
     puzzles = []
-    seen_boards = set()
     seen_solutions = set()
 
-    for word1 in candidates:
+    for word1 in pool:
         if len(puzzles) >= count:
             break
-        if not under_cap(word1):
-            continue
-        last = word1[-1]
-        for word2 in by_first_letter.get(last, []):
+        # Re-checked every iteration, not just once on entry: a single
+        # word1 can otherwise complete many puzzles in the inner loop
+        # below, each one raising its own use_count past the cap without
+        # this loop ever noticing.
+        for word2 in by_first_letter.get(word1[-1], []):
+            if len(puzzles) >= count or not under_cap(word1):
+                break
             if word2 == word1 or not under_cap(word2):
                 continue
             pair_key = (word1, word2)
             if pair_key in seen_solutions:
                 continue
-            puzzle = make_puzzle(word1, word2)
+            puzzle = make_puzzle([word1, word2])
             if puzzle is None:
+                continue
+            if not rare_ok(puzzle, rare_filter):
                 continue
             board_key = tuple(sorted(puzzle["sides"]))
             if board_key in seen_boards:
@@ -402,41 +440,132 @@ def generate_bank(dictionary, count, seed):
             use_count[word1] = use_count.get(word1, 0) + 1
             use_count[word2] = use_count.get(word2, 0) + 1
             puzzles.append(puzzle)
-            break  # one puzzle per starting word keeps the bank varied
 
     return puzzles
+
+
+def generate_triple_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="forbid"):
+    """Three-word chains: word2 starts with word1's last letter, word3
+    starts with word2's last letter, combined letters cover the board
+    exactly. Used for easy (rare_filter="forbid": common letters only)."""
+    rng = random.Random(seed)
+    pool = list(candidates)
+    rng.shuffle(pool)
+
+    by_first_letter = {}
+    for w in pool:
+        by_first_letter.setdefault(w[0], []).append(w)
+    for bucket in by_first_letter.values():
+        rng.shuffle(bucket)
+
+    use_count = {}
+
+    def under_cap(word):
+        return use_count.get(word, 0) < max_reuse
+
+    puzzles = []
+    seen_solutions = set()
+
+    for word1 in pool:
+        if len(puzzles) >= count:
+            break
+        # See the comment in generate_pair_puzzles: under_cap must be
+        # re-checked on every inner iteration, not just once on entry,
+        # since either loop can complete several puzzles for the same
+        # word1/word2 before this outer loop gets another look.
+        for word2 in by_first_letter.get(word1[-1], []):
+            if len(puzzles) >= count or not under_cap(word1):
+                break
+            if word2 == word1 or not under_cap(word2):
+                continue
+            union12 = set(word1) | set(word2)
+            if len(union12) > 12:
+                continue
+            for word3 in by_first_letter.get(word2[-1], []):
+                if len(puzzles) >= count or not under_cap(word1) or not under_cap(word2):
+                    break
+                if word3 in (word1, word2) or not under_cap(word3):
+                    continue
+                if len(union12 | set(word3)) != 12:
+                    continue
+                solution_key = (word1, word2, word3)
+                if solution_key in seen_solutions:
+                    continue
+                puzzle = make_puzzle([word1, word2, word3])
+                if puzzle is None:
+                    continue
+                if not rare_ok(puzzle, rare_filter):
+                    continue
+                board_key = tuple(sorted(puzzle["sides"]))
+                if board_key in seen_boards:
+                    continue
+                verify_puzzle(puzzle, dictionary)
+                seen_boards.add(board_key)
+                seen_solutions.add(solution_key)
+                use_count[word1] = use_count.get(word1, 0) + 1
+                use_count[word2] = use_count.get(word2, 0) + 1
+                use_count[word3] = use_count.get(word3, 0) + 1
+                puzzles.append(puzzle)
+
+    return puzzles
+
+
+def generate_bank(dictionary, seed):
+    """Builds all three difficulty sections. A single seen_boards set is
+    shared across them so the same twelve-letter square never ships twice
+    under different difficulties. Hard is generated first since it draws
+    from the smallest pool (words carrying J/Q/X/Z); medium last since it
+    is the least constrained and easiest to route around collisions."""
+    candidates = build_solution_candidates(dictionary)
+    seen_boards = set()
+
+    hard = generate_pair_puzzles(
+        candidates, dictionary, TARGET_COUNTS["hard"], seed + 2, MAX_REUSE["hard"],
+        seen_boards, rare_filter="require",
+    )
+    easy = generate_triple_puzzles(
+        candidates, dictionary, TARGET_COUNTS["easy"], seed + 1, MAX_REUSE["easy"],
+        seen_boards, rare_filter="forbid",
+    )
+    medium = generate_pair_puzzles(
+        candidates, dictionary, TARGET_COUNTS["medium"], seed, MAX_REUSE["medium"],
+        seen_boards, rare_filter="any",
+    )
+
+    return {"easy": easy, "medium": medium, "hard": hard}
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=20260810)
-    parser.add_argument("--count", type=int, default=DEFAULT_COUNT)
     args = parser.parse_args()
 
     all_words = load_wordlist()
     dictionary = build_dictionary(all_words)
     dictionary_set = set(dictionary)
 
-    puzzles = generate_bank(dictionary_set, args.count, args.seed)
+    sections = generate_bank(dictionary_set, args.seed)
 
-    if len(puzzles) < MIN_BANK_SIZE:
-        print(
-            f"warning: only generated {len(puzzles)} puzzles, "
-            f"contract wants >= {MIN_BANK_SIZE}",
-            file=sys.stderr,
-        )
+    bank = {}
+    for diff, puzzles in sections.items():
+        if len(puzzles) < MIN_BANK_SIZE:
+            print(
+                f"warning: {diff} only generated {len(puzzles)} puzzles, "
+                f"contract wants >= {MIN_BANK_SIZE}",
+                file=sys.stderr,
+            )
+        # Keep bank order stable and independent of dict/set iteration order.
+        puzzles.sort(key=lambda p: tuple(p["solution"]))
+        bank[diff] = {"puzzles": puzzles}
 
-    # Keep bank order stable and independent of dict/set iteration order.
-    puzzles.sort(key=lambda p: (p["solution"][0], p["solution"][1]))
-
-    bank = {"puzzles": puzzles}
     BANK_PATH.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")
 
     DICTIONARY_PATH.write_text(
         json.dumps(dictionary, separators=(",", ":")), encoding="utf-8"
     )
 
-    print(f"wrote {len(puzzles)} puzzles to {BANK_PATH.relative_to(ROOT)}")
+    counts = ", ".join(f"{diff}={len(sections[diff])}" for diff in ("easy", "medium", "hard"))
+    print(f"wrote {counts} puzzles to {BANK_PATH.relative_to(ROOT)}")
     print(f"wrote {len(dictionary)} words to {DICTIONARY_PATH.relative_to(ROOT)}")
 
 

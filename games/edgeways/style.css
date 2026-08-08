@@ -1,41 +1,15 @@
 /* Edgeways: twelve letters on a square, chained into words. */
 
-.ed-tagline {
+.ed-status-divider {
+  width: 1px;
+  height: 0.9em;
+  background: var(--line);
+  flex: none;
+}
+
+.ed-practice-note {
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-family: var(--font-display);
-  font-style: italic;
-}
-
-.ed-meta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.ed-meta__item {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 0.5rem 0.4rem;
-}
-
-.ed-meta__value {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.ed-meta__label {
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 0.1rem;
+  margin-bottom: 1.1rem;
 }
 
 /* ---------- board ---------- */
@@ -157,7 +131,7 @@
 
 .ed-board__lines path {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--g-color, var(--accent));
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -214,6 +188,21 @@
 
 .ed-found {
   margin-bottom: 1.5rem;
+}
+
+.ed-found__heading {
+  margin-bottom: 0.6rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ed-found__count {
+  color: var(--text);
+  font-weight: 700;
 }
 
 .ed-found__list {
