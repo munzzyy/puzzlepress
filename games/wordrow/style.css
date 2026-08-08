@@ -2,9 +2,11 @@
   Wordrow: layers on top of assets/site.css. The tile look (color, ring/dot
   glyphs, flip animation) all comes from .pp-tile in the shared sheet; this
   file only lays out the board, the on-screen keyboard, and the toolbar.
+  Board row count varies by difficulty (7 rows on easy, 6 on medium/hard),
+  so the board is a flex column rather than a fixed grid-template-rows.
 */
 
-[data-game="wordrow"] {
+main[data-game="wordrow"] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,18 +25,15 @@
   display: none;
 }
 
-.wr-status {
-  min-height: 1.2em;
-  color: var(--muted);
-  font-size: 0.9rem;
-  text-align: center;
+.pp-status-row {
+  min-height: 1.4rem;
 }
 
 /* ---------- board ---------- */
 
 .wr-board {
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 0.4rem;
   width: 100%;
   max-width: 330px;
@@ -94,9 +93,9 @@
 }
 
 .wr-hardmode[aria-pressed="true"] {
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 34%, var(--line));
+  background: var(--g-color-soft, color-mix(in srgb, var(--g-color, var(--accent)) 14%, var(--surface)));
+  color: var(--g-color, var(--accent));
+  border-color: color-mix(in srgb, var(--g-color, var(--accent)) 34%, var(--line));
 }
 
 /* ---------- keyboard ---------- */

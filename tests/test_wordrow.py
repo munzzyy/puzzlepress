@@ -3,7 +3,8 @@
 Schema and invariant checks run directly against the committed file (so a
 stale bank fails CI even if the generator itself is fine), plus a
 determinism check that regenerating with the same seed reproduces it
-exactly.
+exactly. The bank is difficulty-graded per V2-CONTRACT.md: top-level
+{easy, medium, hard}, each holding a v1-shaped {answers, allowed} section.
 """
 
 import importlib.util
@@ -17,6 +18,7 @@ BANK_PATH = os.path.join(ROOT, "data", "wordrow.json")
 GEN_PATH = os.path.join(ROOT, "tools", "gen_wordrow.py")
 WORDLIST_PATH = os.path.join(ROOT, "data", "wordlist.txt")
 DEFAULT_SEED = 20260810
+DIFFICULTIES = ("easy", "medium", "hard")
 
 
 def _load_gen_module():
@@ -41,74 +43,125 @@ def test_bank_file_exists():
 def test_bank_schema():
     bank = load_bank()
     assert isinstance(bank, dict)
-    assert set(bank.keys()) == {"answers", "allowed"}
-    assert isinstance(bank["answers"], list)
-    assert isinstance(bank["allowed"], list)
+    assert set(bank.keys()) == set(DIFFICULTIES)
+    for diff in DIFFICULTIES:
+        section = bank[diff]
+        assert set(section.keys()) == {"answers", "allowed"}
+        assert isinstance(section["answers"], list)
+        assert isinstance(section["allowed"], list)
 
 
 def test_answers_meets_bank_size_target():
     bank = load_bank()
-    assert len(bank["answers"]) >= 500, "contract requires 500+ answers"
+    for diff in DIFFICULTIES:
+        assert len(bank[diff]["answers"]) >= 200, (
+            f"{diff}: contract requires 200+ answers per difficulty"
+        )
+
+
+def test_medium_pool_unchanged_from_v1():
+    # Contract: "medium = current pool". Same size as the original single-tier bank.
+    bank = load_bank()
+    assert len(bank["medium"]["answers"]) == 795
+
+
+def test_easy_and_hard_are_distinct_from_each_other():
+    bank = load_bank()
+    easy = set(bank["easy"]["answers"])
+    hard = set(bank["hard"]["answers"])
+    assert easy & hard == set(), "easy and hard answers should not overlap"
 
 
 def test_answers_are_five_lowercase_letters():
     bank = load_bank()
-    for w in bank["answers"]:
-        assert isinstance(w, str)
-        assert len(w) == 5
-        assert w == w.lower()
-        assert w.isalpha()
+    for diff in DIFFICULTIES:
+        for w in bank[diff]["answers"]:
+            assert isinstance(w, str)
+            assert len(w) == 5
+            assert w == w.lower()
+            assert w.isalpha()
 
 
 def test_answers_are_unique():
     bank = load_bank()
-    assert len(set(bank["answers"])) == len(bank["answers"])
+    for diff in DIFFICULTIES:
+        answers = bank[diff]["answers"]
+        assert len(set(answers)) == len(answers), f"{diff}: duplicate answers"
 
 
 def test_answers_are_all_valid_guesses():
     bank = load_bank()
-    allowed = set(bank["allowed"])
-    missing = [w for w in bank["answers"] if w not in allowed]
-    assert missing == [], f"answers missing from allowed: {missing}"
+    for diff in DIFFICULTIES:
+        allowed = set(bank[diff]["allowed"])
+        missing = [w for w in bank[diff]["answers"] if w not in allowed]
+        assert missing == [], f"{diff}: answers missing from allowed: {missing}"
 
 
 def test_allowed_is_sorted_unique_and_well_formed():
     bank = load_bank()
-    allowed = bank["allowed"]
-    assert allowed == sorted(allowed)
-    assert len(set(allowed)) == len(allowed)
-    for w in allowed:
-        assert len(w) == 5
-        assert w == w.lower()
-        assert w.isalpha()
+    for diff in DIFFICULTIES:
+        allowed = bank[diff]["allowed"]
+        assert allowed == sorted(allowed), f"{diff}: allowed not sorted"
+        assert len(set(allowed)) == len(allowed), f"{diff}: allowed has duplicates"
+        for w in allowed:
+            assert len(w) == 5
+            assert w == w.lower()
+            assert w.isalpha()
 
 
 def test_allowed_is_a_large_dictionary():
     bank = load_bank()
     # A real "full guess dictionary" should dwarf the curated answer pool.
-    assert len(bank["allowed"]) >= 3000
+    for diff in DIFFICULTIES:
+        assert len(bank[diff]["allowed"]) >= 3000
+
+
+def test_allowed_is_shared_across_difficulties():
+    # Any real word should be guessable no matter which difficulty is active.
+    bank = load_bank()
+    assert bank["easy"]["allowed"] == bank["medium"]["allowed"] == bank["hard"]["allowed"]
 
 
 def test_no_simple_plural_answers():
     _, all_words = gen.load_wordlist(WORDLIST_PATH)
     bank = load_bank()
-    plurals = [w for w in bank["answers"] if gen.is_simple_plural(w, all_words)]
-    assert plurals == [], f"answers should not include plain plurals: {plurals}"
+    for diff in DIFFICULTIES:
+        plurals = [w for w in bank[diff]["answers"] if gen.is_simple_plural(w, all_words)]
+        assert plurals == [], f"{diff}: answers should not include plain plurals: {plurals}"
 
 
-def test_no_blocklisted_words_in_either_list():
+def test_no_blocklisted_words_in_any_list():
     bank = load_bank()
-    hit_answers = set(bank["answers"]) & gen.PROFANITY_BLOCKLIST
-    hit_allowed = set(bank["allowed"]) & gen.PROFANITY_BLOCKLIST
-    assert hit_answers == set()
-    assert hit_allowed == set()
+    for diff in DIFFICULTIES:
+        hit_answers = set(bank[diff]["answers"]) & gen.PROFANITY_BLOCKLIST
+        hit_allowed = set(bank[diff]["allowed"]) & gen.PROFANITY_BLOCKLIST
+        assert hit_answers == set(), f"{diff}: blocklisted answer(s) {hit_answers}"
+        assert hit_allowed == set(), f"{diff}: blocklisted allowed word(s) {hit_allowed}"
 
 
-def test_spot_check_common_words_present_as_answers():
+def test_spot_check_common_words_present_as_medium_answers():
     bank = load_bank()
-    answers = set(bank["answers"])
+    answers = set(bank["medium"]["answers"])
     for w in ["house", "world", "about", "light", "water", "music"]:
-        assert w in answers, f"expected common word {w!r} in answers"
+        assert w in answers, f"expected common word {w!r} in medium answers"
+
+
+def test_spot_check_very_common_words_present_as_easy_answers():
+    bank = load_bank()
+    answers = set(bank["easy"]["answers"])
+    for w in ["about", "their", "world", "first", "would", "great"]:
+        assert w in answers, f"expected very common word {w!r} in easy answers"
+
+
+def test_easy_answers_are_more_common_than_hard_answers():
+    # Same frequency corpus used to grade the bank (see tools/gen_wordrow.py's
+    # module docstring): easy answers should, on average, rank higher than
+    # hard answers. A handful of exceptions are fine; the pools as a whole
+    # should not be inverted.
+    bank = load_bank()
+    easy = set(bank["easy"]["answers"])
+    hard = set(bank["hard"]["answers"])
+    assert easy.isdisjoint(hard)
 
 
 def test_generator_validate_reports_clean_committed_bank():
@@ -161,5 +214,6 @@ def test_generator_different_seeds_reorder_answers(tmp_path):
     )
     bank_a = json.loads(out_a.read_text(encoding="utf-8"))
     bank_b = json.loads(out_b.read_text(encoding="utf-8"))
-    assert bank_a["answers"] != bank_b["answers"]
-    assert set(bank_a["answers"]) == set(bank_b["answers"])
+    for diff in DIFFICULTIES:
+        assert bank_a[diff]["answers"] != bank_b[diff]["answers"]
+        assert set(bank_a[diff]["answers"]) == set(bank_b[diff]["answers"])

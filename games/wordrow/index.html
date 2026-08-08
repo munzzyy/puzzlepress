@@ -10,7 +10,7 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wordrow - Puzzle Press</title>
-<meta name="description" content="Six tries. Five letters. A daily word-guessing puzzle from Puzzle Press.">
+<meta name="description" content="A daily word-guessing puzzle in easy, medium, and hard from Puzzle Press.">
 <meta name="theme-color" content="#f6f2e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="../../manifest.webmanifest">
@@ -21,9 +21,15 @@
 </head>
 <body>
 <a class="pp-skip-link" href="#main">Skip to game</a>
+<div id="pp-chrome"></div>
 
 <main id="main" class="pp-game" data-game="wordrow">
-  <p class="wr-status" id="wr-status" aria-live="polite"></p>
+  <div class="pp-diff-row">
+    <div id="wr-diff-tabs"></div>
+    <div class="pp-status-row">
+      <span id="wr-status" aria-live="polite"></span>
+    </div>
+  </div>
 
   <div class="wr-board" id="wr-board" role="group" aria-label="Guess grid"></div>
 

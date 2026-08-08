@@ -3,6 +3,7 @@ import {
   todayKey,
   pickDaily,
   store,
+  diffTabs,
   recordResult,
   statsHTML,
   share,
@@ -11,30 +12,37 @@ import {
   initChrome,
 } from "../../assets/shared.js";
 
-import {
-  WORD_LENGTH,
-  MAX_GUESSES,
-  keyboardStates,
-  createGame,
-  submitGuess,
-  isGameOver,
-  shareText,
-} from "./core.js";
+import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText } from "./core.js";
 
 const GAME_ID = "wordrow";
 const EPOCH = "2026-08-10";
 const HARDMODE_PREF_KEY = "pp.wordrow.hardmode";
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
+const DEFAULT_DIFFICULTY = "medium";
+
+// Per V2-CONTRACT.md: easy gets an extra guess and the most familiar
+// answers, hard keeps six guesses but forces hard mode on the whole time.
+const DIFF_CONFIG = {
+  easy: { maxGuesses: 7, forcedHardMode: false },
+  medium: { maxGuesses: 6, forcedHardMode: false },
+  hard: { maxGuesses: 6, forcedHardMode: true },
+};
 
 const HELP_HTML =
-  "<p>Guess the day's five-letter word in six tries.</p>" +
+  "<p>Guess the day's five-letter word.</p>" +
   "<p>After each guess, the tiles tell you how close you got: a filled ink-blue " +
   "tile with a ring means that letter is correct and in the right spot, an amber " +
   "tile with a dot means it's in the word but in the wrong spot, and gray means " +
-  "it isn't in the word at all.</p>" +
-  "<p>The on-screen keyboard remembers what you've learned as you go.</p>" +
-  "<p>Turn on hard mode to force yourself to reuse every hint in later guesses.</p>" +
-  "<p>Come back tomorrow for a new word, or try a random puzzle for extra practice " +
-  "once today's is done.</p>";
+  "it isn't in the word at all. The on-screen keyboard remembers what you've " +
+  "learned as you go.</p>" +
+  "<p>Easy gives you seven tries and sticks to the most familiar words. Medium " +
+  "is the classic six tries. Hard also gives six tries but draws from a tougher " +
+  "word pool and keeps hard mode on the whole time: any hint you reveal must be " +
+  "reused in your next guess. Each difficulty keeps its own puzzle, streak, and " +
+  "stats for the day.</p>" +
+  "<p>Come back tomorrow for new words, or try a random puzzle for extra " +
+  "practice once today's is done.</p>";
 
 const KEY_ROWS = [
   ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -43,6 +51,7 @@ const KEY_ROWS = [
 ];
 
 const els = {
+  diffTabsMount: document.getElementById("wr-diff-tabs"),
   status: document.getElementById("wr-status"),
   board: document.getElementById("wr-board"),
   keyboard: document.getElementById("wr-keyboard"),
@@ -57,12 +66,15 @@ const els = {
 
 let bank = null;
 let allowedSet = null;
-let dailyAnswer = "";
 let dayNumber = 0;
 
-let mode = "daily";
-let dailyState = null;
-let randomState = null;
+let dayStores = null; // difficulty -> store(GAME_ID, difficulty)
+const dailyAnswers = {}; // difficulty -> today's answer
+const dailyStates = {}; // difficulty -> game state
+const randomStates = {}; // difficulty -> game state or null
+
+let activeDifficulty = DEFAULT_DIFFICULTY;
+let mode = "daily"; // "daily" | "random"
 let input = "";
 let busy = false; // true while a reveal animation is in flight
 
@@ -87,16 +99,16 @@ function saveHardModePref(on) {
 }
 
 function activeState() {
-  return mode === "daily" ? dailyState : randomState;
+  return mode === "daily" ? dailyStates[activeDifficulty] : randomStates[activeDifficulty];
 }
 
 function setActiveState(next) {
   if (mode === "daily") {
-    dailyState = next;
-    store(GAME_ID).saveDay(next, todayKey());
+    dailyStates[activeDifficulty] = next;
+    dayStores[activeDifficulty].saveDay(next, todayKey());
   } else {
-    randomState = next;
-    store(GAME_ID).saveDay(next, "random");
+    randomStates[activeDifficulty] = next;
+    dayStores[activeDifficulty].saveDay(next, "random");
   }
 }
 
@@ -105,22 +117,33 @@ function persistedStateMatchesAnswer(saved, answer) {
 }
 
 function initGames() {
-  const s = store(GAME_ID);
+  const hardModePref = loadHardModePref();
 
-  const savedDaily = s.loadDay(todayKey());
-  dailyState = persistedStateMatchesAnswer(savedDaily, dailyAnswer)
-    ? savedDaily
-    : createGame(dailyAnswer, { hardMode: loadHardModePref() });
+  for (const diff of DIFFICULTIES) {
+    const config = DIFF_CONFIG[diff];
+    const answer = pickDaily(bank[diff].answers, EPOCH);
+    dailyAnswers[diff] = answer;
 
-  const savedRandom = s.loadDay("random");
-  randomState = savedRandom && Array.isArray(savedRandom.guesses) ? savedRandom : null;
+    const s = dayStores[diff];
+    const savedDaily = s.loadDay(todayKey());
+    dailyStates[diff] = persistedStateMatchesAnswer(savedDaily, answer)
+      ? savedDaily
+      : createGame(answer, {
+          hardMode: config.forcedHardMode || hardModePref,
+          maxGuesses: config.maxGuesses,
+        });
+
+    const savedRandom = s.loadDay("random");
+    randomStates[diff] = savedRandom && Array.isArray(savedRandom.guesses) ? savedRandom : null;
+  }
 }
 
-function pickRandomAnswer() {
-  const pool = bank.answers;
+function pickRandomAnswer(diff) {
+  const pool = bank[diff].answers;
+  const today = dailyAnswers[diff];
   let candidate = pool[Math.floor(Math.random() * pool.length)];
   if (pool.length > 1) {
-    while (candidate === dailyAnswer) {
+    while (candidate === today) {
       candidate = pool[Math.floor(Math.random() * pool.length)];
     }
   }
@@ -128,9 +151,14 @@ function pickRandomAnswer() {
 }
 
 function startRandomGame() {
+  const config = DIFF_CONFIG[activeDifficulty];
   mode = "random";
-  randomState = createGame(pickRandomAnswer(), { hardMode: activeState()?.hardMode ?? false });
-  store(GAME_ID).saveDay(randomState, "random");
+  const carriedHardMode = config.forcedHardMode || activeState()?.hardMode || false;
+  randomStates[activeDifficulty] = createGame(pickRandomAnswer(activeDifficulty), {
+    hardMode: carriedHardMode,
+    maxGuesses: config.maxGuesses,
+  });
+  dayStores[activeDifficulty].saveDay(randomStates[activeDifficulty], "random");
   input = "";
   renderAll();
 }
@@ -144,9 +172,10 @@ function tileHTML(letter, state) {
 
 function renderBoard() {
   const state = activeState();
+  const maxGuesses = state.maxGuesses;
   const rows = [];
 
-  for (let r = 0; r < MAX_GUESSES; r++) {
+  for (let r = 0; r < maxGuesses; r++) {
     const guess = state.guesses[r];
     const evaluation = state.evaluations[r];
     let cells = "";
@@ -167,6 +196,7 @@ function renderBoard() {
   }
 
   els.board.innerHTML = rows.join("");
+  els.board.dataset.rows = String(maxGuesses);
 }
 
 function keyLabel(key) {
@@ -208,13 +238,18 @@ function renderKeyboard() {
 
 function renderToolbar() {
   const state = activeState();
-  const locked = state.guesses.length > 0;
+  const forced = DIFF_CONFIG[activeDifficulty].forcedHardMode;
+  const locked = forced || state.guesses.length > 0;
   els.hardmode.setAttribute("aria-pressed", String(state.hardMode));
   els.hardmode.dataset.state = state.hardMode ? "progress" : "";
   els.hardmode.disabled = locked;
-  els.hardmode.title = locked ? "Hard mode can only change before your first guess" : "";
+  els.hardmode.title = forced
+    ? "Hard mode is always on for Hard difficulty"
+    : locked
+      ? "Hard mode can only change before your first guess"
+      : "";
 
-  const dailyOver = dailyState.status !== "playing";
+  const dailyOver = dailyStates[activeDifficulty].status !== "playing";
   els.random.hidden = !dailyOver;
   els.random.textContent = mode === "random" ? "New random puzzle" : "Random puzzle";
 }
@@ -222,12 +257,11 @@ function renderToolbar() {
 function renderStatus() {
   const state = activeState();
   if (mode === "random") {
-    els.status.textContent =
-      state.status === "playing" ? "Free play: guess this random word." : "";
+    els.status.textContent = state.status === "playing" ? "Free play" : "";
     return;
   }
   if (state.status === "playing") {
-    els.status.textContent = `Guess ${state.guesses.length + 1} of ${MAX_GUESSES}`;
+    els.status.textContent = `Guess ${state.guesses.length + 1} of ${state.maxGuesses}`;
   } else {
     els.status.textContent = "";
   }
@@ -245,7 +279,7 @@ function renderResult() {
     state.status === "won"
       ? state.guesses.length === 1
         ? "Got it in one!"
-        : `Solved in ${state.guesses.length} of ${MAX_GUESSES}.`
+        : `Solved in ${state.guesses.length} of ${state.maxGuesses}.`
       : `Not this time. The word was ${state.answer.toUpperCase()}.`;
 
   els.resultSub.textContent =
@@ -253,7 +287,7 @@ function renderResult() {
 
   if (mode === "daily") {
     els.resultStats.hidden = false;
-    els.resultStats.innerHTML = statsHTML(GAME_ID);
+    els.resultStats.innerHTML = statsHTML(GAME_ID, activeDifficulty);
   } else {
     els.resultStats.hidden = true;
     els.resultStats.innerHTML = "";
@@ -345,7 +379,7 @@ function finishSubmit(next) {
   setActiveState(next);
 
   if (isGameOver(next) && mode === "daily") {
-    recordResult(GAME_ID, next.status === "won");
+    recordResult(GAME_ID, next.status === "won", activeDifficulty);
   }
 
   renderAll();
@@ -356,6 +390,7 @@ function finishSubmit(next) {
 }
 
 function toggleHardMode() {
+  if (DIFF_CONFIG[activeDifficulty].forcedHardMode) return;
   const state = activeState();
   if (state.guesses.length > 0) {
     toast("Hard mode can only change before your first guess");
@@ -390,8 +425,20 @@ function onPhysicalKeydown(e) {
 
 async function onShare() {
   const state = activeState();
-  const text = shareText(state, { dayNumber: mode === "daily" ? dayNumber : "R" });
+  const text = shareText(state, {
+    dayNumber: mode === "daily" ? dayNumber : "R",
+    diffLabel: DIFF_LABELS[activeDifficulty],
+  });
   await share(text);
+}
+
+// ---------- difficulty switching ----------
+
+function switchDifficulty(diff) {
+  activeDifficulty = diff;
+  mode = "daily";
+  input = "";
+  renderAll();
 }
 
 // ---------- boot ----------
@@ -407,11 +454,15 @@ async function boot() {
     return;
   }
 
-  allowedSet = new Set(bank.allowed);
+  // Every difficulty ships the identical allowed pool (see gen_wordrow.py),
+  // so any one section's list works as the shared guess dictionary.
+  allowedSet = new Set(bank[DEFAULT_DIFFICULTY].allowed);
   dayNumber = Math.max(1, dayIndex(EPOCH) + 1);
-  dailyAnswer = pickDaily(bank.answers, EPOCH);
+  dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
 
   initGames();
+
+  activeDifficulty = diffTabs(els.diffTabsMount, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
   renderAll();
 
   document.addEventListener("keydown", onPhysicalKeydown);

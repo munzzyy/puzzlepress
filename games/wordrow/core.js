@@ -4,7 +4,7 @@
 */
 
 export const WORD_LENGTH = 5;
-export const MAX_GUESSES = 6;
+export const MAX_GUESSES = 6; // default guess count; easy overrides to 7 via createGame
 
 const STATE_RANK = { absent: 0, present: 1, correct: 2 };
 
@@ -93,6 +93,7 @@ export function createGame(answer, opts = {}) {
     evaluations: [],
     status: "playing",
     hardMode: Boolean(opts.hardMode),
+    maxGuesses: opts.maxGuesses || MAX_GUESSES,
   };
 }
 
@@ -127,7 +128,7 @@ export function submitGuess(state, guess, opts = {}) {
   const guesses = [...state.guesses, clean];
   const evaluations = [...state.evaluations, evaluation];
   const won = clean === state.answer;
-  const outOfGuesses = guesses.length >= MAX_GUESSES;
+  const outOfGuesses = guesses.length >= (state.maxGuesses || MAX_GUESSES);
   const status = won ? "won" : outOfGuesses ? "lost" : "playing";
 
   return {
@@ -143,16 +144,20 @@ export function isGameOver(state) {
 const SHARE_GLYPH = { correct: "\u{1F7E6}", present: "\u{1F7E7}", absent: "⬛" };
 
 /**
- * Spoiler-free share text: title, day number, guess count, hard-mode mark,
- * then the emoji grid. No letters ever appear in the output.
+ * Spoiler-free share text: title, difficulty word, day number, guess count,
+ * hard-mode mark, then the emoji grid. No letters ever appear in the output.
+ * opts.diffLabel (e.g. "Easy"/"Medium"/"Hard") is required by the contract
+ * ("Wordrow Hard #3 4/6"); omitted entirely when not supplied (random play).
  */
 export function shareText(state, opts = {}) {
   const dayNumber = opts.dayNumber != null ? opts.dayNumber : "?";
+  const maxGuesses = state.maxGuesses || MAX_GUESSES;
   const score = state.status === "won" ? String(state.guesses.length) : "X";
   const mark = state.hardMode ? "*" : "";
+  const label = opts.diffLabel ? `${opts.diffLabel} ` : "";
   const grid = state.evaluations
     .map((row) => row.map((cell) => SHARE_GLYPH[cell]).join(""))
     .join("\n");
 
-  return `Wordrow #${dayNumber} ${score}/${MAX_GUESSES}${mark}\n\n${grid}`;
+  return `Wordrow ${label}#${dayNumber} ${score}/${maxGuesses}${mark}\n\n${grid}`;
 }

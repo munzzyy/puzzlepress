@@ -205,7 +205,45 @@ test("shareText marks hard mode games with an asterisk", () => {
   assert.match(text, /1\/6\*/);
 });
 
+test("shareText includes the difficulty word when a label is given", () => {
+  let state = createGame("crane", { maxGuesses: 6 });
+  state = submitGuess(state, "shale").state;
+  state = submitGuess(state, "crane").state;
+  const text = shareText(state, { dayNumber: 3, diffLabel: "Hard" });
+  assert.match(text, /^Wordrow Hard #3 2\/6/);
+});
+
+test("shareText omits the difficulty word when no label is given", () => {
+  const state = submitGuess(createGame("crane"), "crane").state;
+  const text = shareText(state, { dayNumber: 3 });
+  assert.match(text, /^Wordrow #3 /);
+});
+
 test("WORD_LENGTH and MAX_GUESSES match the contract", () => {
   assert.equal(WORD_LENGTH, 5);
   assert.equal(MAX_GUESSES, 6);
+});
+
+test("createGame respects a custom maxGuesses (easy difficulty gets 7)", () => {
+  const game = createGame("crane", { maxGuesses: 7 });
+  assert.equal(game.maxGuesses, 7);
+});
+
+test("submitGuess loses only after the game's own maxGuesses, not the default", () => {
+  let state = createGame("crane", { maxGuesses: 7 });
+  const wrong = ["shale", "sound", "trout", "flint", "block", "whorl"];
+  for (const guess of wrong) state = submitGuess(state, guess).state;
+  // Six wrong guesses used up; with maxGuesses 7 the game is still playing.
+  assert.equal(state.status, "playing");
+  state = submitGuess(state, "plumb").state;
+  assert.equal(state.status, "lost");
+  assert.equal(state.guesses.length, 7);
+});
+
+test("submitGuess loses after fewer wrong guesses when maxGuesses is smaller", () => {
+  let state = createGame("crane", { maxGuesses: 3 });
+  const wrong = ["shale", "sound", "trout"];
+  for (const guess of wrong) state = submitGuess(state, guess).state;
+  assert.equal(state.status, "lost");
+  assert.equal(state.guesses.length, 3);
 });
