@@ -108,5 +108,6 @@ clues matching their answers, and so on.
 
 ## License
 
-MIT. The word list is the public domain ENABLE list; sources are recorded in
-[data/ATTRIBUTION.md](data/ATTRIBUTION.md).
+[Prosperity Public License 3.0.0](LICENSE): free for noncommercial use, with a
+30 day trial for commercial use. The word list is the public domain ENABLE
+list; sources are recorded in [data/ATTRIBUTION.md](data/ATTRIBUTION.md).
