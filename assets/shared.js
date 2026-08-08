@@ -35,6 +35,31 @@ function writeStorage(key, value) {
   }
 }
 
+function removeStorage(key) {
+  try {
+    globalThis.localStorage.removeItem(key);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function storageLength() {
+  try {
+    return globalThis.localStorage.length;
+  } catch {
+    return 0;
+  }
+}
+
+function storageKeyAt(i) {
+  try {
+    return globalThis.localStorage.key(i);
+  } catch {
+    return null;
+  }
+}
+
 function localMidnightUTC(d) {
   return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
 }
@@ -81,12 +106,72 @@ export function pickDaily(bank, epoch, now = new Date()) {
   return list[wrapped];
 }
 
-const DEFAULT_META = { played: 0, wins: 0, streak: 0, maxStreak: 0, last: null };
+const DEFAULT_META = { played: 0, wins: 0, streak: 0, maxStreak: 0, last: null, lastWon: null };
+const DIFFICULTIES = ["easy", "medium", "hard"];
+const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 
-/** Day-keyed progress + meta (stats), namespaced pp.<gameId>.* in localStorage. */
-export function store(gameId) {
-  const dayKeyFor = (key) => `pp.${gameId}.day.${key}`;
-  const metaKey = `pp.${gameId}.meta`;
+/**
+ * Moves a game's pre-v2 flat keys (pp.<id>.day.<date>, pp.<id>.meta) under
+ * the "medium" difficulty namespace, once. Runs lazily the first time
+ * `store()` is called for a gameId; a `pp.<id>.migrated` flag makes every
+ * later call a cheap no-op instead of re-scanning localStorage.
+ *
+ * Sudoku is exempted: its pre-v2 save shape is a single day-key holding all
+ * three difficulties plus one meta shared across them, not the flat
+ * single-difficulty shape this function expects. The sudoku game owns
+ * translating that bespoke shape onto the new per-difficulty keys itself.
+ */
+function migrateLegacy(gameId) {
+  if (gameId === "sudoku") return;
+
+  const flagKey = `pp.${gameId}.migrated`;
+  if (readStorage(flagKey) === "1") return;
+
+  const legacyMetaKey = `pp.${gameId}.meta`;
+  const legacyMeta = readStorage(legacyMetaKey);
+  if (legacyMeta != null) {
+    const mediumMetaKey = `pp.${gameId}.medium.meta`;
+    if (readStorage(mediumMetaKey) == null) {
+      writeStorage(mediumMetaKey, legacyMeta);
+    }
+    removeStorage(legacyMetaKey);
+  }
+
+  const dayPrefix = `pp.${gameId}.day.`;
+  const newDayPrefix = `pp.${gameId}.medium.day.`;
+  const legacyDayKeys = [];
+  for (let i = 0; i < storageLength(); i++) {
+    const key = storageKeyAt(i);
+    if (key && key.startsWith(dayPrefix)) legacyDayKeys.push(key);
+  }
+  for (const key of legacyDayKeys) {
+    const dateKey = key.slice(dayPrefix.length);
+    const newKey = newDayPrefix + dateKey;
+    if (readStorage(newKey) == null) {
+      writeStorage(newKey, readStorage(key));
+    }
+    removeStorage(key);
+  }
+
+  writeStorage(flagKey, "1");
+}
+
+function diffKey(gameId) {
+  return `pp.${gameId}.diff`;
+}
+
+/** The player's last-used difficulty for a game, persisted by diffTabs. */
+export function lastDiff(gameId, defaultDiff = "medium") {
+  const stored = readStorage(diffKey(gameId));
+  return DIFFICULTIES.includes(stored) ? stored : defaultDiff;
+}
+
+/** Day-keyed progress + meta (stats), namespaced pp.<gameId>.<diff>.* in localStorage. */
+export function store(gameId, diff = "medium") {
+  migrateLegacy(gameId);
+
+  const dayKeyFor = (key) => `pp.${gameId}.${diff}.day.${key}`;
+  const metaKey = `pp.${gameId}.${diff}.meta`;
 
   return {
     loadDay(key = todayKey()) {
@@ -105,12 +190,14 @@ export function store(gameId) {
 }
 
 /**
- * Updates {played, wins, streak, maxStreak, last}. Idempotent per local day:
- * calling this twice on the same day (e.g. a stats-page revisit) leaves the
- * meta untouched the second time, so a game does not need its own guard.
+ * Updates {played, wins, streak, maxStreak, last, lastWon} for one
+ * difficulty. Idempotent per local day: calling this twice on the same day
+ * (e.g. a stats-page revisit) leaves the meta untouched the second time, so
+ * a game does not need its own guard. `lastWon` lets the hub tell a solved
+ * day from a lost day.
  */
-export function recordResult(gameId, won, now = new Date()) {
-  const s = store(gameId);
+export function recordResult(gameId, won, diff = "medium", now = new Date()) {
+  const s = store(gameId, diff);
   const meta = s.loadMeta();
   const today = todayKey(now);
 
@@ -128,6 +215,7 @@ export function recordResult(gameId, won, now = new Date()) {
     streak: won ? (wasYesterday ? meta.streak + 1 : 1) : 0,
     maxStreak: meta.maxStreak,
     last: today,
+    lastWon: won,
   };
   next.maxStreak = Math.max(next.maxStreak, next.streak);
 
@@ -135,15 +223,16 @@ export function recordResult(gameId, won, now = new Date()) {
   return next;
 }
 
-/** Small stats block markup, styled by .pp-stats in site.css. */
-export function statsHTML(gameId) {
-  const meta = store(gameId).loadMeta();
+/** Small stats block markup for one difficulty, styled by .pp-stats in site.css. */
+export function statsHTML(gameId, diff = "medium") {
+  const meta = store(gameId, diff).loadMeta();
   const winPct = meta.played > 0 ? Math.round((meta.wins / meta.played) * 100) : 0;
   const stat = (value, label) =>
     `<div class="pp-stat"><div class="pp-stat__value">${value}</div>` +
     `<div class="pp-stat__label">${label}</div></div>`;
 
   return (
+    `<p class="pp-stats-diff pp-muted">${DIFF_LABELS[diff] || DIFF_LABELS.medium} difficulty</p>` +
     `<div class="pp-stats">` +
     stat(meta.played, "Played") +
     stat(`${winPct}%`, "Win rate") +
@@ -151,6 +240,64 @@ export function statsHTML(gameId) {
     stat(meta.maxStreak, "Best") +
     `</div>`
   );
+}
+
+/**
+ * Segmented Easy/Medium/Hard control mounted into `container`. Persists the
+ * last-used tab in pp.<id>.diff and restores it on the next visit. Returns
+ * the initial difficulty synchronously; `onChange(diff)` fires only on a
+ * later user-driven switch, not for the initial paint, so callers can load
+ * their starting state from the return value without a redundant reload.
+ * Arrow-left/right move focus and selection between tabs.
+ */
+export function diffTabs(container, gameId, onChange, defaultDiff = "medium") {
+  let current = lastDiff(gameId, defaultDiff);
+
+  container.innerHTML = "";
+  container.classList.add("pp-difftabs");
+  container.setAttribute("role", "tablist");
+  container.setAttribute("aria-label", "Difficulty");
+
+  const buttons = {};
+  DIFFICULTIES.forEach((d, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "pp-difftabs__tab";
+    btn.setAttribute("role", "tab");
+    btn.dataset.difficulty = d;
+    btn.textContent = DIFF_LABELS[d];
+    btn.addEventListener("click", () => {
+      if (d !== current) select(d);
+      btn.focus();
+    });
+    buttons[d] = btn;
+    container.appendChild(btn);
+  });
+
+  container.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const i = DIFFICULTIES.indexOf(current);
+    const nextIndex =
+      e.key === "ArrowRight" ? (i + 1) % DIFFICULTIES.length : (i - 1 + DIFFICULTIES.length) % DIFFICULTIES.length;
+    const next = DIFFICULTIES[nextIndex];
+    select(next);
+    buttons[next].focus();
+  });
+
+  function select(next, silent = false) {
+    current = next;
+    writeStorage(diffKey(gameId), next);
+    for (const d of DIFFICULTIES) {
+      const isActive = d === next;
+      buttons[d].setAttribute("aria-selected", String(isActive));
+      buttons[d].tabIndex = isActive ? 0 : -1;
+    }
+    if (!silent) onChange(next);
+  }
+
+  select(current, true);
+  return current;
 }
 
 let toastRegion = null;
@@ -426,6 +573,8 @@ function wireThemeToggle(btn) {
 export function initChrome(gameMeta) {
   const { id, name, hubHref = "../../index.html", helpHTML = "" } = gameMeta;
 
+  document.documentElement.dataset.game = id;
+
   let mount = document.getElementById("pp-chrome");
   if (!mount) {
     mount = document.createElement("div");
@@ -437,7 +586,8 @@ export function initChrome(gameMeta) {
     `<div class="pp-topbar"><div class="pp-topbar__inner">` +
     `<a class="pp-topbar__wordmark" href="${hubHref}">Puzzle Press</a>` +
     `<span class="pp-topbar__divider" aria-hidden="true"></span>` +
-    `<h1 class="pp-topbar__game">${name}</h1>` +
+    `<span class="pp-topbar__title"><h1 class="pp-topbar__game">${name}</h1>` +
+    `<span class="pp-topbar__underline" aria-hidden="true"></span></span>` +
     `<div class="pp-topbar__actions">` +
     `<button type="button" class="pp-icon-btn" data-action="help" aria-label="How to play">` +
     `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
@@ -453,7 +603,7 @@ export function initChrome(gameMeta) {
     modal("How to play", helpHTML || "<p>Rules coming soon.</p>");
   });
   mount.querySelector('[data-action="stats"]').addEventListener("click", () => {
-    modal("Statistics", statsHTML(id));
+    modal("Statistics", statsHTML(id, lastDiff(id)));
   });
   wireThemeToggle(mount.querySelector('[data-action="theme"]'));
 }
