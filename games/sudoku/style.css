@@ -84,7 +84,7 @@
 }
 
 .sk-cell[data-given="false"] {
-  color: var(--accent);
+  color: var(--g-color, var(--accent));
 }
 
 .sk-cell[data-peer="true"] {
@@ -92,12 +92,12 @@
 }
 
 .sk-cell[data-same="true"] {
-  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 16%, var(--surface));
 }
 
 .sk-cell[data-selected="true"] {
-  background: color-mix(in srgb, var(--accent) 28%, var(--surface));
-  box-shadow: inset 0 0 0 2px var(--accent);
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 28%, var(--surface));
+  box-shadow: inset 0 0 0 2px var(--g-color, var(--accent));
   z-index: 1;
 }
 

@@ -106,11 +106,11 @@
 }
 
 .mg-cell--word .mg-cell__input {
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 14%, var(--surface));
 }
 
 .mg-cell--active .mg-cell__input {
-  background: color-mix(in srgb, var(--accent) 32%, var(--surface));
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 32%, var(--surface));
 }
 
 .mg-cell[data-check="correct"] .mg-cell__input {
@@ -189,7 +189,7 @@
 }
 
 .mg-cluebar__text .mg-cluebar__num {
-  color: var(--accent);
+  color: var(--g-color, var(--accent));
   margin-right: 0.4em;
 }
 
@@ -255,7 +255,7 @@
 }
 
 .mg-clues__item[aria-current="true"] {
-  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  background: color-mix(in srgb, var(--g-color, var(--accent)) 16%, var(--surface));
   font-weight: 600;
 }
 
@@ -268,7 +268,7 @@
 .mg-clues__num {
   flex: none;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--g-color, var(--accent));
   min-width: 1.4em;
 }
 
