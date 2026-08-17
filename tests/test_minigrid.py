@@ -253,15 +253,27 @@ def test_generator_is_deterministic_for_a_small_run(tmp_path):
                 "--seed", str(DEFAULT_SEED),
                 "--count", "5",
                 "--cap-per-template", "20",
-                "--time-budget", "8",
+                # Bound the search by nodes, not by wall clock. The node budget
+                # is deterministic, so both runs stop in the same place on any
+                # machine; a time budget that actually fires would let a slow
+                # runner search less than a fast one and the seed would stop
+                # meaning anything. Keep the time budget only as a hang guard,
+                # far enough out that it never binds, and assert below that it
+                # did not fire.
+                "--node-budget", "150000",
+                "--time-budget", "600",
                 "--out", str(out),
             ],
             cwd=ROOT,
             capture_output=True,
             text=True,
-            timeout=90,
+            timeout=240,
         )
         assert result.returncode == 0, result.stdout + result.stderr
+        assert "NOT reproducible" not in result.stderr, (
+            "the time budget cut the search short, so this run was never "
+            "reproducible in the first place:\n" + result.stderr
+        )
 
     assert out_a.read_text(encoding="utf-8") == out_b.read_text(encoding="utf-8")
 
@@ -293,9 +305,12 @@ def test_generator_small_run_bank_still_has_all_three_tiers(tmp_path):
     subprocess.run(
         [
             sys.executable, GEN_PATH, "--seed", str(DEFAULT_SEED), "--count", "5",
-            "--cap-per-template", "20", "--time-budget", "8", "--out", str(out),
+            "--cap-per-template", "20",
+            # Same reason as the determinism test: whether a tier comes out
+            # empty must not depend on how fast the machine is.
+            "--node-budget", "150000", "--time-budget", "600", "--out", str(out),
         ],
-        cwd=ROOT, check=True, capture_output=True, text=True, timeout=90,
+        cwd=ROOT, check=True, capture_output=True, text=True, timeout=240,
     )
     small_bank = json.loads(out.read_text(encoding="utf-8"))
     assert set(small_bank.keys()) == set(TIERS)

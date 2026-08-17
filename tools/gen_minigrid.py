@@ -2691,6 +2691,11 @@ def enumerate_solutions(slots, rng, cap=2000, node_budget=2_000_000, time_budget
     same island exhaustively and finds every solution in it far faster than
     restarting ever could -- see the module's build history for the numbers
     (hundreds of complete fillings in single-digit seconds).
+
+    Returns (solutions, timed_out). The cap and node budget are deterministic,
+    so the same seed gives the same solutions. The time budget is not: if it
+    fires, how much of the tree got searched depends on how fast the machine
+    is, and the caller is told so it can say the bank is not reproducible.
     """
     n = len(slots)
     assignment = {}
@@ -2698,6 +2703,7 @@ def enumerate_solutions(slots, rng, cap=2000, node_budget=2_000_000, time_budget
     used_words = set()
     found = []
     nodes = 0
+    timed_out = False
     deadline = time.monotonic() + time_budget
 
     order = {}
@@ -2729,8 +2735,11 @@ def enumerate_solutions(slots, rng, cap=2000, node_budget=2_000_000, time_budget
         return candidates
 
     def dfs():
-        nonlocal nodes
-        if len(found) >= cap or nodes > node_budget or time.monotonic() > deadline:
+        nonlocal nodes, timed_out
+        if len(found) >= cap or nodes > node_budget:
+            return
+        if time.monotonic() > deadline:
+            timed_out = True
             return
         nodes += 1
         if len(assignment) == n:
@@ -2767,11 +2776,14 @@ def enumerate_solutions(slots, rng, cap=2000, node_budget=2_000_000, time_budget
             used_words.discard(w)
             for p in placed:
                 del grid[p]
-            if len(found) >= cap or time.monotonic() > deadline:
+            if len(found) >= cap:
+                return
+            if time.monotonic() > deadline:
+                timed_out = True
                 return
 
     dfs()
-    return found
+    return found, timed_out
 
 
 def assignment_to_puzzle(blocks, slots, assignment):
@@ -2925,7 +2937,16 @@ def main():
         "--time-budget",
         type=float,
         default=40.0,
-        help="max seconds the search spends per block template before moving on",
+        help="max seconds the search spends per block template before moving on. "
+             "Wall clock, so a run that actually hits it is not reproducible from "
+             "--seed; use --node-budget to bound the search deterministically",
+    )
+    parser.add_argument(
+        "--node-budget",
+        type=int,
+        default=2_000_000,
+        help="max search nodes per block template. Unlike --time-budget this is "
+             "deterministic, so the same seed gives the same bank on any machine",
     )
     args = parser.parse_args()
 
@@ -2950,9 +2971,18 @@ def main():
     seen_grids = set()
     template_uses = {}
 
+    timed_out_templates = []
     for count, blocks in all_variants:
         slots = compute_slots(blocks)
-        solutions = enumerate_solutions(slots, rng, cap=args.cap_per_template, time_budget=args.time_budget)
+        solutions, timed_out = enumerate_solutions(
+            slots,
+            rng,
+            cap=args.cap_per_template,
+            node_budget=args.node_budget,
+            time_budget=args.time_budget,
+        )
+        if timed_out:
+            timed_out_templates.append(count)
         rng.shuffle(solutions)
         for assignment in solutions:
             base = assignment_to_puzzle(blocks, slots, assignment)
@@ -2966,6 +2996,15 @@ def main():
         print(
             f"template blocks={count}: {len(solutions)} fillings found "
             f"({time.monotonic() - t0:.1f}s elapsed)"
+        )
+
+    if timed_out_templates:
+        print(
+            f"WARNING: the {args.time_budget}s time budget cut the search short for "
+            f"template block-counts {sorted(set(timed_out_templates))}. How far the "
+            "search got depends on machine speed, so this bank is NOT reproducible "
+            "from --seed alone. Raise --time-budget or lower --cap-per-template.",
+            file=sys.stderr,
         )
 
     rng.shuffle(candidates)
