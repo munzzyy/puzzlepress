@@ -51,10 +51,18 @@
           <path d="M10.3 3.9 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>
         </svg>
       </button>
+      <button type="button" class="pp-icon-btn" data-action="zoom" aria-label="Zoom in the board" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="10.5" cy="10.5" r="6.5"/>
+          <path d="M15.3 15.3 21 21M10.5 8v5M8 10.5h5"/>
+        </svg>
+      </button>
     </div>
   </div>
 
-  <div class="sk-board" id="board" role="grid" aria-label="Sudoku board"></div>
+  <div class="sk-board-wrap" id="board-wrap">
+    <div class="sk-board" id="board" role="grid" aria-label="Sudoku board"></div>
+  </div>
 
   <div class="sk-pad" id="pad" aria-label="Number pad"></div>
 

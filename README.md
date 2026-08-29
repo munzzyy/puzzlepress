@@ -119,10 +119,12 @@ CI always runs the full suite, slow tests included.
   puzzles are picked for trickier entries and reclued where a trickier clue
   exists, but some of their clues still read like medium ones.
 - Sudoku cells land around 38px on a 360px phone, under the 44px touch
-  guideline. Nine cells across a small screen leaves no way around it; every
-  other control is 44px or better.
+  guideline. Nine cells across a small screen leaves no way around it, so the
+  toolbar's zoom button grows the board past its wrapper instead: cells clear
+  44px and you scroll to reach every corner. Every other control is 44px or
+  better without needing it.
 - Day numbering starts at the launch date, so the archive is only as old as
-  the site.
+  the site: there is nothing to replay from before launch.
 
 ## License
 

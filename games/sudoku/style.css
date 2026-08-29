@@ -44,6 +44,30 @@
 
 /* ---------- board ---------- */
 
+/*
+  A 9x9 board can't clear the 44px touch-target guideline on a narrow phone
+  without redesigning the grid, so the zoom toggle grows the board itself
+  past its wrapper instead: cells stay proportioned the same, they're just
+  bigger, and the wrapper scrolls to reach every corner. Off by default, the
+  wrap behaves like a plain container with no size of its own.
+*/
+.sk-board-wrap {
+  margin: 0 auto;
+}
+
+.sk-board-wrap[data-zoomed="true"] {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: min(75vh, 520px);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.sk-board-wrap[data-zoomed="true"] .sk-board {
+  width: 170%;
+  max-width: none;
+}
+
 .sk-board {
   display: grid;
   grid-template-columns: repeat(9, 1fr);

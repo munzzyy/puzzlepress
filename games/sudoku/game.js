@@ -26,6 +26,7 @@ const DIFFICULTIES = ["easy", "medium", "hard"];
 const LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 const SAVE_INTERVAL_MS = 4000;
 const DEFAULT_DIFFICULTY = "easy";
+const ZOOM_PREF_KEY = "pp.sudoku.zoom";
 
 const HELP_HTML =
   "<p>Fill every row, column, and 3x3 box with the digits 1 through 9, no repeats. " +
@@ -116,6 +117,7 @@ function qs(id) {
 
 function cacheEls() {
   el.board = qs("board");
+  el.boardWrap = qs("board-wrap");
   el.pad = qs("pad");
   el.timer = qs("timer");
   el.status = qs("status");
@@ -125,8 +127,38 @@ function cacheEls() {
   el.undoBtn = document.querySelector('[data-action="undo"]');
   el.notesBtn = document.querySelector('[data-action="notes"]');
   el.errorsBtn = document.querySelector('[data-action="errors"]');
+  el.zoomBtn = document.querySelector('[data-action="zoom"]');
   el.shareBtn = document.querySelector('[data-action="share"]');
   el.randomBtn = document.querySelector('[data-action="random"]');
+}
+
+function loadZoomPref() {
+  try {
+    return localStorage.getItem(ZOOM_PREF_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function saveZoomPref(on) {
+  try {
+    localStorage.setItem(ZOOM_PREF_KEY, on ? "1" : "0");
+  } catch {
+    /* ignore */
+  }
+}
+
+// Cells top out around 38px on a narrow phone, under the 44px touch
+// guideline; zooming grows the board past its wrapper so every cell clears
+// it, then the wrapper scrolls to reach every corner (see style.css).
+function setZoomed(on) {
+  el.boardWrap.dataset.zoomed = String(on);
+  el.zoomBtn.setAttribute("aria-pressed", String(on));
+  saveZoomPref(on);
+  if (on) {
+    el.boardWrap.scrollLeft = (el.boardWrap.scrollWidth - el.boardWrap.clientWidth) / 2;
+    el.boardWrap.scrollTop = (el.boardWrap.scrollHeight - el.boardWrap.clientHeight) / 2;
+  }
 }
 
 function fmtTime(ms) {
@@ -553,6 +585,10 @@ function wireToolbar() {
     renderBoard();
   });
 
+  el.zoomBtn.addEventListener("click", () => {
+    setZoomed(el.boardWrap.dataset.zoomed !== "true");
+  });
+
   el.shareBtn.addEventListener("click", () => {
     const isFreePlay = Boolean(freePlay);
     const label = isFreePlay ? "random puzzle" : LABELS[activeDifficulty];
@@ -613,6 +649,7 @@ async function main() {
   resumeActiveTimer();
   renderBoard();
   tick();
+  if (loadZoomPref()) setZoomed(true);
 
   window.setInterval(() => {
     tick();
