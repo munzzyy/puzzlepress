@@ -88,6 +88,17 @@ with no DOM in sight). The pytest suites check every bank against its schema
 and invariants: sudoku uniqueness, wordweave grids tiling fully, minigrid
 clues matching their answers, and so on.
 
+A handful of those pytest cases regenerate a bank in a subprocess against
+the full word list to prove the generator is deterministic, which is what
+makes the full run take a couple of minutes. For a fast local loop while
+you're working on anything that is not a generator, skip them:
+
+```
+python3 -m pytest -q -m "not slow"
+```
+
+CI always runs the full suite, slow tests included.
+
 ## Honest limits
 
 - Word "commonness" is judgment plus one data point. Wordrow's easy and hard

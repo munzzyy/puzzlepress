@@ -13,6 +13,8 @@ import os
 import subprocess
 import sys
 
+import pytest
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BANK_PATH = os.path.join(ROOT, "data", "wordrow.json")
 GEN_PATH = os.path.join(ROOT, "tools", "gen_wordrow.py")
@@ -171,6 +173,7 @@ def test_generator_validate_reports_clean_committed_bank():
     assert errors == []
 
 
+@pytest.mark.slow
 def test_generator_is_deterministic_for_the_committed_seed(tmp_path):
     out = tmp_path / "wordrow_regen.json"
     result = subprocess.run(
@@ -186,6 +189,7 @@ def test_generator_is_deterministic_for_the_committed_seed(tmp_path):
     assert regenerated == committed
 
 
+@pytest.mark.slow
 def test_generator_is_deterministic_across_two_runs_same_seed(tmp_path):
     out_a = tmp_path / "a.json"
     out_b = tmp_path / "b.json"
@@ -201,6 +205,7 @@ def test_generator_is_deterministic_across_two_runs_same_seed(tmp_path):
     assert out_a.read_text(encoding="utf-8") == out_b.read_text(encoding="utf-8")
 
 
+@pytest.mark.slow
 def test_generator_different_seeds_reorder_answers(tmp_path):
     out_a = tmp_path / "a.json"
     out_b = tmp_path / "b.json"

@@ -18,6 +18,8 @@ import os
 import subprocess
 import sys
 
+import pytest
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BANK_PATH = os.path.join(ROOT, "data", "minigrid.json")
 GEN_PATH = os.path.join(ROOT, "tools", "gen_minigrid.py")
@@ -243,6 +245,7 @@ def test_spot_check_a_hard_override_reads_differently_from_its_medium_clue():
     assert gen.HARD_CLUE_OVERRIDES["SAW"] and gen.CLUES["SAW"]
 
 
+@pytest.mark.slow
 def test_generator_is_deterministic_for_a_small_run(tmp_path):
     out_a = tmp_path / "a.json"
     out_b = tmp_path / "b.json"
@@ -278,6 +281,7 @@ def test_generator_is_deterministic_for_a_small_run(tmp_path):
     assert out_a.read_text(encoding="utf-8") == out_b.read_text(encoding="utf-8")
 
 
+@pytest.mark.slow
 def test_generator_different_seeds_produce_different_small_banks(tmp_path):
     out_a = tmp_path / "a.json"
     out_b = tmp_path / "b.json"
@@ -300,6 +304,7 @@ def test_generator_different_seeds_produce_different_small_banks(tmp_path):
     assert bank_a != bank_b
 
 
+@pytest.mark.slow
 def test_generator_small_run_bank_still_has_all_three_tiers(tmp_path):
     out = tmp_path / "small.json"
     subprocess.run(
