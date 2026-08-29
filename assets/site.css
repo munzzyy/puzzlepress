@@ -310,6 +310,91 @@ ul {
   font-variant-numeric: tabular-nums;
 }
 
+.pp-combined-stats {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pp-archive-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.pp-archive-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- archive page ---------- */
+
+.ar-empty {
+  color: var(--muted);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
+.ar-empty a {
+  color: var(--accent);
+}
+
+.ar-section {
+  margin-bottom: 1.9rem;
+}
+
+.ar-section__title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.7rem;
+}
+
+.ar-section__title .pp-card__icon {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.ar-section__title .pp-card__glyph {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.ar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.ar-chip {
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: transform var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease);
+}
+
+.ar-chip:hover,
+.ar-chip:focus-visible {
+  border-color: var(--g-color, var(--accent));
+  transform: translateY(-1px);
+}
+
+.ar-chip[data-played="true"] {
+  background: var(--g-color-soft, var(--surface-2));
+  border-color: var(--g-color, var(--line));
+  font-weight: 600;
+}
+
 /* ---------- theme toggle ---------- */
 
 .pp-theme-toggle {
@@ -605,6 +690,35 @@ ul {
   align-items: center;
   gap: 0.35rem;
   flex: none;
+}
+
+.pp-archive-banner {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.pp-archive-banner__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.pp-archive-banner__inner a {
+  color: var(--g-color, var(--accent));
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pp-archive-banner__inner a:hover {
+  text-decoration: underline;
 }
 
 .pp-icon-btn {

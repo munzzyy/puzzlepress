@@ -64,7 +64,8 @@ function localMidnightUTC(d) {
   return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
-function localDateFromKey(key) {
+/** The local-calendar Date for a "YYYY-MM-DD" key, at local midnight. */
+export function localDateFromKey(key) {
   const [y, m, d] = key.split("-").map(Number);
   return new Date(y, m - 1, d);
 }
@@ -104,6 +105,47 @@ export function pickDaily(bank, epoch, now = new Date()) {
   const idx = dayIndex(epoch, now);
   const wrapped = ((idx % list.length) + list.length) % list.length;
   return list[wrapped];
+}
+
+/** Local-calendar dateKey for the day `idx` days after `epoch`. Inverse of dayIndex. */
+export function dateKeyForIndex(epoch, idx) {
+  const [y, m, d] = epoch.split("-").map(Number);
+  return todayKey(new Date(y, m - 1, d + idx));
+}
+
+/**
+ * Validates a requested archive date (a "YYYY-MM-DD" string, normally read
+ * from a page's `?date=` query param) against a game's epoch and the real
+ * current time: it has to be a real calendar date, on or after the epoch,
+ * and not after today. Anything else quietly falls back to today, the same
+ * as opening the game with no date at all, so a bad or stale archive link
+ * can never do worse than that.
+ *
+ * Returns the `now` to hand to pickDaily/dayIndex, the storage key to load
+ * and save that day's progress under, its 1-based day number, and whether
+ * this is an archived day rather than the live daily.
+ */
+export function resolveArchiveDay(epoch, requestedDateKey, now = new Date()) {
+  const todayIdx = dayIndex(epoch, now);
+
+  if (requestedDateKey && /^\d{4}-\d{2}-\d{2}$/.test(requestedDateKey)) {
+    const candidate = localDateFromKey(requestedDateKey);
+    if (todayKey(candidate) === requestedDateKey) {
+      const idx = dayIndex(epoch, candidate);
+      if (idx >= 0 && idx <= todayIdx) {
+        return { now: candidate, dateKey: requestedDateKey, dayNumber: idx + 1, isArchive: idx !== todayIdx };
+      }
+    }
+  }
+
+  return { now, dateKey: todayKey(now), dayNumber: todayIdx + 1, isArchive: false };
+}
+
+/** Human label for a dateKey, e.g. "Aug 10, 2026". */
+export function formatDateLabel(dateKey) {
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(
+    localDateFromKey(dateKey)
+  );
 }
 
 const DEFAULT_META = { played: 0, wins: 0, streak: 0, maxStreak: 0, last: null, lastWon: null };
@@ -568,10 +610,14 @@ function wireThemeToggle(btn) {
 /**
  * Builds the shared top bar (wordmark, game name, help, stats, theme toggle)
  * into a `#pp-chrome` mount point, creating one at the top of <body> if the
- * page did not provide one. gameMeta: { id, name, hubHref, helpHTML }.
+ * page did not provide one. gameMeta: { id, name, hubHref, helpHTML,
+ * archiveDate }. archiveDate, when set to a resolved "YYYY-MM-DD" key, adds
+ * a small banner below the top bar saying which past day is loaded, with a
+ * link back to today's puzzle (every game page lives at
+ * games/<id>/index.html, so a plain relative link drops the ?date= param).
  */
 export function initChrome(gameMeta) {
-  const { id, name, hubHref = "../../index.html", helpHTML = "" } = gameMeta;
+  const { id, name, hubHref = "../../index.html", helpHTML = "", archiveDate = null } = gameMeta;
 
   document.documentElement.dataset.game = id;
 
@@ -581,6 +627,12 @@ export function initChrome(gameMeta) {
     mount.id = "pp-chrome";
     document.body.insertBefore(mount, document.body.firstChild);
   }
+
+  const archiveHTML = archiveDate
+    ? `<div class="pp-archive-banner"><div class="pp-archive-banner__inner">` +
+      `<span>Playing ${formatDateLabel(archiveDate)}, not today's puzzle.</span>` +
+      `<a href="index.html">Back to today</a></div></div>`
+    : "";
 
   mount.innerHTML =
     `<div class="pp-topbar"><div class="pp-topbar__inner">` +
@@ -597,7 +649,8 @@ export function initChrome(gameMeta) {
     `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">` +
     `<path d="M5 20V10M12 20V4M19 20v-7"/></svg></button>` +
     `<button type="button" class="pp-theme-toggle" data-action="theme" aria-label="Toggle color theme"></button>` +
-    `</div></div></div>`;
+    `</div></div></div>` +
+    archiveHTML;
 
   mount.querySelector('[data-action="help"]').addEventListener("click", () => {
     modal("How to play", helpHTML || "<p>Rules coming soon.</p>");

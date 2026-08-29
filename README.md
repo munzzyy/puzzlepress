@@ -62,6 +62,13 @@ the same moment your saved progress and streaks roll over.
 Fair warning: the banks are plain JSON in a public repo, so today's answers
 are one file away. Peeking only ruins your own streak.
 
+Missed a day, or just want to replay one? [archive.html](archive.html) (linked
+from the hub as "Play a past day") lists every past day for every game back
+to launch. Opening one loads that day's puzzle with a banner reminding you
+it is not today's and a link back. Its progress is saved under that specific
+date, so replaying an old day can never overwrite today's puzzle or touch
+your streak.
+
 ## Regenerating the banks
 
 Each `tools/gen_<game>.py` rebuilds its `data/<game>.json`. They are stdlib

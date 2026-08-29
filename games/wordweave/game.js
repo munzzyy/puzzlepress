@@ -2,6 +2,7 @@ import {
   dayIndex,
   store,
   recordResult,
+  resolveArchiveDay,
   share,
   toast,
   confettiBurst,
@@ -37,6 +38,7 @@ const els = {};
 let bank = null; // { easy: {puzzles}, medium: {puzzles}, hard: {puzzles} }
 let activeDifficulty = DEFAULT_DIFFICULTY;
 let dayNumber = 1;
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 // Per-difficulty runtime data for today's puzzles.
 const puzzles = {}; // difficulty -> puzzle
@@ -85,7 +87,7 @@ function cellKey(r, c) {
 }
 
 function wrappedIndex(length) {
-  const idx = dayIndex(EPOCH);
+  const idx = dayIndex(EPOCH, archive.now);
   return ((idx % length) + length) % length;
 }
 
@@ -302,12 +304,15 @@ function stopTimer() {
 
 function saveProgress() {
   if (freePlay) return;
-  store(GAME_ID, activeDifficulty).saveDay({
-    puzzleIndex: dailyIndexes[activeDifficulty],
-    core: states[activeDifficulty],
-    startedAt: startedAts[activeDifficulty],
-    finishedAt: finishedAts[activeDifficulty],
-  });
+  store(GAME_ID, activeDifficulty).saveDay(
+    {
+      puzzleIndex: dailyIndexes[activeDifficulty],
+      core: states[activeDifficulty],
+      startedAt: startedAts[activeDifficulty],
+      finishedAt: finishedAts[activeDifficulty],
+    },
+    archive.dateKey
+  );
 }
 
 // ---------------------------------------------------------------------
@@ -362,7 +367,7 @@ function handleComplete() {
   const elapsed = Math.max(0, Math.round((finishedAts[diff] - startedAts[diff]) / 1000));
   confettiBurst();
   showComplete(elapsed);
-  recordResult(GAME_ID, true, diff);
+  if (!archive.isArchive) recordResult(GAME_ID, true, diff);
 }
 
 function startPractice() {
@@ -614,7 +619,7 @@ function loadToday(diff) {
   dailyIndexes[diff] = idx;
   puzzles[diff] = list[idx];
 
-  const saved = store(GAME_ID, diff).loadDay();
+  const saved = store(GAME_ID, diff).loadDay(archive.dateKey);
   if (saved && saved.puzzleIndex === idx && saved.core) {
     states[diff] = saved.core;
     startedAts[diff] = saved.startedAt || Date.now();
@@ -633,7 +638,13 @@ function loadToday(diff) {
 
 async function main() {
   cacheEls();
-  initChrome({ id: GAME_ID, name: "Wordweave", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Wordweave",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   try {
     const res = await fetch("../../data/wordweave.json");
@@ -651,7 +662,7 @@ async function main() {
     }
   }
 
-  dayNumber = Math.max(1, dayIndex(EPOCH) + 1);
+  dayNumber = archive.dayNumber;
 
   for (const diff of DIFFICULTIES) loadToday(diff);
 

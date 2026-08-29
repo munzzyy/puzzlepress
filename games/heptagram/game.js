@@ -1,9 +1,10 @@
 import {
-  todayKey,
   pickDaily,
   store,
   diffTabs,
   recordResult,
+  resolveArchiveDay,
+  formatDateLabel,
   share,
   confettiBurst,
   initChrome,
@@ -55,6 +56,7 @@ const sessions = {}; // difficulty -> { puzzle, state }
 let freePlay = null; // { puzzle, state } or null; never counts toward streaks
 let guess = "";
 let wheelOrder = [];
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -140,7 +142,7 @@ function persistCurrent() {
   const { puzzle, state } = sessions[activeDifficulty];
   // The letters tag ties the payload to today's puzzle so a stale save is
   // never restored against a different wheel.
-  dayStores[activeDifficulty].saveDay({ ...state, letters: puzzle.letters });
+  dayStores[activeDifficulty].saveDay({ ...state, letters: puzzle.letters }, archive.dateKey);
 }
 
 /* ---------- rendering ---------- */
@@ -358,8 +360,10 @@ function finishCurrent() {
   const won = didWin(puzzle, state);
   setCurrentState(finish(state));
 
-  if (isDailyView()) {
+  if (isDailyView() && !archive.isArchive) {
     recordResult(GAME_ID, won, activeDifficulty);
+  }
+  if (isDailyView()) {
     persistCurrent();
   }
   if (won) confettiBurst();
@@ -387,9 +391,7 @@ function handleShare() {
   const puzzle = currentPuzzle();
   const state = currentState();
   const diffLabel = LABELS[activeDifficulty];
-  const dateLabel = isDailyView()
-    ? new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(new Date())
-    : "Free play";
+  const dateLabel = isDailyView() ? formatDateLabel(archive.dateKey) : "Free play";
   share(shareText(puzzle, state, dateLabel, diffLabel));
 }
 
@@ -450,7 +452,13 @@ async function init() {
   cacheEls();
   wireEvents();
 
-  initChrome({ id: GAME_ID, name: "Heptagram", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Heptagram",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
 
@@ -462,8 +470,8 @@ async function init() {
   }
 
   for (const diff of DIFFICULTIES) {
-    const puzzle = pickDaily(bank[diff], EPOCH);
-    const saved = dayStores[diff].loadDay(todayKey());
+    const puzzle = pickDaily(bank[diff], EPOCH, archive.now);
+    const saved = dayStores[diff].loadDay(archive.dateKey);
     let state = createState();
     if (saved && saved.letters === puzzle.letters) {
       const { letters, ...rest } = saved;

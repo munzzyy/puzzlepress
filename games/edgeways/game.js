@@ -3,11 +3,11 @@ import {
   store,
   diffTabs,
   recordResult,
+  resolveArchiveDay,
   share,
   toast,
   confettiBurst,
   initChrome,
-  todayKey,
 } from "../../assets/shared.js";
 
 import {
@@ -77,6 +77,7 @@ let state = null;
 let dictionary = null;
 let bank = null;
 let letterEls = new Map();
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 function seedBuffer(words) {
   const start = requiredStartLetter(words);
@@ -88,7 +89,7 @@ function boardStore(diff) {
 }
 
 function loadDailyPuzzle(diff) {
-  return pickDaily(bank[diff], EPOCH);
+  return pickDaily(bank[diff], EPOCH, archive.now);
 }
 
 function sameSides(a, b) {
@@ -97,7 +98,7 @@ function sameSides(a, b) {
 
 function initDailyState(diff) {
   const puzzle = loadDailyPuzzle(diff);
-  const saved = boardStore(diff).loadDay();
+  const saved = boardStore(diff).loadDay(archive.dateKey);
   if (saved && sameSides(saved.sides, puzzle.sides)) {
     return {
       sides: puzzle.sides,
@@ -128,12 +129,15 @@ function randomPuzzle() {
 
 function persist() {
   if (state.mode !== "daily") return;
-  boardStore(state.diff).saveDay({
-    sides: state.sides,
-    words: state.words,
-    buffer: state.buffer,
-    solved: state.solved,
-  });
+  boardStore(state.diff).saveDay(
+    {
+      sides: state.sides,
+      words: state.words,
+      buffer: state.buffer,
+      solved: state.solved,
+    },
+    archive.dateKey
+  );
 }
 
 /* ---------- rendering ---------- */
@@ -308,7 +312,7 @@ function submitCurrent() {
 
 function onSolved() {
   confettiBurst();
-  if (state.mode === "daily") {
+  if (state.mode === "daily" && !archive.isArchive) {
     recordResult(GAME_ID, true, state.diff);
   }
 }
@@ -321,7 +325,7 @@ function buildShareText() {
     .map((_, i) => (i < summary.par ? "\u{1F7E6}" : "\u{1F7E7}"))
     .join("");
   const diffLabel = DIFF_LABELS[state.diff] || DIFF_LABELS.medium;
-  const label = state.mode === "daily" ? todayKey() : "practice";
+  const label = state.mode === "daily" ? archive.dateKey : "practice";
   return `Edgeways ${diffLabel} ${label}\n${squares} ${summary.count}/${summary.par}`;
 }
 
@@ -354,7 +358,13 @@ function switchDifficulty(diff) {
 
 async function boot() {
   els.current.textContent = "Loading...";
-  initChrome({ id: GAME_ID, name: "Edgeways", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Edgeways",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   const [bankRes, dictRes] = await Promise.all([
     fetch("../../data/edgeways.json"),

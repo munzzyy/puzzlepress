@@ -1,4 +1,13 @@
-import { pickDaily, store, diffTabs, recordResult, share, confettiBurst, initChrome } from "../../assets/shared.js";
+import {
+  pickDaily,
+  store,
+  diffTabs,
+  recordResult,
+  resolveArchiveDay,
+  share,
+  confettiBurst,
+  initChrome,
+} from "../../assets/shared.js";
 import {
   parseCells,
   peersOf,
@@ -97,6 +106,7 @@ const selection = {}; // difficulty -> index
 
 let freePlay = null; // { difficulty, solution: number[], state } or null
 let saveTimer = null;
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 const el = {};
 
@@ -171,7 +181,7 @@ function firstEditableIndex(state) {
 
 function loadToday() {
   for (const difficulty of DIFFICULTIES) {
-    const entry = pickDaily(bank[difficulty], EPOCH);
+    const entry = pickDaily(bank[difficulty], EPOCH, archive.now);
     const solution = parseCells(entry.solution);
     puzzles[difficulty] = { puzzle: entry.puzzle, solution };
 
@@ -180,7 +190,7 @@ function loadToday() {
     // into the new puzzle's given cells. Payloads carried over from v1 have
     // no puzzle field, so savedMatchesPuzzle checks them against the givens
     // instead of throwing that day's board and timer away.
-    const savedRaw = dayStores[difficulty].loadDay();
+    const savedRaw = dayStores[difficulty].loadDay(archive.dateKey);
     const savedFor = savedMatchesPuzzle(savedRaw, entry.puzzle) ? savedRaw : null;
     const state = stateFromSaved(entry.puzzle, savedFor);
     states[difficulty] = state;
@@ -192,13 +202,16 @@ function loadToday() {
 
 function saveToday() {
   for (const difficulty of DIFFICULTIES) {
-    dayStores[difficulty].saveDay({
-      puzzle: puzzles[difficulty].puzzle,
-      values: states[difficulty].values,
-      marks: states[difficulty].marks,
-      elapsedMs: elapsedFor(difficulty),
-      done: solvedToday[difficulty],
-    });
+    dayStores[difficulty].saveDay(
+      {
+        puzzle: puzzles[difficulty].puzzle,
+        values: states[difficulty].values,
+        marks: states[difficulty].marks,
+        elapsedMs: elapsedFor(difficulty),
+        done: solvedToday[difficulty],
+      },
+      archive.dateKey
+    );
   }
 }
 
@@ -417,7 +430,7 @@ function checkWin() {
     t.elapsedMs += performance.now() - t.runningSince;
     t.runningSince = null;
   }
-  recordResult(GAME_ID, true, activeDifficulty);
+  if (!archive.isArchive) recordResult(GAME_ID, true, activeDifficulty);
   confettiBurst();
   showDone(t.elapsedMs, false);
 }
@@ -571,7 +584,14 @@ function wireToolbar() {
 
 async function main() {
   cacheEls();
-  initChrome({ id: GAME_ID, name: "Sudoku", hubHref: "../../index.html", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Sudoku",
+    hubHref: "../../index.html",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   migrateLegacySudoku();
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));

@@ -33,6 +33,8 @@
     </div>
     <p class="pp-dateline" id="dateline"></p>
     <p class="pp-progress" id="progress-line"></p>
+    <p class="pp-combined-stats" id="combined-stats"></p>
+    <a class="pp-archive-link" href="archive.html">Play a past day</a>
   </header>
 
   <main id="main">
@@ -125,6 +127,24 @@ function renderGrid() {
     `<span class="pp-progress__count">${playedToday}</span> of ${GAMES.length} played today`;
 }
 
+/**
+ * Combined streak across all seven games, read from each game's last-used
+ * difficulty (same source chipFor uses). A quiet way to see the whole
+ * portfolio's momentum at a glance instead of clicking into each game.
+ */
+function renderCombinedStats() {
+  let streak = 0;
+  let best = 0;
+  for (const g of GAMES) {
+    const diff = lastDiff(g.id, g.defaultDiff || "medium");
+    const meta = store(g.id, diff).loadMeta();
+    streak += meta.streak;
+    best += meta.maxStreak;
+  }
+  document.getElementById("combined-stats").textContent =
+    `Combined streak: ${streak} day${streak === 1 ? "" : "s"}, best combined: ${best}`;
+}
+
 function renderDateline() {
   const now = new Date();
   document.getElementById("dateline").textContent = new Intl.DateTimeFormat("en-US", {
@@ -167,6 +187,7 @@ function wireThemeToggle() {
 }
 
 renderGrid();
+renderCombinedStats();
 renderDateline();
 wireThemeToggle();
 

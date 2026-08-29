@@ -27,9 +27,19 @@ class MemoryStorage {
 
 globalThis.localStorage = new MemoryStorage();
 
-const { dayIndex, todayKey, pickDaily, store, recordResult, statsHTML, lastDiff } = await import(
-  "./shared.js"
-);
+const {
+  dayIndex,
+  todayKey,
+  pickDaily,
+  store,
+  recordResult,
+  statsHTML,
+  lastDiff,
+  dateKeyForIndex,
+  resolveArchiveDay,
+  formatDateLabel,
+  localDateFromKey,
+} = await import("./shared.js");
 
 test("dayIndex is 0 on the epoch date itself", () => {
   assert.equal(dayIndex("2026-08-10", new Date(2026, 7, 10)), 0);
@@ -107,6 +117,83 @@ test("pickDaily returns the same puzzle all local day, morning to midnight", () 
 
 test("pickDaily throws on an empty bank", () => {
   assert.throws(() => pickDaily({ puzzles: [] }, "2026-08-10"));
+});
+
+// ---------- archive (dateKeyForIndex, resolveArchiveDay, formatDateLabel) ----------
+
+test("dateKeyForIndex is the exact inverse of dayIndex", () => {
+  const epoch = "2026-08-10";
+  for (const idx of [0, 1, 5, 30, 200]) {
+    const key = dateKeyForIndex(epoch, idx);
+    assert.equal(dayIndex(epoch, localDateFromKey(key)), idx);
+  }
+});
+
+test("dateKeyForIndex rolls over months and years correctly", () => {
+  assert.equal(dateKeyForIndex("2026-08-10", 21), "2026-08-31");
+  assert.equal(dateKeyForIndex("2026-08-10", 22), "2026-09-01");
+  assert.equal(dateKeyForIndex("2026-08-10", 143), "2026-12-31");
+  assert.equal(dateKeyForIndex("2026-08-10", 144), "2027-01-01");
+});
+
+test("dateKeyForIndex stays exact across a DST transition", () => {
+  // Same DST date used in the dayIndex DST test above, checked in reverse.
+  assert.equal(dateKeyForIndex("2026-03-01", 6), "2026-03-07");
+  assert.equal(dateKeyForIndex("2026-03-01", 8), "2026-03-09");
+});
+
+test("resolveArchiveDay falls back to today when no date is requested", () => {
+  const now = new Date(2026, 7, 15);
+  const r = resolveArchiveDay("2026-08-10", null, now);
+  assert.equal(r.dateKey, "2026-08-15");
+  assert.equal(r.dayNumber, 6);
+  assert.equal(r.isArchive, false);
+  assert.equal(r.now.getTime(), now.getTime());
+});
+
+test("resolveArchiveDay accepts a valid past date and marks it archived", () => {
+  const now = new Date(2026, 7, 15);
+  const r = resolveArchiveDay("2026-08-10", "2026-08-12", now);
+  assert.equal(r.dateKey, "2026-08-12");
+  assert.equal(r.dayNumber, 3);
+  assert.equal(r.isArchive, true);
+  assert.equal(todayKey(r.now), "2026-08-12");
+});
+
+test("resolveArchiveDay treats a request for today's own date as not archived", () => {
+  const now = new Date(2026, 7, 15);
+  const r = resolveArchiveDay("2026-08-10", "2026-08-15", now);
+  assert.equal(r.isArchive, false);
+  assert.equal(r.dateKey, "2026-08-15");
+});
+
+test("resolveArchiveDay rejects a date before the epoch", () => {
+  const now = new Date(2026, 7, 15);
+  const r = resolveArchiveDay("2026-08-10", "2026-08-01", now);
+  assert.equal(r.isArchive, false);
+  assert.equal(r.dateKey, "2026-08-15");
+});
+
+test("resolveArchiveDay rejects a date after today", () => {
+  const now = new Date(2026, 7, 15);
+  const r = resolveArchiveDay("2026-08-10", "2026-08-20", now);
+  assert.equal(r.isArchive, false);
+  assert.equal(r.dateKey, "2026-08-15");
+});
+
+test("resolveArchiveDay rejects garbage and malformed dates", () => {
+  const now = new Date(2026, 7, 15);
+  for (const bad of ["", "not-a-date", "2026-02-31", "2026-13-01", "08-12-2026"]) {
+    const r = resolveArchiveDay("2026-08-10", bad, now);
+    assert.equal(r.isArchive, false, `expected ${JSON.stringify(bad)} to be rejected`);
+  }
+});
+
+test("formatDateLabel renders a human month/day/year label", () => {
+  const label = formatDateLabel("2026-08-10");
+  assert.match(label, /Aug/);
+  assert.match(label, /10/);
+  assert.match(label, /2026/);
 });
 
 test("store defaults to the medium difficulty and round-trips day state and meta", () => {

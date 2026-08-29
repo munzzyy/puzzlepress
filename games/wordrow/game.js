@@ -1,10 +1,9 @@
 import {
-  dayIndex,
-  todayKey,
   pickDaily,
   store,
   diffTabs,
   recordResult,
+  resolveArchiveDay,
   statsHTML,
   share,
   toast,
@@ -67,6 +66,7 @@ const els = {
 let bank = null;
 let allowedSet = null;
 let dayNumber = 0;
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 let dayStores = null; // difficulty -> store(GAME_ID, difficulty)
 const dailyAnswers = {}; // difficulty -> today's answer
@@ -105,7 +105,7 @@ function activeState() {
 function setActiveState(next) {
   if (mode === "daily") {
     dailyStates[activeDifficulty] = next;
-    dayStores[activeDifficulty].saveDay(next, todayKey());
+    dayStores[activeDifficulty].saveDay(next, archive.dateKey);
   } else {
     randomStates[activeDifficulty] = next;
     dayStores[activeDifficulty].saveDay(next, "random");
@@ -121,11 +121,11 @@ function initGames() {
 
   for (const diff of DIFFICULTIES) {
     const config = DIFF_CONFIG[diff];
-    const answer = pickDaily(bank[diff].answers, EPOCH);
+    const answer = pickDaily(bank[diff].answers, EPOCH, archive.now);
     dailyAnswers[diff] = answer;
 
     const s = dayStores[diff];
-    const savedDaily = s.loadDay(todayKey());
+    const savedDaily = s.loadDay(archive.dateKey);
     dailyStates[diff] = persistedStateMatchesAnswer(savedDaily, answer)
       ? savedDaily
       : createGame(answer, {
@@ -378,7 +378,7 @@ function revealRow(rowIndex, evaluation, done) {
 function finishSubmit(next) {
   setActiveState(next);
 
-  if (isGameOver(next) && mode === "daily") {
+  if (isGameOver(next) && mode === "daily" && !archive.isArchive) {
     recordResult(GAME_ID, next.status === "won", activeDifficulty);
   }
 
@@ -444,7 +444,14 @@ function switchDifficulty(diff) {
 // ---------- boot ----------
 
 async function boot() {
-  initChrome({ id: GAME_ID, name: "Wordrow", hubHref: "../../index.html", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Wordrow",
+    hubHref: "../../index.html",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   try {
     const res = await fetch("../../data/wordrow.json");
@@ -457,7 +464,7 @@ async function boot() {
   // Every difficulty ships the identical allowed pool (see gen_wordrow.py),
   // so any one section's list works as the shared guess dictionary.
   allowedSet = new Set(bank[DEFAULT_DIFFICULTY].allowed);
-  dayNumber = Math.max(1, dayIndex(EPOCH) + 1);
+  dayNumber = archive.dayNumber;
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
 
   initGames();

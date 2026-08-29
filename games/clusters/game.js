@@ -3,6 +3,7 @@ import {
   store,
   dayIndex,
   recordResult,
+  resolveArchiveDay,
   share,
   toast,
   confettiBurst,
@@ -27,6 +28,7 @@ const HELP_HTML =
 const els = {};
 let bank = null; // { easy: {puzzles}, medium: {puzzles}, hard: {puzzles} }
 let activeDifficulty = "medium";
+let archive = null; // resolveArchiveDay(EPOCH, ...): the day, real or archived, we're playing
 
 // Per-difficulty runtime data for today's puzzles.
 const puzzles = {}; // difficulty -> puzzle
@@ -88,17 +90,20 @@ function puzzleLabel() {
 function persist() {
   if (freePlay) return;
   const state = states[activeDifficulty];
-  store(GAME_ID, activeDifficulty).saveDay({
-    puzzleIndex: dailyIndexes[activeDifficulty],
-    order: state.order,
-    solvedGroups: state.solvedGroups,
-    mistakes: state.mistakes,
-    status: state.status,
-  });
+  store(GAME_ID, activeDifficulty).saveDay(
+    {
+      puzzleIndex: dailyIndexes[activeDifficulty],
+      order: state.order,
+      solvedGroups: state.solvedGroups,
+      mistakes: state.mistakes,
+      status: state.status,
+    },
+    archive.dateKey
+  );
 }
 
 function persistStatsIfDone(difficulty) {
-  if (freePlay) return;
+  if (freePlay || archive.isArchive) return;
   const state = states[difficulty];
   if (!core.isOver(state)) return;
   recordResult(GAME_ID, state.status === "won", difficulty);
@@ -334,14 +339,14 @@ function switchDifficulty(difficulty) {
 
 function restoreOrCreate(difficulty, section) {
   const list = section.puzzles;
-  const idx = ((dayIndex(EPOCH) % list.length) + list.length) % list.length;
+  const idx = ((dayIndex(EPOCH, archive.now) % list.length) + list.length) % list.length;
   dailyIndexes[difficulty] = idx;
   const puzzle = list[idx];
   puzzles[difficulty] = puzzle;
 
   // saved.puzzleIndex ties the payload to the puzzle it was played on, so a
   // bank or epoch change never restores another puzzle's groups here.
-  const saved = store(GAME_ID, difficulty).loadDay();
+  const saved = store(GAME_ID, difficulty).loadDay(archive.dateKey);
   if (
     saved &&
     saved.puzzleIndex === idx &&
@@ -363,7 +368,14 @@ function restoreOrCreate(difficulty, section) {
 
 async function init() {
   cacheEls();
-  initChrome({ id: GAME_ID, name: "Clusters", hubHref: "../../index.html", helpHTML: HELP_HTML });
+  archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+  initChrome({
+    id: GAME_ID,
+    name: "Clusters",
+    hubHref: "../../index.html",
+    helpHTML: HELP_HTML,
+    archiveDate: archive.isArchive ? archive.dateKey : null,
+  });
 
   els.submit.addEventListener("click", onSubmit);
   els.deselect.addEventListener("click", onDeselect);

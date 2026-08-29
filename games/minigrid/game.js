@@ -1,8 +1,8 @@
 import {
-  todayKey,
   pickDaily,
   store,
   recordResult,
+  resolveArchiveDay,
   diffTabs,
   share,
   toast,
@@ -26,7 +26,15 @@ const HELP_HTML =
   "everyday fill with straight clues; Hard leans on trickier fill and a few wordplay clues.</p>" +
   "<p>Your time starts the moment you begin and stops the instant the grid is complete.</p>";
 
-initChrome({ id: GAME_ID, name: "Minigrid", hubHref: "../../index.html", helpHTML: HELP_HTML });
+const archive = resolveArchiveDay(EPOCH, new URLSearchParams(location.search).get("date"));
+
+initChrome({
+  id: GAME_ID,
+  name: "Minigrid",
+  hubHref: "../../index.html",
+  helpHTML: HELP_HTML,
+  archiveDate: archive.isArchive ? archive.dateKey : null,
+});
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -104,7 +112,7 @@ function loadOrCreateDailyState(difficulty, puzzle) {
   // The saved grid ties the payload to the layout it was typed into; entries
   // from a different puzzle (a bank edit, or a different difficulty's
   // puzzle under a stale key) would land in the wrong cells otherwise.
-  const saved = dayStores[difficulty].loadDay();
+  const saved = dayStores[difficulty].loadDay(archive.dateKey);
   if (saved && Array.isArray(saved.entries) && sameGrid(saved.grid, puzzle.grid)) {
     const { grid, ...rest } = saved;
     return rest;
@@ -114,7 +122,7 @@ function loadOrCreateDailyState(difficulty, puzzle) {
 
 function loadToday() {
   for (const difficulty of DIFFICULTIES) {
-    const puzzle = pickDaily(bank[difficulty], EPOCH);
+    const puzzle = pickDaily(bank[difficulty], EPOCH, archive.now);
     puzzles[difficulty] = puzzle;
     metas[difficulty] = core.parsePuzzle(puzzle);
     states[difficulty] = loadOrCreateDailyState(difficulty, puzzle);
@@ -123,7 +131,10 @@ function loadToday() {
 
 function saveState() {
   if (freePlay) return;
-  dayStores[activeDifficulty].saveDay({ ...states[activeDifficulty], grid: puzzles[activeDifficulty].grid });
+  dayStores[activeDifficulty].saveDay(
+    { ...states[activeDifficulty], grid: puzzles[activeDifficulty].grid },
+    archive.dateKey
+  );
 }
 
 function activeSlot() {
@@ -390,7 +401,7 @@ function showComplete(justSolved) {
   els.completeTime.textContent = `Solved in ${time}${activeState().usedHelp ? " (with help)" : ""}`;
   if (justSolved) {
     confettiBurst();
-    if (!isRandomMode) recordResult(GAME_ID, true, activeDifficulty);
+    if (!isRandomMode && !archive.isArchive) recordResult(GAME_ID, true, activeDifficulty);
     toast("Solved!");
   }
 }
@@ -431,7 +442,7 @@ els.btnReveal.addEventListener("click", () => {
 els.btnShare.addEventListener("click", async () => {
   const url = new URL("../../index.html", location.href).href;
   const text = core.shareText({
-    dateLabel: todayKey(),
+    dateLabel: archive.dateKey,
     diffLabel: isRandomMode ? null : LABELS[activeDifficulty],
     ms: core.elapsedMs(activeState()),
     usedHelp: activeState().usedHelp,
