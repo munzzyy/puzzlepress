@@ -1,0 +1,15 @@
+Puzzle Press is seven small puzzles, a new set every day: a word guess, a grouping game, a pangram hunt, a mini crossword, a word search, a letter-jump game, and sudoku.
+
+Wordrow: guess a five-letter word in six tries.
+Clusters: sort sixteen items into four groups of four.
+Heptagram: find every word made from seven given letters, one of which must appear in each word.
+Minigrid: a small daily crossword.
+Wordweave: a themed word search.
+Edgeways: jump from letter to letter to spell words.
+Sudoku: classic sudoku at three difficulties.
+
+Each puzzle changes once a day, and you can play a past day from the archive at any time. The app tracks your streak.
+
+The app has no internet permission, so it never makes a network request. There's no account and no ads, and it doesn't track you. Your streak and progress stay in local storage on your phone.
+
+Puzzle Press is free and open source software.
