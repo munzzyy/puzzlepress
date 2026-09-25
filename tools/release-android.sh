@@ -9,7 +9,8 @@
 #
 # apksigner from build-tools 34.0.0 on purpose: F-Droid's apksigcopier
 # verifies and copies signatures produced by that version; newer build-tools
-# emit signatures it rejects.
+# emit signatures it rejects. v1 stays off: minSdk 24 verifies v2, and a v1
+# JAR signature does not survive apksigcopier byte for byte.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -42,6 +43,7 @@ APK_OUT="dist/puzzlepress-$VERSION.apk"
 
 echo "== sign apk (schemes v2+v3) =="
 "$APKSIGNER" sign --ks "$KEYSTORE" --ks-key-alias "$ALIAS" --ks-pass env:KSPW \
+  --v1-signing-enabled false --v2-signing-enabled true --v3-signing-enabled true \
   --out "$APK_OUT" "$APK_IN"
 "$APKSIGNER" verify --print-certs "$APK_OUT" | head -4
 
