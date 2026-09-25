@@ -165,12 +165,6 @@ function renderCombinedStats() {
     `Combined streak: ${streak} day${streak === 1 ? "" : "s"}, best combined: ${best}`;
 }
 
-/**
- * "Share today" builds one line per game that has a result recorded for
- * today (setShareLine, written alongside recordResult), each in that
- * game's own share format, plus the day number and the site's URL. Hidden
- * entirely until at least one game has finished today.
- */
 function renderShareToday() {
   const btn = document.getElementById("share-today");
   const today = todayKey();

@@ -269,12 +269,7 @@ function shareLineKey(gameId, dateKey) {
   return `pp.shareline.${gameId}.${dateKey}`;
 }
 
-/**
- * A game calls this right where it calls recordResult, with the same
- * one-line result its own share button would show. The hub reads these
- * back to build a same-day "share today" summary without re-deriving any
- * game's scoring or re-fetching its bank.
- */
+/** Written next to recordResult; the hub's "share today" reads these back. */
 export function setShareLine(gameId, dateKey, line) {
   writeStorage(shareLineKey(gameId, dateKey), line);
 }
@@ -413,13 +408,7 @@ async function copyToClipboard(text) {
   }
 }
 
-/**
- * navigator.share on mobile when available, otherwise clipboard + toast.
- * The Android wrapper injects window.NativeApp on its own bundled origin
- * only; when it's there, hand the share off to it instead, since a WebView
- * has no navigator.share and would otherwise silently fall back to a copy
- * the player never asked for.
- */
+/** Android app bridge first (WebView has no navigator.share), then navigator.share, then clipboard. */
 export async function share(text) {
   if (globalThis.NativeApp && typeof globalThis.NativeApp.postMessage === "function") {
     try {
@@ -629,12 +618,7 @@ function themeToggleSVG(theme) {
         `<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`;
 }
 
-/**
- * Tells the Android wrapper which theme is in effect, so its status bar can
- * match. Posted on load and on every change, including a live system
- * change while the player hasn't picked an explicit theme. No-op on the
- * web, where window.NativeApp is never defined.
- */
+/** Lets the Android app match its status bar to the page theme. */
 function notifyNativeTheme(theme) {
   if (globalThis.NativeApp && typeof globalThis.NativeApp.postMessage === "function") {
     try {
