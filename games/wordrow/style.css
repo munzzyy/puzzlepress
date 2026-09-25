@@ -120,7 +120,7 @@ main[data-game="wordrow"] {
 
 .wr-keyboard__row {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.2rem;
   justify-content: center;
 }
 
@@ -128,7 +128,7 @@ main[data-game="wordrow"] {
   position: relative;
   flex: 1;
   min-height: 46px;
-  max-width: 44px;
+  max-width: 46px;
   border-radius: var(--radius-sm);
   background: var(--surface-2);
   color: var(--text);

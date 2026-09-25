@@ -245,11 +245,15 @@ ul {
   top: -3rem;
   left: 0.75rem;
   z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   background: var(--accent);
   color: #fff;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
   transition: top var(--motion-fast) var(--ease);
+  box-sizing: border-box;
 }
 
 .pp-skip-link:focus {
@@ -409,7 +413,11 @@ ul {
 }
 
 .ar-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.4rem 0.7rem;
+  box-sizing: border-box;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
   background: var(--surface);
@@ -576,6 +584,11 @@ ul {
   border: 1px solid var(--line);
 }
 
+button.pp-chip {
+  min-height: 44px;
+  cursor: pointer;
+}
+
 .pp-chip[data-state="solved"] {
   background: color-mix(in srgb, var(--good) 16%, var(--surface));
   color: var(--good);
@@ -645,6 +658,9 @@ ul {
 }
 
 .pp-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--muted);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -681,6 +697,9 @@ ul {
   text-decoration: none;
   color: var(--text);
   flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .pp-topbar__wordmark:hover {
@@ -758,8 +777,8 @@ ul {
 }
 
 .pp-icon-btn {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
   display: grid;
   place-items: center;
