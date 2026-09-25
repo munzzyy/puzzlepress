@@ -524,6 +524,36 @@ THEMES = [
     ("Textile mill", "SPINNING", ["LOOM", "THREAD", "BOBBIN", "FABRIC", "MACHINE", "COTTON", "DYE", "MILL", "WORKER", "BOLT", "WEAVE", "FIBER"]),
     ("Print newspaper press", "PRINTING", ["PRESS", "INK", "ROLLER", "PLATE", "PAPER", "DEADLINE", "PROOF", "FOLD", "RUN", "MACHINE", "TYPE", "LAYOUT"]),
     ("Bottling plant", "BOTTLING", ["LABEL", "CAP", "LINE", "INSPECT", "CRATE", "SEAL", "FIZZ", "CONVEYOR", "FILL", "GLASS", "BATCH", "QUALITY"]),
+    # ---- banks growth batch 6 ----
+    ("Backyard obstacle course", "OBSTACLE", ["CONE", "HOOP", "CRAWL", "TIRE", "FINISH", "TIMER", "JUMP", "ZIGZAG", "LADDER", "CHEER", "RACE", "DASH"]),
+    ("Kids' talent show", "SPOTLIGHT", ["STAGE", "CURTAIN", "CLAP", "NERVOUS", "JUDGE", "ACT", "MICROPHONE", "PRACTICE", "COSTUME", "BOW", "CHEER", "TRICK"]),
+    ("Backyard camp songs", "MELODY", ["GUITAR", "CHORUS", "MARSHMALLOW", "CIRCLE", "CLAP", "NIGHT", "SPARK", "VERSE", "ECHO", "GROUP", "HUM", "GLOW"]),
+    ("Snow shoveling", "DRIVEWAY", ["SHOVEL", "SALT", "MITTEN", "PILE", "CLEAR", "MORNING", "HEAVY", "SIDEWALK", "COLD", "SCRAPE", "BOOTS", "STEAM"]),
+    ("Bath time bubbles", "BUBBLY", ["TUB", "SOAP", "WARM", "SPLASH", "TOWEL", "RUBBER", "FOAM", "SOAK", "RINSE", "SPONGE", "SUDS", "SCRUB"]),
+    ("Grandpa's fishing boat", "TROLLING", ["ROD", "REEL", "LAKE", "BAIT", "DOCK", "TACKLE", "MOTOR", "CATCH", "COOLER", "CALM", "SUNRISE", "PADDLE"]),
+    ("Kids' science fair", "VOLCANO", ["BAKING", "VINEGAR", "PROJECT", "POSTER", "DISPLAY", "JUDGE", "MODEL", "RIBBON", "EXPERIMENT", "TABLE", "RESEARCH", "PRESENT"]),
+    ("Backyard garden gnome", "WHIMSICAL", ["STATUE", "BEARD", "GARDEN", "PAINTED", "TINY", "HIDDEN", "LAWN", "POINTY", "SMILE", "DECOR", "CERAMIC", "HAT"]),
+    ("Family game board night", "SPINNER", ["DICE", "TOKEN", "CARDS", "RULES", "TURN", "WINNER", "SQUARE", "TABLE", "LAUGH", "SNACK", "STRATEGY", "ROLL"]),
+    ("Farmers berry picking", "BLUEBERRY", ["BUSH", "BASKET", "STAIN", "SWEET", "ROW", "SUMMER", "PICK", "RIPE", "BUCKET", "FIELD", "JUICY", "PATCH"]),
+    ("Snowflake cutting", "SYMMETRY", ["PAPER", "SCISSORS", "FOLD", "PATTERN", "WINTER", "DISPLAY", "WINDOW", "DELICATE", "SNIP", "DESIGN", "TAPE", "SHAPE"]),
+    ("Amateur astronomy club", "OBSERVATORY", ["TELESCOPE", "LENS", "CATALOG", "ECLIPSE", "MERIDIAN", "SESSION", "CHART", "FILTER", "TRIPOD", "SKETCH", "MAGNITUDE", "ROTATE"]),
+    ("Antique restoration", "REFINISHING", ["VARNISH", "JOINT", "PATINA", "VENEER", "APPRAISE", "STRIP", "REPAIR", "PERIOD", "HARDWARE", "POLISH", "AUTHENTIC", "CRAFT"]),
+    ("Handmade violin making", "LUTHIER", ["SPRUCE", "MAPLE", "VARNISH", "SCROLL", "BRIDGE", "PURFLING", "CARVE", "RESONANCE", "STRING", "TUNE", "GRAIN", "CRAFT"]),
+    ("Vintage typewriter repair", "MECHANISM", ["KEY", "RIBBON", "CARRIAGE", "LEVER", "SPRING", "STRIKE", "ALIGNMENT", "PLATEN", "SPACING", "REPAIR", "OIL", "RESTORE"]),
+    ("Antique map restoration", "CARTOUCHE", ["PARCHMENT", "INK", "FADE", "BORDER", "LEGEND", "PRESERVE", "FOLD", "RESTORE", "ARCHIVE", "HANDLING", "DELICATE", "SCALE"]),
+    ("Historic preservation society", "RESTORATION", ["LANDMARK", "ARCHIVE", "FUNDING", "SURVEY", "HERITAGE", "DOCUMENT", "COMMITTEE", "STRUCTURE", "GRANT", "PRESERVE", "HISTORIC", "PLAQUE"]),
+    ("Oceanography expedition", "SUBMERSIBLE", ["DEPTH", "PRESSURE", "SONAR", "CURRENT", "SPECIMEN", "TRENCH", "EXPEDITION", "SEABED", "BUOYANCY", "RESEARCH", "VESSEL", "INSTRUMENT"]),
+    ("Silk screen printing", "SCREENING", ["MESH", "INK", "STENCIL", "PRESS", "FABRIC", "EXPOSURE", "EMULSION", "SQUEEGEE", "PATTERN", "LAYER", "SHIRT", "ARTIST"]),
+    ("Ice sculpture carving", "SCULPTING", ["BLOCK", "CHISEL", "FREEZE", "DETAIL", "TRANSPARENT", "EVENT", "MELT", "DISPLAY", "ARTIST", "TOOL", "SMOOTH", "WINTER"]),
+    ("Sand sculpture contest", "COMPETITION", ["BEACH", "DETAIL", "TOOL", "JUDGE", "DRIP", "MOLD", "ARTIST", "TIDE", "SCULPT", "DESIGN", "CROWD", "ENTRY"]),
+    ("Notary public office", "WITNESSED", ["SEAL", "DOCUMENT", "STAMP", "IDENTIFY", "OATH", "RECORD", "CLIENT", "COUNTER", "FORM", "APPOINTMENT", "VERIFY", "SIGNATURE"]),
+    ("Insurance adjuster visit", "ESTIMATE", ["CLAIM", "DAMAGE", "PHOTO", "REPORT", "POLICY", "INSPECT", "COVERAGE", "ADJUSTER", "PAPERWORK", "REPAIR", "APPRAISE", "SETTLE"]),
+    ("Moving day paperwork", "INVENTORY", ["CHECKLIST", "LABEL", "BOX", "TRUCK", "ADDRESS", "SCHEDULE", "FRAGILE", "CRATE", "RECEIPT", "LOAD", "UNPACK", "ESTIMATE"]),
+    ("Utility meter reading", "METERING", ["GAUGE", "READING", "SCHEDULE", "TECHNICIAN", "USAGE", "BILL", "DIAL", "RECORD", "ACCESS", "ROUTE", "INSPECT", "NOTICE"]),
+    ("Telephone repair crew", "LINEMAN", ["POLE", "CABLE", "SPLICE", "BUCKET", "TRUCK", "SIGNAL", "REPAIR", "CIRCUIT", "HARNESS", "CLIMB", "CONNECT", "SCHEDULE"]),
+    ("Cable installation visit", "INSTALLER", ["ROUTER", "CABLE", "SIGNAL", "MODEM", "SCHEDULE", "REMOTE", "CHANNEL", "WIRING", "CONNECT", "SERVICE", "APPOINTMENT", "TECHNICIAN"]),
+    ("Solar panel installation", "RENEWABLE", ["PANEL", "INVERTER", "ROOF", "WIRING", "PERMIT", "TECHNICIAN", "SCHEDULE", "ENERGY", "ESTIMATE", "GRID", "WARRANTY", "MOUNT"]),
+    ("Home security installation", "SECURITY", ["CAMERA", "SENSOR", "ALARM", "TECHNICIAN", "MONITOR", "SCHEDULE", "WIRING", "PANEL", "ESTIMATE", "CONTRACT", "KEYPAD", "SYSTEM"]),
 ]
 
 # Which curated themes go to which difficulty. Anything not listed in
@@ -565,6 +595,9 @@ EASY_NAMES = frozenset({
     "Seashell collecting", "Icicle watching", "Corn maze", "Pumpkin carving", "Easter egg hunt",
     "Valentine cards", "Gingerbread house", "Holiday stockings", "New Year countdown", "Marching band",
     "Wheelbarrow race", "Kiddie carousel", "Backyard hammock nap", "Family bike ride",
+    "Backyard obstacle course", "Kids' talent show", "Backyard camp songs", "Snow shoveling",
+    "Bath time bubbles", "Grandpa's fishing boat", "Kids' science fair", "Backyard garden gnome",
+    "Family game board night", "Farmers berry picking", "Snowflake cutting",
 })
 
 HARD_NAMES = frozenset({
@@ -600,6 +633,9 @@ HARD_NAMES = frozenset({
     "Coppersmithing", "Quilting bee", "Basket weaving", "Etching printmaking", "Woodturning",
     "Scrimshaw", "Batik dyeing", "Lacemaking", "Rug hooking", "Feltmaking",
     "Soap making", "Sailmaking", "Netmaking",
+    "Amateur astronomy club", "Antique restoration", "Handmade violin making", "Vintage typewriter repair",
+    "Antique map restoration", "Historic preservation society", "Oceanography expedition", "Silk screen printing",
+    "Ice sculpture carving", "Sand sculpture contest",
 })
 
 
