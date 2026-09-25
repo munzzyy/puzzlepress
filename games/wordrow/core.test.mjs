@@ -219,6 +219,20 @@ test("shareText omits the difficulty word when no label is given", () => {
   assert.match(text, /^Wordrow #3 /);
 });
 
+test("shareText swaps correct/present squares under highContrast", () => {
+  let state = createGame("crane");
+  state = submitGuess(state, "trace").state; // has both a correct and a present letter against "crane"
+  const grid = shareText(state, { dayNumber: 1 }).split("\n\n")[1];
+  const hcGrid = shareText(state, { dayNumber: 1, highContrast: true }).split("\n\n")[1];
+  const blue = "\u{1F7E6}";
+  const orange = "\u{1F7E7}";
+  const countOf = (text, glyph) => [...text].filter((c) => c === glyph).length;
+  assert.notEqual(grid, hcGrid);
+  assert.ok(countOf(grid, blue) > 0 && countOf(grid, orange) > 0);
+  assert.equal(countOf(grid, blue), countOf(hcGrid, orange));
+  assert.equal(countOf(grid, orange), countOf(hcGrid, blue));
+});
+
 test("WORD_LENGTH and MAX_GUESSES match the contract", () => {
   assert.equal(WORD_LENGTH, 5);
   assert.equal(MAX_GUESSES, 6);

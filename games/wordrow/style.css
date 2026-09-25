@@ -98,6 +98,16 @@ main[data-game="wordrow"] {
   border-color: color-mix(in srgb, var(--g-color, var(--accent)) 34%, var(--line));
 }
 
+.wr-contrast {
+  cursor: pointer;
+}
+
+.wr-contrast[aria-pressed="true"] {
+  background: var(--g-color-soft, color-mix(in srgb, var(--g-color, var(--accent)) 14%, var(--surface)));
+  color: var(--g-color, var(--accent));
+  border-color: color-mix(in srgb, var(--g-color, var(--accent)) 34%, var(--line));
+}
+
 /* ---------- keyboard ---------- */
 
 .wr-keyboard {

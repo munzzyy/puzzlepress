@@ -139,6 +139,28 @@
   }
 }
 
+/* Wordrow's high-contrast tile colors: a persisted alternate to the ink
+   blue / amber pair, tuned for a bigger luminance gap between "correct"
+   and "present" rather than just a different hue. Scoped to the wordrow
+   page (data-game, set by initChrome) so clusters, which reuses .pp-tile,
+   is unaffected. */
+[data-game="wordrow"][data-wr-contrast="high"] {
+  --tile-ink: #6e2e05;
+  --tile-mark: #4a8fd6;
+}
+
+[data-theme="dark"][data-game="wordrow"][data-wr-contrast="high"] {
+  --tile-ink: #e69550;
+  --tile-mark: #3f74b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-game="wordrow"][data-wr-contrast="high"]:not([data-theme="light"]) {
+    --tile-ink: #e69550;
+    --tile-mark: #3f74b8;
+  }
+}
+
 /* ---------- reset ---------- */
 
 *,

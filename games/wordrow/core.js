@@ -142,12 +142,15 @@ export function isGameOver(state) {
 }
 
 const SHARE_GLYPH = { correct: "\u{1F7E6}", present: "\u{1F7E7}", absent: "⬛" };
+const SHARE_GLYPH_HIGH_CONTRAST = { correct: "\u{1F7E7}", present: "\u{1F7E6}", absent: "⬛" };
 
 /**
  * Spoiler-free share text: title, difficulty word, day number, guess count,
  * hard-mode mark, then the emoji grid. No letters ever appear in the output.
  * opts.diffLabel (e.g. "Easy"/"Medium"/"Hard") is required by the contract
  * ("Wordrow Hard #3 4/6"); omitted entirely when not supplied (random play).
+ * opts.highContrast swaps which square stands for correct vs present, to
+ * match the player's on-screen high-contrast setting.
  */
 export function shareText(state, opts = {}) {
   const dayNumber = opts.dayNumber != null ? opts.dayNumber : "?";
@@ -155,8 +158,9 @@ export function shareText(state, opts = {}) {
   const score = state.status === "won" ? String(state.guesses.length) : "X";
   const mark = state.hardMode ? "*" : "";
   const label = opts.diffLabel ? `${opts.diffLabel} ` : "";
+  const glyphs = opts.highContrast ? SHARE_GLYPH_HIGH_CONTRAST : SHARE_GLYPH;
   const grid = state.evaluations
-    .map((row) => row.map((cell) => SHARE_GLYPH[cell]).join(""))
+    .map((row) => row.map((cell) => glyphs[cell]).join(""))
     .join("\n");
 
   return `Wordrow ${label}#${dayNumber} ${score}/${maxGuesses}${mark}\n\n${grid}`;

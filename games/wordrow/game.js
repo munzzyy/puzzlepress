@@ -18,6 +18,7 @@ import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, share
 const GAME_ID = "wordrow";
 const EPOCH = "2026-08-10";
 const HARDMODE_PREF_KEY = "pp.wordrow.hardmode";
+const CONTRAST_PREF_KEY = "pp.wordrow.contrast";
 const DIFFICULTIES = ["easy", "medium", "hard"];
 const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 const DEFAULT_DIFFICULTY = "medium";
@@ -58,6 +59,7 @@ const els = {
   keyboard: document.getElementById("wr-keyboard"),
   hardmode: document.getElementById("wr-hardmode"),
   random: document.getElementById("wr-random"),
+  contrast: document.getElementById("wr-contrast"),
   result: document.getElementById("wr-result"),
   resultHeadline: document.getElementById("wr-result-headline"),
   resultSub: document.getElementById("wr-result-sub"),
@@ -90,6 +92,27 @@ function loadHardModePref() {
   } catch {
     return false;
   }
+}
+
+function loadContrastPref() {
+  try {
+    return localStorage.getItem(CONTRAST_PREF_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function saveContrastPref(on) {
+  try {
+    localStorage.setItem(CONTRAST_PREF_KEY, on ? "1" : "0");
+  } catch {
+    /* ignore */
+  }
+}
+
+function applyContrastPref(on) {
+  document.documentElement.dataset.wrContrast = on ? "high" : "standard";
+  els.contrast.setAttribute("aria-pressed", String(on));
 }
 
 function saveHardModePref(on) {
@@ -433,6 +456,7 @@ async function onShare() {
   const text = shareText(state, {
     dayNumber: mode === "daily" ? dayNumber : "R",
     diffLabel: DIFF_LABELS[activeDifficulty],
+    highContrast: document.documentElement.dataset.wrContrast === "high",
   });
   await share(text);
 }
@@ -458,6 +482,8 @@ async function boot() {
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
 
+  applyContrastPref(loadContrastPref());
+
   try {
     const res = await fetch("../../data/wordrow.json");
     bank = await res.json();
@@ -479,6 +505,11 @@ async function boot() {
 
   document.addEventListener("keydown", onPhysicalKeydown);
   els.hardmode.addEventListener("click", toggleHardMode);
+  els.contrast.addEventListener("click", () => {
+    const next = document.documentElement.dataset.wrContrast !== "high";
+    applyContrastPref(next);
+    saveContrastPref(next);
+  });
   els.random.addEventListener("click", startRandomGame);
   els.share.addEventListener("click", onShare);
 }
