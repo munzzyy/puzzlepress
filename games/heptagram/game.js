@@ -10,6 +10,7 @@ import {
   initChrome,
   setShareLine,
   todayKey,
+  modal,
 } from "../../assets/shared.js";
 import {
   WIN_RANK,
@@ -24,6 +25,8 @@ import {
   nextRank,
   isPangram,
   shareText,
+  hintStats,
+  useHints,
 } from "./core.js";
 
 const GAME_ID = "heptagram";
@@ -91,6 +94,7 @@ function cacheEls() {
     "hg-summary-line",
     "hg-share",
     "hg-random",
+    "hg-hints",
   ].forEach((id) => {
     els[id] = $(id);
   });
@@ -262,8 +266,9 @@ function renderSummary() {
   const score = totalScore(state.found, puzzle.letters);
   const rank = rankForScore(score, puzzle.maxScore);
   els["hg-summary-rank"].textContent = rank.name;
+  const hintNote = state.usedHints ? " (used hints)" : "";
   els["hg-summary-line"].textContent =
-    `${score} point${score === 1 ? "" : "s"} - ${state.found.length} of ${puzzle.words.length} words found`;
+    `${score} point${score === 1 ? "" : "s"} - ${state.found.length} of ${puzzle.words.length} words found${hintNote}`;
   els["hg-random"].textContent = isDailyView() ? "Play a random puzzle" : "Another random puzzle";
 }
 
@@ -366,7 +371,8 @@ function finishCurrent() {
     recordResult(GAME_ID, won, activeDifficulty);
     const score = totalScore(state.found, puzzle.letters);
     const rank = rankForScore(score, puzzle.maxScore);
-    setShareLine(GAME_ID, todayKey(), `${rank.name} - ${score} points`);
+    const hintNote = state.usedHints ? " (used hints)" : "";
+    setShareLine(GAME_ID, todayKey(), `${rank.name} - ${score} points${hintNote}`);
   }
   if (isDailyView()) {
     persistCurrent();
@@ -390,6 +396,44 @@ function startRandomPuzzle() {
   updateFinishLabel();
   renderAll();
   setMessage("Random puzzle. Doesn't count toward your streak.", null);
+}
+
+function hintsHTML(puzzle) {
+  const { byLetterLength, twoLetterStarts } = hintStats(puzzle);
+  const letters = Object.keys(byLetterLength).sort();
+  const lengths = [...new Set(letters.flatMap((l) => Object.keys(byLetterLength[l]).map(Number)))].sort(
+    (a, b) => a - b
+  );
+
+  const header = `<tr><th scope="col">Starts with</th>${lengths
+    .map((len) => `<th scope="col">${len}</th>`)
+    .join("")}</tr>`;
+  const rows = letters
+    .map((letter) => {
+      const cells = lengths.map((len) => `<td>${byLetterLength[letter][len] || ""}</td>`).join("");
+      return `<tr><th scope="row">${letter}</th>${cells}</tr>`;
+    })
+    .join("");
+
+  const twoLetterList = Object.entries(twoLetterStarts)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([two, count]) => `<li>${two}: ${count}</li>`)
+    .join("");
+
+  return (
+    `<p>How many answers start with each letter, by word length. Opening this doesn't ` +
+    `reveal any words, but it's noted next to today's result.</p>` +
+    `<table class="hg-hints__table"><caption class="pp-visually-hidden">Word length</caption>` +
+    `<thead>${header}</thead><tbody>${rows}</tbody></table>` +
+    `<h3 class="hg-hints__subhead">Two-letter starts</h3>` +
+    `<ul class="hg-hints__starts">${twoLetterList}</ul>`
+  );
+}
+
+function handleHints() {
+  setCurrentState(useHints(currentState()));
+  if (isDailyView()) persistCurrent();
+  modal("Hints", hintsHTML(currentPuzzle()));
 }
 
 function handleShare() {
@@ -424,6 +468,7 @@ function wireEvents() {
   els["hg-finish"].addEventListener("click", finishCurrent);
   els["hg-share"].addEventListener("click", handleShare);
   els["hg-random"].addEventListener("click", startRandomPuzzle);
+  els["hg-hints"].addEventListener("click", handleHints);
 
   document.addEventListener("keydown", (e) => {
     if (currentState().finished) return;

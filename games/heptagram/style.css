@@ -215,6 +215,7 @@
 .hg-finish-row {
   display: flex;
   justify-content: center;
+  gap: 0.6rem;
 }
 
 .hg-finish-row .pp-btn {
@@ -303,4 +304,38 @@
     height: 3.1rem;
     font-size: 1.1rem;
   }
+}
+
+.hg-hints__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.hg-hints__table th,
+.hg-hints__table td {
+  border: 1px solid var(--line);
+  padding: 0.3rem 0.45rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hg-hints__table th[scope="row"] {
+  text-align: left;
+  font-weight: 700;
+}
+
+.hg-hints__subhead {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+}
+
+.hg-hints__starts {
+  columns: 2;
+  gap: 1.2rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
 }

@@ -105,7 +105,7 @@ export function nextRank(score, maxScore) {
 }
 
 export function createState() {
-  return { found: [], finished: false };
+  return { found: [], finished: false, usedHints: false };
 }
 
 /**
@@ -159,10 +159,35 @@ export function shareText(puzzle, state, dateLabel, diffLabel = "Medium") {
   const rank = rankForScore(score, puzzle.maxScore);
   const rankIdx = RANKS.findIndex((r) => r.name === rank.name);
   const bar = RANKS.map((_, i) => (i <= rankIdx ? "#" : "-")).join("");
+  const hintNote = state.usedHints ? " (used hints)" : "";
   return (
     `Heptagram ${diffLabel} - ${dateLabel}\n` +
-    `${rank.name} - ${score} points\n` +
+    `${rank.name} - ${score} points${hintNote}\n` +
     `Words: ${state.found.length}/${puzzle.words.length}\n` +
     bar
   );
+}
+
+/**
+ * Word counts for the hints panel: how many answers start with each letter,
+ * broken down by length, plus how many share each two-letter start. Built
+ * fresh from the puzzle's own answer list, no spoilers beyond counts.
+ */
+export function hintStats(puzzle) {
+  const byLetterLength = {};
+  const twoLetterStarts = {};
+  for (const word of puzzle.words) {
+    const first = word[0].toUpperCase();
+    const len = word.length;
+    byLetterLength[first] = byLetterLength[first] || {};
+    byLetterLength[first][len] = (byLetterLength[first][len] || 0) + 1;
+    const two = word.slice(0, 2).toUpperCase();
+    twoLetterStarts[two] = (twoLetterStarts[two] || 0) + 1;
+  }
+  return { byLetterLength, twoLetterStarts };
+}
+
+/** Marks a day's puzzle as having had its hints opened. Idempotent. */
+export function useHints(state) {
+  return state.usedHints ? state : { ...state, usedHints: true };
 }

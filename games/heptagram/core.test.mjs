@@ -19,6 +19,8 @@ import {
   finish,
   didWin,
   shareText,
+  hintStats,
+  useHints,
 } from "./core.js";
 
 const PUZZLE = {
@@ -203,4 +205,37 @@ test("shareText defaults to Medium and includes the given difficulty word", () =
   const state = createState();
   assert.ok(shareText(PUZZLE, state, "Aug 10").includes("Heptagram Medium - Aug 10"));
   assert.ok(shareText(PUZZLE, state, "Aug 10", "Hard").includes("Heptagram Hard - Aug 10"));
+});
+
+test("shareText notes hint usage only when hints were opened", () => {
+  const state = createState();
+  assert.ok(!shareText(PUZZLE, state, "Aug 10").includes("used hints"));
+  assert.ok(shareText(PUZZLE, useHints(state), "Aug 10").includes("used hints"));
+});
+
+test("hintStats counts words by first letter and length, and by two-letter start", () => {
+  const stats = hintStats(PUZZLE);
+  assert.equal(stats.byLetterLength.P[5], 3); // plant, plate, petal
+  assert.equal(stats.byLetterLength.P[6], 1); // plants
+  assert.equal(stats.byLetterLength.P[7], 1); // planets
+  assert.equal(stats.twoLetterStarts.PL, 4); // plant, plate, plants, planets
+  assert.equal(stats.twoLetterStarts.SA, 2); // sale, salt
+});
+
+test("hintStats total word count across the table matches the puzzle's answer count", () => {
+  const stats = hintStats(PUZZLE);
+  let total = 0;
+  for (const lengths of Object.values(stats.byLetterLength)) {
+    for (const count of Object.values(lengths)) total += count;
+  }
+  assert.equal(total, PUZZLE.words.length);
+});
+
+test("useHints is idempotent and does not mutate the input state", () => {
+  const state = createState();
+  const once = useHints(state);
+  const twice = useHints(once);
+  assert.equal(state.usedHints, false);
+  assert.equal(once.usedHints, true);
+  assert.equal(twice, once);
 });
