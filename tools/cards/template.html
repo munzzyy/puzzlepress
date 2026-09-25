@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Card</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    width: 1200px;
+    height: 630px;
+    font-family: Georgia, "Times New Roman", Cambria, serif;
+    background: #f6f2e8;
+    overflow: hidden;
+  }
+  .card {
+    width: 1200px;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 90px;
+    position: relative;
+    color: #201d18;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--tint) 0%, #f6f2e8 62%);
+  }
+  .eyebrow {
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  h1 {
+    position: relative;
+    font-size: 104px;
+    line-height: 1.02;
+    margin: 0 0 22px;
+    color: var(--accent);
+  }
+  p {
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 38px;
+    line-height: 1.35;
+    max-width: 900px;
+    margin: 0;
+    color: #4a4436;
+  }
+  .rule {
+    position: relative;
+    width: 140px;
+    height: 6px;
+    background: var(--accent);
+    margin: 34px 0 0;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <p class="eyebrow" id="eyebrow">Puzzle Press</p>
+    <h1 id="title"></h1>
+    <p id="tagline"></p>
+    <div class="rule"></div>
+  </div>
+<script>
+  const GAMES = {
+    hub: {
+      title: "Puzzle Press",
+      tagline: "Seven free daily puzzles. No accounts, no ads, no tracking.",
+      accent: "#1e3a5f",
+      eyebrow: "Daily games",
+    },
+    wordrow: {
+      title: "Wordrow",
+      tagline: "Six tries at a five letter word, with a hard mode if you want it.",
+      accent: "#24478c",
+    },
+    clusters: {
+      title: "Clusters",
+      tagline: "Sort sixteen tiles into four themed groups before your fourth mistake.",
+      accent: "#7a3568",
+    },
+    heptagram: {
+      title: "Heptagram",
+      tagline: "Seven letters, one required in every word. Hunt for the pangram.",
+      accent: "#9c6210",
+    },
+    minigrid: {
+      title: "Minigrid",
+      tagline: "A 5x5 crossword with hand written clues, every day.",
+      accent: "#1b6e68",
+    },
+    wordweave: {
+      title: "Wordweave",
+      tagline: "Find the theme words hidden in a grid, then the one that spans it.",
+      accent: "#4f6b28",
+    },
+    edgeways: {
+      title: "Edgeways",
+      tagline: "Twelve letters around a square. Chain words until every letter is used.",
+      accent: "#a8480f",
+    },
+    sudoku: {
+      title: "Sudoku",
+      tagline: "The classic, with pencil marks and undo.",
+      accent: "#4b5768",
+    },
+  };
+
+  const params = new URLSearchParams(location.search);
+  const id = params.get("game") || "hub";
+  const g = GAMES[id];
+
+  document.getElementById("eyebrow").textContent = g.eyebrow || "Puzzle Press";
+  document.getElementById("title").textContent = g.title;
+  document.getElementById("tagline").textContent = g.tagline;
+  document.getElementById("card").style.setProperty("--accent", g.accent);
+  document.getElementById("card").style.setProperty("--tint", g.accent + "22");
+</script>
+</body>
+</html>

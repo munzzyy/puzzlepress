@@ -10,6 +10,16 @@
   "background_color": "#f6f2e8",
   "theme_color": "#f6f2e8",
   "lang": "en",
+  "categories": ["games", "puzzle"],
+  "shortcuts": [
+    { "name": "Wordrow", "url": "./games/wordrow/index.html", "icons": [{ "src": "assets/icons/wordrow.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Clusters", "url": "./games/clusters/index.html", "icons": [{ "src": "assets/icons/clusters.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Heptagram", "url": "./games/heptagram/index.html", "icons": [{ "src": "assets/icons/heptagram.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Minigrid", "url": "./games/minigrid/index.html", "icons": [{ "src": "assets/icons/minigrid.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Wordweave", "url": "./games/wordweave/index.html", "icons": [{ "src": "assets/icons/wordweave.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Edgeways", "url": "./games/edgeways/index.html", "icons": [{ "src": "assets/icons/edgeways.svg", "sizes": "any", "type": "image/svg+xml" }] },
+    { "name": "Sudoku", "url": "./games/sudoku/index.html", "icons": [{ "src": "assets/icons/sudoku.svg", "sizes": "any", "type": "image/svg+xml" }] }
+  ],
   "icons": [
     { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
