@@ -451,7 +451,6 @@ WORDS_3.update({
     "YAP": "Small dog's bark",
     "YOU": "The person reading this",
     "ZAP": "Zap with a laser",
-    "ZEN": "Meditative calm",
     "ZIP": "Fasten a jacket, or zero",
 })
 
@@ -1659,7 +1658,6 @@ WORDS_5.update({
     "DRIER": "More parched",
     "DRIFT": "Snow's windblown pile",
     "DRILL": "Dentist's tool, or a fire practice",
-    "DROID": "Sci-fi robot, for short",
     "DROOP": "Wilt",
     "DROVE": "Past tense of drive",
     "DRUNK": "Had too much to drink",
@@ -1674,7 +1672,6 @@ WORDS_5.update({
     "ELDER": "Older, wiser one",
     "ELECT": "Vote into office",
     "ELITE": "The very best",
-    "EMAIL": "Inbox's contents",
     "EMBER": "Dying fire's glowing coal",
     "ENACT": "Pass into law",
     "ENDED": "Finished",
@@ -2294,6 +2291,700 @@ WORDS_5.update({
 
 
 # ---------------------------------------------------------------------------
+# Vocabulary growth pass: more common 3/4/5-letter words for the exhaustive
+# crossing search (see module docstring). Same rules as above: everyday,
+# plain, family-friendly words with a one-line original clue each.
+# ---------------------------------------------------------------------------
+
+WORDS_3.update({
+    "EEL": "Slippery fish shaped like a snake",
+    "ODE": "Poem of praise",
+    "YAK": "Shaggy Himalayan ox, or to chat idly",
+    "ADD": "Combine numbers",
+    "ARK": "Noah's vessel",
+    "AWL": "Cobbler's piercing tool",
+})
+
+WORDS_4.update({
+    "ADDS": "Sums up",
+    "AGED": "Grown older",
+    "AJAR": "Slightly open",
+    "ALTO": "Choir voice between soprano and tenor",
+    "APEX": "Mountain's very top",
+    "AVID": "Enthusiastic",
+    "AWED": "Struck with wonder",
+    "BANE": "Source of ruin",
+    "BARB": "Fishhook's backward point",
+    "BEEP": "Horn's short honk",
+    "BILL": "Restaurant's tab, or a duck's beak",
+    "BLOB": "Shapeless glob",
+    "BLOT": "Ink stain",
+    "BRAT": "Spoiled kid",
+    "BUNS": "Burger's bread, plural",
+    "BURP": "Post-meal noise",
+    "CANE": "Walker's support stick",
+    "CHOW": "Food, casually",
+    "CLAN": "Extended family group",
+    "CLOG": "Wooden shoe, or a drain blocker",
+    "COIL": "Spring's shape",
+    "COLT": "Young male horse",
+    "COMB": "Hair's untangler",
+    "CONE": "Ice cream's holder",
+    "COOP": "Chicken's home",
+    "COPE": "Deal with it",
+    "COVE": "Small sheltered bay",
+    "CRAB": "Sideways-walking crustacean",
+    "CRIB": "Baby's bed",
+    "CROW": "Cawing black bird",
+    "CURL": "Hair's spiral",
+    "CUTE": "Adorable",
+    "DEED": "Property's ownership document",
+    "DEFY": "Openly resist",
+    "DENT": "Fender's small ding",
+    "DICE": "Board game's rolled cubes",
+    "DIRE": "Urgently serious",
+    "DOLL": "Toy in human form",
+    "DOOM": "Grim fate",
+    "DRAB": "Dull and colorless",
+    "DUNE": "Desert's wind-shaped hill",
+    "DYED": "Given a new color",
+    "EMIT": "Give off",
+    "FANG": "Snake's venom tooth",
+    "FARE": "Bus ride's cost",
+    "FEAT": "Impressive achievement",
+    "FLED": "Ran away",
+    "FLEE": "Run from danger",
+    "FOAL": "Baby horse",
+    "FOAM": "Latte's top layer",
+    "FOIL": "Kitchen's shiny wrap, or a fencer's blade",
+    "FRET": "Worry, or a guitar's ridge",
+    "GALA": "Fancy fundraising event",
+    "GAWK": "Stare rudely",
+    "GLEE": "Pure delight",
+    "GLUE": "Craft's sticky bonder",
+    "GNAT": "Tiny buzzing pest",
+    "GOWN": "Formal evening dress",
+    "GRIP": "Firm hold",
+    "GULL": "Beach's scavenging bird",
+    "GUSH": "Sudden rush of water",
+    "HALO": "Angel's glowing ring",
+    "HAZY": "Not clear, foggy",
+    "HEED": "Pay close attention to",
+    "HERD": "Cattle's group",
+    "HEWN": "Chopped, shaped by an axe",
+    "HIVE": "Bee colony's home",
+    "HOWL": "Wolf's cry",
+    "HULK": "Massive, bulky figure",
+    "HUNK": "Solid, muscular guy",
+    "HUSH": "Silence, gently",
+    "HYMN": "Church's sung praise",
+    "ITCH": "Scratch's cause",
+    "JADE": "Green gemstone",
+    "JEST": "Playful joke",
+    "JOLT": "Sudden shock",
+    "JOWL": "Loose skin below the jaw",
+    "KELP": "Ocean's giant seaweed",
+    "KILN": "Pottery's firing oven",
+    "KNOB": "Door's round handle",
+    "LARK": "Songbird, or a fun adventure",
+    "LEAK": "Slow drip's source",
+    "LOOM": "Weaver's frame, or to appear ominously",
+    "LOOT": "Pirate's plunder",
+    "LORE": "Old traditional knowledge",
+    "LUMP": "Small shapeless mass",
+    "LURE": "Fishing's tempting bait",
+    "LUSH": "Richly green",
+    "LUTE": "Old stringed instrument",
+    "MANE": "Lion's neck hair",
+    "MARE": "Adult female horse",
+    "MASH": "Potatoes, cooked and crushed",
+    "MAZE": "Twisty puzzle with one exit",
+    "MERE": "Nothing more than",
+    "MESA": "Flat-topped desert hill",
+    "MOTH": "Closet's fabric-eating pest",
+    "MULE": "Stubborn horse-donkey hybrid",
+    "MUTE": "Silent, or a TV remote button",
+    "NAVY": "Dark blue, or the sea-going military",
+    "NICK": "Small cut",
+    "NOOK": "Cozy corner",
+    "NUDE": "Bare, unclothed",
+    "NUKE": "Microwave, informally",
+    "OATH": "Solemn sworn promise",
+    "OMEN": "Sign of what's to come",
+    "ONYX": "Black banded gemstone",
+    "PACT": "Formal agreement",
+    "PALM": "Hand's flat side, or a tropical tree",
+    "PARE": "Peel or trim down",
+    "PENT": "Bottled up, as in emotion",
+    "PIER": "Fishing spot over the water",
+    "PLOD": "Trudge slowly",
+    "PLOW": "Farmer's field turner",
+    "PLOY": "Cunning tactic",
+    "POLO": "Sport played on horseback",
+    "PONY": "Small horse",
+    "POSH": "Fancy and upscale",
+    "PRAY": "Ask a higher power",
+    "PROD": "Poke to get moving",
+    "PROP": "Stage's supporting object",
+    "PUFF": "Small burst of smoke",
+    "PULP": "Orange juice's bits",
+    "RACY": "A bit risque",
+    "RAFT": "Inflatable river float",
+    "RAGE": "Fury",
+    "RANT": "Angry outburst",
+    "RASP": "File's rough scrape",
+    "REEF": "Coral's undersea structure",
+    "REIN": "Horse rider's control strap",
+    "RIFT": "Growing divide",
+    "RUNG": "Ladder's step",
+    "RUST": "Metal's orange decay",
+    "SASH": "Beauty pageant's banner",
+    "SEAM": "Where two fabric pieces join",
+    "SEAR": "Sizzle over high heat",
+    "SHUN": "Deliberately avoid",
+    "SILT": "Riverbed's fine sediment",
+    "SLAB": "Flat concrete chunk",
+    "SLAM": "Forceful shut",
+    "SLAP": "Open-handed hit",
+    "SLED": "Snow hill's ride",
+    "SLIT": "Narrow cut",
+    "SLOT": "Vending machine's coin gap",
+    "SLUR": "Speech that runs words together",
+    "SMUG": "Overly self-satisfied",
+    "SNAG": "Unexpected small problem",
+    "SNIP": "Small scissor cut",
+    "SNUB": "Rudely ignore",
+    "SODA": "Fizzy soft drink",
+    "SPAN": "Bridge's full length",
+    "SPUD": "Potato, casually",
+    "STUB": "Ticket's torn-off part",
+    "SUET": "Beef fat used in cooking",
+    "SWAY": "Gentle back-and-forth motion",
+    "TACO": "Folded tortilla meal",
+    "TAME": "Not wild",
+    "TART": "Sour, or a small fruit pastry",
+    "TIDY": "Neat and orderly",
+    "TILT": "Lean to one side",
+    "TOAD": "Warty pond-dweller",
+    "TOFU": "Soy-based protein block",
+    "TOTE": "Carry, or a large bag",
+    "TROT": "Horse's medium-speed gait",
+    "TUBE": "Toothpaste's container shape",
+    "TUFT": "Small clump of hair or grass",
+    "TUSK": "Elephant's long ivory tooth",
+    "TWIG": "Small tree branch",
+    "UNDO": "Reverse an action",
+    "URGE": "Strong impulse",
+    "VASE": "Flower's display container",
+    "VEAL": "Young cow's meat",
+    "VEER": "Suddenly swerve",
+    "VEND": "Sell, as from a machine",
+    "VETO": "Official rejection",
+    "VIAL": "Small medicine bottle",
+    "VISA": "Travel document stamp",
+    "VOID": "Empty space, or invalid",
+    "WAND": "Fairy's magic stick",
+    "WARY": "Cautiously suspicious",
+    "WASP": "Stinging yellow-and-black insect",
+    "WELT": "Raised skin mark",
+    "WHIM": "Sudden fanciful notion",
+    "WISP": "Thin strand of smoke or hair",
+    "WRAP": "Sandwich rolled in a tortilla",
+    "YARN": "Knitter's spool material",
+    "ZANY": "Wildly silly",
+    "ZEST": "Citrus peel's zing",
+    "ZINC": "Rust-resistant metal",
+})
+
+WORDS_5.update({
+    "ABIDE": "Tolerate, or to live somewhere",
+    "ABORT": "Cancel a mission",
+    "ABYSS": "Bottomless chasm",
+    "ACORN": "Oak tree's nut",
+    "ACUTE": "Sharp, or a narrow angle",
+    "ADAPT": "Adjust to new conditions",
+    "ADEPT": "Highly skilled",
+    "ADORN": "Decorate",
+    "AFOOT": "In progress",
+    "AGATE": "Banded semiprecious stone",
+    "AGILE": "Nimble",
+    "ALIAS": "Assumed name",
+    "ALOOF": "Emotionally distant",
+    "AMBLE": "Stroll casually",
+    "AMEND": "Revise or correct",
+    "ANGST": "Deep anxious dread",
+    "ARBOR": "Garden's shaded trellis",
+    "ARDOR": "Passionate enthusiasm",
+    "ARGON": "Inert gas in light bulbs",
+    "ARSON": "Deliberate fire-setting crime",
+    "ASHEN": "Pale as ash",
+    "ASKEW": "Crooked, off-center",
+    "ASPEN": "Tree with fluttering leaves",
+    "ATOLL": "Ring-shaped coral island",
+    "AUGER": "Spiral drilling tool",
+    "AUGUR": "Predict or foretell",
+    "AURAL": "Related to hearing",
+    "AVERT": "Prevent a disaster",
+    "AVIAN": "Bird-related",
+    "AXIOM": "Self-evident truth",
+    "BALMY": "Pleasantly mild and warm",
+    "BARON": "Nobleman's rank",
+    "BASTE": "Turkey's roasting drizzle",
+    "BEFIT": "Be appropriate for",
+    "BEGET": "Bring into being",
+    "BELLY": "Stomach, casually",
+    "BERET": "Flat round French cap",
+    "BEVEL": "Angled edge",
+    "BLOKE": "British word for guy",
+    "BLURB": "Book cover's short praise",
+    "BOTCH": "Bungle a job",
+    "BRINY": "Salty, like seawater",
+    "BROOD": "Sulk, or a hen's chicks",
+    "CACTI": "Desert plants, plural",
+    "CADDY": "Golfer's club carrier",
+    "CANNY": "Shrewdly clever",
+    "CHAMP": "Title holder",
+    "CHASM": "Deep gaping gap",
+    "CHIDE": "Gently scold",
+    "CIVIC": "Related to citizenship",
+    "CODEX": "Ancient bound manuscript",
+    "CREPT": "Past tense of creep",
+    "CRYPT": "Underground burial chamber",
+    "CURSE": "Witch's spoken hex",
+    "DECOY": "Hunter's fake lure",
+    "DOWDY": "Unfashionably plain",
+    "DOWRY": "Bride's traditional wedding gift to the groom's family",
+})
+
+# ---------------------------------------------------------------------------
+# Vocabulary growth pass 2: still more common 4/5-letter words (3-letter fill
+# is effectively saturated at this point -- almost every plain everyday
+# 3-letter word is already above). Same rules: everyday, plain, one original
+# clue each.
+# ---------------------------------------------------------------------------
+
+WORDS_4.update({
+    "ACNE": "Teenage skin's common breakout",
+    "ADZE": "Old-fashioned wood-shaping tool",
+    "AGOG": "Wide-eyed with excitement",
+    "ALGA": "Pond scum's single-celled kin",
+    "ALOE": "Sunburn soother, in plant form",
+    "AMOK": "Run wild, out of control",
+    "ANEW": "Starting over, fresh",
+    "ANTE": "Poker's opening bet",
+    "APED": "Copied, monkey-style",
+    "ARID": "Bone-dry, like a desert",
+    "ARTY": "Pretentiously creative",
+    "ASHY": "Pale gray, like embers",
+    "AVOW": "Openly declare",
+    "AWRY": "Gone wrong",
+    "BAIL": "Skip out, or post to leave jail",
+    "BALK": "Refuse to proceed",
+    "BALM": "Soothing skin ointment",
+    "BASK": "Soak up the sun",
+    "BASS": "Deep voice range, or a game fish",
+    "BAWL": "Cry loudly",
+    "BEAK": "Bird's pointed mouth",
+    "BENT": "Warped out of shape",
+    "BETA": "Software's pre-release version",
+    "BEVY": "Large group",
+    "BIDE": "Wait patiently",
+    "BLAB": "Spill a secret",
+    "BLIP": "Radar's brief signal",
+    "BOAR": "Wild male pig",
+    "BODE": "Signal what's coming",
+    "BOLT": "Sudden dash, or a hardware fastener",
+    "BONY": "All skin and bone",
+    "BOOR": "Rude, tactless person",
+    "BORE": "Dull person, or to drill",
+    "BOUT": "Boxing match",
+    "BRAG": "Boast",
+    "BRAN": "Cereal's fibrous grain husk",
+    "BRAY": "Donkey's loud call",
+    "BRED": "Raised, as livestock",
+    "BRIM": "Hat's outer edge",
+    "BROW": "Above the eye",
+    "BUCK": "Male deer, or a dollar",
+    "BUFF": "Enthusiast, or to polish",
+    "BULK": "Large, unwieldy mass",
+    "BUNK": "Sailor's stacked bed",
+    "BUOY": "Floating navigation marker",
+    "BURR": "Prickly seed that sticks to socks",
+    "BUSH": "Backyard shrub",
+    "BUST": "Fail completely, or a statue's torso",
+    "CASK": "Wine's aging barrel",
+    "CHAP": "Fellow, in British slang",
+    "CHIC": "Effortlessly stylish",
+    "CHIP": "Poker's betting token",
+    "CHOP": "Karate's quick strike",
+    "CHUG": "Gulp down fast",
+    "CLAD": "Dressed or covered",
+    "CLAW": "Cat's sharp nail",
+    "CLIP": "Binder's paper fastener",
+    "COAX": "Gently persuade",
+    "COPY": "Duplicate",
+    "CORD": "Lamp's power line",
+    "CORK": "Wine bottle's stopper",
+    "CRAG": "Rugged, jutting rock",
+    "CRAM": "Study frantically before a test",
+    "CUFF": "Sleeve's end, or a wrist restraint",
+    "DALE": "Small valley",
+    "DASH": "Sprint, or a punctuation mark",
+    "DAZE": "Stunned, foggy state",
+    "DEAF": "Unable to hear",
+    "DEEM": "Consider or judge",
+    "DIVE": "Pool's plunge",
+    "DOCK": "Boat's parking spot",
+    "DOLE": "Distribute in small amounts",
+    "DOME": "Rounded rooftop shape",
+    "DRAG": "Slow, tedious pull",
+    "DRAT": "Mild expression of frustration",
+    "DRIP": "Leaky faucet's sound",
+    "DUSK": "Evening's fading light",
+    "EDDY": "Small swirling current",
+    "ETCH": "Carve into a surface",
+    "EXAM": "Final test",
+    "EYED": "Looked at closely",
+    "FEND": "Ward off on your own",
+    "FERN": "Shady woodland plant",
+    "FEUD": "Long-running family conflict",
+    "FLAB": "Soft excess weight",
+    "FLAP": "Envelope's folding cover",
+    "FLEA": "Tiny jumping pest on pets",
+    "FLOP": "Total failure",
+    "FLUB": "Botch a line or move",
+    "FLUX": "Constant state of change",
+    "FOLK": "Everyday people, or a music genre",
+    "FORD": "Cross a shallow river",
+    "FOUL": "Basketball's rule violation",
+    "FUME": "Simmer with anger",
+    "FUSE": "Firework's lit cord",
+    "GALL": "Nerve, audacity",
+    "GASH": "Deep cut",
+    "GEEK": "Enthusiastic hobbyist",
+    "GERM": "Illness-causing microbe",
+    "GILL": "Fish's breathing organ",
+    "GIRD": "Brace yourself",
+    "GIST": "Main point, in short",
+    "GLAD": "Happy",
+    "GLEN": "Narrow secluded valley",
+    "GLOB": "Sticky blob",
+    "GLUM": "Gloomy",
+    "GNAW": "Chew persistently",
+    "GOAD": "Provoke into action",
+    "GOOF": "Silly mistake",
+    "GOON": "Hired thug",
+    "GORE": "Bloody violence",
+    "GRIT": "Tough determination",
+    "GUST": "Sudden strong wind",
+    "HEFT": "Noticeable weight",
+    "HELM": "Ship's steering wheel",
+    "HOAX": "Elaborate prank",
+    "HOOD": "Jacket's head cover",
+    "HOOP": "Basketball's target",
+    "HOOT": "Owl's call",
+    "HOSE": "Garden's watering tube",
+    "HULL": "Ship's outer shell",
+    "HURL": "Throw with force",
+    "IDLE": "Not in use",
+    "IRIS": "Eye's colored ring",
+    "ISLE": "Small island",
+    "JEEP": "Rugged off-road vehicle",
+    "JUNK": "Clutter worth tossing",
+    "KEEL": "Ship's central spine",
+    "KNIT": "Sweater's stitched craft",
+    "LARD": "Old-fashioned cooking fat",
+    "LASH": "Mascara's target, or to whip",
+    "LEEK": "Onion's mild green cousin",
+    "LIMP": "Uneven, painful walk",
+    "LOAM": "Rich, fertile soil",
+    "LOFT": "Attic apartment style",
+    "LOIN": "Cut of meat near the hip",
+    "LULL": "Calm quiet spell",
+    "LURK": "Hang around unseen",
+    "MALL": "Shopping center",
+    "MAST": "Sailboat's tall pole",
+    "MEND": "Repair, as a torn shirt",
+    "MOAN": "Low sound of pain",
+    "MOCK": "Make fun of",
+    "MOLD": "Bathroom's damp fungus",
+    "MOLE": "Skin spot, or a spy",
+    "MONK": "Robed, meditating cleric",
+    "MOOR": "Tie up a boat",
+    "MUSH": "Soft, pulpy mass",
+    "NAPE": "Back of the neck",
+    "NEON": "Glowing sign's gas",
+    "NERD": "Bookish enthusiast",
+    "OMIT": "Leave out",
+    "OPAL": "Milky, colorful gemstone",
+    "PAWN": "Chess's least powerful piece",
+    "PEAT": "Bog's decomposed fuel source",
+    "PECK": "Bird's quick bite",
+    "PEEK": "Quick, sneaky look",
+    "PEEP": "Tiny glance, or a soft chirp",
+    "PEER": "Equal in rank",
+    "PEST": "Garden's unwanted visitor",
+    "POUR": "Fill a glass",
+    "PRIM": "Overly proper",
+    "PUMA": "Mountain lion",
+    "QUIP": "Witty one-liner",
+    "RAID": "Sudden surprise attack",
+    "RAMP": "Skateboard's sloped launch",
+    "REAP": "Harvest a crop",
+    "REEL": "Fishing rod's spool",
+    "RIND": "Watermelon's tough skin",
+    "ROAM": "Wander freely",
+    "ROBE": "Judge's flowing garment, or a spa cover-up",
+    "ROSY": "Cheerfully optimistic",
+    "RUSE": "Clever trick",
+    "SAGA": "Long, sprawling story",
+    "SAKE": "Japanese rice wine",
+    "SCAB": "Wound's healing crust",
+    "SCAN": "Quick look-over",
+    "SCAR": "Old wound's mark",
+    "SCUD": "Move fast, driven by wind",
+    "SEEP": "Slowly leak through",
+    "SHAM": "Fake, a pretense",
+    "SHED": "Backyard storage building",
+    "SHIN": "Front of the lower leg",
+    "SHOO": "Chase away gently",
+    "SILO": "Farm's grain storage tower",
+    "SKID": "Car's sliding stop",
+    "SKIM": "Read quickly, or remove cream",
+    "SKIP": "Playground's hopping step",
+    "SLAG": "Metal-smelting waste",
+    "SLEW": "A large number",
+    "SMOG": "City's polluted haze",
+    "SNOB": "Someone who looks down on others",
+    "SOAK": "Let sit in water",
+    "SOAR": "Fly high",
+    "SOOT": "Chimney's black residue",
+    "SOUR": "Lemon's tart taste",
+    "SPAT": "Minor squabble",
+    "SPEW": "Gush out forcefully",
+    "SPIT": "Fling saliva",
+    "SPRY": "Spirited for one's age",
+    "STAB": "Sudden sharp jab",
+    "STEW": "Slow-cooked pot meal",
+    "STOW": "Pack away neatly",
+    "SUDS": "Dishwater's bubbles",
+    "SULK": "Pout in silence",
+    "SWAB": "Cotton-tipped cleaner",
+    "SWAT": "Quick smack at a fly",
+    "SWIG": "Big gulp",
+    "TACT": "Diplomatic sensitivity",
+    "TARP": "Waterproof cover sheet",
+    "TEAL": "Blue-green shade",
+    "TEND": "Look after",
+    "THAW": "Ice's melting return to liquid",
+    "TICK": "Clock's steady sound",
+    "TOIL": "Hard, tiring labor",
+    "TOOT": "Horn's short honk",
+    "TOUT": "Loudly promote",
+    "TRAP": "Rodent-catching snare",
+    "TREK": "Long, arduous journey",
+    "TRIO": "Group of three",
+    "TROD": "Walked, past tense",
+    "TUCK": "Fold neatly under",
+    "TWIT": "Foolish person",
+    "VAMP": "Flirt shamelessly",
+    "VENT": "Air duct's opening",
+    "VERB": "Grammar's action word",
+    "VEST": "Sleeveless top layer",
+    "VINE": "Grape's climbing stem",
+    "WAFT": "Drift gently, like a scent",
+    "WARD": "Hospital's patient section",
+    "WARP": "Bend out of true shape",
+    "WEED": "Garden's unwanted plant",
+    "WHEY": "Cheese-making's liquid byproduct",
+    "WICK": "Candle's burning string",
+    "WIRY": "Thin but strong",
+    "YELP": "Dog's sharp cry",
+    "YOLK": "Egg's yellow center",
+    "ZEAL": "Passionate enthusiasm",
+})
+
+WORDS_5.update({
+    "AFFIX": "Attach firmly",
+    "AGLOW": "Softly lit up",
+    "AISLE": "Wedding's walk to the altar",
+    "ALLOT": "Assign a share of",
+    "ALOHA": "Hawaiian hello or goodbye",
+    "AMISS": "Not quite right",
+    "AROSE": "Got up, or came about",
+    "AUDIT": "Financial records' close review",
+    "AWOKE": "Stopped sleeping",
+    "BEGUN": "Started, past participle",
+    "BLEED": "Lose blood",
+    "BLISS": "Pure happiness",
+    "BLITZ": "Sudden intense attack",
+    "BODES": "Signals what's ahead",
+    "BOXER": "Ring fighter, or a dog breed",
+    "BRAID": "Woven hair style",
+    "BUDGE": "Move even slightly",
+    "CHANT": "Rhythmic repeated cheer",
+    "CLASH": "Loud disagreement",
+    "CRAZE": "Short-lived fad",
+    "CREED": "Set of guiding beliefs",
+    "DAZED": "Stunned and confused",
+    "DREAM": "Sleep's imagined story",
+    "EMBED": "Fix firmly into",
+    "ENDOW": "Provide with funding",
+    "EPOXY": "Strong two-part glue",
+    "EQUIP": "Provide with gear",
+    "ERECT": "Build upright",
+    "EVICT": "Force out of a home",
+    "EXERT": "Apply effort",
+    "EXILE": "Forced banishment",
+    "EXTOL": "Praise highly",
+    "FACET": "Gem's cut surface",
+    "FEIGN": "Fake an emotion",
+    "FETID": "Foul-smelling",
+    "FIERY": "Full of passion or flame",
+    "FLASK": "Hip pocket's small bottle",
+    "FLECK": "Tiny speck",
+    "FLOSS": "Dentist's between-teeth string",
+    "GLEAN": "Gather bit by bit",
+    "GNASH": "Grind the teeth in anger",
+    "GRAFT": "Skin transplant, or hard work",
+    "GUILE": "Sly cunning",
+    "GULCH": "Small steep ravine",
+    "HEAVE": "Lift with great effort",
+    "HONED": "Sharpened, refined",
+    "HOVEL": "Small, cramped shack",
+    "IMBUE": "Fill with a quality",
+    "JOUST": "Knight's lance duel",
+    "MIRTH": "Cheerful laughter",
+    "MOODY": "Prone to sudden sulks",
+    "OMEGA": "Alphabet's final Greek letter",
+    "PROXY": "Stand-in representative",
+    "QUELL": "Suppress an uprising",
+    "QUOTA": "Assigned target amount",
+    "RHINO": "Thick-skinned horned mammal",
+    "SCOFF": "Mock dismissively",
+    "SCUFF": "Shoe's worn scrape mark",
+    "STAID": "Sedately serious",
+    "STARK": "Harshly plain",
+    "SWATH": "Wide mowed strip",
+    "TARDY": "Late for class",
+    "VOUCH": "Personally back someone's claim",
+    "WHIFF": "Faint passing smell",
+})
+
+# ---------------------------------------------------------------------------
+# Vocabulary growth pass 3: remaining common 4/5-letter words found while
+# sweeping the rest of the alphabet. Same rules as above.
+# ---------------------------------------------------------------------------
+
+WORDS_4.update({
+    "ABLY": "Skillfully, competently",
+    "AGES": "A really long time",
+    "AHEM": "Throat-clearing attention-getter",
+    "AIDE": "Helpful assistant",
+    "ALAS": "Sadly, unfortunately",
+    "AMEN": "Prayer's closing word",
+    "ANON": "Coming up shortly",
+    "ANTS": "Picnic crashers, plural",
+    "ASKS": "Requests",
+    "ATOP": "On top of",
+    "AURA": "Person's subtle glow of energy",
+    "AXED": "Cut, canceled",
+    "AXES": "Lumberjack's tools, plural",
+    "BEAD": "Necklace's tiny round unit",
+    "BEER": "Pub's foamy pour",
+    "BIND": "Awkward predicament",
+    "BINS": "Recycling containers",
+    "BLED": "Lost blood, past tense",
+    "BLEW": "Past tense of blow",
+    "BLOC": "Allied group of nations",
+    "BONK": "Playful bump on the head",
+    "BOON": "Welcome benefit",
+    "BRAD": "Small thin nail",
+    "BUDS": "Flowers before they bloom",
+    "BUGS": "Six-legged critters, plural",
+    "BUNG": "Barrel's stopper",
+    "BURY": "Put in the ground",
+    "BUTT": "Cigarette's leftover end",
+    "ILLS": "Various troubles or ailments",
+    "IMPS": "Mischievous little devils",
+    "INKS": "Fills in with pen, or signs a deal",
+    "IONS": "Charged particles, plural",
+    "IRKS": "Annoys",
+    "JAWS": "Chin's neighbors, plural",
+    "JIVE": "Swinging dance style",
+    "JOEY": "Baby kangaroo",
+    "JOGS": "Runs at an easy pace",
+    "JOTS": "Writes down quickly",
+    "JUGS": "Milk's big containers",
+    "JUTS": "Sticks out sharply",
+    "KEGS": "Party's beer barrels",
+    "KIDS": "Youngsters",
+    "KILT": "Scottish plaid skirt",
+    "KITE": "Windy day's flying toy",
+    "LACY": "Delicately patterned, like a doily",
+    "LAID": "Set down, past tense",
+    "LAIR": "Villain's hidden hideout",
+    "LAYS": "Sets something down flat",
+    "LICE": "Head-scratching tiny pests",
+    "LIED": "Told an untruth",
+    "LILT": "Musical rise and fall in speech",
+    "LIMO": "Stretch car for prom night",
+    "LOGO": "Brand's recognizable symbol",
+    "LUGS": "Hauls something heavy",
+    "LYNX": "Tufted-ear wild cat",
+    "MACE": "Pepper spray's old name, or a spice",
+    "MATS": "Welcome rugs by the front door",
+    "MOAT": "Castle's water-filled trench",
+    "MOPE": "Sulk around gloomily",
+    "MUCK": "Sticky mud",
+    "MUGS": "Coffee cups with handles",
+    "MULL": "Ponder over slowly",
+    "ODDS": "Betting's chances",
+    "OWLS": "Night birds, plural",
+    "PEAS": "Tiny green vegetables, plural",
+    "PECS": "Chest muscles, informally",
+    "PEGS": "Clothesline's clips",
+    "PENS": "Ink writers, plural",
+    "PICS": "Photos, casually",
+    "PIES": "Thanksgiving desserts, plural",
+    "PIGS": "Oink-making farm animals",
+    "PINS": "Bowling's targets",
+    "PITS": "Peaches' hard centers",
+    "PROM": "High school's formal dance",
+    "PUCK": "Hockey's flat disc",
+    "PUNS": "Wordplay jokes, plural",
+    "PUNY": "Small and weak",
+    "RAGS": "Old cleaning cloths",
+    "REDS": "Fire trucks' color, plural",
+    "RUNS": "Baseball's scoring unit",
+    "TABS": "Restaurant's running totals",
+    "TAXI": "Hailed street ride",
+    "TENS": "Perfect scores, plural",
+})
+
+WORDS_5.update({
+    "INCUR": "Bring upon yourself, as a debt",
+    "IONIC": "Chemistry's charged-particle bond type",
+    "ITCHY": "Craving a scratch",
+    "KHAKI": "Neutral tan uniform color",
+    "KNACK": "Natural talent for something",
+    "KNEAD": "Baker's dough-working motion",
+    "KUDOS": "Well-earned praise",
+    "LADEN": "Heavily loaded",
+    "LATHE": "Woodturner's spinning tool",
+    "LILAC": "Pale purple flowering shrub",
+    "LIMBO": "Uncertain in-between state, or a bar-lowering dance",
+    "LUCID": "Clear-minded",
+    "LURCH": "Sudden unsteady stagger",
+    "MADLY": "Wildly, intensely",
+    "MAYOR": "City's elected leader",
+    "MIDST": "Right in the middle of",
+    "MOULD": "Jelly's shape-forming cast, in British spelling",
+    "OLDEN": "Days of long ago",
+    "PANDA": "Black-and-white bamboo eater",
+})
+
+# ---------------------------------------------------------------------------
 # Hard tier: a smaller, hand-picked, hand-clued pool. The words are still
 # ordinary and fair (every one is a plain dictionary word), but the clues are
 # deliberately indirect -- a slang sense, a less common meaning, a bit of
@@ -2911,22 +3602,197 @@ def validate_bank(puzzles, dictionary, tier, clue_lookup=None):
                     assert bad not in clue_text, f"{tier} puzzle {i}: clue for {word} has a forbidden character"
 
 
+def tricky_score(puzzle):
+    return sum(1 for w in puzzle_words(puzzle) if has_dual_sense(w))
+
+
+def is_all_straight(puzzle):
+    return tricky_score(puzzle) == 0
+
+
+def gather_candidates(seed, cap_per_template=800, time_budget=40.0, node_budget=2_000_000, exclude_grids=None):
+    """One exhaustive search over the full curated vocabulary, across every
+    block template. Returns (candidates, template_uses, timed_out_templates).
+    candidates is deduplicated against exclude_grids (an already-shipped grid
+    signature set, or None for a fresh build) as well as against itself, and
+    comes back pre-shuffled by `seed` -- this is the single shared, tier-
+    agnostic raw material both a fresh build and a grow pass draw from.
+    """
+    exclude_grids = exclude_grids or set()
+    rng = random.Random(seed)
+    t0 = time.monotonic()
+
+    all_variants = [(count, blocks) for count in (4, 2, 0) for blocks in TEMPLATES[count]]
+    candidates = []
+    seen_grids = set(exclude_grids)
+    template_uses = {}
+    timed_out_templates = []
+
+    for count, blocks in all_variants:
+        slots = compute_slots(blocks)
+        solutions, timed_out = enumerate_solutions(
+            slots, rng, cap=cap_per_template, node_budget=node_budget, time_budget=time_budget,
+        )
+        if timed_out:
+            timed_out_templates.append(count)
+        rng.shuffle(solutions)
+        for assignment in solutions:
+            base = assignment_to_puzzle(blocks, slots, assignment)
+            for candidate in (base, transpose_puzzle(base)):
+                sig = tuple(candidate["grid"])
+                if sig in seen_grids:
+                    continue
+                seen_grids.add(sig)
+                candidates.append(candidate)
+                template_uses[count] = template_uses.get(count, 0) + 1
+        print(
+            f"template blocks={count}: {len(solutions)} fillings found "
+            f"({time.monotonic() - t0:.1f}s elapsed)"
+        )
+
+    if timed_out_templates:
+        print(
+            f"WARNING: the {time_budget}s time budget cut the search short for "
+            f"template block-counts {sorted(set(timed_out_templates))}. How far the "
+            "search got depends on machine speed, so this bank is NOT reproducible "
+            "from --seed alone. Raise --time-budget or lower --cap-per-template.",
+            file=sys.stderr,
+        )
+
+    rng.shuffle(candidates)
+    print(f"gathered {len(candidates)} unique candidate puzzles ({time.monotonic() - t0:.1f}s elapsed)")
+    print(f"template block-count usage: {template_uses}")
+    return candidates
+
+
+def split_into_tiers(candidates, target_count):
+    """v1's shared-pool split: easy claims every all-straight candidate it
+    needs, hard claims non-straight candidates (preferring >= 2 tricky
+    entries), and medium is whatever's left, in that priority order. Kept
+    as its own function so a fresh build and a from-scratch --count run use
+    exactly the same logic; grow_bank below does NOT use this, since a grow
+    pass needs each tier's selection to come from its own independent RNG
+    stream instead of one shared claim order.
+    """
+    easy_pool = [p for p in candidates if is_all_straight(p)]
+    hard_pool = sorted((p for p in candidates if not is_all_straight(p)), key=tricky_score, reverse=True)
+
+    used = set()
+
+    def take(pool, n):
+        out = []
+        for p in pool:
+            pid = id(p)
+            if pid in used:
+                continue
+            out.append(p)
+            used.add(pid)
+            if len(out) >= n:
+                break
+        return out
+
+    easy_bank = take(easy_pool, target_count["easy"])
+    hard_bank = take([p for p in hard_pool if tricky_score(p) >= 2], target_count["hard"])
+    if len(hard_bank) < target_count["hard"]:
+        hard_bank += take(hard_pool, target_count["hard"] - len(hard_bank))
+    hard_bank = [reclue_for_hard(p) for p in hard_bank]
+    medium_bank = take(candidates, target_count["medium"])
+    return {"easy": easy_bank, "medium": medium_bank, "hard": hard_bank}
+
+
+def grow_bank(existing, seed, target_per_tier, cap_per_template=800, time_budget=180.0, node_budget=10_000_000):
+    """Appends new puzzles to an already-shipped bank without touching a
+    single byte of what is there.
+
+    v1/v2 built all three difficulties from one shared candidate pool and
+    one shared `used`-id claim order (see split_into_tiers): easy claims
+    first, hard second, medium gets the leftovers. Reusing that for growth
+    would make each tier's yield depend on the other two tiers' targets,
+    which is exactly the "shared pass" this task's contract forbids for a
+    grow mode. So growth still shares ONE exhaustive re-enumeration of the
+    curated vocabulary (that part is deterministic, tier-agnostic raw
+    material, not a claim order), but each difficulty then gets its own
+    independently seeded RNG to shuffle its eligible slice of the NEW
+    (not-already-shipped) candidates before taking what it needs. Easy and
+    hard are selected first since their eligibility (straight vs. tricky
+    clues) is mutually exclusive by construction; medium's independent
+    shuffle is applied to whatever neither of them claimed in THIS growth
+    pass, which is the same "leftovers" role medium has always played, just
+    decided by medium's own stream instead of a shared iteration order.
+    """
+    existing_grids = {
+        tuple(p["grid"]) for tier in ("easy", "medium", "hard") for p in existing[tier]["puzzles"]
+    }
+    candidates = gather_candidates(
+        seed, cap_per_template=cap_per_template, time_budget=time_budget,
+        node_budget=node_budget, exclude_grids=existing_grids,
+    )
+
+    easy_pool = [p for p in candidates if is_all_straight(p)]
+    hard_pool = [p for p in candidates if not is_all_straight(p)]
+
+    rng_easy = random.Random(f"{seed}-grow-easy")
+    rng_hard = random.Random(f"{seed}-grow-hard")
+    rng_medium = random.Random(f"{seed}-grow-medium")
+
+    easy_shuffled = easy_pool[:]
+    rng_easy.shuffle(easy_shuffled)
+    needed_easy = max(0, target_per_tier - len(existing["easy"]["puzzles"]))
+    new_easy = easy_shuffled[:needed_easy]
+
+    hard_shuffled = hard_pool[:]
+    rng_hard.shuffle(hard_shuffled)
+    hard_shuffled.sort(key=tricky_score, reverse=True)  # prefer >= 2 tricky entries, ties broken by the shuffle
+    needed_hard = max(0, target_per_tier - len(existing["hard"]["puzzles"]))
+    new_hard = [reclue_for_hard(p) for p in hard_shuffled[:needed_hard]]
+
+    claimed = {id(p) for p in new_easy} | {id(p) for p in hard_shuffled[:needed_hard]}
+    medium_pool = [p for p in candidates if id(p) not in claimed]
+    rng_medium.shuffle(medium_pool)
+    needed_medium = max(0, target_per_tier - len(existing["medium"]["puzzles"]))
+    new_medium = medium_pool[:needed_medium]
+
+    for tier, needed, got in (
+        ("easy", needed_easy, len(new_easy)),
+        ("medium", needed_medium, len(new_medium)),
+        ("hard", needed_hard, len(new_hard)),
+    ):
+        if got < needed:
+            print(
+                f"warning: [{tier}] grew by {got} of {needed} requested "
+                "(vocabulary exhausted before hitting the target)",
+                file=sys.stderr,
+            )
+
+    return {
+        "easy": existing["easy"]["puzzles"] + new_easy,
+        "medium": existing["medium"]["puzzles"] + new_medium,
+        "hard": existing["hard"]["puzzles"] + new_hard,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate the Minigrid puzzle bank.")
     parser.add_argument("--seed", type=int, default=20260810)
     parser.add_argument("--count", type=int, default=None, help="override the target count for every tier")
-    # The full curated vocabulary (WORDS_3/4/5) has a hard combinatorial
+    # The original curated vocabulary (v1/v2) had a hard combinatorial
     # ceiling for this grid shape: an exhaustive search (every template,
-    # generous time/node budgets) finds exactly 130 distinct fully-crossed
-    # fillings, period -- verified while building this file, not a budget
-    # artifact (raising cap/time further finds nothing new). Three tiers
-    # drawn without overlap have to share that ceiling, so the defaults
-    # below add up to it (45 + 45 + 40 = 130) instead of asking for more
-    # than the vocabulary can honestly deliver. See main().
+    # generous time/node budgets) found exactly 130 distinct fully-crossed
+    # fillings, period. Growing the vocabulary (see the "Vocabulary growth
+    # pass" blocks above CLUES) raised that ceiling; --grow-to reruns the
+    # search against the larger vocabulary and appends whatever it finds
+    # beyond what is already shipped. See gather_candidates/grow_bank.
     parser.add_argument("--easy-count", type=int, default=45)
     parser.add_argument("--medium-count", type=int, default=45)
     parser.add_argument("--hard-count", type=int, default=40)
     parser.add_argument("--out", type=Path, default=OUT_PATH)
+    parser.add_argument(
+        "--grow-to",
+        type=int,
+        default=None,
+        help="load --out and append new puzzles up to this many per "
+        "difficulty, leaving every existing puzzle untouched",
+    )
     parser.add_argument(
         "--cap-per-template",
         type=int,
@@ -2950,120 +3816,34 @@ def main():
     )
     args = parser.parse_args()
 
-    target_count = {
-        "easy": args.count if args.count is not None else args.easy_count,
-        "medium": args.count if args.count is not None else args.medium_count,
-        "hard": args.count if args.count is not None else args.hard_count,
-    }
-
     dictionary = load_wordlist()
-    rng = random.Random(args.seed)
-    t0 = time.monotonic()
 
-    # One search over the full curated vocabulary, across every template.
-    # Three tiers need three times the raw material a single bank did, and
-    # only the full ~2200-word vocabulary finds fillings reliably (see the
-    # HARD_CLUE_OVERRIDES comment above) -- so there is no early break here;
-    # every template variant is searched to its own cap/time budget, and the
-    # three tiers are carved out of the combined pool afterward.
-    all_variants = [(count, blocks) for count in (4, 2, 0) for blocks in TEMPLATES[count]]
-    candidates = []
-    seen_grids = set()
-    template_uses = {}
-
-    timed_out_templates = []
-    for count, blocks in all_variants:
-        slots = compute_slots(blocks)
-        solutions, timed_out = enumerate_solutions(
-            slots,
-            rng,
-            cap=args.cap_per_template,
-            node_budget=args.node_budget,
-            time_budget=args.time_budget,
+    if args.grow_to is not None:
+        existing = json.loads(args.out.read_text(encoding="utf-8"))
+        bank_puzzles = grow_bank(
+            existing, args.seed, args.grow_to,
+            cap_per_template=args.cap_per_template, time_budget=args.time_budget, node_budget=args.node_budget,
         )
-        if timed_out:
-            timed_out_templates.append(count)
-        rng.shuffle(solutions)
-        for assignment in solutions:
-            base = assignment_to_puzzle(blocks, slots, assignment)
-            for candidate in (base, transpose_puzzle(base)):
-                sig = tuple(candidate["grid"])
-                if sig in seen_grids:
-                    continue
-                seen_grids.add(sig)
-                candidates.append(candidate)
-                template_uses[count] = template_uses.get(count, 0) + 1
-        print(
-            f"template blocks={count}: {len(solutions)} fillings found "
-            f"({time.monotonic() - t0:.1f}s elapsed)"
+    else:
+        target_count = {
+            "easy": args.count if args.count is not None else args.easy_count,
+            "medium": args.count if args.count is not None else args.medium_count,
+            "hard": args.count if args.count is not None else args.hard_count,
+        }
+        candidates = gather_candidates(
+            args.seed, cap_per_template=args.cap_per_template,
+            time_budget=args.time_budget, node_budget=args.node_budget,
         )
+        bank_puzzles = split_into_tiers(candidates, target_count)
 
-    if timed_out_templates:
-        print(
-            f"WARNING: the {args.time_budget}s time budget cut the search short for "
-            f"template block-counts {sorted(set(timed_out_templates))}. How far the "
-            "search got depends on machine speed, so this bank is NOT reproducible "
-            "from --seed alone. Raise --time-budget or lower --cap-per-template.",
-            file=sys.stderr,
-        )
-
-    rng.shuffle(candidates)
-    print(f"gathered {len(candidates)} unique candidate puzzles ({time.monotonic() - t0:.1f}s elapsed)")
-    print(f"template block-count usage: {template_uses}")
-
-    def tricky_score(puzzle):
-        return sum(1 for w in puzzle_words(puzzle) if has_dual_sense(w))
-
-    def is_all_straight(puzzle):
-        return tricky_score(puzzle) == 0
-
-    # Easy: every entry's clue is a single, straight definition -- exactly
-    # the contract's "everyday fill, straight definition clues" bar.
-    easy_pool = [p for p in candidates if is_all_straight(p)]
-    # Hard candidates: everything else, ranked by how many entries carry a
-    # trickier sense (the shuffle above keeps ties in random order).
-    hard_pool = sorted((p for p in candidates if not is_all_straight(p)), key=tricky_score, reverse=True)
-
-    used = set()
-
-    def take(pool, n):
-        out = []
-        for p in pool:
-            pid = id(p)
-            if pid in used:
-                continue
-            out.append(p)
-            used.add(pid)
-            if len(out) >= n:
-                break
-        return out
-
-    easy_bank = take(easy_pool, target_count["easy"])
-    # Prefer puzzles with at least two trickier entries so "hard" means
-    # something; only fall back to a single-entry threshold if that is not
-    # enough to reach the target (still real, just less emphatically hard --
-    # the report states the true split).
-    hard_bank = take([p for p in hard_pool if tricky_score(p) >= 2], target_count["hard"])
-    if len(hard_bank) < target_count["hard"]:
-        hard_bank += take(hard_pool, target_count["hard"] - len(hard_bank))
-    hard_bank = [reclue_for_hard(p) for p in hard_bank]
-    # Medium: an unrestricted sample of the same candidate pool used for v1
-    # ("current bank regraded"), skipping whatever easy/hard already claimed
-    # so no single puzzle appears twice under two difficulty labels.
-    medium_bank = take(candidates, target_count["medium"])
-
-    bank = {"easy": {"puzzles": easy_bank}, "medium": {"puzzles": medium_bank}, "hard": {"puzzles": hard_bank}}
+    bank = {t: {"puzzles": bank_puzzles[t]} for t in ("easy", "medium", "hard")}
 
     hard_clue_lookup = lambda w: HARD_CLUE_OVERRIDES.get(w, CLUES[w])  # noqa: E731
-    validate_bank(easy_bank, dictionary, "easy")
-    validate_bank(medium_bank, dictionary, "medium")
-    validate_bank(hard_bank, dictionary, "hard", clue_lookup=hard_clue_lookup)
+    validate_bank(bank["easy"]["puzzles"], dictionary, "easy")
+    validate_bank(bank["medium"]["puzzles"], dictionary, "medium")
+    validate_bank(bank["hard"]["puzzles"], dictionary, "hard", clue_lookup=hard_clue_lookup)
 
-    for tier in ("easy", "medium", "hard"):
-        got = len(bank[tier]["puzzles"])
-        if got < target_count[tier]:
-            print(f"warning: [{tier}] requested {target_count[tier]} but only produced {got}", file=sys.stderr)
-
+    hard_bank = bank["hard"]["puzzles"]
     hard_override_hits = sum(1 for p in hard_bank for w in puzzle_words(p) if w in HARD_CLUE_OVERRIDES)
     hard_entries_total = sum(len(puzzle_words(p)) for p in hard_bank)
     print(
