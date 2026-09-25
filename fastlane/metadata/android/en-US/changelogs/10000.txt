@@ -1,1 +1,1 @@
-First Android release, wrapping the existing Puzzle Press web app. Works fully offline.
+First Android release. A year of puzzles for most games, hints for Heptagram, a high-contrast mode for Wordrow, one-tap sharing of the day's results, and the how-to-play opening on your first game. Works fully offline with no internet permission.

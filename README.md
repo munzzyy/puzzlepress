@@ -71,6 +71,16 @@ python3 -m http.server
 Open http://localhost:8000. Any static file server works. The site also
 installs as a PWA and keeps working offline once you have visited it.
 
+## Android
+
+[`android/`](android) wraps the same site in a small WebView app that
+bundles every page and puzzle bank, with no internet permission at all.
+Share opens the system share sheet, and Back closes an open dialog before
+it leaves a game. Signed APKs are on the
+[releases page](https://github.com/munzzyy/puzzlepress/releases), and it
+has been submitted to F-Droid. To build it yourself, run
+`./gradlew assembleDebug` inside `android/`.
+
 ## How the dailies work
 
 Each game ships with a committed bank of puzzles in `data/`. Your browser

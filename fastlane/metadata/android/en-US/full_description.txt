@@ -1,15 +1,9 @@
-Puzzle Press is seven small puzzles, a new set every day: a word guess, a grouping game, a pangram hunt, a mini crossword, a word search, a letter-jump game, and sudoku.
+Puzzle Press is seven small puzzles in one app, and a fresh set lands every day at midnight.
 
-Wordrow: guess a five-letter word in six tries.
-Clusters: sort sixteen items into four groups of four.
-Heptagram: find every word made from seven given letters, one of which must appear in each word.
-Minigrid: a small daily crossword.
-Wordweave: a themed word search.
-Edgeways: jump from letter to letter to spell words.
-Sudoku: classic sudoku at three difficulties.
+Wordrow is the five-letter word guess, six tries. Clusters hands you sixteen words to sort into four groups, and a few of them look like they belong in two. Heptagram gives you seven letters and every word has to use the one in the middle; there is a hints panel for when the last few words won't come. Minigrid is a 5x5 crossword you can finish over coffee. In Wordweave the theme words hide in a grid of letters and one of them runs all the way across. Edgeways puts twelve letters around a square and asks you to chain words until you have used them all. Sudoku is sudoku, with pencil marks and undo.
 
-Each puzzle changes once a day, and you can play a past day from the archive at any time. The app tracks your streak.
+Each game has easy, medium and hard, and each one is its own daily with its own streak. Missed a day? The archive goes back to launch. Finish a puzzle and you can share how it went without spoiling it for anyone.
 
-The app has no internet permission, so it never makes a network request. There's no account and no ads, and it doesn't track you. Your streak and progress stay in local storage on your phone.
+There is no internet permission, so the app never touches the network. No ads, no account, no tracking. Your streaks live on your phone and nowhere else.
 
-Puzzle Press is free and open source software.
+It is free software (GPL-3.0-or-later), and it also runs in any browser at munzzyy.github.io/puzzlepress.
