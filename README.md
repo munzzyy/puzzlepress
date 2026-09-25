@@ -14,7 +14,7 @@ Wordrow gives you six tries at a five letter word, with a hard mode if you
 want it. Clusters asks you to sort sixteen tiles into four themed groups
 before your fourth mistake. Heptagram hands you seven letters and one of them
 has to appear in every word you build. Minigrid is a 5x5 crossword
-with hand written clues. Wordweave hides theme words in a grid of letters;
+with its own clues. Wordweave hides theme words in a grid of letters;
 one of them spans the board and names the theme. Edgeways puts twelve letters
 around a square and you chain words until every letter is used. Sudoku is
 the classic, with pencil marks and undo.
@@ -139,8 +139,13 @@ CI always runs the full suite, slow tests included.
   other curated lists are hand picked, and the full guess dictionaries come
   straight from the public domain ENABLE list, which accepts words like
   ZOEAE. The occasional obscure but valid word will show up.
-- Profanity filtering on the big dictionaries is a best effort blocklist,
-  not a linguistic audit. The curated answer lists are clean.
+- The big dictionaries accept some words that don't belong in a family
+  puzzle. [`assets/blocklist.js`](assets/blocklist.js) lists them, and the
+  games drop them at play time: Heptagram never accepts, counts, hints or
+  reveals one, and Wordweave never takes one as a bonus word. The same list
+  keeps the generators from picking them. Wordrow's guess list will still
+  accept a few crude words if you type them, but no answer is one. The
+  curated answer lists are clean.
 - Sudoku's hard tier is one wide bucket, graded by solving technique rather
   than a full named-technique ladder. Some hard days are harder than others.
 - Minigrid uses two block layouts across its bank. The other valid 5x5
@@ -148,13 +153,16 @@ CI always runs the full suite, slow tests included.
   not in there. Hard puzzles are picked for trickier entries and reclued
   where a trickier clue exists, but some of their clues still read like
   medium ones.
-- Current bank sizes, easy/medium/hard, and when each one wraps: Clusters,
-  Sudoku, and Heptagram sit at 365/365/365 (a full year before any repeat).
-  Edgeways is 365/195/90, as far as its word pool goes for the harder tiers.
-  Minigrid is capped by its curated vocabulary at 45/45/40 (that vocabulary
-  is the content lane's to grow; these numbers move as it does). Wordweave
-  is 60/60/59, also expected to grow over time. Wordrow's answer pools are
-  301/795/245; its shared guess dictionary is separate and much larger.
+- Bank sizes, easy/medium/hard, counted from the August 10, 2026 launch:
+  Clusters, Sudoku and Heptagram are 365/365/365, a full year before any
+  repeat. Wordweave is 201/200/200, good until late February 2027. Minigrid
+  is 200/148/200: its medium tier is whatever fills are left after easy and
+  hard take theirs, and the curated vocabulary runs out first, so medium
+  repeats from January 5, 2027. Edgeways is 365/195/90; its hard tier needs a
+  J, Q, X or Z on the square and repeats from November 8, 2026. Wordrow's
+  answer pools are 301/795/245, and its guess dictionary is separate and
+  much larger. A repeat is the same puzzle as its earlier day, not a broken
+  one.
 - Sudoku cells land around 38-40px on a 360-390px phone, under the 44px
   touch guideline. Nine cells across a small screen leaves no way around it,
   so the toolbar's zoom button grows the board past its wrapper instead:

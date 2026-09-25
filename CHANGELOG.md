@@ -2,33 +2,31 @@
 
 ## 1.0.0 - 2026-09-25
 
-Bigger banks, a few new features, a license change.
+The big one was running out of puzzles. Minigrid had already started
+repeating and Wordweave was ten days behind it, so every bank grew:
+Sudoku, Heptagram and Clusters to 365 per difficulty, Wordweave to about
+200 with some 420 new themes, Minigrid to 200/148/200 with around 650
+newly clued words, and Edgeways to 365/195/90. Nothing that already
+shipped moved. A test pins every bank's old entries by hash, so a
+growth pass can only ever append.
 
-Sudoku, Heptagram, and Clusters: 365 puzzles per difficulty now.
-Edgeways: 365/195/90 (easy/medium/hard) - as far as its word pool
-goes for medium and hard. A new test pins the exact prefix every bank
-had before this pass. Growing a bank can only append from here.
+I also found crude and hateful words in there. The big dictionaries
+allow them, so Heptagram would take a slur as an answer and Wordweave
+would count a few as bonus words, in puzzles that had already gone out.
+A shared blocklist now drops them when a puzzle loads, and the
+generators skip them.
 
-The hub has a "Share today" button. It rolls up every game you
-finished today into one message, in each game's own share format.
-Hidden until you've finished something. Heptagram has an optional
-hints panel now too: word counts by first letter and length, plus
-two-letter starts. No words shown, but opening it gets noted on that
-day's result. Every game opens its how-to-play once, the first time
-you visit it, and never again. Wordrow has a high-contrast color
-setting for correct/present tiles, and it carries into the share
-emoji.
+New things to play with: a "Share today" button on the hub that rolls
+up everything you finished into one message, a hints panel for
+Heptagram (counts only, no words, and it gets noted on your result),
+a high-contrast color option for Wordrow that carries into the share
+emoji, and how-to-play opening on its own the first time you try a game.
 
-Every page has social cards, canonical links, Open Graph and Twitter
-tags, and JSON-LD now, so a shared link looks like something instead
-of a bare URL. The site also runs bundled offline inside the Android
-wrapper app: relative paths everywhere, a silent fallback with no
-service worker, a native share/theme bridge when the wrapper's there.
+Shared links get proper preview cards now. Result panels speak up for
+screen readers, and the small buttons grew to 44px, except Sudoku's cells
+and Wordrow's keys, which can't fit at that size on a narrow phone (the
+README explains). The site also runs offline inside the new Android app,
+where Back closes an open dialog before it leaves a game.
 
-Every game's result panel announces itself to screen readers. Shared
-buttons, the skip link, and the archive's date links are a real 44px.
-Sudoku's cells and Wordrow's keyboard keys still land under that on
-narrow phones - same trade-off as before, written up in the README.
-
-License moved from Prosperity to [GPL-3.0-or-later](LICENSE). Commits
-before this release stayed under Prosperity.
+Puzzle Press is now GPL-3.0-or-later. Commits before this release were
+under Prosperity.
