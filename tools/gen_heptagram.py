@@ -305,6 +305,32 @@ def validate(bank):
             all_letters[p["letters"]] = difficulty
 
 
+def grow_bank(existing, seed, targets):
+    """Appends new puzzles to an already-shipped bank without touching a
+    single byte of what is there. Each difficulty gets its own reshuffled
+    view of the candidate masks, seeded well clear of the original
+    generate() stream, and skips every letter set already used by any
+    difficulty (the original bank enforces one wheel per difficulty)."""
+    words = load_wordlist(WORDLIST_PATH)
+    mask_index = build_mask_index(words)
+    candidate_masks = sorted({m for m in mask_index if popcount(m) == 7}, key=letters_string)
+
+    seen_letters = set()
+    grown_sections = {}
+    for difficulty in ("easy", "medium", "hard"):
+        for p in existing[difficulty]["puzzles"]:
+            seen_letters.add(p["letters"])
+    for difficulty in ("hard", "easy", "medium"):
+        existing_puzzles = existing[difficulty]["puzzles"]
+        needed = max(0, targets[difficulty] - len(existing_puzzles))
+        rng = random.Random(f"{seed}-grow-{difficulty}")
+        shuffled = list(candidate_masks)
+        rng.shuffle(shuffled)
+        new_puzzles = generate_section(shuffled, mask_index, rng, difficulty, needed, seen_letters)
+        grown_sections[difficulty] = {"puzzles": existing_puzzles + new_puzzles}
+    return {d: grown_sections[d] for d in ("easy", "medium", "hard")}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seed", type=int, default=7, help="deterministic seed")
@@ -312,10 +338,25 @@ def main():
     ap.add_argument("--medium-count", type=int, default=DIFF_TARGETS["medium"], help="target medium bank size")
     ap.add_argument("--hard-count", type=int, default=DIFF_TARGETS["hard"], help="target hard bank size")
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT, help="output JSON path")
+    ap.add_argument(
+        "--grow-to",
+        type=int,
+        default=None,
+        help="load --in (or --out) and append new puzzles up to this many "
+        "per difficulty, leaving every existing puzzle untouched",
+    )
+    ap.add_argument("--in", dest="in_path", type=Path, default=None)
     args = ap.parse_args()
 
-    targets = {"easy": args.easy_count, "medium": args.medium_count, "hard": args.hard_count}
-    bank = generate(args.seed, targets)
+    if args.grow_to is not None:
+        in_path = args.in_path or args.out
+        with open(in_path) as f:
+            existing = json.load(f)
+        targets = {"easy": args.grow_to, "medium": args.grow_to, "hard": args.grow_to}
+        bank = grow_bank(existing, args.seed, targets)
+    else:
+        targets = {"easy": args.easy_count, "medium": args.medium_count, "hard": args.hard_count}
+        bank = generate(args.seed, targets)
     validate(bank)
 
     for difficulty, section in bank.items():
