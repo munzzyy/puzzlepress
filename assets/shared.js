@@ -671,11 +671,17 @@ export function initChrome(gameMeta) {
     `</div></div></div>` +
     archiveHTML;
 
-  mount.querySelector('[data-action="help"]').addEventListener("click", () => {
-    modal("How to play", helpHTML || "<p>Rules coming soon.</p>");
-  });
+  const openHelp = () => modal("How to play", helpHTML || "<p>Rules coming soon.</p>");
+
+  mount.querySelector('[data-action="help"]').addEventListener("click", openHelp);
   mount.querySelector('[data-action="stats"]').addEventListener("click", () => {
     modal("Statistics", statsHTML(id, lastDiff(id)));
   });
   wireThemeToggle(mount.querySelector('[data-action="theme"]'));
+
+  const seenHelpKey = `pp.${id}.seenHelp`;
+  if (readStorage(seenHelpKey) !== "1") {
+    writeStorage(seenHelpKey, "1");
+    openHelp();
+  }
 }
