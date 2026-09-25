@@ -366,6 +366,10 @@ ul {
   font-family: inherit;
 }
 
+.pp-archive-link[hidden] {
+  display: none;
+}
+
 .pp-archive-link:hover {
   text-decoration: underline;
 }
