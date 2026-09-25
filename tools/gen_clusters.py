@@ -484,14 +484,72 @@ def validate_difficulty_bank(bank, by_name=None):
                 assert trap, f"hard puzzle {i} has no trap pairing"
 
 
+def grow_bank(existing, seed, per_diff, max_attempts=400000):
+    """Appends new puzzles to an already-shipped bank without touching a
+    single byte of what is there. used_combos/used_word_sets start pre-
+    loaded from every puzzle already shipped in ANY difficulty, so growth
+    can never repeat a category pairing or a 16-word board. Each
+    difficulty gets its own reshuffled attempt stream, seeded well clear of
+    the original generate_bank stream, and only accepts an attempt that
+    classifies as the difficulty being grown (no medium-overflow routing,
+    since there is no shared target to overflow past)."""
+    cats = normalized_categories()
+    by_tier = categories_by_tier(cats)
+    by_name = {c["name"]: c for c in cats}
+
+    used_combos = set()
+    used_word_sets = set()
+    for d in DIFFICULTIES:
+        for p in existing[d]["puzzles"]:
+            combo_key = tuple(by_name[g["name"]]["id"] for g in p["groups"])
+            used_combos.add(combo_key)
+            word_set_key = frozenset(w for g in p["groups"] for w in g["words"])
+            used_word_sets.add(word_set_key)
+
+    grown = {}
+    for d in DIFFICULTIES:
+        existing_puzzles = existing[d]["puzzles"]
+        needed = max(0, per_diff - len(existing_puzzles))
+        rng = random.Random(f"{seed}-grow-{d}")
+        new_puzzles = []
+        attempts = 0
+        while len(new_puzzles) < needed and attempts < max_attempts:
+            attempts += 1
+            puzzle = build_puzzle(rng, by_tier, used_combos, used_word_sets)
+            if puzzle is None:
+                continue
+            if classify(puzzle["groups"], by_name) != d:
+                continue
+            new_puzzles.append(puzzle)
+        if len(new_puzzles) < needed:
+            print(
+                f"warning: only grew {d} by {len(new_puzzles)} of {needed} "
+                "requested (category pool exhausted)",
+                file=sys.stderr,
+            )
+        grown[d] = existing_puzzles + new_puzzles
+    return grown
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=810, help="RNG seed (default 810)")
     parser.add_argument("--per-diff", type=int, default=100, help="target puzzle count per difficulty")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT, help="output JSON path")
+    parser.add_argument(
+        "--grow-to",
+        type=int,
+        default=None,
+        help="load --out and append new puzzles up to this many per "
+        "difficulty, leaving every existing puzzle untouched",
+    )
     args = parser.parse_args()
 
-    buckets = generate_bank(args.seed, args.per_diff)
+    if args.grow_to is not None:
+        existing = json.loads(args.out.read_text(encoding="utf-8"))
+        buckets = grow_bank(existing, args.seed, args.grow_to)
+    else:
+        buckets = generate_bank(args.seed, args.per_diff)
     bank = {d: {"puzzles": buckets[d]} for d in DIFFICULTIES}
     validate_difficulty_bank(bank)
 
