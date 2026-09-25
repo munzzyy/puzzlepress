@@ -32,6 +32,8 @@ import random
 import sys
 from pathlib import Path
 
+from blocklist import BLOCKED_WORDS
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 WORDLIST_PATH = REPO_ROOT / "data" / "wordlist.txt"
 OUT_PATH = REPO_ROOT / "data" / "wordweave.json"
@@ -58,6 +60,7 @@ BLOCKLIST = {
     "tits", "twat", "twats", "wank", "wanker", "wetback", "wetbacks",
     "whore", "whores", "wog", "wogs",
 }
+BLOCKLIST |= BLOCKED_WORDS
 
 # ---------------------------------------------------------------------
 # Curated theme pools. Each entry is (theme name, spangram, other words).

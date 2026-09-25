@@ -70,6 +70,13 @@ export function totalScore(found, letters) {
   return found.reduce((sum, w) => sum + wordScore(w, letters), 0);
 }
 
+/** The puzzle minus any blocked words, with maxScore recomputed so ranks still line up. */
+export function withoutBlocked(puzzle, blocked) {
+  const words = puzzle.words.filter((w) => !blocked.has(w));
+  if (words.length === puzzle.words.length) return puzzle;
+  return { ...puzzle, words, maxScore: totalScore(words, puzzle.letters) };
+}
+
 /** Total score if every non-pangram word in the puzzle were found, pangrams excluded. */
 export function maxScoreWithoutPangram(puzzle) {
   return puzzle.words

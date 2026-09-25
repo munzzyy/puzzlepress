@@ -185,3 +185,9 @@ export function shareText(puzzle, state, dayNumber, elapsedSeconds, diff = "medi
   const label = DIFF_LABELS[diff] || DIFF_LABELS.medium;
   return [`Puzzle Press Wordweave ${label} #${dayNumber}`, `${time}${hintNote}`, "", ...lines].join("\n");
 }
+
+/** The puzzle with blocked words dropped from the bonus list, so they are never accepted or shown. */
+export function withoutBlocked(puzzle, blocked) {
+  const bonusWords = (puzzle.bonusWords || []).filter((w) => !blocked.has(w.toLowerCase()));
+  return { ...puzzle, bonusWords };
+}

@@ -34,6 +34,8 @@ import random
 import sys
 from pathlib import Path
 
+from blocklist import BLOCKED_WORDS
+
 ROOT = Path(__file__).resolve().parent.parent
 WORDLIST_PATH = ROOT / "data" / "wordlist.txt"
 DEFAULT_OUT = ROOT / "data" / "heptagram.json"
@@ -61,7 +63,7 @@ def load_wordlist(path):
     with open(path, encoding="utf-8") as f:
         for line in f:
             w = line.strip().lower()
-            if w and w.isalpha() and len(w) >= MIN_WORD_LEN:
+            if w and w.isalpha() and len(w) >= MIN_WORD_LEN and w not in BLOCKED_WORDS:
                 words.append(w)
     return words
 

@@ -27,7 +27,9 @@ import {
   shareText,
   hintStats,
   useHints,
+  withoutBlocked,
 } from "./core.js";
+import { BLOCKED_WORDS } from "../../assets/blocklist.js";
 
 const GAME_ID = "heptagram";
 const EPOCH = "2026-08-10";
@@ -391,7 +393,7 @@ function startRandomPuzzle() {
     idx = Math.floor(Math.random() * list.length);
     attempts++;
   }
-  freePlay = { puzzle: list[idx], state: createState() };
+  freePlay = { puzzle: withoutBlocked(list[idx], BLOCKED_WORDS), state: createState() };
   loadPuzzle(freePlay.puzzle);
   updateFinishLabel();
   renderAll();
@@ -520,7 +522,7 @@ async function init() {
   }
 
   for (const diff of DIFFICULTIES) {
-    const puzzle = pickDaily(bank[diff], EPOCH, archive.now);
+    const puzzle = withoutBlocked(pickDaily(bank[diff], EPOCH, archive.now), BLOCKED_WORDS);
     const saved = dayStores[diff].loadDay(archive.dateKey);
     let state = createState();
     if (saved && saved.letters === puzzle.letters) {

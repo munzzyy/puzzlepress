@@ -20,7 +20,9 @@ import {
   useHint,
   shareText,
   cellsAdjacent,
+  withoutBlocked,
 } from "./core.js";
+import { BLOCKED_WORDS } from "../../assets/blocklist.js";
 
 const GAME_ID = "wordweave";
 const EPOCH = "2026-08-10";
@@ -391,7 +393,7 @@ function startPractice() {
   freePlay = {
     difficulty: diff,
     puzzleIndex: idx,
-    puzzle: list[idx],
+    puzzle: withoutBlocked(list[idx], BLOCKED_WORDS),
     state: createState(),
     startedAt: Date.now(),
     finishedAt: null,
@@ -627,7 +629,7 @@ function loadToday(diff) {
   const list = bank[diff].puzzles;
   const idx = wrappedIndex(list.length);
   dailyIndexes[diff] = idx;
-  puzzles[diff] = list[idx];
+  puzzles[diff] = withoutBlocked(list[idx], BLOCKED_WORDS);
 
   const saved = store(GAME_ID, diff).loadDay(archive.dateKey);
   if (saved && saved.puzzleIndex === idx && saved.core) {

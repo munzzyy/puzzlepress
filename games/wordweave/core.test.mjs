@@ -255,3 +255,19 @@ test("invalid chains (bad adjacency) are rejected without mutating state", () =>
   assert.equal(result.status, "invalid");
   assert.equal(next, state);
 });
+
+test("withoutBlocked leaves no blocked bonus word in any bank puzzle", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { withoutBlocked } = await import("./core.js");
+  const { BLOCKED_WORDS } = await import("../../assets/blocklist.js");
+  const bank = JSON.parse(readFileSync(new URL("../../data/wordweave.json", import.meta.url), "utf8"));
+  let dropped = 0;
+  for (const tier of Object.values(bank)) {
+    for (const raw of tier.puzzles) {
+      const puzzle = withoutBlocked(raw, BLOCKED_WORDS);
+      assert.ok(!puzzle.bonusWords.some((w) => BLOCKED_WORDS.has(w.toLowerCase())));
+      dropped += (raw.bonusWords || []).length - puzzle.bonusWords.length;
+    }
+  }
+  assert.ok(dropped > 0, "the bank should contain at least one bonus word that needed dropping");
+});

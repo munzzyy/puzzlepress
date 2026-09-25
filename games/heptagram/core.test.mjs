@@ -239,3 +239,21 @@ test("useHints is idempotent and does not mutate the input state", () => {
   assert.equal(once.usedHints, true);
   assert.equal(twice, once);
 });
+
+test("withoutBlocked drops blocked answers from every bank puzzle and keeps ranks consistent", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { withoutBlocked } = await import("./core.js");
+  const { BLOCKED_WORDS } = await import("../../assets/blocklist.js");
+  const bank = JSON.parse(readFileSync(new URL("../../data/heptagram.json", import.meta.url), "utf8"));
+  let changed = 0;
+  for (const tier of Object.values(bank)) {
+    for (const raw of tier.puzzles) {
+      const puzzle = withoutBlocked(raw, BLOCKED_WORDS);
+      assert.ok(!puzzle.words.some((w) => BLOCKED_WORDS.has(w)), `${raw.letters} still has a blocked word`);
+      assert.equal(puzzle.maxScore, totalScore(puzzle.words, puzzle.letters));
+      assert.ok(puzzle.words.some((w) => isPangram(w, puzzle.letters)), `${raw.letters} lost its pangram`);
+      if (puzzle !== raw) changed += 1;
+    }
+  }
+  assert.ok(changed > 0, "the bank should contain at least one puzzle that needed filtering");
+});
