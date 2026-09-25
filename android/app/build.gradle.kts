@@ -43,7 +43,7 @@ val syncWebAssets = tasks.register<Sync>("syncWebAssets") {
         include("assets/**")
         include("games/**")
         include("data/*.json")
-        exclude("**/*.test.mjs")
+        exclude("**/*.test.mjs", "assets/cards/**")
     }
     into(layout.buildDirectory.dir("webassets"))
 }
