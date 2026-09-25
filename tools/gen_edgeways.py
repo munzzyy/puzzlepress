@@ -390,7 +390,7 @@ def rare_ok(puzzle, rare_filter):
     return True
 
 
-def generate_pair_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="any"):
+def generate_pair_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="any", initial_use_count=None):
     """Two-word chains: word2 starts with word1's last letter. Used for
     medium (rare_filter="any") and hard (rare_filter="require")."""
     rng = random.Random(seed)
@@ -403,7 +403,7 @@ def generate_pair_puzzles(candidates, dictionary, count, seed, max_reuse, seen_b
     for bucket in by_first_letter.values():
         rng.shuffle(bucket)
 
-    use_count = {}
+    use_count = dict(initial_use_count) if initial_use_count else {}
 
     def under_cap(word):
         return use_count.get(word, 0) < max_reuse
@@ -444,7 +444,7 @@ def generate_pair_puzzles(candidates, dictionary, count, seed, max_reuse, seen_b
     return puzzles
 
 
-def generate_triple_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="forbid"):
+def generate_triple_puzzles(candidates, dictionary, count, seed, max_reuse, seen_boards, rare_filter="forbid", initial_use_count=None):
     """Three-word chains: word2 starts with word1's last letter, word3
     starts with word2's last letter, combined letters cover the board
     exactly. Used for easy (rare_filter="forbid": common letters only)."""
@@ -458,7 +458,7 @@ def generate_triple_puzzles(candidates, dictionary, count, seed, max_reuse, seen
     for bucket in by_first_letter.values():
         rng.shuffle(bucket)
 
-    use_count = {}
+    use_count = dict(initial_use_count) if initial_use_count else {}
 
     def under_cap(word):
         return use_count.get(word, 0) < max_reuse
@@ -535,16 +535,66 @@ def generate_bank(dictionary, seed):
     return {"easy": easy, "medium": medium, "hard": hard}
 
 
+def grow_bank(existing, dictionary_set, seed, targets):
+    """Appends new puzzles to an already-shipped bank without touching a
+    single byte of what is there. seen_boards starts pre-loaded with every
+    board already shipped in ANY difficulty (the original generator shares
+    one seen_boards set across all three so no square repeats), then hard,
+    easy and medium each grow in turn against a seed offset well clear of
+    the original generate_bank stream."""
+    candidates = build_solution_candidates(dictionary_set)
+    seen_boards = set()
+    for diff in ("easy", "medium", "hard"):
+        for p in existing[diff]["puzzles"]:
+            seen_boards.add(tuple(sorted(p["sides"])))
+
+    grown = {}
+    plans = (
+        ("hard", generate_pair_puzzles, "require", seed + 100002),
+        ("easy", generate_triple_puzzles, "forbid", seed + 100001),
+        ("medium", generate_pair_puzzles, "any", seed + 100000),
+    )
+    for diff, fn, rare_filter, grow_seed in plans:
+        existing_puzzles = existing[diff]["puzzles"]
+        needed = max(0, targets[diff] - len(existing_puzzles))
+        new_puzzles = []
+        if needed:
+            initial_use_count = {}
+            for p in existing_puzzles:
+                for w in p["solution"]:
+                    lw = w.lower()
+                    initial_use_count[lw] = initial_use_count.get(lw, 0) + 1
+            new_puzzles = fn(
+                candidates, dictionary_set, needed, grow_seed, MAX_REUSE[diff],
+                seen_boards, rare_filter=rare_filter, initial_use_count=initial_use_count,
+            )
+            new_puzzles.sort(key=lambda p: tuple(p["solution"]))
+        grown[diff] = existing_puzzles + new_puzzles
+    return grown
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=20260810)
+    parser.add_argument(
+        "--grow-to",
+        type=int,
+        default=None,
+        help="load the committed bank and append new puzzles up to this "
+        "many per difficulty, leaving every existing puzzle untouched",
+    )
     args = parser.parse_args()
 
     all_words = load_wordlist()
     dictionary = build_dictionary(all_words)
     dictionary_set = set(dictionary)
 
-    sections = generate_bank(dictionary_set, args.seed)
+    if args.grow_to is not None:
+        existing = json.loads(BANK_PATH.read_text(encoding="utf-8"))
+        targets = {"easy": args.grow_to, "medium": args.grow_to, "hard": args.grow_to}
+        sections = grow_bank(existing, dictionary_set, args.seed, targets)
+    else:
+        sections = generate_bank(dictionary_set, args.seed)
 
     bank = {}
     for diff, puzzles in sections.items():
@@ -554,8 +604,11 @@ def main():
                 f"contract wants >= {MIN_BANK_SIZE}",
                 file=sys.stderr,
             )
-        # Keep bank order stable and independent of dict/set iteration order.
-        puzzles.sort(key=lambda p: tuple(p["solution"]))
+        if args.grow_to is None:
+            # Keep bank order stable and independent of dict/set iteration
+            # order. Growth appends instead, to leave the committed prefix
+            # byte-identical.
+            puzzles.sort(key=lambda p: tuple(p["solution"]))
         bank[diff] = {"puzzles": puzzles}
 
     BANK_PATH.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")

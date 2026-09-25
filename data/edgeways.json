@@ -1,4 +1,1178 @@
 {
+  "hard": {
+    "puzzles": [
+      {
+        "sides": [
+          "CDE",
+          "INR",
+          "STV",
+          "AUX"
+        ],
+        "par": 2,
+        "solution": [
+          "ADVENTURE",
+          "EXERCISE"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "CNR",
+          "OQT",
+          "APU"
+        ],
+        "par": 2,
+        "solution": [
+          "AIRPORT",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CIK",
+          "NQS",
+          "BTU"
+        ],
+        "par": 2,
+        "solution": [
+          "BASKET",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "EFS",
+          "KRT",
+          "BCX"
+        ],
+        "par": 2,
+        "solution": [
+          "BREAKFAST",
+          "TOXIC"
+        ]
+      },
+      {
+        "sides": [
+          "ADO",
+          "CEI",
+          "NRT",
+          "BUZ"
+        ],
+        "par": 2,
+        "solution": [
+          "BRONZE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "AFI",
+          "LOQ",
+          "PRT",
+          "EMU"
+        ],
+        "par": 2,
+        "solution": [
+          "EQUIP",
+          "PLATFORM"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "CNO",
+          "RUX",
+          "MST"
+        ],
+        "par": 2,
+        "solution": [
+          "EXACT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "CEO",
+          "ADI",
+          "RST",
+          "NUX"
+        ],
+        "par": 2,
+        "solution": [
+          "EXERCISE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "HIN",
+          "PRS",
+          "LTX"
+        ],
+        "par": 2,
+        "solution": [
+          "EXERCISE",
+          "ELEPHANT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DLO",
+          "NPU",
+          "CSX"
+        ],
+        "par": 2,
+        "solution": [
+          "EXPAND",
+          "DELICIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "NOP",
+          "RTV",
+          "DFX"
+        ],
+        "par": 2,
+        "solution": [
+          "FAVORITE",
+          "EXPAND"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DGO",
+          "NRU",
+          "FSX"
+        ],
+        "par": 2,
+        "solution": [
+          "FIXED",
+          "DANGEROUS"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CEL",
+          "OTU",
+          "GNZ"
+        ],
+        "par": 2,
+        "solution": [
+          "GLAZE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "EOR",
+          "CLU",
+          "HSZ"
+        ],
+        "par": 2,
+        "solution": [
+          "HAZARD",
+          "DELICIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "CIR",
+          "ADE",
+          "HOS",
+          "VYZ"
+        ],
+        "par": 2,
+        "solution": [
+          "HAZARD",
+          "DISCOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "BEI",
+          "LMN",
+          "PSU",
+          "HVX"
+        ],
+        "par": 2,
+        "solution": [
+          "HUMBLE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "COV",
+          "JKL",
+          "NST"
+        ],
+        "par": 2,
+        "solution": [
+          "JACKET",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CNO",
+          "KST",
+          "DJU"
+        ],
+        "par": 2,
+        "solution": [
+          "JACKET",
+          "THOUSAND"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "COR",
+          "KST",
+          "JMU"
+        ],
+        "par": 2,
+        "solution": [
+          "JACKET",
+          "TOURISM"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "ELM",
+          "ORS",
+          "JPU"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SHRIMP"
+        ]
+      },
+      {
+        "sides": [
+          "AGU",
+          "EIL",
+          "NOR",
+          "JST"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SIGNATURE"
+        ]
+      },
+      {
+        "sides": [
+          "ELU",
+          "ACO",
+          "JPR",
+          "MST"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SPECTRUM"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "ELN",
+          "GPU",
+          "JRS"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SPRING"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "ELN",
+          "JPU",
+          "RST"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SPRINT"
+        ]
+      },
+      {
+        "sides": [
+          "DEO",
+          "AMN",
+          "LRS",
+          "JUY"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "SYNDROME"
+        ]
+      },
+      {
+        "sides": [
+          "AGU",
+          "LMN",
+          "OPY",
+          "DJR"
+        ],
+        "par": 2,
+        "solution": [
+          "JUMP",
+          "PLAYGROUND"
+        ]
+      },
+      {
+        "sides": [
+          "AEU",
+          "CDN",
+          "GIJ",
+          "LOT"
+        ],
+        "par": 2,
+        "solution": [
+          "JUNGLE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "AIR",
+          "ELN",
+          "OSU",
+          "CJT"
+        ],
+        "par": 2,
+        "solution": [
+          "JUNIOR",
+          "REALISTIC"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "CNO",
+          "PRT",
+          "DJS"
+        ],
+        "par": 2,
+        "solution": [
+          "JUNIOR",
+          "RESPECTED"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CNT",
+          "EOU",
+          "GMZ"
+        ],
+        "par": 2,
+        "solution": [
+          "MAGAZINE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "IJP",
+          "LOU",
+          "CMR"
+        ],
+        "par": 2,
+        "solution": [
+          "MAJOR",
+          "REPUBLIC"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CIK",
+          "NQR",
+          "MTU"
+        ],
+        "par": 2,
+        "solution": [
+          "MARKET",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "EIT",
+          "OPS",
+          "NRV",
+          "MUX"
+        ],
+        "par": 2,
+        "solution": [
+          "MOISTURE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "EIY",
+          "COS",
+          "NRU",
+          "MQT"
+        ],
+        "par": 2,
+        "solution": [
+          "MYSTERIOUS",
+          "SEQUENCE"
+        ]
+      },
+      {
+        "sides": [
+          "AES",
+          "IUY",
+          "OQR",
+          "DMT"
+        ],
+        "par": 2,
+        "solution": [
+          "MYSTERIOUS",
+          "SQUAD"
+        ]
+      },
+      {
+        "sides": [
+          "EIS",
+          "RUY",
+          "AOQ",
+          "HMT"
+        ],
+        "par": 2,
+        "solution": [
+          "MYSTERIOUS",
+          "SQUASH"
+        ]
+      },
+      {
+        "sides": [
+          "IPU",
+          "CLO",
+          "RST",
+          "ENX"
+        ],
+        "par": 2,
+        "solution": [
+          "NOXIOUS",
+          "SCULPTURE"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CDI",
+          "NRS",
+          "UXY"
+        ],
+        "par": 2,
+        "solution": [
+          "NOXIOUS",
+          "SECONDARY"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "HIM",
+          "SWX",
+          "NTU"
+        ],
+        "par": 2,
+        "solution": [
+          "NOXIOUS",
+          "SOMEWHAT"
+        ]
+      },
+      {
+        "sides": [
+          "COP",
+          "EIU",
+          "RSX",
+          "MNT"
+        ],
+        "par": 2,
+        "solution": [
+          "NOXIOUS",
+          "SPECTRUM"
+        ]
+      },
+      {
+        "sides": [
+          "GOT",
+          "AEI",
+          "RSX",
+          "NUY"
+        ],
+        "par": 2,
+        "solution": [
+          "NOXIOUS",
+          "STRATEGY"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "CIQ",
+          "LSU",
+          "OPT"
+        ],
+        "par": 2,
+        "solution": [
+          "OBSTACLE",
+          "EQUIP"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "CNP",
+          "LSX",
+          "DOT"
+        ],
+        "par": 2,
+        "solution": [
+          "OBSTACLE",
+          "EXPAND"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "GHN",
+          "PRZ",
+          "LOT"
+        ],
+        "par": 2,
+        "solution": [
+          "ORGANIZE",
+          "ELEPHANT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "GMN",
+          "PRY",
+          "OTZ"
+        ],
+        "par": 2,
+        "solution": [
+          "ORGANIZE",
+          "EMPTY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "IJL",
+          "NOR",
+          "PTY"
+        ],
+        "par": 2,
+        "solution": [
+          "PARTICLE",
+          "ENJOY"
+        ]
+      },
+      {
+        "sides": [
+          "ANO",
+          "DEG",
+          "LRU",
+          "PYZ"
+        ],
+        "par": 2,
+        "solution": [
+          "PLAYGROUND",
+          "DOZEN"
+        ]
+      },
+      {
+        "sides": [
+          "ENQ",
+          "ACI",
+          "HLT",
+          "PSU"
+        ],
+        "par": 2,
+        "solution": [
+          "PLEASANT",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "BIR",
+          "LOS",
+          "PTX"
+        ],
+        "par": 2,
+        "solution": [
+          "PORTABLE",
+          "EXERCISE"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CEO",
+          "RTU",
+          "NPZ"
+        ],
+        "par": 2,
+        "solution": [
+          "PRIZE",
+          "EDUCATION"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "ILM",
+          "NOP",
+          "GRZ"
+        ],
+        "par": 2,
+        "solution": [
+          "PROBLEM",
+          "MAGAZINE"
+        ]
+      },
+      {
+        "sides": [
+          "EOP",
+          "CIJ",
+          "RTV",
+          "LNS"
+        ],
+        "par": 2,
+        "solution": [
+          "PROJECT",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CJR",
+          "MNO",
+          "LPT"
+        ],
+        "par": 2,
+        "solution": [
+          "PROJECT",
+          "TERMINAL"
+        ]
+      },
+      {
+        "sides": [
+          "EOT",
+          "CDR",
+          "JNU",
+          "MPS"
+        ],
+        "par": 2,
+        "solution": [
+          "PROJECT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AER",
+          "CGI",
+          "JLN",
+          "OPT"
+        ],
+        "par": 2,
+        "solution": [
+          "PROJECT",
+          "TRIANGLE"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "HJR",
+          "NOU",
+          "PSY"
+        ],
+        "par": 2,
+        "solution": [
+          "PURCHASE",
+          "ENJOY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "IOS",
+          "NPU",
+          "LQT"
+        ],
+        "par": 2,
+        "solution": [
+          "QUAINT",
+          "TELESCOPE"
+        ]
+      },
+      {
+        "sides": [
+          "NRU",
+          "ADE",
+          "IOT",
+          "MQS"
+        ],
+        "par": 2,
+        "solution": [
+          "QUAINT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "AMS",
+          "LOR",
+          "QTY"
+        ],
+        "par": 2,
+        "solution": [
+          "QUALM",
+          "MYSTERIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "ORU",
+          "LTV",
+          "NQS"
+        ],
+        "par": 2,
+        "solution": [
+          "QUART",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "COS",
+          "PRU",
+          "LQT"
+        ],
+        "par": 2,
+        "solution": [
+          "QUEST",
+          "TROPICAL"
+        ]
+      },
+      {
+        "sides": [
+          "ABC",
+          "EIO",
+          "KRU",
+          "DQY"
+        ],
+        "par": 2,
+        "solution": [
+          "QUICK",
+          "KEYBOARD"
+        ]
+      },
+      {
+        "sides": [
+          "DEU",
+          "INO",
+          "LMR",
+          "QST"
+        ],
+        "par": 2,
+        "solution": [
+          "QUILT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "BCL",
+          "DJO",
+          "RST"
+        ],
+        "par": 2,
+        "solution": [
+          "RIDICULOUS",
+          "SUBJECT"
+        ]
+      },
+      {
+        "sides": [
+          "EJU",
+          "CLN",
+          "OPR",
+          "STY"
+        ],
+        "par": 2,
+        "solution": [
+          "SCULPTURE",
+          "ENJOY"
+        ]
+      },
+      {
+        "sides": [
+          "EPU",
+          "ACL",
+          "NRT",
+          "DSX"
+        ],
+        "par": 2,
+        "solution": [
+          "SCULPTURE",
+          "EXPAND"
+        ]
+      },
+      {
+        "sides": [
+          "ESU",
+          "CIP",
+          "LNR",
+          "TVX"
+        ],
+        "par": 2,
+        "solution": [
+          "SCULPTURE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "INO",
+          "AEG",
+          "JRT",
+          "SUY"
+        ],
+        "par": 2,
+        "solution": [
+          "SIGNATURE",
+          "ENJOY"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "CIN",
+          "RTX",
+          "LSU"
+        ],
+        "par": 2,
+        "solution": [
+          "SIGNATURE",
+          "EXCEL"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "INP",
+          "RTX",
+          "DSU"
+        ],
+        "par": 2,
+        "solution": [
+          "SIGNATURE",
+          "EXPAND"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "NPR",
+          "GST",
+          "UVX"
+        ],
+        "par": 2,
+        "solution": [
+          "SIGNATURE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "CNO",
+          "PQR",
+          "STU"
+        ],
+        "par": 2,
+        "solution": [
+          "SPORT",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "CIU",
+          "EHO",
+          "NPQ",
+          "RST"
+        ],
+        "par": 2,
+        "solution": [
+          "SPROUT",
+          "TECHNIQUE"
+        ]
+      },
+      {
+        "sides": [
+          "ACI",
+          "DEO",
+          "QRT",
+          "NSU"
+        ],
+        "par": 2,
+        "solution": [
+          "SQUAD",
+          "DIRECTION"
+        ]
+      },
+      {
+        "sides": [
+          "AES",
+          "CDQ",
+          "IOR",
+          "UVY"
+        ],
+        "par": 2,
+        "solution": [
+          "SQUAD",
+          "DISCOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "BEI",
+          "CJO",
+          "STV",
+          "LNU"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "BET",
+          "CGN",
+          "HIU",
+          "JOS"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TONIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "ABC",
+          "EOR",
+          "JTU",
+          "DSW"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TOWARD"
+        ]
+      },
+      {
+        "sides": [
+          "DEU",
+          "BCN",
+          "JOR",
+          "MST"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "BCP",
+          "AEI",
+          "JTU",
+          "LSY"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TYPICAL"
+        ]
+      },
+      {
+        "sides": [
+          "AES",
+          "CFI",
+          "NPR",
+          "UVX"
+        ],
+        "par": 2,
+        "solution": [
+          "SURFACE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "MNQ",
+          "OUY",
+          "LRS"
+        ],
+        "par": 2,
+        "solution": [
+          "SYNDROME",
+          "EQUAL"
+        ]
+      },
+      {
+        "sides": [
+          "DEI",
+          "MNQ",
+          "OUY",
+          "PRS"
+        ],
+        "par": 2,
+        "solution": [
+          "SYNDROME",
+          "EQUIP"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "CMN",
+          "OXY",
+          "RST"
+        ],
+        "par": 2,
+        "solution": [
+          "SYNDROME",
+          "EXACT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "BCG",
+          "LNR",
+          "STX"
+        ],
+        "par": 2,
+        "solution": [
+          "TANGIBLE",
+          "EXERCISE"
+        ]
+      },
+      {
+        "sides": [
+          "CEH",
+          "INP",
+          "ORS",
+          "LTX"
+        ],
+        "par": 2,
+        "solution": [
+          "TELEPHONE",
+          "EXERCISE"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "FHN",
+          "PRS",
+          "TVX"
+        ],
+        "par": 2,
+        "solution": [
+          "THEREFORE",
+          "EXPENSIVE"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "MNR",
+          "SUZ",
+          "EGT"
+        ],
+        "par": 2,
+        "solution": [
+          "TOURISM",
+          "MAGAZINE"
+        ]
+      },
+      {
+        "sides": [
+          "DES",
+          "NRU",
+          "AOQ",
+          "HMT"
+        ],
+        "par": 2,
+        "solution": [
+          "TREMENDOUS",
+          "SQUASH"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "LNO",
+          "PRU",
+          "DTX"
+        ],
+        "par": 2,
+        "solution": [
+          "TROUBLE",
+          "EXPAND"
+        ]
+      }
+    ]
+  },
   "easy": {
     "puzzles": [
       {
@@ -1399,6 +2573,3716 @@
           "WHILE",
           "ELECT",
           "TSUNAMI"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CFP",
+          "ITY",
+          "LRS"
+        ],
+        "par": 3,
+        "solution": [
+          "AFTER",
+          "RECAP",
+          "PHYSICAL"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CFL",
+          "OST",
+          "HPR"
+        ],
+        "par": 3,
+        "solution": [
+          "AFTER",
+          "RECAP",
+          "POLISH"
+        ]
+      },
+      {
+        "sides": [
+          "EFI",
+          "LNR",
+          "OST",
+          "AGU"
+        ],
+        "par": 3,
+        "solution": [
+          "AFTER",
+          "RELIGION",
+          "NURSE"
+        ]
+      },
+      {
+        "sides": [
+          "ERS",
+          "ALO",
+          "IPT",
+          "VWY"
+        ],
+        "par": 3,
+        "solution": [
+          "AIRPORT",
+          "TWELVE",
+          "EASY"
+        ]
+      },
+      {
+        "sides": [
+          "BNR",
+          "EIM",
+          "OTU",
+          "APW"
+        ],
+        "par": 3,
+        "solution": [
+          "AIRPORT",
+          "TWIN",
+          "NUMBER"
+        ]
+      },
+      {
+        "sides": [
+          "GIO",
+          "NRS",
+          "PTU",
+          "AEW"
+        ],
+        "par": 3,
+        "solution": [
+          "AIRPORT",
+          "TWIST",
+          "TONGUE"
+        ]
+      },
+      {
+        "sides": [
+          "DNO",
+          "EIT",
+          "SUV",
+          "AHY"
+        ],
+        "par": 3,
+        "solution": [
+          "ASIDE",
+          "ENVY",
+          "YOUTH"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "DNO",
+          "RST",
+          "AHV"
+        ],
+        "par": 3,
+        "solution": [
+          "ASIDE",
+          "EVENT",
+          "TORCH"
+        ]
+      },
+      {
+        "sides": [
+          "EIN",
+          "DOR",
+          "SUY",
+          "AGV"
+        ],
+        "par": 3,
+        "solution": [
+          "ASIDE",
+          "EVERY",
+          "YOUNG"
+        ]
+      },
+      {
+        "sides": [
+          "AOT",
+          "HIR",
+          "NUY",
+          "DSW"
+        ],
+        "par": 3,
+        "solution": [
+          "AUTHOR",
+          "RAIN",
+          "NOWADAYS"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "CMO",
+          "ART",
+          "NUY"
+        ],
+        "par": 3,
+        "solution": [
+          "AUTHOR",
+          "RICE",
+          "ENEMY"
+        ]
+      },
+      {
+        "sides": [
+          "CHN",
+          "EIO",
+          "RUV",
+          "ATY"
+        ],
+        "par": 3,
+        "solution": [
+          "AUTHOR",
+          "RICE",
+          "ENVY"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CFR",
+          "NOT",
+          "BLP"
+        ],
+        "par": 3,
+        "solution": [
+          "BAND",
+          "DRAFT",
+          "TROPICAL"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "KMN",
+          "BRS",
+          "ETU"
+        ],
+        "par": 3,
+        "solution": [
+          "BAND",
+          "DRUM",
+          "MISTAKE"
+        ]
+      },
+      {
+        "sides": [
+          "AIR",
+          "DOU",
+          "MNS",
+          "BET"
+        ],
+        "par": 3,
+        "solution": [
+          "BAND",
+          "DRUM",
+          "MOISTURE"
+        ]
+      },
+      {
+        "sides": [
+          "ELN",
+          "AFH",
+          "BIO",
+          "KRT"
+        ],
+        "par": 3,
+        "solution": [
+          "BLANK",
+          "KNIT",
+          "THEREFORE"
+        ]
+      },
+      {
+        "sides": [
+          "ELN",
+          "AGT",
+          "HIO",
+          "BKR"
+        ],
+        "par": 3,
+        "solution": [
+          "BLANK",
+          "KNIT",
+          "TOGETHER"
+        ]
+      },
+      {
+        "sides": [
+          "EHN",
+          "ADO",
+          "LTU",
+          "BKR"
+        ],
+        "par": 3,
+        "solution": [
+          "BLANK",
+          "KNOT",
+          "THUNDER"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "CEG",
+          "LNR",
+          "BTU"
+        ],
+        "par": 3,
+        "solution": [
+          "BLUR",
+          "RANCH",
+          "HEIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CDL",
+          "MNR",
+          "BPU"
+        ],
+        "par": 3,
+        "solution": [
+          "BLUR",
+          "RECAP",
+          "PANDEMIC"
+        ]
+      },
+      {
+        "sides": [
+          "ILR",
+          "AEO",
+          "DTU",
+          "BNS"
+        ],
+        "par": 3,
+        "solution": [
+          "BLUR",
+          "RESET",
+          "TRADITION"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "EOT",
+          "PRV",
+          "BLS"
+        ],
+        "par": 3,
+        "solution": [
+          "BRAVE",
+          "EARTH",
+          "HOSPITAL"
+        ]
+      },
+      {
+        "sides": [
+          "AEP",
+          "ILM",
+          "RTV",
+          "BDY"
+        ],
+        "par": 3,
+        "solution": [
+          "BRAVE",
+          "EMPTY",
+          "YIELD"
+        ]
+      },
+      {
+        "sides": [
+          "AET",
+          "MOR",
+          "PUV",
+          "BHY"
+        ],
+        "par": 3,
+        "solution": [
+          "BRAVE",
+          "EMPTY",
+          "YOUTH"
+        ]
+      },
+      {
+        "sides": [
+          "CET",
+          "GKN",
+          "HIU",
+          "BOP"
+        ],
+        "par": 3,
+        "solution": [
+          "BUCK",
+          "KEPT",
+          "TONIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "FKR",
+          "NPU",
+          "BST"
+        ],
+        "par": 3,
+        "solution": [
+          "BUCK",
+          "KEPT",
+          "TRANSFER"
+        ]
+      },
+      {
+        "sides": [
+          "EKU",
+          "CFN",
+          "DOR",
+          "BLW"
+        ],
+        "par": 3,
+        "solution": [
+          "BUCK",
+          "KNEW",
+          "WONDERFUL"
+        ]
+      },
+      {
+        "sides": [
+          "AEM",
+          "CHP",
+          "NRU",
+          "BKS"
+        ],
+        "par": 3,
+        "solution": [
+          "BUMP",
+          "PERHAPS",
+          "SNACK"
+        ]
+      },
+      {
+        "sides": [
+          "AEM",
+          "HNP",
+          "RSU",
+          "BDT"
+        ],
+        "par": 3,
+        "solution": [
+          "BUMP",
+          "PERHAPS",
+          "STAND"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "ILM",
+          "OPU",
+          "BCT"
+        ],
+        "par": 3,
+        "solution": [
+          "BUMP",
+          "PETAL",
+          "LOGIC"
+        ]
+      },
+      {
+        "sides": [
+          "AHL",
+          "BCE",
+          "IRT",
+          "OSY"
+        ],
+        "par": 3,
+        "solution": [
+          "CABLE",
+          "EACH",
+          "HISTORY"
+        ]
+      },
+      {
+        "sides": [
+          "BEI",
+          "ADL",
+          "GNS",
+          "CRT"
+        ],
+        "par": 3,
+        "solution": [
+          "CABLE",
+          "EAGER",
+          "RESIDENT"
+        ]
+      },
+      {
+        "sides": [
+          "AIL",
+          "BCE",
+          "GNO",
+          "MRT"
+        ],
+        "par": 3,
+        "solution": [
+          "CABLE",
+          "EAGER",
+          "ROMANTIC"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "LNR",
+          "DIT",
+          "CKW"
+        ],
+        "par": 3,
+        "solution": [
+          "CALENDAR",
+          "RAIN",
+          "NETWORK"
+        ]
+      },
+      {
+        "sides": [
+          "AEU",
+          "LNR",
+          "DIM",
+          "COS"
+        ],
+        "par": 3,
+        "solution": [
+          "CALENDAR",
+          "RAIN",
+          "NUMEROUS"
+        ]
+      },
+      {
+        "sides": [
+          "HRS",
+          "AIT",
+          "EMO",
+          "CUY"
+        ],
+        "par": 3,
+        "solution": [
+          "CHART",
+          "TERM",
+          "MYSTERIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "GRS",
+          "HNP",
+          "COT"
+        ],
+        "par": 3,
+        "solution": [
+          "CHART",
+          "TIGER",
+          "RESPONSE"
+        ]
+      },
+      {
+        "sides": [
+          "AGT",
+          "EHI",
+          "LNR",
+          "COU"
+        ],
+        "par": 3,
+        "solution": [
+          "CHART",
+          "TONGUE",
+          "ELITE"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "HLT",
+          "NRS",
+          "CDU"
+        ],
+        "par": 3,
+        "solution": [
+          "CHEST",
+          "TROUT",
+          "TALENTED"
+        ]
+      },
+      {
+        "sides": [
+          "AOT",
+          "EIR",
+          "DHS",
+          "CNU"
+        ],
+        "par": 3,
+        "solution": [
+          "CHEST",
+          "TROUT",
+          "TRADITION"
+        ]
+      },
+      {
+        "sides": [
+          "EIM",
+          "BHN",
+          "SUW",
+          "CRT"
+        ],
+        "par": 3,
+        "solution": [
+          "CHEST",
+          "TWIN",
+          "NUMBER"
+        ]
+      },
+      {
+        "sides": [
+          "EOS",
+          "AHI",
+          "RTV",
+          "CLN"
+        ],
+        "par": 3,
+        "solution": [
+          "CHORE",
+          "EAST",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CDN",
+          "HIL",
+          "MRT"
+        ],
+        "par": 3,
+        "solution": [
+          "CHORE",
+          "ELDER",
+          "ROMANTIC"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "GIO",
+          "LNR",
+          "CUV"
+        ],
+        "par": 3,
+        "solution": [
+          "CHORE",
+          "EVIL",
+          "LANGUAGE"
+        ]
+      },
+      {
+        "sides": [
+          "ANO",
+          "DIL",
+          "MRU",
+          "CPY"
+        ],
+        "par": 3,
+        "solution": [
+          "CLAMP",
+          "POUND",
+          "DAIRY"
+        ]
+      },
+      {
+        "sides": [
+          "ADO",
+          "ILM",
+          "NPV",
+          "CEU"
+        ],
+        "par": 3,
+        "solution": [
+          "CLAMP",
+          "POUND",
+          "DIVE"
+        ]
+      },
+      {
+        "sides": [
+          "ADO",
+          "LMN",
+          "PRV",
+          "CEU"
+        ],
+        "par": 3,
+        "solution": [
+          "CLAMP",
+          "POUND",
+          "DROVE"
+        ]
+      },
+      {
+        "sides": [
+          "FKL",
+          "ACE",
+          "IMO",
+          "PRT"
+        ],
+        "par": 3,
+        "solution": [
+          "CLICK",
+          "KELP",
+          "PLATFORM"
+        ]
+      },
+      {
+        "sides": [
+          "ACH",
+          "EIK",
+          "LNT",
+          "DOR"
+        ],
+        "par": 3,
+        "solution": [
+          "CLICK",
+          "KNOT",
+          "THREAD"
+        ]
+      },
+      {
+        "sides": [
+          "ACR",
+          "EIK",
+          "LOS",
+          "NTU"
+        ],
+        "par": 3,
+        "solution": [
+          "CLICK",
+          "KNOT",
+          "TREASURE"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "GHK",
+          "LNT",
+          "COR"
+        ],
+        "par": 3,
+        "solution": [
+          "CLOAK",
+          "KING",
+          "GATHER"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "ALN",
+          "GKU",
+          "CRS"
+        ],
+        "par": 3,
+        "solution": [
+          "CLOAK",
+          "KING",
+          "GENEROUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "KLR",
+          "NOS",
+          "CTW"
+        ],
+        "par": 3,
+        "solution": [
+          "CLOAK",
+          "KNEW",
+          "WRIST"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "KLO",
+          "NRT",
+          "CEU"
+        ],
+        "par": 3,
+        "solution": [
+          "COULD",
+          "DRANK",
+          "KITE"
+        ]
+      },
+      {
+        "sides": [
+          "DFN",
+          "AIL",
+          "EOR",
+          "CKU"
+        ],
+        "par": 3,
+        "solution": [
+          "COULD",
+          "DRANK",
+          "KNIFE"
+        ]
+      },
+      {
+        "sides": [
+          "ADO",
+          "CEL",
+          "INP",
+          "MRU"
+        ],
+        "par": 3,
+        "solution": [
+          "COULD",
+          "DROP",
+          "PANDEMIC"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "CEO",
+          "PRT",
+          "LSU"
+        ],
+        "par": 3,
+        "solution": [
+          "CURE",
+          "EACH",
+          "HOSPITAL"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "ORS",
+          "ATV",
+          "CLN"
+        ],
+        "par": 3,
+        "solution": [
+          "CURE",
+          "EAST",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "DOR",
+          "CTV",
+          "LNS"
+        ],
+        "par": 3,
+        "solution": [
+          "CURE",
+          "EDIT",
+          "TELEVISION"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "BMR",
+          "DOS",
+          "TUY"
+        ],
+        "par": 3,
+        "solution": [
+          "DEBT",
+          "TOURISM",
+          "MERCY"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "NPT",
+          "BOS",
+          "DLW"
+        ],
+        "par": 3,
+        "solution": [
+          "DEBT",
+          "TWIST",
+          "TELEPHONE"
+        ]
+      },
+      {
+        "sides": [
+          "EIT",
+          "ABG",
+          "LNR",
+          "DSW"
+        ],
+        "par": 3,
+        "solution": [
+          "DEBT",
+          "TWIST",
+          "TRIANGLE"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "LNV",
+          "IOU",
+          "DHY"
+        ],
+        "par": 3,
+        "solution": [
+          "DEVIL",
+          "LOYAL",
+          "LAUNCH"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "LMN",
+          "IRU",
+          "DSV"
+        ],
+        "par": 3,
+        "solution": [
+          "DEVIL",
+          "LUNAR",
+          "RESEMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "ART",
+          "EFO",
+          "IKS",
+          "DUY"
+        ],
+        "par": 3,
+        "solution": [
+          "DRIFT",
+          "TOAST",
+          "TURKEY"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CGR",
+          "FOS",
+          "TVY"
+        ],
+        "par": 3,
+        "solution": [
+          "FAST",
+          "TIGER",
+          "RECOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "GKO",
+          "IRS",
+          "FTY"
+        ],
+        "par": 3,
+        "solution": [
+          "FAST",
+          "TIGER",
+          "ROCKY"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "GLT",
+          "HMS",
+          "FOR"
+        ],
+        "par": 3,
+        "solution": [
+          "FAST",
+          "TOGETHER",
+          "RESEMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "EHR",
+          "ACT",
+          "INO",
+          "FSY"
+        ],
+        "par": 3,
+        "solution": [
+          "FENCE",
+          "EARTH",
+          "HISTORY"
+        ]
+      },
+      {
+        "sides": [
+          "BEH",
+          "ACL",
+          "MNR",
+          "FTU"
+        ],
+        "par": 3,
+        "solution": [
+          "FENCE",
+          "EARTH",
+          "HUMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "BEO",
+          "ACL",
+          "NRS",
+          "FTU"
+        ],
+        "par": 3,
+        "solution": [
+          "FENCE",
+          "EAST",
+          "TROUBLE"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "LNR",
+          "IOT",
+          "FSU"
+        ],
+        "par": 3,
+        "solution": [
+          "FOUR",
+          "RESET",
+          "TRIANGLE"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "CRV",
+          "DSU",
+          "FGY"
+        ],
+        "par": 3,
+        "solution": [
+          "FOUR",
+          "RIGID",
+          "DISCOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "DEO",
+          "CIR",
+          "SUV",
+          "FNY"
+        ],
+        "par": 3,
+        "solution": [
+          "FOUR",
+          "ROUND",
+          "DISCOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "KOP",
+          "NRT",
+          "FHU"
+        ],
+        "par": 3,
+        "solution": [
+          "FRANK",
+          "KEPT",
+          "TOUCH"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "DLT",
+          "NRS",
+          "FUY"
+        ],
+        "par": 3,
+        "solution": [
+          "FROST",
+          "TALENTED",
+          "DULY"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "GRT",
+          "AHL",
+          "DFS"
+        ],
+        "par": 3,
+        "solution": [
+          "FROST",
+          "TOGETHER",
+          "RAILROAD"
+        ]
+      },
+      {
+        "sides": [
+          "ALR",
+          "DEI",
+          "NOT",
+          "FSY"
+        ],
+        "par": 3,
+        "solution": [
+          "FROST",
+          "TREND",
+          "DAILY"
+        ]
+      },
+      {
+        "sides": [
+          "ITU",
+          "AEO",
+          "NRS",
+          "GMV"
+        ],
+        "par": 3,
+        "solution": [
+          "GATE",
+          "EVENT",
+          "TOURISM"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "COT",
+          "NPR",
+          "GLV"
+        ],
+        "par": 3,
+        "solution": [
+          "GATE",
+          "EVENT",
+          "TROPICAL"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "CIN",
+          "LPS",
+          "GTV"
+        ],
+        "par": 3,
+        "solution": [
+          "GATE",
+          "EVIL",
+          "LANDSCAPE"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "LNP",
+          "ORS",
+          "GTW"
+        ],
+        "par": 3,
+        "solution": [
+          "GLOW",
+          "WISP",
+          "PARENT"
+        ]
+      },
+      {
+        "sides": [
+          "AIL",
+          "BOS",
+          "PRW",
+          "EGT"
+        ],
+        "par": 3,
+        "solution": [
+          "GLOW",
+          "WISP",
+          "PORTABLE"
+        ]
+      },
+      {
+        "sides": [
+          "ELS",
+          "BHI",
+          "GOP",
+          "RUW"
+        ],
+        "par": 3,
+        "solution": [
+          "GLOW",
+          "WISP",
+          "PUBLISHER"
+        ]
+      },
+      {
+        "sides": [
+          "DNU",
+          "AGI",
+          "ELO",
+          "FRS"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILD",
+          "DANGEROUS",
+          "SINFUL"
+        ]
+      },
+      {
+        "sides": [
+          "AEU",
+          "DGI",
+          "LOP",
+          "NRS"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILD",
+          "DANGEROUS",
+          "SPADE"
+        ]
+      },
+      {
+        "sides": [
+          "DEU",
+          "BIM",
+          "LOP",
+          "GRT"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILD",
+          "DOUBT",
+          "TEMPER"
+        ]
+      },
+      {
+        "sides": [
+          "AIN",
+          "CLR",
+          "OTU",
+          "DGW"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILT",
+          "TACO",
+          "ONWARD"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "CEL",
+          "STU",
+          "GRV"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILT",
+          "TACO",
+          "OVERSEAS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CLN",
+          "OTU",
+          "GRW"
+        ],
+        "par": 3,
+        "solution": [
+          "GUILT",
+          "TACO",
+          "OWNER"
+        ]
+      },
+      {
+        "sides": [
+          "ACO",
+          "EIK",
+          "NRT",
+          "HSY"
+        ],
+        "par": 3,
+        "solution": [
+          "HAIR",
+          "RECKON",
+          "NASTY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "INO",
+          "PRS",
+          "HLT"
+        ],
+        "par": 3,
+        "solution": [
+          "HAIR",
+          "RENT",
+          "TELESCOPE"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CIP",
+          "RST",
+          "BHL"
+        ],
+        "par": 3,
+        "solution": [
+          "HAIR",
+          "ROBOT",
+          "TELESCOPE"
+        ]
+      },
+      {
+        "sides": [
+          "AEM",
+          "LNO",
+          "RTU",
+          "HVW"
+        ],
+        "par": 3,
+        "solution": [
+          "HARM",
+          "MOUNT",
+          "TWELVE"
+        ]
+      },
+      {
+        "sides": [
+          "ACM",
+          "INO",
+          "RTU",
+          "EHW"
+        ],
+        "par": 3,
+        "solution": [
+          "HARM",
+          "MOUNT",
+          "TWICE"
+        ]
+      },
+      {
+        "sides": [
+          "ACM",
+          "HIL",
+          "OST",
+          "ERU"
+        ],
+        "par": 3,
+        "solution": [
+          "HARM",
+          "MUSIC",
+          "CHOCOLATE"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "DHP",
+          "ILN",
+          "RSW"
+        ],
+        "par": 3,
+        "solution": [
+          "HELP",
+          "PERHAPS",
+          "SANDWICH"
+        ]
+      },
+      {
+        "sides": [
+          "AEN",
+          "ILO",
+          "DSU",
+          "HPR"
+        ],
+        "par": 3,
+        "solution": [
+          "HELP",
+          "PLAID",
+          "DINOSAUR"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "LMS",
+          "ORT",
+          "HPY"
+        ],
+        "par": 3,
+        "solution": [
+          "HELP",
+          "PLUM",
+          "MYSTERIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "LNR",
+          "BEU",
+          "IMO",
+          "HST"
+        ],
+        "par": 3,
+        "solution": [
+          "HERB",
+          "BLUNT",
+          "TOURISM"
+        ]
+      },
+      {
+        "sides": [
+          "LNR",
+          "ABE",
+          "DOU",
+          "HTW"
+        ],
+        "par": 3,
+        "solution": [
+          "HERB",
+          "BLUNT",
+          "TOWARD"
+        ]
+      },
+      {
+        "sides": [
+          "ABL",
+          "DIO",
+          "ERU",
+          "HNT"
+        ],
+        "par": 3,
+        "solution": [
+          "HONOR",
+          "RAILROAD",
+          "DEBUT"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "INR",
+          "LSY",
+          "GHT"
+        ],
+        "par": 3,
+        "solution": [
+          "HONOR",
+          "RELIGION",
+          "NASTY"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "FLR",
+          "AMT",
+          "HNU"
+        ],
+        "par": 3,
+        "solution": [
+          "HONOR",
+          "RURAL",
+          "LIFETIME"
+        ]
+      },
+      {
+        "sides": [
+          "CDH",
+          "EGN",
+          "IKO",
+          "RTU"
+        ],
+        "par": 3,
+        "solution": [
+          "HUNDRED",
+          "DOCK",
+          "KNIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "ADT",
+          "ENO",
+          "RSU",
+          "HWY"
+        ],
+        "par": 3,
+        "solution": [
+          "HUNDRED",
+          "DOWN",
+          "NASTY"
+        ]
+      },
+      {
+        "sides": [
+          "EIN",
+          "ADU",
+          "ORT",
+          "HLW"
+        ],
+        "par": 3,
+        "solution": [
+          "HUNDRED",
+          "DOWN",
+          "NATIONAL"
+        ]
+      },
+      {
+        "sides": [
+          "DNR",
+          "ABI",
+          "EOY",
+          "HSU"
+        ],
+        "par": 3,
+        "solution": [
+          "HYBRID",
+          "DARED",
+          "DINOSAUR"
+        ]
+      },
+      {
+        "sides": [
+          "BCE",
+          "AHL",
+          "MNR",
+          "ISU"
+        ],
+        "par": 3,
+        "solution": [
+          "INCREASE",
+          "EACH",
+          "HUMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "CEG",
+          "ANR",
+          "OST",
+          "HIU"
+        ],
+        "par": 3,
+        "solution": [
+          "INCREASE",
+          "ENTER",
+          "ROUGH"
+        ]
+      },
+      {
+        "sides": [
+          "BCE",
+          "ANR",
+          "GST",
+          "IUY"
+        ],
+        "par": 3,
+        "solution": [
+          "INCREASE",
+          "ENTER",
+          "RUGBY"
+        ]
+      },
+      {
+        "sides": [
+          "AGT",
+          "EHI",
+          "LNR",
+          "OSU"
+        ],
+        "par": 3,
+        "solution": [
+          "LAUREL",
+          "LEAST",
+          "TONIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "BLN",
+          "MOR",
+          "DUY"
+        ],
+        "par": 3,
+        "solution": [
+          "LAUREL",
+          "LIMB",
+          "BEYOND"
+        ]
+      },
+      {
+        "sides": [
+          "ETU",
+          "GLN",
+          "AHI",
+          "ORS"
+        ],
+        "par": 3,
+        "solution": [
+          "LAUREL",
+          "LUST",
+          "TONIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "ACN",
+          "GRT",
+          "LOV"
+        ],
+        "par": 3,
+        "solution": [
+          "LEARN",
+          "NEGATIVE",
+          "ECHO"
+        ]
+      },
+      {
+        "sides": [
+          "DER",
+          "AIN",
+          "KOT",
+          "LWY"
+        ],
+        "par": 3,
+        "solution": [
+          "LEARN",
+          "NETWORK",
+          "KIDNEY"
+        ]
+      },
+      {
+        "sides": [
+          "CER",
+          "AHT",
+          "INO",
+          "KLW"
+        ],
+        "par": 3,
+        "solution": [
+          "LEARN",
+          "NETWORK",
+          "KITCHEN"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "DHI",
+          "LNS",
+          "MUW"
+        ],
+        "par": 3,
+        "solution": [
+          "MAIN",
+          "NEWS",
+          "SCHEDULE"
+        ]
+      },
+      {
+        "sides": [
+          "AER",
+          "CIM",
+          "NPW",
+          "STU"
+        ],
+        "par": 3,
+        "solution": [
+          "MAIN",
+          "NEWS",
+          "SPECTRUM"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "IPU",
+          "NRS",
+          "MTW"
+        ],
+        "par": 3,
+        "solution": [
+          "MAIN",
+          "NEWS",
+          "SPROUT"
+        ]
+      },
+      {
+        "sides": [
+          "AIU",
+          "DEF",
+          "LNR",
+          "MSY"
+        ],
+        "par": 3,
+        "solution": [
+          "MINUS",
+          "SULFUR",
+          "READY"
+        ]
+      },
+      {
+        "sides": [
+          "CIU",
+          "EFN",
+          "KLR",
+          "MOS"
+        ],
+        "par": 3,
+        "solution": [
+          "MINUS",
+          "SULFUR",
+          "RECKON"
+        ]
+      },
+      {
+        "sides": [
+          "AIU",
+          "FMN",
+          "LOT",
+          "CRS"
+        ],
+        "par": 3,
+        "solution": [
+          "MINUS",
+          "SULFUR",
+          "ROMANTIC"
+        ]
+      },
+      {
+        "sides": [
+          "DHO",
+          "AET",
+          "LNS",
+          "MRU"
+        ],
+        "par": 3,
+        "solution": [
+          "MOLT",
+          "TOAST",
+          "THUNDER"
+        ]
+      },
+      {
+        "sides": [
+          "ACO",
+          "EHT",
+          "LRS",
+          "MUV"
+        ],
+        "par": 3,
+        "solution": [
+          "MOLT",
+          "TOUCH",
+          "HARVEST"
+        ]
+      },
+      {
+        "sides": [
+          "ADM",
+          "EIL",
+          "NOR",
+          "CPT"
+        ],
+        "par": 3,
+        "solution": [
+          "MOLT",
+          "TRAP",
+          "PANDEMIC"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "AGK",
+          "LRT",
+          "NUY"
+        ],
+        "par": 3,
+        "solution": [
+          "NAIL",
+          "LIGHT",
+          "TURKEY"
+        ]
+      },
+      {
+        "sides": [
+          "AGH",
+          "EIN",
+          "LOP",
+          "RUY"
+        ],
+        "par": 3,
+        "solution": [
+          "NAIL",
+          "LUNG",
+          "GEOGRAPHY"
+        ]
+      },
+      {
+        "sides": [
+          "AIT",
+          "EHN",
+          "LRS",
+          "GKO"
+        ],
+        "par": 3,
+        "solution": [
+          "ORIGINAL",
+          "LEAST",
+          "THANK"
+        ]
+      },
+      {
+        "sides": [
+          "ABI",
+          "ENR",
+          "LSU",
+          "GOT"
+        ],
+        "par": 3,
+        "solution": [
+          "ORIGINAL",
+          "LEAST",
+          "TUBE"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DHN",
+          "STV",
+          "KOR"
+        ],
+        "par": 3,
+        "solution": [
+          "OVER",
+          "RESIDENT",
+          "THANK"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "MNR",
+          "BSV",
+          "ITU"
+        ],
+        "par": 3,
+        "solution": [
+          "OVER",
+          "ROBOT",
+          "TSUNAMI"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "IRV",
+          "NUY",
+          "DSW"
+        ],
+        "par": 3,
+        "solution": [
+          "OVER",
+          "RUIN",
+          "NOWADAYS"
+        ]
+      },
+      {
+        "sides": [
+          "AIL",
+          "DEG",
+          "MNS",
+          "PRY"
+        ],
+        "par": 3,
+        "solution": [
+          "PARADISE",
+          "EAGLE",
+          "ENEMY"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DLM",
+          "NST",
+          "PRY"
+        ],
+        "par": 3,
+        "solution": [
+          "PARADISE",
+          "ELITE",
+          "ENEMY"
+        ]
+      },
+      {
+        "sides": [
+          "AFI",
+          "ELM",
+          "COU",
+          "BPY"
+        ],
+        "par": 3,
+        "solution": [
+          "PEACEFUL",
+          "LOYAL",
+          "LIMB"
+        ]
+      },
+      {
+        "sides": [
+          "ELY",
+          "AFI",
+          "COR",
+          "PTU"
+        ],
+        "par": 3,
+        "solution": [
+          "PEACEFUL",
+          "LOYAL",
+          "LITERARY"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "GHR",
+          "DIN",
+          "LPT"
+        ],
+        "par": 3,
+        "solution": [
+          "PHOTO",
+          "ORDER",
+          "REGIONAL"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "GHT",
+          "INU",
+          "LPR"
+        ],
+        "par": 3,
+        "solution": [
+          "PHOTO",
+          "OUTER",
+          "REGIONAL"
+        ]
+      },
+      {
+        "sides": [
+          "AGT",
+          "IOP",
+          "HLU",
+          "ENR"
+        ],
+        "par": 3,
+        "solution": [
+          "PHOTO",
+          "OUTPUT",
+          "TRIANGLE"
+        ]
+      },
+      {
+        "sides": [
+          "IRU",
+          "AEN",
+          "MOT",
+          "PSY"
+        ],
+        "par": 3,
+        "solution": [
+          "PITY",
+          "YARN",
+          "NUMEROUS"
+        ]
+      },
+      {
+        "sides": [
+          "ENT",
+          "ADH",
+          "ISU",
+          "PRY"
+        ],
+        "par": 3,
+        "solution": [
+          "PITY",
+          "YEAST",
+          "THUNDER"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "AHK",
+          "DLS",
+          "NPT"
+        ],
+        "par": 3,
+        "solution": [
+          "PLEAD",
+          "DESK",
+          "KITCHEN"
+        ]
+      },
+      {
+        "sides": [
+          "EGK",
+          "AHI",
+          "DLN",
+          "PST"
+        ],
+        "par": 3,
+        "solution": [
+          "PLEAD",
+          "DESK",
+          "KNIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "AIN",
+          "ELO",
+          "RSY",
+          "CPT"
+        ],
+        "par": 3,
+        "solution": [
+          "PONY",
+          "YEAR",
+          "REALISTIC"
+        ]
+      },
+      {
+        "sides": [
+          "AHN",
+          "EIO",
+          "RSY",
+          "DPT"
+        ],
+        "par": 3,
+        "solution": [
+          "PONY",
+          "YEAST",
+          "THIRD"
+        ]
+      },
+      {
+        "sides": [
+          "ACN",
+          "EOR",
+          "SUY",
+          "KPT"
+        ],
+        "par": 3,
+        "solution": [
+          "PONY",
+          "YEAST",
+          "TRUCK"
+        ]
+      },
+      {
+        "sides": [
+          "ACD",
+          "EGO",
+          "LRS",
+          "PUY"
+        ],
+        "par": 3,
+        "solution": [
+          "PRODUCE",
+          "EAGLE",
+          "EASY"
+        ]
+      },
+      {
+        "sides": [
+          "DER",
+          "ACI",
+          "LOS",
+          "PUY"
+        ],
+        "par": 3,
+        "solution": [
+          "PRODUCE",
+          "EASY",
+          "YIELD"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "CIR",
+          "LOS",
+          "PTU"
+        ],
+        "par": 3,
+        "solution": [
+          "PRODUCE",
+          "ELITE",
+          "ERASE"
+        ]
+      },
+      {
+        "sides": [
+          "AEL",
+          "HIR",
+          "OTW",
+          "DNV"
+        ],
+        "par": 3,
+        "solution": [
+          "RENEW",
+          "WHATEVER",
+          "RAILROAD"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "HLN",
+          "OTW",
+          "GRV"
+        ],
+        "par": 3,
+        "solution": [
+          "RENEW",
+          "WHATEVER",
+          "RELIGION"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "HLM",
+          "NTW",
+          "RSV"
+        ],
+        "par": 3,
+        "solution": [
+          "RENEW",
+          "WHATEVER",
+          "RESEMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "LOT",
+          "CNU",
+          "DRS"
+        ],
+        "par": 3,
+        "solution": [
+          "RENT",
+          "TALENTED",
+          "DELICIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "ILM",
+          "NPU",
+          "DRT"
+        ],
+        "par": 3,
+        "solution": [
+          "RENT",
+          "THUMP",
+          "PLAID"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "HKN",
+          "DOS",
+          "RTU"
+        ],
+        "par": 3,
+        "solution": [
+          "ROUND",
+          "DESK",
+          "KITCHEN"
+        ]
+      },
+      {
+        "sides": [
+          "ANO",
+          "DEI",
+          "GTU",
+          "RVW"
+        ],
+        "par": 3,
+        "solution": [
+          "ROUND",
+          "DOWN",
+          "NEGATIVE"
+        ]
+      },
+      {
+        "sides": [
+          "CLR",
+          "AET",
+          "INO",
+          "SUY"
+        ],
+        "par": 3,
+        "solution": [
+          "ROYAL",
+          "LUNAR",
+          "RESTRICT"
+        ]
+      },
+      {
+        "sides": [
+          "AHN",
+          "ILO",
+          "GSY",
+          "RTU"
+        ],
+        "par": 3,
+        "solution": [
+          "ROYAL",
+          "LUST",
+          "THING"
+        ]
+      },
+      {
+        "sides": [
+          "AHN",
+          "ILO",
+          "KSY",
+          "RTU"
+        ],
+        "par": 3,
+        "solution": [
+          "ROYAL",
+          "LUST",
+          "THINK"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CFR",
+          "NOT",
+          "LPS"
+        ],
+        "par": 3,
+        "solution": [
+          "SAND",
+          "DRAFT",
+          "TROPICAL"
+        ]
+      },
+      {
+        "sides": [
+          "ABD",
+          "FLR",
+          "NOT",
+          "ESU"
+        ],
+        "par": 3,
+        "solution": [
+          "SAND",
+          "DRAFT",
+          "TROUBLE"
+        ]
+      },
+      {
+        "sides": [
+          "MRS",
+          "ADU",
+          "EIN",
+          "OTY"
+        ],
+        "par": 3,
+        "solution": [
+          "SAND",
+          "DRUM",
+          "MYSTERIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CFL",
+          "MNV",
+          "OST"
+        ],
+        "par": 3,
+        "solution": [
+          "SCAN",
+          "NOVEL",
+          "LIFETIME"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "CHI",
+          "LNV",
+          "OST"
+        ],
+        "par": 3,
+        "solution": [
+          "SCAN",
+          "NOVEL",
+          "LIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "CLR",
+          "NTV",
+          "OSY"
+        ],
+        "par": 3,
+        "solution": [
+          "SCAN",
+          "NOVEL",
+          "LITERARY"
+        ]
+      },
+      {
+        "sides": [
+          "CIN",
+          "AEF",
+          "ORW",
+          "DST"
+        ],
+        "par": 3,
+        "solution": [
+          "SCENARIO",
+          "ONWARD",
+          "DRIFT"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CNR",
+          "IPT",
+          "BLS"
+        ],
+        "par": 3,
+        "solution": [
+          "SCENARIO",
+          "OPERATOR",
+          "REBEL"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CFR",
+          "ILN",
+          "PST"
+        ],
+        "par": 3,
+        "solution": [
+          "SCENARIO",
+          "OPERATOR",
+          "RIFLE"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "FHS",
+          "ELN",
+          "ORT"
+        ],
+        "par": 3,
+        "solution": [
+          "SEASONAL",
+          "LIFT",
+          "THIRD"
+        ]
+      },
+      {
+        "sides": [
+          "ACO",
+          "FLS",
+          "EIN",
+          "HTU"
+        ],
+        "par": 3,
+        "solution": [
+          "SEASONAL",
+          "LIFT",
+          "TOUCH"
+        ]
+      },
+      {
+        "sides": [
+          "ACF",
+          "EIN",
+          "LRS",
+          "OTU"
+        ],
+        "par": 3,
+        "solution": [
+          "SEASONAL",
+          "LIFT",
+          "TRUCE"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "DHI",
+          "LNO",
+          "RSW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHARE",
+          "ELDER",
+          "RAINBOW"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CEH",
+          "LOR",
+          "NST"
+        ],
+        "par": 3,
+        "solution": [
+          "SHARE",
+          "ELDER",
+          "REACTION"
+        ]
+      },
+      {
+        "sides": [
+          "AEP",
+          "HIL",
+          "MRT",
+          "DSY"
+        ],
+        "par": 3,
+        "solution": [
+          "SHARE",
+          "EMPTY",
+          "YIELD"
+        ]
+      },
+      {
+        "sides": [
+          "DEG",
+          "AHI",
+          "LNR",
+          "STY"
+        ],
+        "par": 3,
+        "solution": [
+          "SHELTER",
+          "RIGID",
+          "DANDY"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "DHL",
+          "ORT",
+          "GKS"
+        ],
+        "par": 3,
+        "solution": [
+          "SHELTER",
+          "RIGID",
+          "DOCK"
+        ]
+      },
+      {
+        "sides": [
+          "EOS",
+          "DHT",
+          "LNR",
+          "BMU"
+        ],
+        "par": 3,
+        "solution": [
+          "SHELTER",
+          "ROBOT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "ALO",
+          "BCE",
+          "HKR",
+          "PST"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOCK",
+          "KELP",
+          "PORTABLE"
+        ]
+      },
+      {
+        "sides": [
+          "BCD",
+          "EHI",
+          "KNU",
+          "OST"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOCK",
+          "KIND",
+          "DEBUT"
+        ]
+      },
+      {
+        "sides": [
+          "CDH",
+          "EIT",
+          "KLN",
+          "AOS"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOCK",
+          "KIND",
+          "DELTA"
+        ]
+      },
+      {
+        "sides": [
+          "CDO",
+          "EHI",
+          "NRT",
+          "LSW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOW",
+          "WORLD",
+          "DIRECTION"
+        ]
+      },
+      {
+        "sides": [
+          "CDO",
+          "EIN",
+          "HRT",
+          "SUW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOW",
+          "WOUND",
+          "DIRECTION"
+        ]
+      },
+      {
+        "sides": [
+          "ABH",
+          "LMO",
+          "RTU",
+          "ESW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHOW",
+          "WRATH",
+          "HUMBLE"
+        ]
+      },
+      {
+        "sides": [
+          "CDE",
+          "FHK",
+          "IOR",
+          "NSW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHREWD",
+          "DOCK",
+          "KNIFE"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "DHP",
+          "ORT",
+          "SUW"
+        ],
+        "par": 3,
+        "solution": [
+          "SHREWD",
+          "DOUBT",
+          "TAPE"
+        ]
+      },
+      {
+        "sides": [
+          "BDE",
+          "HLW",
+          "ORT",
+          "SUV"
+        ],
+        "par": 3,
+        "solution": [
+          "SHREWD",
+          "DOUBT",
+          "TWELVE"
+        ]
+      },
+      {
+        "sides": [
+          "AET",
+          "HIM",
+          "LNP",
+          "RSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLIT",
+          "THUMP",
+          "PARENT"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "LMR",
+          "PTW",
+          "NSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLIT",
+          "THUMP",
+          "PRAWN"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CLO",
+          "ERT",
+          "SWY"
+        ],
+        "par": 3,
+        "solution": [
+          "SLIT",
+          "TOWARD",
+          "DECAY"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "HLN",
+          "ORV",
+          "EST"
+        ],
+        "par": 3,
+        "solution": [
+          "SLOTH",
+          "HAND",
+          "DRIVE"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "GHL",
+          "INR",
+          "STU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLOTH",
+          "HOUR",
+          "REGIONAL"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "DHL",
+          "MNR",
+          "STU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLOTH",
+          "HOUR",
+          "REMINDER"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "HLM",
+          "NRT",
+          "KSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLUM",
+          "MERIT",
+          "THANK"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DLR",
+          "MOT",
+          "NSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SLUM",
+          "MERIT",
+          "TRADITION"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "LMN",
+          "ORU",
+          "HSW"
+        ],
+        "par": 3,
+        "solution": [
+          "SLUM",
+          "MOWER",
+          "RANCH"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "HOP",
+          "DLT",
+          "RSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SOAP",
+          "PLOD",
+          "DAUGHTER"
+        ]
+      },
+      {
+        "sides": [
+          "COP",
+          "AEI",
+          "DLR",
+          "NST"
+        ],
+        "par": 3,
+        "solution": [
+          "SOAP",
+          "PLOD",
+          "DIRECTION"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "ADS",
+          "CLR",
+          "PVY"
+        ],
+        "par": 3,
+        "solution": [
+          "SOAP",
+          "PLOD",
+          "DISCOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "ACT",
+          "EIL",
+          "HNO",
+          "RSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SOCIAL",
+          "LUNCH",
+          "HEART"
+        ]
+      },
+      {
+        "sides": [
+          "ACY",
+          "EIL",
+          "HNO",
+          "SUV"
+        ],
+        "par": 3,
+        "solution": [
+          "SOCIAL",
+          "LUNCH",
+          "HEAVY"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "HIL",
+          "NOR",
+          "BSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SOCIAL",
+          "LUNCH",
+          "HERB"
+        ]
+      },
+      {
+        "sides": [
+          "ADE",
+          "CIL",
+          "KNO",
+          "SUY"
+        ],
+        "par": 3,
+        "solution": [
+          "SOUL",
+          "LACK",
+          "KIDNEY"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "ILR",
+          "DTU",
+          "NSV"
+        ],
+        "par": 3,
+        "solution": [
+          "SOUL",
+          "LEVER",
+          "RADIATION"
+        ]
+      },
+      {
+        "sides": [
+          "ABC",
+          "INO",
+          "LMR",
+          "HSU"
+        ],
+        "par": 3,
+        "solution": [
+          "SOUL",
+          "LIMB",
+          "BRANCH"
+        ]
+      },
+      {
+        "sides": [
+          "BPT",
+          "EIS",
+          "ALM",
+          "COR"
+        ],
+        "par": 3,
+        "solution": [
+          "SPIRIT",
+          "TEMPO",
+          "OBSTACLE"
+        ]
+      },
+      {
+        "sides": [
+          "GPT",
+          "INO",
+          "AEU",
+          "HRS"
+        ],
+        "par": 3,
+        "solution": [
+          "SPIRIT",
+          "TENANT",
+          "TOUGH"
+        ]
+      },
+      {
+        "sides": [
+          "ADI",
+          "CLP",
+          "EOR",
+          "STY"
+        ],
+        "par": 3,
+        "solution": [
+          "SPIRIT",
+          "TOLD",
+          "DECAY"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CKP",
+          "ORS",
+          "TVY"
+        ],
+        "par": 3,
+        "solution": [
+          "SPOKE",
+          "EVERY",
+          "YACHT"
+        ]
+      },
+      {
+        "sides": [
+          "ACN",
+          "EHR",
+          "KOT",
+          "DSW"
+        ],
+        "par": 3,
+        "solution": [
+          "STAKE",
+          "ECHO",
+          "ONWARD"
+        ]
+      },
+      {
+        "sides": [
+          "BES",
+          "AHL",
+          "IKP",
+          "RTU"
+        ],
+        "par": 3,
+        "solution": [
+          "STEAK",
+          "KELP",
+          "PUBLISHER"
+        ]
+      },
+      {
+        "sides": [
+          "ADG",
+          "EIO",
+          "KNT",
+          "HSU"
+        ],
+        "par": 3,
+        "solution": [
+          "STEAK",
+          "KIND",
+          "DOUGH"
+        ]
+      },
+      {
+        "sides": [
+          "AGI",
+          "EKN",
+          "OPT",
+          "RSU"
+        ],
+        "par": 3,
+        "solution": [
+          "STEAK",
+          "KING",
+          "GROUP"
+        ]
+      },
+      {
+        "sides": [
+          "ELN",
+          "AGO",
+          "IRT",
+          "MSY"
+        ],
+        "par": 3,
+        "solution": [
+          "STEM",
+          "MEANING",
+          "GLORY"
+        ]
+      },
+      {
+        "sides": [
+          "ENO",
+          "AGT",
+          "IRU",
+          "MPS"
+        ],
+        "par": 3,
+        "solution": [
+          "STEM",
+          "MEANING",
+          "GROUP"
+        ]
+      },
+      {
+        "sides": [
+          "AOT",
+          "EHS",
+          "INU",
+          "DMR"
+        ],
+        "par": 3,
+        "solution": [
+          "STEM",
+          "MERIT",
+          "THOUSAND"
+        ]
+      },
+      {
+        "sides": [
+          "EGO",
+          "CIM",
+          "LNT",
+          "RSW"
+        ],
+        "par": 3,
+        "solution": [
+          "STING",
+          "GROW",
+          "WELCOME"
+        ]
+      },
+      {
+        "sides": [
+          "AGI",
+          "HLN",
+          "EOT",
+          "RSW"
+        ],
+        "par": 3,
+        "solution": [
+          "STING",
+          "GROW",
+          "WHALE"
+        ]
+      },
+      {
+        "sides": [
+          "GIO",
+          "FLN",
+          "RTW",
+          "DES"
+        ],
+        "par": 3,
+        "solution": [
+          "STING",
+          "GROW",
+          "WILDLIFE"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "HRT",
+          "KMN",
+          "LPS"
+        ],
+        "par": 3,
+        "solution": [
+          "STORM",
+          "MARKET",
+          "TELEPHONE"
+        ]
+      },
+      {
+        "sides": [
+          "AGM",
+          "ENR",
+          "OSV",
+          "ITY"
+        ],
+        "par": 3,
+        "solution": [
+          "STORM",
+          "MEANING",
+          "GRAVY"
+        ]
+      },
+      {
+        "sides": [
+          "AEL",
+          "DIM",
+          "NOS",
+          "RTY"
+        ],
+        "par": 3,
+        "solution": [
+          "STORM",
+          "MEND",
+          "DAILY"
+        ]
+      },
+      {
+        "sides": [
+          "EIU",
+          "NRS",
+          "OTV",
+          "HPY"
+        ],
+        "par": 3,
+        "solution": [
+          "SURPRISE",
+          "ENVY",
+          "YOUTH"
+        ]
+      },
+      {
+        "sides": [
+          "ARS",
+          "CEI",
+          "HUY",
+          "PTV"
+        ],
+        "par": 3,
+        "solution": [
+          "SURPRISE",
+          "EVERY",
+          "YACHT"
+        ]
+      },
+      {
+        "sides": [
+          "CIU",
+          "ARS",
+          "ELN",
+          "HPV"
+        ],
+        "par": 3,
+        "solution": [
+          "SURPRISE",
+          "EVIL",
+          "LAUNCH"
+        ]
+      },
+      {
+        "sides": [
+          "CDE",
+          "AHN",
+          "OST",
+          "MRU"
+        ],
+        "par": 3,
+        "solution": [
+          "TEACH",
+          "HEAT",
+          "TREMENDOUS"
+        ]
+      },
+      {
+        "sides": [
+          "ANO",
+          "BCE",
+          "HIR",
+          "TUW"
+        ],
+        "par": 3,
+        "solution": [
+          "TEACH",
+          "HOUR",
+          "RAINBOW"
+        ]
+      },
+      {
+        "sides": [
+          "ADH",
+          "CEL",
+          "NOP",
+          "STW"
+        ],
+        "par": 3,
+        "solution": [
+          "TEACH",
+          "HOWL",
+          "LANDSCAPE"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "IOT",
+          "MNR",
+          "HPW"
+        ],
+        "par": 3,
+        "solution": [
+          "THROAT",
+          "TEMPER",
+          "RAINBOW"
+        ]
+      },
+      {
+        "sides": [
+          "BHO",
+          "AEM",
+          "NRT",
+          "DUY"
+        ],
+        "par": 3,
+        "solution": [
+          "THROAT",
+          "THUMB",
+          "BEYOND"
+        ]
+      },
+      {
+        "sides": [
+          "ABH",
+          "EMO",
+          "LNR",
+          "DTU"
+        ],
+        "par": 3,
+        "solution": [
+          "THROAT",
+          "THUMB",
+          "BLEND"
+        ]
+      },
+      {
+        "sides": [
+          "AIL",
+          "CEN",
+          "OPR",
+          "DST"
+        ],
+        "par": 3,
+        "solution": [
+          "TONIC",
+          "CRISP",
+          "PLEAD"
+        ]
+      },
+      {
+        "sides": [
+          "AIO",
+          "BPR",
+          "CLT",
+          "ENS"
+        ],
+        "par": 3,
+        "solution": [
+          "TONIC",
+          "CRISP",
+          "PORTABLE"
+        ]
+      },
+      {
+        "sides": [
+          "ILO",
+          "BNR",
+          "ACP",
+          "STY"
+        ],
+        "par": 3,
+        "solution": [
+          "TONIC",
+          "CRISP",
+          "PROBABLY"
+        ]
+      },
+      {
+        "sides": [
+          "AGR",
+          "EIT",
+          "HSW",
+          "NOU"
+        ],
+        "par": 3,
+        "solution": [
+          "TOWN",
+          "NIGHT",
+          "TREASURE"
+        ]
+      },
+      {
+        "sides": [
+          "BGO",
+          "ILT",
+          "HNR",
+          "EUW"
+        ],
+        "par": 3,
+        "solution": [
+          "TOWN",
+          "NIGHT",
+          "TROUBLE"
+        ]
+      },
+      {
+        "sides": [
+          "EGT",
+          "HIK",
+          "NOR",
+          "UWY"
+        ],
+        "par": 3,
+        "solution": [
+          "TOWN",
+          "NIGHT",
+          "TURKEY"
+        ]
+      },
+      {
+        "sides": [
+          "CEH",
+          "NTU",
+          "IKO",
+          "LPR"
+        ],
+        "par": 3,
+        "solution": [
+          "TRUCK",
+          "KNIT",
+          "TELEPHONE"
+        ]
+      },
+      {
+        "sides": [
+          "ANS",
+          "DOP",
+          "RTW",
+          "EUY"
+        ],
+        "par": 3,
+        "solution": [
+          "TURN",
+          "NOWADAYS",
+          "SPADE"
+        ]
+      },
+      {
+        "sides": [
+          "EIN",
+          "LPT",
+          "CDS",
+          "RUV"
+        ],
+        "par": 3,
+        "solution": [
+          "UNTIL",
+          "LEVER",
+          "RESPECTED"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "KLN",
+          "OTU",
+          "RVY"
+        ],
+        "par": 3,
+        "solution": [
+          "UNTIL",
+          "LEVER",
+          "ROCKY"
+        ]
+      },
+      {
+        "sides": [
+          "EIN",
+          "CLR",
+          "AOT",
+          "UVY"
+        ],
+        "par": 3,
+        "solution": [
+          "UNTIL",
+          "LUNAR",
+          "RECOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "AIR",
+          "DEL",
+          "MSU",
+          "OTV"
+        ],
+        "par": 3,
+        "solution": [
+          "VALID",
+          "DREAM",
+          "MOISTURE"
+        ]
+      },
+      {
+        "sides": [
+          "ADN",
+          "EIM",
+          "LOT",
+          "HRV"
+        ],
+        "par": 3,
+        "solution": [
+          "VALID",
+          "DREAM",
+          "MONTH"
+        ]
+      },
+      {
+        "sides": [
+          "ADN",
+          "EIM",
+          "LOR",
+          "TUV"
+        ],
+        "par": 3,
+        "solution": [
+          "VALID",
+          "DREAM",
+          "MOUNT"
+        ]
+      },
+      {
+        "sides": [
+          "ADO",
+          "ILR",
+          "NST",
+          "UVW"
+        ],
+        "par": 3,
+        "solution": [
+          "VOLT",
+          "TOWARD",
+          "DINOSAUR"
+        ]
+      },
+      {
+        "sides": [
+          "CFL",
+          "IKO",
+          "ENR",
+          "TUV"
+        ],
+        "par": 3,
+        "solution": [
+          "VOLT",
+          "TRUCK",
+          "KNIFE"
+        ]
+      },
+      {
+        "sides": [
+          "BIL",
+          "EMN",
+          "OTU",
+          "RVW"
+        ],
+        "par": 3,
+        "solution": [
+          "VOLT",
+          "TWIN",
+          "NUMBER"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CMN",
+          "PRT",
+          "VWY"
+        ],
+        "par": 3,
+        "solution": [
+          "WANT",
+          "TEMPER",
+          "RECOVERY"
+        ]
+      },
+      {
+        "sides": [
+          "ACK",
+          "HNO",
+          "RST",
+          "UWY"
+        ],
+        "par": 3,
+        "solution": [
+          "WANT",
+          "TORCH",
+          "HUSKY"
+        ]
+      },
+      {
+        "sides": [
+          "AHR",
+          "BCI",
+          "NOY",
+          "DTW"
+        ],
+        "par": 3,
+        "solution": [
+          "WANT",
+          "TORCH",
+          "HYBRID"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CLM",
+          "INR",
+          "KTW"
+        ],
+        "par": 3,
+        "solution": [
+          "WATERMELON",
+          "NAIL",
+          "LACK"
+        ]
+      },
+      {
+        "sides": [
+          "EIO",
+          "ALM",
+          "GNT",
+          "RVW"
+        ],
+        "par": 3,
+        "solution": [
+          "WATERMELON",
+          "NEGATIVE",
+          "EAGLE"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "CIL",
+          "BKP",
+          "RSW"
+        ],
+        "par": 3,
+        "solution": [
+          "WHISPER",
+          "REBEL",
+          "LACK"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "DST",
+          "IOP",
+          "RWY"
+        ],
+        "par": 3,
+        "solution": [
+          "WHISPER",
+          "RESET",
+          "TODAY"
+        ]
+      },
+      {
+        "sides": [
+          "AHI",
+          "CNO",
+          "EGR",
+          "LSW"
+        ],
+        "par": 3,
+        "solution": [
+          "WHOSE",
+          "ECHO",
+          "ORIGINAL"
+        ]
+      },
+      {
+        "sides": [
+          "DEL",
+          "AGH",
+          "INO",
+          "TUW"
+        ],
+        "par": 3,
+        "solution": [
+          "WIDTH",
+          "HEAL",
+          "LOUNGE"
+        ]
+      },
+      {
+        "sides": [
+          "EGT",
+          "ADH",
+          "INR",
+          "OUW"
+        ],
+        "par": 3,
+        "solution": [
+          "WIDTH",
+          "HEART",
+          "TONGUE"
+        ]
+      },
+      {
+        "sides": [
+          "ADW",
+          "GHI",
+          "LNO",
+          "ETU"
+        ],
+        "par": 3,
+        "solution": [
+          "WIDTH",
+          "HOWL",
+          "LANGUAGE"
+        ]
+      },
+      {
+        "sides": [
+          "EFO",
+          "CPR",
+          "IST",
+          "DLW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORD",
+          "DRIFT",
+          "TELESCOPE"
+        ]
+      },
+      {
+        "sides": [
+          "AHO",
+          "CPR",
+          "DIY",
+          "LSW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORD",
+          "DROP",
+          "PHYSICAL"
+        ]
+      },
+      {
+        "sides": [
+          "BEO",
+          "HIR",
+          "LPS",
+          "DUW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORD",
+          "DROP",
+          "PUBLISHER"
+        ]
+      },
+      {
+        "sides": [
+          "AKO",
+          "CHR",
+          "EPS",
+          "MNW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORKSHOP",
+          "PROMO",
+          "OCEAN"
+        ]
+      },
+      {
+        "sides": [
+          "EKO",
+          "FHR",
+          "PST",
+          "MNW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORKSHOP",
+          "PROMO",
+          "OFTEN"
+        ]
+      },
+      {
+        "sides": [
+          "CKO",
+          "HNR",
+          "PSU",
+          "EMW"
+        ],
+        "par": 3,
+        "solution": [
+          "WORKSHOP",
+          "PROMO",
+          "OUNCE"
         ]
       }
     ]
@@ -3224,1179 +8108,720 @@
           "YIELD",
           "DANGEROUS"
         ]
-      }
-    ]
-  },
-  "hard": {
-    "puzzles": [
+      },
       {
         "sides": [
-          "CDE",
-          "INR",
-          "STV",
-          "AUX"
+          "BDE",
+          "LNO",
+          "RTV",
+          "AUW"
         ],
         "par": 2,
         "solution": [
           "ADVENTURE",
-          "EXERCISE"
+          "ELBOW"
         ]
       },
       {
         "sides": [
-          "EHI",
-          "CNR",
-          "OQT",
-          "APU"
-        ],
-        "par": 2,
-        "solution": [
-          "AIRPORT",
-          "TECHNIQUE"
-        ]
-      },
-      {
-        "sides": [
-          "AEH",
-          "CIK",
-          "NQS",
-          "BTU"
-        ],
-        "par": 2,
-        "solution": [
-          "BASKET",
-          "TECHNIQUE"
-        ]
-      },
-      {
-        "sides": [
-          "AIO",
-          "EFS",
-          "KRT",
-          "BCX"
-        ],
-        "par": 2,
-        "solution": [
-          "BREAKFAST",
-          "TOXIC"
-        ]
-      },
-      {
-        "sides": [
-          "ADO",
-          "CEI",
-          "NRT",
-          "BUZ"
-        ],
-        "par": 2,
-        "solution": [
-          "BRONZE",
-          "EDUCATION"
-        ]
-      },
-      {
-        "sides": [
-          "AFI",
-          "LOQ",
-          "PRT",
-          "EMU"
-        ],
-        "par": 2,
-        "solution": [
-          "EQUIP",
-          "PLATFORM"
-        ]
-      },
-      {
-        "sides": [
-          "ADE",
-          "CNO",
-          "RUX",
-          "MST"
-        ],
-        "par": 2,
-        "solution": [
-          "EXACT",
-          "TREMENDOUS"
-        ]
-      },
-      {
-        "sides": [
-          "CEO",
-          "ADI",
-          "RST",
-          "NUX"
-        ],
-        "par": 2,
-        "solution": [
-          "EXERCISE",
-          "EDUCATION"
-        ]
-      },
-      {
-        "sides": [
-          "ACE",
-          "HIN",
-          "PRS",
-          "LTX"
-        ],
-        "par": 2,
-        "solution": [
-          "EXERCISE",
-          "ELEPHANT"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "DLO",
-          "NPU",
-          "CSX"
-        ],
-        "par": 2,
-        "solution": [
-          "EXPAND",
-          "DELICIOUS"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "NOP",
-          "RTV",
-          "DFX"
-        ],
-        "par": 2,
-        "solution": [
-          "FAVORITE",
-          "EXPAND"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "DGO",
-          "NRU",
-          "FSX"
-        ],
-        "par": 2,
-        "solution": [
-          "FIXED",
-          "DANGEROUS"
-        ]
-      },
-      {
-        "sides": [
-          "ADI",
-          "CEL",
+          "DHL",
+          "EMN",
           "OTU",
-          "GNZ"
+          "ARS"
         ],
         "par": 2,
         "solution": [
-          "GLAZE",
-          "EDUCATION"
+          "ALMOST",
+          "THUNDER"
         ]
       },
       {
         "sides": [
-          "ADI",
-          "EOR",
-          "CLU",
-          "HSZ"
+          "ACP",
+          "ELR",
+          "STU",
+          "MWY"
         ],
         "par": 2,
         "solution": [
-          "HAZARD",
-          "DELICIOUS"
-        ]
-      },
-      {
-        "sides": [
-          "CIR",
-          "ADE",
-          "HOS",
-          "VYZ"
-        ],
-        "par": 2,
-        "solution": [
-          "HAZARD",
-          "DISCOVERY"
-        ]
-      },
-      {
-        "sides": [
-          "BEI",
-          "LMN",
-          "PSU",
-          "HVX"
-        ],
-        "par": 2,
-        "solution": [
-          "HUMBLE",
-          "EXPENSIVE"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "COV",
-          "JKL",
-          "NST"
-        ],
-        "par": 2,
-        "solution": [
-          "JACKET",
-          "TELEVISION"
-        ]
-      },
-      {
-        "sides": [
-          "AEH",
-          "CNO",
-          "KST",
-          "DJU"
-        ],
-        "par": 2,
-        "solution": [
-          "JACKET",
-          "THOUSAND"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "COR",
-          "KST",
-          "JMU"
-        ],
-        "par": 2,
-        "solution": [
-          "JACKET",
-          "TOURISM"
+          "ALWAYS",
+          "SPECTRUM"
         ]
       },
       {
         "sides": [
           "AHI",
-          "ELM",
-          "ORS",
-          "JPU"
+          "COR",
+          "LPS",
+          "BET"
         ],
         "par": 2,
         "solution": [
-          "JEALOUS",
-          "SHRIMP"
+          "BISHOP",
+          "PARTICLE"
         ]
       },
       {
         "sides": [
-          "AGU",
-          "EIL",
-          "NOR",
-          "JST"
+          "EHI",
+          "AFO",
+          "CPU",
+          "BLS"
         ],
         "par": 2,
         "solution": [
-          "JEALOUS",
-          "SIGNATURE"
-        ]
-      },
-      {
-        "sides": [
-          "ELU",
-          "ACO",
-          "JPR",
-          "MST"
-        ],
-        "par": 2,
-        "solution": [
-          "JEALOUS",
-          "SPECTRUM"
-        ]
-      },
-      {
-        "sides": [
-          "AIO",
-          "ELN",
-          "GPU",
-          "JRS"
-        ],
-        "par": 2,
-        "solution": [
-          "JEALOUS",
-          "SPRING"
-        ]
-      },
-      {
-        "sides": [
-          "AIO",
-          "ELN",
-          "JPU",
-          "RST"
-        ],
-        "par": 2,
-        "solution": [
-          "JEALOUS",
-          "SPRINT"
-        ]
-      },
-      {
-        "sides": [
-          "DEO",
-          "AMN",
-          "LRS",
-          "JUY"
-        ],
-        "par": 2,
-        "solution": [
-          "JEALOUS",
-          "SYNDROME"
-        ]
-      },
-      {
-        "sides": [
-          "AGU",
-          "LMN",
-          "OPY",
-          "DJR"
-        ],
-        "par": 2,
-        "solution": [
-          "JUMP",
-          "PLAYGROUND"
-        ]
-      },
-      {
-        "sides": [
-          "AEU",
-          "CDN",
-          "GIJ",
-          "LOT"
-        ],
-        "par": 2,
-        "solution": [
-          "JUNGLE",
-          "EDUCATION"
-        ]
-      },
-      {
-        "sides": [
-          "AIR",
-          "ELN",
-          "OSU",
-          "CJT"
-        ],
-        "par": 2,
-        "solution": [
-          "JUNIOR",
-          "REALISTIC"
-        ]
-      },
-      {
-        "sides": [
-          "EIU",
-          "CNO",
-          "PRT",
-          "DJS"
-        ],
-        "par": 2,
-        "solution": [
-          "JUNIOR",
-          "RESPECTED"
-        ]
-      },
-      {
-        "sides": [
-          "ADI",
-          "CNT",
-          "EOU",
-          "GMZ"
-        ],
-        "par": 2,
-        "solution": [
-          "MAGAZINE",
-          "EDUCATION"
-        ]
-      },
-      {
-        "sides": [
-          "ABE",
-          "IJP",
-          "LOU",
-          "CMR"
-        ],
-        "par": 2,
-        "solution": [
-          "MAJOR",
-          "REPUBLIC"
+          "BISHOP",
+          "PEACEFUL"
         ]
       },
       {
         "sides": [
           "AEH",
-          "CIK",
-          "NQR",
-          "MTU"
+          "ILN",
+          "OST",
+          "BPY"
         ],
         "par": 2,
         "solution": [
-          "MARKET",
-          "TECHNIQUE"
+          "BISHOP",
+          "PENALTY"
         ]
       },
       {
         "sides": [
-          "EIT",
-          "OPS",
-          "NRV",
-          "MUX"
+          "FGR",
+          "AEH",
+          "NOT",
+          "BSU"
         ],
         "par": 2,
         "solution": [
-          "MOISTURE",
-          "EXPENSIVE"
+          "BOUGHT",
+          "TRANSFER"
         ]
       },
       {
         "sides": [
-          "EIY",
-          "COS",
-          "NRU",
-          "MQT"
+          "ACI",
+          "HNP",
+          "ORT",
+          "BLS"
         ],
         "par": 2,
         "solution": [
-          "MYSTERIOUS",
-          "SEQUENCE"
+          "BRANCH",
+          "HOSPITAL"
         ]
       },
       {
         "sides": [
-          "AES",
-          "IUY",
-          "OQR",
-          "DMT"
+          "AOR",
+          "EFS",
+          "IKT",
+          "BMU"
         ],
         "par": 2,
         "solution": [
-          "MYSTERIOUS",
-          "SQUAD"
+          "BREAKFAST",
+          "TOURISM"
+        ]
+      },
+      {
+        "sides": [
+          "AIR",
+          "EFL",
+          "KSU",
+          "BPT"
+        ],
+        "par": 2,
+        "solution": [
+          "BREAKFAST",
+          "TULIP"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "DGH",
+          "LNU",
+          "BRT"
+        ],
+        "par": 2,
+        "solution": [
+          "BUILDING",
+          "GATHER"
+        ]
+      },
+      {
+        "sides": [
+          "EGI",
+          "HMO",
+          "ARS",
+          "CTY"
+        ],
+        "par": 2,
+        "solution": [
+          "CHEMISTRY",
+          "YOGA"
         ]
       },
       {
         "sides": [
           "EIS",
-          "RUY",
-          "AOQ",
-          "HMT"
+          "AMO",
+          "LRT",
+          "CUY"
         ],
         "par": 2,
         "solution": [
-          "MYSTERIOUS",
-          "SQUASH"
-        ]
-      },
-      {
-        "sides": [
-          "IPU",
-          "CLO",
-          "RST",
-          "ENX"
-        ],
-        "par": 2,
-        "solution": [
-          "NOXIOUS",
-          "SCULPTURE"
-        ]
-      },
-      {
-        "sides": [
-          "AEO",
-          "CDI",
-          "NRS",
-          "UXY"
-        ],
-        "par": 2,
-        "solution": [
-          "NOXIOUS",
-          "SECONDARY"
-        ]
-      },
-      {
-        "sides": [
-          "AEO",
-          "HIM",
-          "SWX",
-          "NTU"
-        ],
-        "par": 2,
-        "solution": [
-          "NOXIOUS",
-          "SOMEWHAT"
-        ]
-      },
-      {
-        "sides": [
-          "COP",
-          "EIU",
-          "RSX",
-          "MNT"
-        ],
-        "par": 2,
-        "solution": [
-          "NOXIOUS",
-          "SPECTRUM"
-        ]
-      },
-      {
-        "sides": [
-          "GOT",
-          "AEI",
-          "RSX",
-          "NUY"
-        ],
-        "par": 2,
-        "solution": [
-          "NOXIOUS",
-          "STRATEGY"
-        ]
-      },
-      {
-        "sides": [
-          "ABE",
-          "CIQ",
-          "LSU",
-          "OPT"
-        ],
-        "par": 2,
-        "solution": [
-          "OBSTACLE",
-          "EQUIP"
-        ]
-      },
-      {
-        "sides": [
-          "ABE",
-          "CNP",
-          "LSX",
-          "DOT"
-        ],
-        "par": 2,
-        "solution": [
-          "OBSTACLE",
-          "EXPAND"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "GHN",
-          "PRZ",
-          "LOT"
-        ],
-        "par": 2,
-        "solution": [
-          "ORGANIZE",
-          "ELEPHANT"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "GMN",
-          "PRY",
-          "OTZ"
-        ],
-        "par": 2,
-        "solution": [
-          "ORGANIZE",
-          "EMPTY"
-        ]
-      },
-      {
-        "sides": [
-          "ACE",
-          "IJL",
-          "NOR",
-          "PTY"
-        ],
-        "par": 2,
-        "solution": [
-          "PARTICLE",
-          "ENJOY"
-        ]
-      },
-      {
-        "sides": [
-          "ANO",
-          "DEG",
-          "LRU",
-          "PYZ"
-        ],
-        "par": 2,
-        "solution": [
-          "PLAYGROUND",
-          "DOZEN"
-        ]
-      },
-      {
-        "sides": [
-          "ENQ",
-          "ACI",
-          "HLT",
-          "PSU"
-        ],
-        "par": 2,
-        "solution": [
-          "PLEASANT",
-          "TECHNIQUE"
-        ]
-      },
-      {
-        "sides": [
-          "ACE",
-          "BIR",
-          "LOS",
-          "PTX"
-        ],
-        "par": 2,
-        "solution": [
-          "PORTABLE",
-          "EXERCISE"
-        ]
-      },
-      {
-        "sides": [
-          "ADI",
-          "CEO",
-          "RTU",
-          "NPZ"
-        ],
-        "par": 2,
-        "solution": [
-          "PRIZE",
-          "EDUCATION"
-        ]
-      },
-      {
-        "sides": [
-          "ABE",
-          "ILM",
-          "NOP",
-          "GRZ"
-        ],
-        "par": 2,
-        "solution": [
-          "PROBLEM",
-          "MAGAZINE"
-        ]
-      },
-      {
-        "sides": [
-          "EOP",
-          "CIJ",
-          "RTV",
-          "LNS"
-        ],
-        "par": 2,
-        "solution": [
-          "PROJECT",
-          "TELEVISION"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "CJR",
-          "MNO",
-          "LPT"
-        ],
-        "par": 2,
-        "solution": [
-          "PROJECT",
-          "TERMINAL"
-        ]
-      },
-      {
-        "sides": [
-          "EOT",
-          "CDR",
-          "JNU",
-          "MPS"
-        ],
-        "par": 2,
-        "solution": [
-          "PROJECT",
-          "TREMENDOUS"
-        ]
-      },
-      {
-        "sides": [
-          "AER",
-          "CGI",
-          "JLN",
-          "OPT"
-        ],
-        "par": 2,
-        "solution": [
-          "PROJECT",
-          "TRIANGLE"
-        ]
-      },
-      {
-        "sides": [
-          "ACE",
-          "HJR",
-          "NOU",
-          "PSY"
-        ],
-        "par": 2,
-        "solution": [
-          "PURCHASE",
-          "ENJOY"
-        ]
-      },
-      {
-        "sides": [
-          "ACE",
-          "IOS",
-          "NPU",
-          "LQT"
-        ],
-        "par": 2,
-        "solution": [
-          "QUAINT",
-          "TELESCOPE"
-        ]
-      },
-      {
-        "sides": [
-          "NRU",
-          "ADE",
-          "IOT",
-          "MQS"
-        ],
-        "par": 2,
-        "solution": [
-          "QUAINT",
-          "TREMENDOUS"
-        ]
-      },
-      {
-        "sides": [
-          "EIU",
-          "AMS",
-          "LOR",
-          "QTY"
-        ],
-        "par": 2,
-        "solution": [
-          "QUALM",
+          "CLAIM",
           "MYSTERIOUS"
         ]
       },
       {
         "sides": [
           "AEI",
-          "ORU",
-          "LTV",
-          "NQS"
+          "GLM",
+          "NOT",
+          "CUV"
         ],
         "par": 2,
         "solution": [
-          "QUART",
-          "TELEVISION"
+          "COLUMN",
+          "NEGATIVE"
         ]
       },
       {
         "sides": [
           "AEI",
-          "COS",
-          "PRU",
-          "LQT"
+          "LMT",
+          "OPV",
+          "CRU"
         ],
         "par": 2,
         "solution": [
-          "QUEST",
-          "TROPICAL"
+          "COMPUTER",
+          "RELATIVE"
         ]
       },
       {
         "sides": [
-          "ABC",
-          "EIO",
-          "KRU",
-          "DQY"
+          "AEI",
+          "MRT",
+          "OPV",
+          "CLU"
         ],
         "par": 2,
         "solution": [
-          "QUICK",
-          "KEYBOARD"
+          "COMPUTER",
+          "RIVAL"
         ]
       },
       {
         "sides": [
-          "DEU",
-          "INO",
-          "LMR",
-          "QST"
-        ],
-        "par": 2,
-        "solution": [
-          "QUILT",
-          "TREMENDOUS"
-        ]
-      },
-      {
-        "sides": [
-          "EIU",
-          "BCL",
-          "DJO",
-          "RST"
-        ],
-        "par": 2,
-        "solution": [
-          "RIDICULOUS",
-          "SUBJECT"
-        ]
-      },
-      {
-        "sides": [
-          "EJU",
-          "CLN",
-          "OPR",
-          "STY"
-        ],
-        "par": 2,
-        "solution": [
-          "SCULPTURE",
-          "ENJOY"
-        ]
-      },
-      {
-        "sides": [
-          "EPU",
-          "ACL",
-          "NRT",
-          "DSX"
-        ],
-        "par": 2,
-        "solution": [
-          "SCULPTURE",
-          "EXPAND"
-        ]
-      },
-      {
-        "sides": [
-          "ESU",
-          "CIP",
+          "AEI",
           "LNR",
-          "TVX"
+          "OTU",
+          "DSV"
         ],
         "par": 2,
         "solution": [
-          "SCULPTURE",
-          "EXPENSIVE"
+          "DINOSAUR",
+          "RELATIVE"
         ]
       },
       {
         "sides": [
-          "INO",
-          "AEG",
-          "JRT",
-          "SUY"
+          "CET",
+          "AHI",
+          "MRS",
+          "FNY"
         ],
         "par": 2,
         "solution": [
-          "SIGNATURE",
-          "ENJOY"
-        ]
-      },
-      {
-        "sides": [
-          "AEG",
-          "CIN",
-          "RTX",
-          "LSU"
-        ],
-        "par": 2,
-        "solution": [
-          "SIGNATURE",
-          "EXCEL"
-        ]
-      },
-      {
-        "sides": [
-          "AEG",
-          "INP",
-          "RTX",
-          "DSU"
-        ],
-        "par": 2,
-        "solution": [
-          "SIGNATURE",
-          "EXPAND"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "NPR",
-          "GST",
-          "UVX"
-        ],
-        "par": 2,
-        "solution": [
-          "SIGNATURE",
-          "EXPENSIVE"
-        ]
-      },
-      {
-        "sides": [
-          "EHI",
-          "CNO",
-          "PQR",
-          "STU"
-        ],
-        "par": 2,
-        "solution": [
-          "SPORT",
-          "TECHNIQUE"
-        ]
-      },
-      {
-        "sides": [
-          "CIU",
-          "EHO",
-          "NPQ",
-          "RST"
-        ],
-        "par": 2,
-        "solution": [
-          "SPROUT",
-          "TECHNIQUE"
-        ]
-      },
-      {
-        "sides": [
-          "ACI",
-          "DEO",
-          "QRT",
-          "NSU"
-        ],
-        "par": 2,
-        "solution": [
-          "SQUAD",
-          "DIRECTION"
-        ]
-      },
-      {
-        "sides": [
-          "AES",
-          "CDQ",
-          "IOR",
-          "UVY"
-        ],
-        "par": 2,
-        "solution": [
-          "SQUAD",
-          "DISCOVERY"
-        ]
-      },
-      {
-        "sides": [
-          "BEI",
-          "CJO",
-          "STV",
-          "LNU"
-        ],
-        "par": 2,
-        "solution": [
-          "SUBJECT",
-          "TELEVISION"
-        ]
-      },
-      {
-        "sides": [
-          "BET",
-          "CGN",
-          "HIU",
-          "JOS"
-        ],
-        "par": 2,
-        "solution": [
-          "SUBJECT",
-          "TONIGHT"
-        ]
-      },
-      {
-        "sides": [
-          "ABC",
-          "EOR",
-          "JTU",
-          "DSW"
-        ],
-        "par": 2,
-        "solution": [
-          "SUBJECT",
-          "TOWARD"
-        ]
-      },
-      {
-        "sides": [
-          "DEU",
-          "BCN",
-          "JOR",
-          "MST"
-        ],
-        "par": 2,
-        "solution": [
-          "SUBJECT",
-          "TREMENDOUS"
-        ]
-      },
-      {
-        "sides": [
-          "BCP",
-          "AEI",
-          "JTU",
-          "LSY"
-        ],
-        "par": 2,
-        "solution": [
-          "SUBJECT",
-          "TYPICAL"
-        ]
-      },
-      {
-        "sides": [
-          "AES",
-          "CFI",
-          "NPR",
-          "UVX"
-        ],
-        "par": 2,
-        "solution": [
-          "SURFACE",
-          "EXPENSIVE"
-        ]
-      },
-      {
-        "sides": [
-          "ADE",
-          "MNQ",
-          "OUY",
-          "LRS"
-        ],
-        "par": 2,
-        "solution": [
-          "SYNDROME",
-          "EQUAL"
-        ]
-      },
-      {
-        "sides": [
-          "DEI",
-          "MNQ",
-          "OUY",
-          "PRS"
-        ],
-        "par": 2,
-        "solution": [
-          "SYNDROME",
-          "EQUIP"
-        ]
-      },
-      {
-        "sides": [
-          "ADE",
-          "CMN",
-          "OXY",
-          "RST"
-        ],
-        "par": 2,
-        "solution": [
-          "SYNDROME",
-          "EXACT"
-        ]
-      },
-      {
-        "sides": [
-          "AEI",
-          "BCG",
-          "LNR",
-          "STX"
-        ],
-        "par": 2,
-        "solution": [
-          "TANGIBLE",
-          "EXERCISE"
-        ]
-      },
-      {
-        "sides": [
-          "CEH",
-          "INP",
-          "ORS",
-          "LTX"
-        ],
-        "par": 2,
-        "solution": [
-          "TELEPHONE",
-          "EXERCISE"
-        ]
-      },
-      {
-        "sides": [
-          "EIO",
-          "FHN",
-          "PRS",
-          "TVX"
-        ],
-        "par": 2,
-        "solution": [
-          "THEREFORE",
-          "EXPENSIVE"
+          "FANTASTIC",
+          "CHEMISTRY"
         ]
       },
       {
         "sides": [
           "AIO",
-          "MNR",
-          "SUZ",
-          "EGT"
+          "GPT",
+          "NSU",
+          "EHL"
         ],
         "par": 2,
         "solution": [
-          "TOURISM",
-          "MAGAZINE"
+          "HOSPITAL",
+          "LANGUAGE"
         ]
       },
       {
         "sides": [
-          "DES",
-          "NRU",
-          "AOQ",
-          "HMT"
+          "BOT",
+          "ALM",
+          "NPR",
+          "EIU"
         ],
         "par": 2,
         "solution": [
-          "TREMENDOUS",
-          "SQUASH"
+          "IMPORTANT",
+          "TROUBLE"
+        ]
+      },
+      {
+        "sides": [
+          "AER",
+          "KMT",
+          "NOU",
+          "IPY"
+        ],
+        "par": 2,
+        "solution": [
+          "IMPORTANT",
+          "TURKEY"
+        ]
+      },
+      {
+        "sides": [
+          "EMT",
+          "ALO",
+          "NPR",
+          "IVW"
+        ],
+        "par": 2,
+        "solution": [
+          "IMPORTANT",
+          "TWELVE"
+        ]
+      },
+      {
+        "sides": [
+          "ELT",
+          "AGO",
+          "NRS",
+          "HJU"
+        ],
+        "par": 2,
+        "solution": [
+          "JEALOUS",
+          "STRENGTH"
+        ]
+      },
+      {
+        "sides": [
+          "CEG",
+          "HIO",
+          "NPS",
+          "KLT"
+        ],
+        "par": 2,
+        "solution": [
+          "KNIGHT",
+          "TELESCOPE"
+        ]
+      },
+      {
+        "sides": [
+          "BGN",
+          "HIL",
+          "EOT",
+          "KRU"
+        ],
+        "par": 2,
+        "solution": [
+          "KNIGHT",
+          "TROUBLE"
+        ]
+      },
+      {
+        "sides": [
+          "ACI",
+          "HNO",
+          "RSU",
+          "LTY"
+        ],
+        "par": 2,
+        "solution": [
+          "LAUNCH",
+          "HISTORY"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "DHN",
+          "ISU",
+          "MRT"
+        ],
+        "par": 2,
+        "solution": [
+          "METHOD",
+          "DINOSAUR"
+        ]
+      },
+      {
+        "sides": [
+          "AEI",
+          "MNP",
+          "RVX",
+          "DOT"
+        ],
+        "par": 2,
+        "solution": [
+          "OVERTIME",
+          "EXPAND"
         ]
       },
       {
         "sides": [
           "ABE",
-          "LNO",
-          "PRU",
-          "DTX"
+          "IKL",
+          "MRS",
+          "OPT"
         ],
         "par": 2,
         "solution": [
-          "TROUBLE",
-          "EXPAND"
+          "PROBLEM",
+          "MISTAKE"
+        ]
+      },
+      {
+        "sides": [
+          "ANO",
+          "BEI",
+          "LMR",
+          "PTU"
+        ],
+        "par": 2,
+        "solution": [
+          "PROBLEM",
+          "MOUNTAIN"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "HNR",
+          "CPS",
+          "LTU"
+        ],
+        "par": 2,
+        "solution": [
+          "RESOURCE",
+          "ELEPHANT"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "DHI",
+          "LMN",
+          "ORS"
+        ],
+        "par": 2,
+        "solution": [
+          "SCHOLAR",
+          "REMINDER"
+        ]
+      },
+      {
+        "sides": [
+          "ACE",
+          "DHS",
+          "ILN",
+          "ORT"
+        ],
+        "par": 2,
+        "solution": [
+          "SCHOLAR",
+          "RESIDENT"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CDR",
+          "NTY",
+          "HSU"
+        ],
+        "par": 2,
+        "solution": [
+          "SECONDARY",
+          "YOUTH"
+        ]
+      },
+      {
+        "sides": [
+          "ABE",
+          "HIL",
+          "NOR",
+          "STW"
+        ],
+        "par": 2,
+        "solution": [
+          "SHELTER",
+          "RAINBOW"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "AFM",
+          "CPU",
+          "LRS"
+        ],
+        "par": 2,
+        "solution": [
+          "SHRIMP",
+          "PEACEFUL"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "ILN",
+          "MRT",
+          "PSY"
+        ],
+        "par": 2,
+        "solution": [
+          "SHRIMP",
+          "PENALTY"
+        ]
+      },
+      {
+        "sides": [
+          "ALR",
+          "BHI",
+          "MOT",
+          "EPS"
+        ],
+        "par": 2,
+        "solution": [
+          "SHRIMP",
+          "PORTABLE"
+        ]
+      },
+      {
+        "sides": [
+          "AER",
+          "CIM",
+          "OPT",
+          "LSU"
+        ],
+        "par": 2,
+        "solution": [
+          "SPECTRUM",
+          "MEMORIAL"
+        ]
+      },
+      {
+        "sides": [
+          "ETU",
+          "ACN",
+          "IMP",
+          "ORS"
+        ],
+        "par": 2,
+        "solution": [
+          "SPECTRUM",
+          "MOUNTAIN"
+        ]
+      },
+      {
+        "sides": [
+          "AGH",
+          "EIP",
+          "NOT",
+          "RSY"
+        ],
+        "par": 2,
+        "solution": [
+          "STING",
+          "GEOGRAPHY"
+        ]
+      },
+      {
+        "sides": [
+          "BEH",
+          "CJN",
+          "OPU",
+          "LST"
+        ],
+        "par": 2,
+        "solution": [
+          "SUBJECT",
+          "TELEPHONE"
+        ]
+      },
+      {
+        "sides": [
+          "AGH",
+          "EIP",
+          "NOW",
+          "RSY"
+        ],
+        "par": 2,
+        "solution": [
+          "SWING",
+          "GEOGRAPHY"
+        ]
+      },
+      {
+        "sides": [
+          "DEG",
+          "HIM",
+          "NOS",
+          "RTY"
+        ],
+        "par": 2,
+        "solution": [
+          "SYNDROME",
+          "EIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "EHI",
+          "ALO",
+          "DRU",
+          "CST"
+        ],
+        "par": 2,
+        "solution": [
+          "THREAD",
+          "DELICIOUS"
+        ]
+      },
+      {
+        "sides": [
+          "ESU",
+          "ACD",
+          "HIL",
+          "PRT"
+        ],
+        "par": 2,
+        "solution": [
+          "UPSTAIRS",
+          "SCHEDULE"
+        ]
+      },
+      {
+        "sides": [
+          "ACS",
+          "EIN",
+          "OPR",
+          "DTU"
+        ],
+        "par": 2,
+        "solution": [
+          "UPSTAIRS",
+          "SECOND"
+        ]
+      },
+      {
+        "sides": [
+          "AES",
+          "IKT",
+          "OPR",
+          "LNU"
+        ],
+        "par": 2,
+        "solution": [
+          "UPSTAIRS",
+          "SKELETON"
+        ]
+      },
+      {
+        "sides": [
+          "ABI",
+          "EMN",
+          "OTU",
+          "CRV"
+        ],
+        "par": 2,
+        "solution": [
+          "VACATION",
+          "NUMBER"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "IRU",
+          "MNT",
+          "CSV"
+        ],
+        "par": 2,
+        "solution": [
+          "VACATION",
+          "NUMEROUS"
+        ]
+      },
+      {
+        "sides": [
+          "AEG",
+          "ILT",
+          "HMN",
+          "ORW"
+        ],
+        "par": 2,
+        "solution": [
+          "WATERMELON",
+          "NIGHT"
+        ]
+      },
+      {
+        "sides": [
+          "AEO",
+          "CLM",
+          "IRT",
+          "NVW"
+        ],
+        "par": 2,
+        "solution": [
+          "WATERMELON",
+          "NOVICE"
+        ]
+      },
+      {
+        "sides": [
+          "EIN",
+          "AHO",
+          "DPR",
+          "STW"
+        ],
+        "par": 2,
+        "solution": [
+          "WHISPER",
+          "RADIATION"
+        ]
+      },
+      {
+        "sides": [
+          "CEI",
+          "AHO",
+          "NPT",
+          "RSW"
+        ],
+        "par": 2,
+        "solution": [
+          "WHISPER",
+          "REACTION"
+        ]
+      },
+      {
+        "sides": [
+          "AEH",
+          "INP",
+          "LSV",
+          "RTW"
+        ],
+        "par": 2,
+        "solution": [
+          "WHISPER",
+          "RELEVANT"
         ]
       }
     ]
