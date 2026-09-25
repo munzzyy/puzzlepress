@@ -432,6 +432,19 @@ export async function share(text) {
 }
 
 let activeModal = null;
+// An open modal owns a history entry so Back (Android's or the browser's) closes it instead of leaving the page.
+let historyBackPending = false;
+
+if (typeof window !== "undefined" && window.addEventListener) {
+  window.addEventListener("popstate", () => {
+    if (historyBackPending) {
+      historyBackPending = false;
+      if (activeModal) history.pushState({ ppModal: true }, "");
+      return;
+    }
+    if (activeModal) closeModal({ fromHistory: true });
+  });
+}
 
 function focusableIn(root) {
   return Array.from(
@@ -443,7 +456,7 @@ function focusableIn(root) {
 
 /** Accessible dialog: Escape closes, focus is trapped and restored. */
 export function modal(title, bodyHTML) {
-  closeModal();
+  closeModal({ keepHistory: true });
 
   const previouslyFocused = document.activeElement;
   const backdrop = document.createElement("div");
@@ -492,7 +505,7 @@ export function modal(title, bodyHTML) {
     if (e.target === backdrop) closeModal();
   }
 
-  dialog.querySelector(".pp-modal__close").addEventListener("click", closeModal);
+  dialog.querySelector(".pp-modal__close").addEventListener("click", () => closeModal());
   backdrop.addEventListener("click", onBackdropClick);
   document.addEventListener("keydown", onKeydown);
 
@@ -502,17 +515,24 @@ export function modal(title, bodyHTML) {
   if (!firstFocusable) dialog.focus();
 
   activeModal = { backdrop, onKeydown, previouslyFocused };
+  if (!historyBackPending && !(history.state && history.state.ppModal)) {
+    history.pushState({ ppModal: true }, "");
+  }
 
-  return closeModal;
+  return () => closeModal();
 }
 
-function closeModal() {
+function closeModal({ fromHistory = false, keepHistory = false } = {}) {
   if (!activeModal) return;
   const { backdrop, onKeydown, previouslyFocused } = activeModal;
   document.removeEventListener("keydown", onKeydown);
   backdrop.remove();
   activeModal = null;
   if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+  if (!fromHistory && !keepHistory && history.state && history.state.ppModal) {
+    historyBackPending = true;
+    history.back();
+  }
 }
 
 /** Small canvas celebration. No-op under prefers-reduced-motion. */
