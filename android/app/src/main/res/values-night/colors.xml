@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors the web app's dark theme (assets/site.css, prefers-color-scheme: dark). -->
+    <color name="puzzlepress_bg">#14161a</color>
+</resources>

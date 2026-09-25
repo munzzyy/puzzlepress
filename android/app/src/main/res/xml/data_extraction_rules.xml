@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- No native data at all; the only state worth keeping is the WebView's own
+     localStorage (streaks and per-day completion), which lives under the
+     default file domain and is backed up along with everything else here. -->
+<data-extraction-rules>
+    <cloud-backup />
+    <device-transfer />
+</data-extraction-rules>

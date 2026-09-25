@@ -6,3 +6,6 @@ dist/
 Thumbs.db
 node_modules/
 _shots/
+android/local.properties
+android/.gradle/
+android/app/build/

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors the web app's default light theme (assets/site.css :root). -->
+    <color name="puzzlepress_bg">#f6f2e8</color>
+    <color name="ic_launcher_background">#1e3a5f</color>
+</resources>
