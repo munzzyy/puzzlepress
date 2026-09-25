@@ -178,13 +178,15 @@ export function shareLines(state) {
  * Spoiler-free share text: no words or category names, just the result and
  * a color-coded record of the run.
  */
-export function formatShare(puzzleLabel, state) {
+export function resultLine(state) {
   const solvedCount = state.solvedGroups.filter((g) => !g.revealed).length;
-  const resultLine =
-    state.status === "won"
-      ? mistakesLeft(state) === MAX_MISTAKES
-        ? "Perfect solve"
-        : `Solved, ${state.mistakes} mistake${state.mistakes === 1 ? "" : "s"}`
-      : `${solvedCount} of ${GROUP_COUNT} groups`;
-  return [puzzleLabel, resultLine, ...shareLines(state)].join("\n");
+  return state.status === "won"
+    ? mistakesLeft(state) === MAX_MISTAKES
+      ? "Perfect solve"
+      : `Solved, ${state.mistakes} mistake${state.mistakes === 1 ? "" : "s"}`
+    : `${solvedCount} of ${GROUP_COUNT} groups`;
+}
+
+export function formatShare(puzzleLabel, state) {
+  return [puzzleLabel, resultLine(state), ...shareLines(state)].join("\n");
 }

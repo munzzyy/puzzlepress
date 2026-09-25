@@ -8,6 +8,8 @@ import {
   toast,
   confettiBurst,
   initChrome,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 import * as core from "./core.js";
 
@@ -401,7 +403,12 @@ function showComplete(justSolved) {
   els.completeTime.textContent = `Solved in ${time}${activeState().usedHelp ? " (with help)" : ""}`;
   if (justSolved) {
     confettiBurst();
-    if (!isRandomMode && !archive.isArchive) recordResult(GAME_ID, true, activeDifficulty);
+    if (!isRandomMode && !archive.isArchive) {
+      recordResult(GAME_ID, true, activeDifficulty);
+      const time = core.formatTime(core.elapsedMs(activeState()));
+      const note = activeState().usedHelp ? " (with help)" : "";
+      setShareLine(GAME_ID, todayKey(), `Solved in ${time}${note}`);
+    }
     toast("Solved!");
   }
 }

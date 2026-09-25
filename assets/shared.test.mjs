@@ -39,6 +39,8 @@ const {
   resolveArchiveDay,
   formatDateLabel,
   localDateFromKey,
+  setShareLine,
+  getShareLine,
 } = await import("./shared.js");
 
 test("dayIndex is 0 on the epoch date itself", () => {
@@ -425,4 +427,21 @@ test("a game with no legacy data migrates cleanly to empty medium state", () => 
   globalThis.localStorage.clear();
   const meta = store("clusters", "medium").loadMeta();
   assert.deepEqual(meta, { played: 0, wins: 0, streak: 0, maxStreak: 0, last: null, lastWon: null });
+});
+
+test("getShareLine is null until a game records one for that date", () => {
+  globalThis.localStorage.clear();
+  assert.equal(getShareLine("wordrow", "2026-09-25"), null);
+  setShareLine("wordrow", "2026-09-25", "4/6");
+  assert.equal(getShareLine("wordrow", "2026-09-25"), "4/6");
+});
+
+test("share lines are namespaced by game and date", () => {
+  globalThis.localStorage.clear();
+  setShareLine("wordrow", "2026-09-25", "4/6");
+  setShareLine("clusters", "2026-09-25", "Solved, 1 mistake");
+  setShareLine("wordrow", "2026-09-24", "X/6");
+  assert.equal(getShareLine("wordrow", "2026-09-25"), "4/6");
+  assert.equal(getShareLine("clusters", "2026-09-25"), "Solved, 1 mistake");
+  assert.equal(getShareLine("wordrow", "2026-09-24"), "X/6");
 });

@@ -9,6 +9,8 @@ import {
   toast,
   confettiBurst,
   initChrome,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 
 import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText } from "./core.js";
@@ -380,6 +382,9 @@ function finishSubmit(next) {
 
   if (isGameOver(next) && mode === "daily" && !archive.isArchive) {
     recordResult(GAME_ID, next.status === "won", activeDifficulty);
+    const score = next.status === "won" ? String(next.guesses.length) : "X";
+    const mark = next.hardMode ? "*" : "";
+    setShareLine(GAME_ID, todayKey(), `${score}/${next.maxGuesses}${mark}`);
   }
 
   renderAll();

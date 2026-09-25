@@ -34,7 +34,10 @@
     <p class="pp-dateline" id="dateline"></p>
     <p class="pp-progress" id="progress-line"></p>
     <p class="pp-combined-stats" id="combined-stats"></p>
-    <a class="pp-archive-link" href="archive.html">Play a past day</a>
+    <div class="pp-masthead__links">
+      <a class="pp-archive-link" href="archive.html">Play a past day</a>
+      <button type="button" class="pp-archive-link pp-share-today" id="share-today" hidden>Share today's results</button>
+    </div>
   </header>
 
   <main id="main">
@@ -48,7 +51,10 @@
 </div>
 
 <script type="module">
-import { store, todayKey, lastDiff } from "./assets/shared.js";
+import { store, todayKey, lastDiff, getShareLine, share, dayIndex } from "./assets/shared.js";
+
+const SITE_URL = "https://munzzyy.github.io/puzzlepress/";
+const HUB_EPOCH = "2026-08-10";
 
 const GAMES = [
   { id: "wordrow", name: "Wordrow", tagline: "Six tries. Five letters." },
@@ -145,6 +151,30 @@ function renderCombinedStats() {
     `Combined streak: ${streak} day${streak === 1 ? "" : "s"}, best combined: ${best}`;
 }
 
+/**
+ * "Share today" builds one line per game that has a result recorded for
+ * today (setShareLine, written alongside recordResult), each in that
+ * game's own share format, plus the day number and the site's URL. Hidden
+ * entirely until at least one game has finished today.
+ */
+function renderShareToday() {
+  const btn = document.getElementById("share-today");
+  const today = todayKey();
+  const lines = GAMES.map((g) => {
+    const line = getShareLine(g.id, today);
+    return line ? `${g.name}: ${line}` : null;
+  }).filter(Boolean);
+
+  btn.hidden = lines.length === 0;
+  if (lines.length === 0) return;
+
+  btn.onclick = () => {
+    const dayNumber = dayIndex(HUB_EPOCH) + 1;
+    const text = [`Puzzle Press #${dayNumber}`, ...lines, SITE_URL].join("\n");
+    share(text);
+  };
+}
+
 function renderDateline() {
   const now = new Date();
   document.getElementById("dateline").textContent = new Intl.DateTimeFormat("en-US", {
@@ -189,6 +219,7 @@ function wireThemeToggle() {
 renderGrid();
 renderCombinedStats();
 renderDateline();
+renderShareToday();
 wireThemeToggle();
 
 if ("serviceWorker" in navigator) {

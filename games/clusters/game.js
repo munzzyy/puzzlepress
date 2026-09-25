@@ -8,6 +8,8 @@ import {
   toast,
   confettiBurst,
   diffTabs,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 import * as core from "./core.js";
 
@@ -107,6 +109,7 @@ function persistStatsIfDone(difficulty) {
   const state = states[difficulty];
   if (!core.isOver(state)) return;
   recordResult(GAME_ID, state.status === "won", difficulty);
+  setShareLine(GAME_ID, todayKey(), core.resultLine(state));
 }
 
 // ---------- rendering ----------

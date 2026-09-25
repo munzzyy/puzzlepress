@@ -8,6 +8,8 @@ import {
   toast,
   confettiBurst,
   initChrome,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 
 import {
@@ -314,6 +316,9 @@ function onSolved() {
   confettiBurst();
   if (state.mode === "daily" && !archive.isArchive) {
     recordResult(GAME_ID, true, state.diff);
+    const summary = resultSummary(state.words, state.par);
+    const squares = state.words.map((_, i) => (i < summary.par ? "\u{1F7E6}" : "\u{1F7E7}")).join("");
+    setShareLine(GAME_ID, todayKey(), `${squares} ${summary.count}/${summary.par}`);
   }
 }
 

@@ -7,6 +7,8 @@ import {
   share,
   confettiBurst,
   initChrome,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 import {
   parseCells,
@@ -462,7 +464,10 @@ function checkWin() {
     t.elapsedMs += performance.now() - t.runningSince;
     t.runningSince = null;
   }
-  if (!archive.isArchive) recordResult(GAME_ID, true, activeDifficulty);
+  if (!archive.isArchive) {
+    recordResult(GAME_ID, true, activeDifficulty);
+    setShareLine(GAME_ID, todayKey(), `${LABELS[activeDifficulty]} in ${fmtTime(t.elapsedMs)}`);
+  }
   confettiBurst();
   showDone(t.elapsedMs, false);
 }

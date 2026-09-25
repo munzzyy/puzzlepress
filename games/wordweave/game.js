@@ -8,6 +8,8 @@ import {
   confettiBurst,
   initChrome,
   diffTabs,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 import {
   createState,
@@ -367,7 +369,15 @@ function handleComplete() {
   const elapsed = Math.max(0, Math.round((finishedAts[diff] - startedAts[diff]) / 1000));
   confettiBurst();
   showComplete(elapsed);
-  if (!archive.isArchive) recordResult(GAME_ID, true, diff);
+  if (!archive.isArchive) {
+    recordResult(GAME_ID, true, diff);
+    const mins = Math.floor(elapsed / 60);
+    const secs = elapsed % 60;
+    const time = `${mins}:${String(secs).padStart(2, "0")}`;
+    const hints = states[diff].hintsUsedCount;
+    const hintNote = hints > 0 ? ` (${hints} hint${hints === 1 ? "" : "s"})` : "";
+    setShareLine(GAME_ID, todayKey(), `${time}${hintNote}`);
+  }
 }
 
 function startPractice() {

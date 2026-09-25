@@ -8,6 +8,8 @@ import {
   share,
   confettiBurst,
   initChrome,
+  setShareLine,
+  todayKey,
 } from "../../assets/shared.js";
 import {
   WIN_RANK,
@@ -362,6 +364,9 @@ function finishCurrent() {
 
   if (isDailyView() && !archive.isArchive) {
     recordResult(GAME_ID, won, activeDifficulty);
+    const score = totalScore(state.found, puzzle.letters);
+    const rank = rankForScore(score, puzzle.maxScore);
+    setShareLine(GAME_ID, todayKey(), `${rank.name} - ${score} points`);
   }
   if (isDailyView()) {
     persistCurrent();

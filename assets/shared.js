@@ -265,6 +265,25 @@ export function recordResult(gameId, won, diff = "medium", now = new Date()) {
   return next;
 }
 
+function shareLineKey(gameId, dateKey) {
+  return `pp.shareline.${gameId}.${dateKey}`;
+}
+
+/**
+ * A game calls this right where it calls recordResult, with the same
+ * one-line result its own share button would show. The hub reads these
+ * back to build a same-day "share today" summary without re-deriving any
+ * game's scoring or re-fetching its bank.
+ */
+export function setShareLine(gameId, dateKey, line) {
+  writeStorage(shareLineKey(gameId, dateKey), line);
+}
+
+/** The line a game recorded for that date, or null if it wasn't played. */
+export function getShareLine(gameId, dateKey) {
+  return readStorage(shareLineKey(gameId, dateKey));
+}
+
 /** Small stats block markup for one difficulty, styled by .pp-stats in site.css. */
 export function statsHTML(gameId, diff = "medium") {
   const meta = store(gameId, diff).loadMeta();
