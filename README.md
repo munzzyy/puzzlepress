@@ -40,6 +40,26 @@ medium record, nothing is lost. What "hard" means depends on the game:
 | Edgeways | par 3, common letters | par 2 | par 2 with a J, Q, X or Z on the square |
 | Sudoku | few empty cells | more empty cells | needs real technique |
 
+## Extras
+
+The hub has a "Share today" button that rolls up every game you finished
+today into one message, each in that game's own share format. It's hidden
+until you've actually finished something.
+
+Heptagram has an optional hints panel: word counts by first letter and
+length, plus two-letter starts. No words shown, but opening it does get
+noted on that day's result.
+
+Every game opens its how-to-play automatically the first time you visit it,
+then leaves you alone after that.
+
+Wordrow has a persisted high-contrast setting that swaps the tile colors for
+a pair with a bigger contrast gap, carried into the share emoji too.
+
+The site also runs inside an Android wrapper app, bundled and offline: no
+absolute paths, a silent fallback when there's no service worker, and a
+native share/theme bridge when the wrapper is present.
+
 ## Run it locally
 
 ```
@@ -86,7 +106,8 @@ python3 -m pytest -q
 The node suites cover game logic (all of it lives in `games/<id>/core.js`
 with no DOM in sight). The pytest suites check every bank against its schema
 and invariants: sudoku uniqueness, wordweave grids tiling fully, minigrid
-clues matching their answers, and so on.
+clues matching their answers, and so on. `test_bank_history.py` pins every
+bank's pre-growth prefix by hash, so a future growth pass can only append.
 
 A handful of those pytest cases regenerate a bank in a subprocess against
 the full word list to prove the generator is deterministic, which is what
@@ -114,15 +135,25 @@ CI always runs the full suite, slow tests included.
   than a full named-technique ladder. Some hard days are harder than others.
 - Minigrid uses two block layouts across its bank. The other valid 5x5
   shapes produced no clean fills from the curated vocabulary, so they are
-  not in there. That vocabulary also caps the bank: an exhaustive search
-  finds 130 fully crossed grids, split 45/45/40 across the tiers. Hard
-  puzzles are picked for trickier entries and reclued where a trickier clue
-  exists, but some of their clues still read like medium ones.
-- Sudoku cells land around 38px on a 360px phone, under the 44px touch
-  guideline. Nine cells across a small screen leaves no way around it, so the
-  toolbar's zoom button grows the board past its wrapper instead: cells clear
-  44px and you scroll to reach every corner. Every other control is 44px or
-  better without needing it.
+  not in there. Hard puzzles are picked for trickier entries and reclued
+  where a trickier clue exists, but some of their clues still read like
+  medium ones.
+- Current bank sizes, easy/medium/hard, and when each one wraps: Clusters,
+  Sudoku, and Heptagram sit at 365/365/365 (a full year before any repeat).
+  Edgeways is 365/195/90, as far as its word pool goes for the harder tiers.
+  Minigrid is capped by its curated vocabulary at 45/45/40 (that vocabulary
+  is the content lane's to grow; these numbers move as it does). Wordweave
+  is 60/60/59, also expected to grow over time. Wordrow's answer pools are
+  301/795/245; its shared guess dictionary is separate and much larger.
+- Sudoku cells land around 38-40px on a 360-390px phone, under the 44px
+  touch guideline. Nine cells across a small screen leaves no way around it,
+  so the toolbar's zoom button grows the board past its wrapper instead:
+  cells clear 44px and you scroll to reach every corner. Every other
+  control is 44px or better without needing it.
+- Wordrow's on-screen keyboard keys run about 33-37px wide (46px tall) on a
+  390px phone. Ten keys across the top row just don't fit at 44px each on a
+  phone screen; a physical keyboard has no such limit, and every key is
+  wired to a real key press.
 - Day numbering starts at the launch date, so the archive is only as old as
   the site: there is nothing to replay from before launch.
 
