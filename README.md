@@ -128,6 +128,10 @@ CI always runs the full suite, slow tests included.
 
 ## License
 
-[Prosperity Public License 3.0.0](LICENSE): free for noncommercial use, with a
-30 day trial for commercial use. The word list is the public domain ENABLE
-list; sources are recorded in [data/ATTRIBUTION.md](data/ATTRIBUTION.md).
+[GPL-3.0-or-later](LICENSE). You can play it, study it, change it and share
+it. If you share a copy or a modified version, it has to stay under the GPL
+and come with its source. Commits before the 1.0.0 release were under the
+Prosperity Public License 3.0.0.
+
+The word list is the public domain ENABLE list; sources are recorded in
+[data/ATTRIBUTION.md](data/ATTRIBUTION.md).
