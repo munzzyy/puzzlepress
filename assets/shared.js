@@ -413,8 +413,22 @@ async function copyToClipboard(text) {
   }
 }
 
-/** navigator.share on mobile when available, otherwise clipboard + toast. */
+/**
+ * navigator.share on mobile when available, otherwise clipboard + toast.
+ * The Android wrapper injects window.NativeApp on its own bundled origin
+ * only; when it's there, hand the share off to it instead, since a WebView
+ * has no navigator.share and would otherwise silently fall back to a copy
+ * the player never asked for.
+ */
 export async function share(text) {
+  if (globalThis.NativeApp && typeof globalThis.NativeApp.postMessage === "function") {
+    try {
+      globalThis.NativeApp.postMessage(JSON.stringify({ type: "share", text }));
+      return;
+    } catch {
+      /* fall through to the web path below */
+    }
+  }
   if (navigator.share) {
     try {
       await navigator.share({ text });
@@ -615,14 +629,43 @@ function themeToggleSVG(theme) {
         `<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`;
 }
 
+/**
+ * Tells the Android wrapper which theme is in effect, so its status bar can
+ * match. Posted on load and on every change, including a live system
+ * change while the player hasn't picked an explicit theme. No-op on the
+ * web, where window.NativeApp is never defined.
+ */
+function notifyNativeTheme(theme) {
+  if (globalThis.NativeApp && typeof globalThis.NativeApp.postMessage === "function") {
+    try {
+      globalThis.NativeApp.postMessage(JSON.stringify({ type: "theme", theme }));
+    } catch {
+      /* wrapper listener gone or misbehaving: nothing to do here */
+    }
+  }
+}
+
 function wireThemeToggle(btn) {
   applyTheme(readStorage(THEME_KEY));
-  btn.innerHTML = themeToggleSVG(currentTheme());
+  const initial = currentTheme();
+  btn.innerHTML = themeToggleSVG(initial);
+  notifyNativeTheme(initial);
+
+  if (globalThis.matchMedia) {
+    globalThis.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      if (readStorage(THEME_KEY)) return; // explicit choice on record: system changes don't apply
+      const theme = e.matches ? "dark" : "light";
+      btn.innerHTML = themeToggleSVG(theme);
+      notifyNativeTheme(theme);
+    });
+  }
+
   btn.addEventListener("click", () => {
     const next = currentTheme() === "dark" ? "light" : "dark";
     writeStorage(THEME_KEY, next);
     applyTheme(next);
     btn.innerHTML = themeToggleSVG(next);
+    notifyNativeTheme(next);
   });
 }
 

@@ -41,6 +41,7 @@ const {
   localDateFromKey,
   setShareLine,
   getShareLine,
+  share,
 } = await import("./shared.js");
 
 test("dayIndex is 0 on the epoch date itself", () => {
@@ -444,4 +445,25 @@ test("share lines are namespaced by game and date", () => {
   assert.equal(getShareLine("wordrow", "2026-09-25"), "4/6");
   assert.equal(getShareLine("clusters", "2026-09-25"), "Solved, 1 mistake");
   assert.equal(getShareLine("wordrow", "2026-09-24"), "X/6");
+});
+
+test("share hands off to window.NativeApp when the wrapper injects it", async () => {
+  const calls = [];
+  globalThis.NativeApp = { postMessage: (msg) => calls.push(msg) };
+  await share("hello world");
+  delete globalThis.NativeApp;
+  assert.equal(calls.length, 1);
+  assert.deepEqual(JSON.parse(calls[0]), { type: "share", text: "hello world" });
+});
+
+test("share falls back to navigator.share when NativeApp is not present", async () => {
+  delete globalThis.NativeApp;
+  let sharedWith = null;
+  const originalShare = navigator.share;
+  navigator.share = async (opts) => {
+    sharedWith = opts;
+  };
+  await share("plain web share");
+  navigator.share = originalShare;
+  assert.deepEqual(sharedWith, { text: "plain web share" });
 });

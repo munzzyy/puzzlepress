@@ -62,7 +62,7 @@
 
   <footer class="pp-footer">
     <p>Free to play, source on GitHub, no accounts, no ads, no tracking.</p>
-    <a href="https://github.com/munzzyy/puzzlepress">View source on GitHub</a>
+    <a href="https://github.com/munzzyy/puzzlepress" target="_blank" rel="noopener">View source on GitHub</a>
   </footer>
 </div>
 
@@ -83,12 +83,30 @@
       if (stored === "light" || stored === "dark") return stored;
       return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     };
+    var notifyNative = function (theme) {
+      if (window.NativeApp && typeof window.NativeApp.postMessage === "function") {
+        try {
+          window.NativeApp.postMessage(JSON.stringify({ type: "theme", theme: theme }));
+        } catch (e) {}
+      }
+    };
     var apply = function (theme) {
       document.documentElement.setAttribute("data-theme", theme);
       btn.innerHTML = iconFor(theme);
       btn.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      notifyNative(theme);
     };
     apply(currentTheme());
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
+        var stored = null;
+        try {
+          stored = localStorage.getItem(THEME_KEY);
+        } catch (err) {}
+        if (stored) return;
+        apply(e.matches ? "dark" : "light");
+      });
+    }
     btn.addEventListener("click", function () {
       var next = currentTheme() === "dark" ? "light" : "dark";
       try {
