@@ -425,15 +425,60 @@ def validate_bank(bank):
                 raise AssertionError(f"{difficulty}[{idx}]: grades as {grade_puzzle(pc)}, not {difficulty}")
 
 
+def grow_bank(existing, seed, target, max_misses=4000):
+    """Appends new puzzles to an already-shipped bank without touching a
+    single byte of what is there. Each difficulty gets its own RNG, seeded
+    well clear of the original build_bank stream, so growth never disturbs
+    the draw order that produced the puzzles already committed to disk."""
+    grown = {}
+    for difficulty in ("easy", "medium", "hard"):
+        existing_puzzles = existing[difficulty]["puzzles"]
+        seen_strings = {p["puzzle"] for p in existing_puzzles}
+        rng = random.Random(f"{seed}-grow-{difficulty}")
+        new_puzzles = list(existing_puzzles)
+        misses = 0
+        while len(new_puzzles) < target and misses < max_misses:
+            puzzle, solution = make_one(rng, difficulty)
+            if puzzle is None:
+                misses += 1
+                continue
+            ps = "".join(map(str, puzzle))
+            if ps in seen_strings:
+                misses += 1
+                continue
+            seen_strings.add(ps)
+            new_puzzles.append(
+                {"puzzle": ps, "solution": "".join(map(str, solution))}
+            )
+        grown[difficulty] = {"puzzles": new_puzzles}
+    return grown
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=20260810)
     parser.add_argument("--count", type=int, default=100, help="puzzles per difficulty")
     parser.add_argument("--out", default=DEFAULT_OUT)
+    parser.add_argument(
+        "--grow-to",
+        type=int,
+        default=None,
+        help="load --out (or --in) and append new puzzles up to this many per "
+        "difficulty, leaving every existing puzzle untouched",
+    )
+    parser.add_argument("--in", dest="in_path", default=None)
     args = parser.parse_args()
 
-    bank, counts = build_bank(args.seed, args.count)
-    validate_bank(bank)
+    if args.grow_to is not None:
+        in_path = args.in_path or args.out
+        with open(in_path) as f:
+            existing = json.load(f)
+        bank = grow_bank(existing, args.seed, args.grow_to)
+        validate_bank(bank)
+        counts = {d: len(bank[d]["puzzles"]) for d in bank}
+    else:
+        bank, counts = build_bank(args.seed, args.count)
+        validate_bank(bank)
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w") as f:
