@@ -18,7 +18,8 @@
   position: relative;
   width: min(320px, 82vw);
   aspect-ratio: 1;
-  margin: 0 auto 1.25rem;
+  /* the top and bottom letter rows hang half a letter (22px) outside the box */
+  margin: calc(22px + 0.75rem) auto calc(22px + 1.25rem);
 }
 
 .ed-board__square {
