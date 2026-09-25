@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
@@ -21,29 +22,27 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewAssetLoader
+import androidx.webkit.WebViewCompat
 import androidx.webkit.WebViewFeature
+import org.json.JSONObject
 
-// One screen: the bundled web app in a WebView on the fixed asset origin.
-// No native bridge, no permissions; the page is the whole app.
 class MainActivity : ComponentActivity() {
 
     companion object {
         const val ASSET_HOST = "appassets.androidplatform.net"
-        const val START_URL = "https://$ASSET_HOST/index.html"
+        const val ORIGIN = "https://$ASSET_HOST"
+        const val START_URL = "$ORIGIN/index.html"
+        const val MAX_SHARE_CHARS = 4000
     }
 
     private lateinit var webView: WebView
     private lateinit var root: FrameLayout
+    private var pageTheme: String? = null
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // The status and navigation bars are real system windows that own
-        // touch input in their own bounds even when made transparent, so the
-        // WebView must be laid out clear of them, not just padded: padding a
-        // WebView shifts where it paints but not where Chromium hit-tests,
-        // which leaves anything drawn under the bar visible but untappable.
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = Color.TRANSPARENT
         window.navigationBarColor = Color.TRANSPARENT
@@ -53,14 +52,16 @@ class MainActivity : ComponentActivity() {
         }
 
         root = FrameLayout(this)
-        applyRootBackground()
         webView = WebView(this)
+        webView.setBackgroundColor(Color.TRANSPARENT)
         root.addView(
             webView,
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT),
         )
         setContentView(root)
+        applyChrome()
 
+        // Inset the container, not the WebView: WebView padding moves its paint but not Chromium's hit-testing.
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
             val bars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime(),
@@ -86,21 +87,24 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
+            WebViewCompat.addWebMessageListener(webView, "NativeApp", setOf(ORIGIN)) { _, message, _, isMainFrame, _ ->
+                if (isMainFrame) handleMessage(message.data)
+            }
+        }
+
         webView.webViewClient = object : WebViewClient() {
             override fun shouldInterceptRequest(
                 view: WebView,
                 request: WebResourceRequest,
             ): WebResourceResponse? = assetLoader.shouldInterceptRequest(request.url)
 
-            // Only the bundled app ever loads inside the WebView. Anything
-            // pointing elsewhere (an outbound link, the GitHub source link)
-            // goes to the system so the app never becomes an unbounded browser.
             override fun shouldOverrideUrlLoading(
                 view: WebView,
                 request: WebResourceRequest,
             ): Boolean {
                 val url = request.url
-                if (url.host == ASSET_HOST) return false
+                if (url.scheme == "https" && url.host == ASSET_HOST) return false
                 runCatching { startActivity(Intent(Intent.ACTION_VIEW, url)) }
                 return true
             }
@@ -123,16 +127,47 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    // configChanges declares uiMode so a system dark/light flip does not
-    // recreate the activity (that would drop the WebView and its state);
-    // the inset strip's background must then be refreshed by hand instead
-    // of relying on the theme resolving it again at inflate time.
+    // uiMode is in configChanges so a system theme flip keeps the WebView alive; repaint the chrome by hand.
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        applyRootBackground()
+        applyChrome()
     }
 
-    private fun applyRootBackground() {
-        root.setBackgroundColor(ContextCompat.getColor(this, R.color.puzzlepress_bg))
+    private fun handleMessage(data: String?) {
+        val msg = runCatching { JSONObject(data ?: return) }.getOrNull() ?: return
+        when (msg.optString("type")) {
+            "share" -> share(msg.optString("text"))
+            "theme" -> {
+                pageTheme = msg.optString("theme").takeIf { it == "dark" || it == "light" }
+                applyChrome()
+            }
+            "keepAwake" -> if (msg.optBoolean("on")) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            } else {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            }
+        }
+    }
+
+    private fun share(text: String) {
+        if (text.isBlank()) return
+        val send = Intent(Intent.ACTION_SEND)
+            .setType("text/plain")
+            .putExtra(Intent.EXTRA_TEXT, text.take(MAX_SHARE_CHARS))
+        runCatching { startActivity(Intent.createChooser(send, null)) }
+    }
+
+    private fun applyChrome() {
+        val dark = when (pageTheme) {
+            "dark" -> true
+            "light" -> false
+            else -> (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                Configuration.UI_MODE_NIGHT_YES
+        }
+        root.setBackgroundColor(ContextCompat.getColor(this, if (dark) R.color.bg_dark else R.color.bg_light))
+        WindowCompat.getInsetsController(window, root).apply {
+            isAppearanceLightStatusBars = !dark
+            isAppearanceLightNavigationBars = !dark
+        }
     }
 }
