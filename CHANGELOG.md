@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 - 2026-09-27
+
+The Android build is now shrunk with R8, as F-Droid asked, so the
+download is smaller. Nothing else changed.
+
 ## 1.0.0 - 2026-09-25
 
 The big one was running out of puzzles. Minigrid had already started

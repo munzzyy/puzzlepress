@@ -11,15 +11,17 @@ android {
         applicationId = "io.github.munzzyy.puzzlepress"
         minSdk = 24
         targetSdk = 36
-        versionCode = 10000
-        versionName = "1.0.0"
+        versionCode = 10001
+        versionName = "1.0.1"
     }
 
     buildTypes {
         release {
-            // Unsigned on purpose: F-Droid signs with its own key.
-            isMinifyEnabled = false
-            isShrinkResources = false
+            // Unsigned here; tools/release-android.sh signs it, and F-Droid ships
+            // that signature after rebuilding and comparing.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             vcsInfo.include = false
         }
     }
