@@ -49,7 +49,7 @@ echo "== sign apk (schemes v2+v3) =="
 
 unset KSPW
 
-# Stable-name copy so a landing page or Obtainium can point at
+# Stable-name copy so a landing page or Tern can point at
 # releases/latest/download/puzzlepress.apk across versions.
 cp "$APK_OUT" dist/puzzlepress.apk
 

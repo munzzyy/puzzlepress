@@ -78,8 +78,10 @@ bundles every page and puzzle bank, with no internet permission at all.
 Share opens the system share sheet, and Back closes an open dialog before
 it leaves a game. Signed APKs are on the
 [releases page](https://github.com/munzzyy/puzzlepress/releases), and it
-has been submitted to F-Droid. To build it yourself, run
-`./gradlew assembleDebug` inside `android/`.
+has been submitted to F-Droid. [Tern](https://github.com/munzzyy/tern) keeps it up to date from those
+releases. To build it yourself, run `./gradlew assembleDebug` inside `android/`.
+
+[<img src="https://munzzyy.github.io/tern/badge.png" alt="Get it with Tern" height="80">](https://munzzyy.github.io/tern/add/?url=https%3A%2F%2Fgithub.com%2Fmunzzyy%2Fpuzzlepress)
 
 ## How the dailies work
 
