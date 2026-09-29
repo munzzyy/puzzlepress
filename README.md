@@ -175,6 +175,14 @@ CI always runs the full suite, slow tests included.
 - Day numbering starts at the launch date, so the archive is only as old as
   the site: there is nothing to replay from before launch.
 
+## Support
+
+If you want to help keep Puzzle Press going, you can sponsor on [GitHub Sponsors](https://github.com/sponsors/munzzyy) or send Monero to:
+
+```
+8BApLkfsBS39oNXz4L1qCmZ7f5zKVRr1qLJgrHddRZb4JRcnjDkcKdk7wW7uThCeV9CuLn8o7gAn8d6vFeWNiyeXSmrRUSq
+```
+
 ## License
 
 [GPL-3.0-or-later](LICENSE). You can play it, study it, change it and share
