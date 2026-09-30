@@ -6,4 +6,4 @@ Each game has easy, medium and hard, and each one is its own daily with its own 
 
 There is no internet permission, so the app never touches the network. No ads, no account, no tracking. Your streaks live on your phone and nowhere else.
 
-It is free software (GPL-3.0-or-later), and it also runs in any browser at munzzyy.github.io/puzzlepress.
+It is free software (GPL-3.0-or-later), and it also runs in any browser at puzzlepress.munzzyy.dev.

@@ -2,7 +2,7 @@
 
 Seven daily puzzles on one static page. Plain HTML, CSS and JS with zero
 dependencies, and nothing asks you to sign in. Play at
-https://munzzyy.github.io/puzzlepress/ or serve the folder yourself.
+https://puzzlepress.munzzyy.dev/ or serve the folder yourself.
 
 | Light | Dark |
 | --- | --- |
@@ -81,7 +81,7 @@ it leaves a game. Signed APKs are on the
 has been submitted to F-Droid. [Tern](https://github.com/munzzyy/tern) keeps it up to date from those
 releases. To build it yourself, run `./gradlew assembleDebug` inside `android/`.
 
-[<img src="https://munzzyy.github.io/tern/badge.png" alt="Get it with Tern" height="80">](https://munzzyy.github.io/tern/add/?url=https%3A%2F%2Fgithub.com%2Fmunzzyy%2Fpuzzlepress)
+[<img src="https://tern.munzzyy.dev/badge.png" alt="Get it with Tern" height="80">](https://tern.munzzyy.dev/add/?url=https%3A%2F%2Fgithub.com%2Fmunzzyy%2Fpuzzlepress)
 
 ## How the dailies work
 
