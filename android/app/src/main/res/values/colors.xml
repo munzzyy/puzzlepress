@@ -2,7 +2,7 @@
 <resources>
     <!-- Mirrors the web app's default light theme (assets/site.css :root). -->
     <color name="puzzlepress_bg">#f6f2e8</color>
-    <color name="ic_launcher_background">#1e3a5f</color>
+    <color name="ic_launcher_background">#c2412d</color>
     <color name="bg_light">#f6f2e8</color>
     <color name="bg_dark">#14161a</color>
 </resources>

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Builds assets/icons/: the letterpress P monogram (PNG, several sizes) and
-seven hand-authored geometric game glyphs (SVG). Stdlib only, no Pillow, no
-fetched fonts: the P is drawn from vector primitives and rasterized with a
+"""Builds the app icon (a press-red badge with a 3x3 crossword grid) for the
+web, the Android launcher and the store listing, plus seven hand-authored
+geometric game glyphs (SVG). Stdlib only, no Pillow, no
+fetched fonts: the grid is drawn from vector primitives and rasterized with a
 small supersampled coverage renderer, then encoded to PNG with zlib + struct.
 Run: python3 tools/gen_icons.py
 """
@@ -18,6 +19,11 @@ INK = (0x1E, 0x3A, 0x5F)
 INK_SHADOW = (0x14, 0x26, 0x3F)
 PAPER = (0xF6, 0xF2, 0xE8)
 AMBER = (0xB8, 0x79, 0x1A)
+
+PRESS = (0xC2, 0x41, 0x2D)
+PRESS_SHADOW = (0x93, 0x2E, 0x1F)
+CELL_INK = (0x22, 0x1D, 0x19)
+CELL_LIT = (0xF2, 0xC1, 0x4E)
 
 
 # ---------- minimal PNG writer (stdlib only) ----------
@@ -82,13 +88,32 @@ def stadium_contains(u, v, x0, y0, x1, y1):
     return dx * dx + dy * dy <= r * r
 
 
-def p_glyph_contains(u, v, dx=0.0, dy=0.0):
+GRID_ORIGIN = 0.17
+GRID_CELL = 0.20
+GRID_STEP = 0.23
+GRID_BLACK = {(0, 2), (2, 0)}
+GRID_LIT = {(1, 1)}
+
+
+def grid_cell_at(u, v, dx=0.0, dy=0.0):
+    """Which cell of the 3x3 grid covers (u, v), as (row, col), or None."""
     u -= dx
     v -= dy
-    stem = 0.30 <= u <= 0.44 and 0.14 <= v <= 0.86
-    outer = stadium_contains(u, v, 0.30, 0.14, 0.74, 0.55)
-    inner = stadium_contains(u, v, 0.30, 0.25, 0.63, 0.44)
-    return stem or (outer and not inner)
+    for r in range(3):
+        for c in range(3):
+            x0 = GRID_ORIGIN + c * GRID_STEP
+            y0 = GRID_ORIGIN + r * GRID_STEP
+            if rounded_rect_contains(u, v, x0, y0, x0 + GRID_CELL, y0 + GRID_CELL, 0.032):
+                return (r, c)
+    return None
+
+
+def cell_color(rc):
+    if rc in GRID_BLACK:
+        return CELL_INK
+    if rc in GRID_LIT:
+        return CELL_LIT
+    return PAPER
 
 
 def badge_contains(u, v):
@@ -103,80 +128,87 @@ def lerp_rgb(c1, c2, t):
     return tuple(lerp(c1[i], c2[i], t) for i in range(3))
 
 
-def render_monogram(size, supersample=4, maskable=False):
-    """maskable=True fills the full canvas edge to edge (no rounded corners,
-    no margin, no transparency) and shrinks the glyph toward the center so it
-    sits inside the ~80% safe-zone circle that Android's adaptive-icon mask
-    can crop to without clipping the P."""
+def render_icon(size, supersample=4, mode="badge"):
+    """mode="badge": rounded press-red badge with transparent corners.
+    mode="maskable": full bleed, grid shrunk into the ~80% safe-zone circle.
+    mode="fg": transparent Android adaptive foreground, grid inside the
+    middle 66 of 108 dp; the launcher supplies the red background."""
     rgba = bytearray(size * size * 4)
     offsets = [(i + 0.5) / supersample for i in range(supersample)]
     samples = supersample * supersample
-    shrink = 0.8  # glyph render scale for the maskable safe zone
+    shrink = {"badge": 1.0, "maskable": 0.8, "fg": 0.64}[mode]
 
     def to_content(u, v):
-        if not maskable:
-            return u, v
         return 0.5 + (u - 0.5) / shrink, 0.5 + (v - 0.5) / shrink
 
     for y in range(size):
         for x in range(size):
-            badge_hits = 0
-            shadow_hits = 0
-            glyph_hits = 0
+            acc = [0.0, 0.0, 0.0]
+            hits = 0
             for oy in offsets:
                 v = (y + oy) / size
                 for ox in offsets:
                     u = (x + ox) / size
-                    hit = True if maskable else badge_contains(u, v)
-                    if not hit:
-                        continue
-                    badge_hits += 1
                     cu, cv = to_content(u, v)
-                    if p_glyph_contains(cu, cv, dx=0.018, dy=0.022):
-                        shadow_hits += 1
-                    if p_glyph_contains(cu, cv):
-                        glyph_hits += 1
-
-            badge_cov = badge_hits / samples
-            if badge_cov == 0:
+                    rc = grid_cell_at(cu, cv)
+                    if mode == "fg":
+                        if rc is not None:
+                            col = cell_color(rc)
+                        elif grid_cell_at(cu, cv, dx=0.012, dy=0.016) is not None:
+                            col = PRESS_SHADOW
+                        else:
+                            continue
+                    else:
+                        if mode == "badge" and not badge_contains(u, v):
+                            continue
+                        if rc is not None:
+                            col = cell_color(rc)
+                        elif grid_cell_at(cu, cv, dx=0.012, dy=0.016) is not None:
+                            col = PRESS_SHADOW
+                        else:
+                            col = PRESS
+                    hits += 1
+                    acc[0] += col[0]
+                    acc[1] += col[1]
+                    acc[2] += col[2]
+            if hits == 0:
                 continue
-            shadow_cov = shadow_hits / samples
-            glyph_cov = glyph_hits / samples
-
-            rgb = INK
-            if shadow_cov > 0:
-                rgb = lerp_rgb(rgb, INK_SHADOW, min(1.0, shadow_cov) * 0.55)
-            if glyph_cov > 0:
-                rgb = lerp_rgb(rgb, PAPER, min(1.0, glyph_cov))
-
             i = (y * size + x) * 4
-            rgba[i] = round(rgb[0])
-            rgba[i + 1] = round(rgb[1])
-            rgba[i + 2] = round(rgb[2])
-            rgba[i + 3] = round(255 * badge_cov)
+            rgba[i] = round(acc[0] / hits)
+            rgba[i + 1] = round(acc[1] / hits)
+            rgba[i + 2] = round(acc[2] / hits)
+            rgba[i + 3] = round(255 * hits / samples)
 
     return rgba
 
 
-def gen_monogram_pngs():
+ANDROID_RES = os.path.join(ROOT, "android", "app", "src", "main", "res")
+DENSITIES = [("mdpi", 1.0), ("hdpi", 1.5), ("xhdpi", 2.0), ("xxhdpi", 3.0), ("xxxhdpi", 4.0)]
+STORE_ICON = os.path.join(ROOT, "fastlane", "metadata", "android", "en-US", "images", "icon.png")
+
+
+def emit(path, size, mode):
+    write_png(path, size, size, render_icon(size, mode=mode))
+    w, h = read_png_size(path)
+    assert (w, h) == (size, size), f"{path}: size mismatch after write"
+
+
+def gen_icon_pngs():
     for size, name in [(512, "icon-512.png"), (192, "icon-192.png"),
                         (180, "icon-180.png"), (32, "icon-32.png"), (16, "icon-16.png")]:
-        rgba = render_monogram(size)
-        path = os.path.join(ICON_DIR, name)
-        write_png(path, size, size, rgba)
-        w, h = read_png_size(path)
-        assert (w, h) == (size, size), f"{name}: size mismatch after write"
+        emit(os.path.join(ICON_DIR, name), size, "badge")
     for size, name in [(512, "icon-512-maskable.png"), (192, "icon-192-maskable.png")]:
-        rgba = render_monogram(size, maskable=True)
-        path = os.path.join(ICON_DIR, name)
-        write_png(path, size, size, rgba)
-        w, h = read_png_size(path)
-        assert (w, h) == (size, size), f"{name}: size mismatch after write"
-    # favicon.png mirrors the 32px monogram
+        emit(os.path.join(ICON_DIR, name), size, "maskable")
+    # favicon.png mirrors the 32px icon
     with open(os.path.join(ICON_DIR, "icon-32.png"), "rb") as src:
         data = src.read()
     with open(os.path.join(ICON_DIR, "favicon.png"), "wb") as dst:
         dst.write(data)
+    for density, scale in DENSITIES:
+        folder = os.path.join(ANDROID_RES, f"mipmap-{density}")
+        emit(os.path.join(folder, "ic_launcher.png"), round(48 * scale), "badge")
+        emit(os.path.join(folder, "ic_launcher_fg.png"), round(108 * scale), "fg")
+    emit(STORE_ICON, 512, "badge")
 
 
 # ---------- hand-authored game glyph SVGs ----------
@@ -315,7 +347,7 @@ def gen_glyph_svgs():
 
 def main():
     os.makedirs(ICON_DIR, exist_ok=True)
-    gen_monogram_pngs()
+    gen_icon_pngs()
     gen_glyph_svgs()
     produced = sorted(os.listdir(ICON_DIR))
     print(f"wrote {len(produced)} files to {ICON_DIR}:")
