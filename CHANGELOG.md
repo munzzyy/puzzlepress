@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 - 2026-10-01
+
+A new icon: a small crossword grid on press red, in place of the navy P,
+so Puzzle Press stands apart from the other apps. Nothing else changed.
+
 ## 1.0.1 - 2026-09-27
 
 The Android build is now shrunk with R8, as F-Droid asked, so the
