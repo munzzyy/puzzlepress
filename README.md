@@ -77,9 +77,9 @@ installs as a PWA and keeps working offline once you have visited it.
 bundles every page and puzzle bank, with no internet permission at all.
 Share opens the system share sheet, and Back closes an open dialog before
 it leaves a game. Signed APKs are on the
-[releases page](https://github.com/munzzyy/puzzlepress/releases), and it
-has been submitted to F-Droid. [Tern](https://github.com/munzzyy/tern) keeps it up to date from those
-releases. To build it yourself, run `./gradlew assembleDebug` inside `android/`.
+[releases page](https://github.com/munzzyy/puzzlepress/releases), and
+[Tern](https://tern.munzzyy.dev) keeps it up to date from those releases.
+To build it yourself, run `./gradlew assembleDebug` inside `android/`.
 
 [<img src="https://tern.munzzyy.dev/badge.png" alt="Get it with Tern" height="80">](https://tern.munzzyy.dev/add/?url=https%3A%2F%2Fgithub.com%2Fmunzzyy%2Fpuzzlepress)
 
@@ -116,10 +116,12 @@ python3 -m pytest -q
 ```
 
 The node suites cover game logic (all of it lives in `games/<id>/core.js`
-with no DOM in sight) and how the service worker matches cached pages. The pytest suites check every bank against its schema
-and invariants: sudoku uniqueness, wordweave grids tiling fully, minigrid
-clues matching their answers, and so on. `test_bank_history.py` pins every
-bank's pre-growth prefix by hash, so a future growth pass can only append.
+with no DOM in sight) and how the service worker matches cached pages. The
+pytest suites check every bank against its schema and invariants: sudoku
+uniqueness, wordweave grids tiling fully, minigrid clues matching their
+answers, and so on. `test_bank_history.py` pins every bank's pre-growth
+prefix and every entry that shipped in 1.0.0 by hash, so a growth pass can
+only append.
 
 A handful of those pytest cases regenerate a bank in a subprocess against
 the full word list to prove the generator is deterministic, which is what
@@ -176,6 +178,23 @@ CI always runs the full suite, slow tests included.
   wired to a real key press.
 - Day numbering starts at the launch date, so the archive is only as old as
   the site: there is nothing to replay from before launch.
+
+## Roadmap
+
+What is left needs a release, a store review or a decision. None of it is code.
+
+- Android 1.0.3. Everything under Unreleased in the
+  [changelog](CHANGELOG.md) reaches the website when it deploys, but the
+  app only gets it through a signed release. That release is not cut yet.
+  The backup fix for Android 7 to 11 is app-only, so it waits on this too.
+- F-Droid. The app is submitted
+  ([fdroiddata!50148](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/50148))
+  and waiting on review. Until it is in, use the releases page or Tern.
+- Whether streaks belong in Android's cloud backup. The app lets Android
+  copy its saved progress into the phone's own backup, which is also how
+  it moves to a new phone, but the store listing says your streaks live on
+  your phone and nowhere else. One of those has to change, and which one
+  is still an open call.
 
 ## Support
 

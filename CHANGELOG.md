@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased
+
+Leave a game open past midnight and it used to file the result under the
+wrong day. Now it records against the puzzle's own date. Come back to the
+tab later and it offers a link to the new one. The hub redraws itself too.
+Streaks that lapsed show 0 instead of the old number; Best keeps it.
+
+Edgeways hard would have started repeating on November 8 with only 90
+puzzles. It has a full year now and medium is up to 268. Spice, hospice
+and 86 other real words that Edgeways refused now count. Slurs and crude
+words are out as guesses in Edgeways and Wordrow both.
+
+Wordrow now reads each guess to screen readers one letter at a time. It
+says whether each one is correct, in the word or not in it, and the keys
+do the same. Minigrid cells mention when they are marked wrong or
+revealed. Edgeways letters say when they are used.
+
+Smaller fixes. Clusters does not take a mistake for sending the same four
+tiles twice. Archive days open offline. On Android 7 to 11 the app's
+backups had been failing without a word, so a restore lost every streak.
+That is fixed in the next release of the app (see the
+[Roadmap](https://github.com/munzzyy/puzzlepress#roadmap)).
+
 ## 1.0.2 - 2026-10-01
 
 A new icon: a small crossword grid on press red, in place of the navy P,
