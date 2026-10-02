@@ -165,3 +165,8 @@ export function shareText(state, opts = {}) {
 
   return `Wordrow ${label}#${dayNumber} ${score}/${maxGuesses}${mark}\n\n${grid}`;
 }
+
+/** Guesses the game accepts: the allowed list minus blocked words. Answers come from a separate list. */
+export function guessList(allowed, blocked) {
+  return new Set(allowed.filter((w) => !blocked.has(w)));
+}

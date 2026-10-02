@@ -19,7 +19,9 @@ import {
   requiredStartLetter,
   resultSummary,
   MIN_WORD_LENGTH,
+  playableWords,
 } from "./core.js";
+import { BLOCKED_WORDS } from "../../assets/blocklist.js";
 
 const EPOCH = "2026-08-10";
 const GAME_ID = "edgeways";
@@ -376,7 +378,7 @@ async function boot() {
   ]);
   bank = await bankRes.json();
   const words = await dictRes.json();
-  dictionary = new Set(words);
+  dictionary = playableWords(words, BLOCKED_WORDS);
 
   const initialDiff = diffTabs(els.diffTabs, GAME_ID, switchDifficulty, DEFAULT_DIFFICULTY);
   state = initDailyState(initialDiff);

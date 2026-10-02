@@ -21,7 +21,7 @@ Difficulty semantics (V2-CONTRACT.md):
 Also writes games/edgeways/words.json: the runtime dictionary game.js uses
 to validate any word a player tries, not just the committed solution words.
 
-Usage: python3 tools/gen_edgeways.py [--seed N]
+Usage: python3 tools/gen_edgeways.py [--seed N] [--grow-to N | --dictionary-only]
 """
 import argparse
 import json
@@ -29,6 +29,8 @@ import random
 import re
 import sys
 from pathlib import Path
+
+from blocklist import BLOCKED_WORDS
 
 ROOT = Path(__file__).resolve().parent.parent
 WORDLIST_PATH = ROOT / "data" / "wordlist.txt"
@@ -214,8 +216,9 @@ DICTIONARY_MAX_LEN = 15
 WORD_RE = re.compile(r"^[a-z]+$")
 VOWELS = set("aeiou")
 
-# A short blocklist so no puzzle can hinge on an offensive word. Not
-# exhaustive, just a floor.
+# Solution words also skip anything that merely contains one of these, so no
+# puzzle can hinge on an offensive word. The player dictionary uses the exact
+# shared list instead, since a substring match rejects words like "spice".
 BLOCKLIST = {
     "nigger", "nigga", "spic", "chink", "kike", "faggot", "retard", "whore",
     "slut", "cunt", "nigg", "coon", "gook", "tranny", "wetback", "dyke",
@@ -247,7 +250,7 @@ def build_dictionary(all_words):
             continue
         if has_consecutive_repeat(w):
             continue
-        if is_blocked(w):
+        if w in BLOCKED_WORDS:
             continue
         out.append(w)
     return sorted(set(out))
@@ -267,7 +270,7 @@ def build_solution_candidates(dictionary_set):
             continue
         if has_consecutive_repeat(w):
             continue
-        if is_blocked(w):
+        if is_blocked(w) or w in BLOCKED_WORDS:
             continue
         if len(set(w)) < 4:
             continue  # too repetitive to feel like a real find
@@ -573,6 +576,13 @@ def grow_bank(existing, dictionary_set, seed, targets):
     return grown
 
 
+def write_dictionary(dictionary):
+    DICTIONARY_PATH.write_text(
+        json.dumps(dictionary, separators=(",", ":")), encoding="utf-8"
+    )
+    print(f"wrote {len(dictionary)} words to {DICTIONARY_PATH.relative_to(ROOT)}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=20260810)
@@ -583,11 +593,20 @@ def main():
         help="load the committed bank and append new puzzles up to this "
         "many per difficulty, leaving every existing puzzle untouched",
     )
+    parser.add_argument(
+        "--dictionary-only",
+        action="store_true",
+        help="rewrite games/edgeways/words.json and leave the bank alone",
+    )
     args = parser.parse_args()
 
     all_words = load_wordlist()
     dictionary = build_dictionary(all_words)
     dictionary_set = set(dictionary)
+
+    if args.dictionary_only:
+        write_dictionary(dictionary)
+        return
 
     if args.grow_to is not None:
         existing = json.loads(BANK_PATH.read_text(encoding="utf-8"))
@@ -613,13 +632,9 @@ def main():
 
     BANK_PATH.write_text(json.dumps(bank, indent=2) + "\n", encoding="utf-8")
 
-    DICTIONARY_PATH.write_text(
-        json.dumps(dictionary, separators=(",", ":")), encoding="utf-8"
-    )
-
     counts = ", ".join(f"{diff}={len(sections[diff])}" for diff in ("easy", "medium", "hard"))
     print(f"wrote {counts} puzzles to {BANK_PATH.relative_to(ROOT)}")
-    print(f"wrote {len(dictionary)} words to {DICTIONARY_PATH.relative_to(ROOT)}")
+    write_dictionary(dictionary)
 
 
 if __name__ == "__main__":

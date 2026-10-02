@@ -261,3 +261,25 @@ test("submitGuess loses after fewer wrong guesses when maxGuesses is smaller", (
   assert.equal(state.status, "lost");
   assert.equal(state.guesses.length, 3);
 });
+
+test("guessList drops blocked words and leaves the rest", async () => {
+  const { guessList } = await import("./core.js");
+  const allowed = guessList(["crane", "kikes", "spics", "spice"], new Set(["kikes", "spics"]));
+  assert.deepEqual([...allowed].sort(), ["crane", "spice"]);
+  const state = createGame("crane");
+  assert.equal(submitGuess(state, "kikes", { allowed }).error, "Not in word list");
+  assert.equal(submitGuess(state, "spice", { allowed }).error, null);
+});
+
+test("every answer stays guessable once blocked words leave the guess list", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { guessList } = await import("./core.js");
+  const { BLOCKED_WORDS } = await import("../../assets/blocklist.js");
+  const bank = JSON.parse(readFileSync(new URL("../../data/wordrow.json", import.meta.url), "utf8"));
+  const allowed = guessList(bank.medium.allowed, BLOCKED_WORDS);
+  assert.ok(bank.medium.allowed.some((w) => BLOCKED_WORDS.has(w)), "the raw list should hold a blocked word");
+  for (const w of BLOCKED_WORDS) assert.ok(!allowed.has(w), w);
+  for (const diff of ["easy", "medium", "hard"]) {
+    for (const answer of bank[diff].answers) assert.ok(allowed.has(answer), `${diff} answer ${answer}`);
+  }
+});

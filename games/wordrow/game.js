@@ -12,7 +12,8 @@ import {
   watchDayRollover,
 } from "../../assets/shared.js";
 
-import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText } from "./core.js";
+import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText, guessList } from "./core.js";
+import { BLOCKED_WORDS } from "../../assets/blocklist.js";
 
 const GAME_ID = "wordrow";
 const EPOCH = "2026-08-10";
@@ -493,7 +494,7 @@ async function boot() {
 
   // Every difficulty ships the identical allowed pool (see gen_wordrow.py),
   // so any one section's list works as the shared guess dictionary.
-  allowedSet = new Set(bank[DEFAULT_DIFFICULTY].allowed);
+  allowedSet = guessList(bank[DEFAULT_DIFFICULTY].allowed, BLOCKED_WORDS);
   dayNumber = archive.dayNumber;
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
 

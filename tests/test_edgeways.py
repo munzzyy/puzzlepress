@@ -254,6 +254,17 @@ def test_dictionary_file_is_well_formed(dictionary):
         assert len(w) >= 3
 
 
+def test_dictionary_drops_the_shared_blocklist_and_nothing_more(dictionary):
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    from blocklist import BLOCKED_WORDS
+
+    words_set, _ = dictionary
+    assert not words_set & BLOCKED_WORDS
+    for word in ("spice", "spicy", "hospice", "suspicion", "conspicuous", "despicable", "auspicious", "retardant"):
+        assert word in words_set, word
+
+
 def test_dictionary_never_contains_a_word_that_could_never_be_played(dictionary):
     # Any word with two identical letters in a row can never satisfy the
     # no-same-side-twice rule, since a letter always sits on one side.

@@ -144,10 +144,10 @@ CI always runs the full suite, slow tests included.
 - The big dictionaries accept some words that don't belong in a family
   puzzle. [`assets/blocklist.js`](assets/blocklist.js) lists them, and the
   games drop them at play time: Heptagram never accepts, counts, hints or
-  reveals one, and Wordweave never takes one as a bonus word. The same list
-  keeps the generators from picking them. Wordrow's guess list will still
-  accept a few crude words if you type them, but no answer is one. The
-  curated answer lists are clean.
+  reveals one, Wordweave never takes one as a bonus word, and Wordrow and
+  Edgeways won't take one as a guess. The same list keeps the generators
+  from picking them, and the curated answer lists are clean. The list is
+  kept by hand, so it will miss the odd word.
 - Sudoku's hard tier is one wide bucket, graded by solving technique rather
   than a full named-technique ladder. Some hard days are harder than others.
 - Minigrid uses two block layouts across its bank. The other valid 5x5

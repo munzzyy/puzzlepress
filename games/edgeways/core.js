@@ -135,3 +135,8 @@ export function resultSummary(words, par) {
   const count = words.length;
   return { count, par, underPar: count <= par, delta: count - par };
 }
+
+/** The runtime dictionary: every word in `words` except the blocked ones. */
+export function playableWords(words, blocked) {
+  return new Set(words.filter((w) => !blocked.has(w)));
+}

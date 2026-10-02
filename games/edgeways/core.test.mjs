@@ -159,3 +159,21 @@ test("resultSummary reports par comparison", () => {
     delta: 1,
   });
 });
+
+test("playableWords drops exactly the blocked words", async () => {
+  const { playableWords } = await import("./core.js");
+  const words = playableWords(["spice", "squaw", "hospice", "wog"], new Set(["squaw", "wog", "spic"]));
+  assert.deepEqual([...words].sort(), ["hospice", "spice"]);
+});
+
+test("the shipped dictionary takes ordinary words and no blocked ones", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { playableWords } = await import("./core.js");
+  const { BLOCKED_WORDS } = await import("../../assets/blocklist.js");
+  const words = JSON.parse(readFileSync(new URL("./words.json", import.meta.url), "utf8"));
+  const dictionary = playableWords(words, BLOCKED_WORDS);
+  for (const w of ["spice", "spicy", "hospice", "suspicion", "conspicuous", "despicable"]) {
+    assert.ok(dictionary.has(w), w);
+  }
+  for (const w of BLOCKED_WORDS) assert.ok(!dictionary.has(w), w);
+});
