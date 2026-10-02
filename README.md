@@ -121,7 +121,10 @@ pytest suites check every bank against its schema and invariants: sudoku
 uniqueness, wordweave grids tiling fully, minigrid clues matching their
 answers, and so on. `test_bank_history.py` pins every bank's pre-growth
 prefix and every entry that shipped in 1.0.0 by hash, so a growth pass can
-only append.
+only append. `test_service_worker.py` hashes every file the service worker
+precaches and fails if one changes without a `CACHE_VERSION` bump in
+`sw.js`, since installed copies would never see the change. The failure
+prints the line to add to its `SW_PINS`.
 
 A handful of those pytest cases regenerate a bank in a subprocess against
 the full word list to prove the generator is deterministic, which is what
