@@ -12,7 +12,7 @@ such that no two letters that ever sit next to each other in any solution
 word land on the same side. That search is what actually proves the
 solution works, so "par" is never a guess.
 
-Difficulty semantics (V2-CONTRACT.md):
+Difficulty semantics (see Difficulties in the README):
   easy   - par 3 (a three-word solution chain), common letters only: no
            J, Q, X, or Z on the board, so every letter is an easy reach.
   medium - par 2 (a two-word solution chain), the original bank shape.
@@ -37,7 +37,7 @@ WORDLIST_PATH = ROOT / "data" / "wordlist.txt"
 BANK_PATH = ROOT / "data" / "edgeways.json"
 DICTIONARY_PATH = ROOT / "games" / "edgeways" / "words.json"
 
-MIN_BANK_SIZE = 80  # per difficulty, per V2-CONTRACT.md
+MIN_BANK_SIZE = 80  # per difficulty
 
 # Target puzzle counts per difficulty. Hard is capped lower and given a
 # looser reuse cap below because it draws from a much smaller pool: only

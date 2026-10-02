@@ -33,8 +33,6 @@ const DIFFICULTIES = ["easy", "medium", "hard"];
 const DIFF_LABELS = { easy: "Easy", medium: "Medium", hard: "Hard" };
 const DEFAULT_DIFFICULTY = "medium";
 
-// Per V2-CONTRACT.md: easy gets an extra guess and the most familiar
-// answers, hard keeps six guesses but forces hard mode on the whole time.
 const DIFF_CONFIG = {
   easy: { maxGuesses: 7, forcedHardMode: false },
   medium: { maxGuesses: 6, forcedHardMode: false },

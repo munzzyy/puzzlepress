@@ -3,8 +3,9 @@
 Schema and invariant checks run directly against the committed file (so a
 stale bank fails CI even if the generator itself is fine), plus a
 determinism check that regenerating with the same seed reproduces it
-exactly. The bank is difficulty-graded per V2-CONTRACT.md: top-level
-{easy, medium, hard}, each holding a v1-shaped {answers, allowed} section.
+exactly. The bank is difficulty-graded (see Difficulties in the README):
+top-level {easy, medium, hard}, each holding a v1-shaped {answers, allowed}
+section.
 """
 
 import importlib.util

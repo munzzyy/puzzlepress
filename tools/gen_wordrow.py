@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds data/wordrow.json from data/wordlist.txt. Stdlib only.
 
-Three difficulty-graded answer pools (easy/medium/hard), per V2-CONTRACT.md:
+Three difficulty-graded answer pools (easy/medium/hard):
 
   easy   - very common answers, curated for players who want an easy win.
   medium - the original 795-word curated pool, unchanged.
@@ -46,7 +46,7 @@ DEFAULT_SEED = 20260810  # the launch epoch, just a stable arbitrary default
 
 WORD_RE = re.compile(r"^[a-z]{5}$")
 DIFFICULTIES = ("easy", "medium", "hard")
-MIN_BANK_SIZE = 200  # per difficulty, per V2-CONTRACT.md
+MIN_BANK_SIZE = 200  # per difficulty
 
 # Best-effort filter, applied to every pool. Answers are separately reviewed
 # by hand below and contain none of these; this exists as a safety net over
