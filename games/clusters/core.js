@@ -48,7 +48,16 @@ export function createState(order) {
     mistakes: 0,
     status: "playing",
     lastResult: null,
+    guesses: [],
   };
+}
+
+/** Order-free key for a set of selected tiles, as stored in state.guesses. */
+export function guessKey(selected) {
+  return selected
+    .slice()
+    .sort((a, b) => a - b)
+    .join(",");
 }
 
 export function isPlaying(state) {
@@ -115,6 +124,12 @@ export function submitGuess(puzzle, state) {
   if (!isPlaying(state)) return state;
   if (state.selected.length !== GROUP_SIZE) return state;
 
+  const key = guessKey(state.selected);
+  const guesses = state.guesses || [];
+  if (guesses.includes(key)) {
+    return { ...state, lastResult: { type: "duplicate" } };
+  }
+
   const tiles = flattenPuzzle(puzzle);
   const groupIndexes = state.selected.map((i) => tiles[i].groupIndex);
   const allSame = groupIndexes.every((g) => g === groupIndexes[0]);
@@ -150,6 +165,7 @@ export function submitGuess(puzzle, state) {
       ...state,
       selected: [],
       mistakes,
+      guesses: [...guesses, key],
       lastResult: { type: oneAway ? "oneAway" : "wrong" },
     };
   }
@@ -161,6 +177,7 @@ export function submitGuess(puzzle, state) {
     order: [],
     selected: [],
     mistakes,
+    guesses: [...guesses, key],
     solvedGroups,
     status: "lost",
     lastResult: { type: oneAway ? "oneAway" : "wrong" },

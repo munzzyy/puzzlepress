@@ -97,6 +97,7 @@ function persist() {
       order: state.order,
       solvedGroups: state.solvedGroups,
       mistakes: state.mistakes,
+      guesses: state.guesses || [],
       status: state.status,
     },
     archive.dateKey
@@ -131,6 +132,7 @@ function bannerMessage(lastResult) {
   if (!lastResult) return "";
   if (lastResult.type === "oneAway") return "One away.";
   if (lastResult.type === "wrong") return "Not a group.";
+  if (lastResult.type === "duplicate") return "Already guessed.";
   return "";
 }
 
@@ -361,6 +363,7 @@ function restoreOrCreate(difficulty, section) {
       mistakes: saved.mistakes || 0,
       status: saved.status || "playing",
       lastResult: null,
+      guesses: Array.isArray(saved.guesses) ? saved.guesses : [],
     };
   } else {
     states[difficulty] = core.createState(core.shuffle(core.initialOrder(puzzle)));

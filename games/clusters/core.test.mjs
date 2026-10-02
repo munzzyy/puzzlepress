@@ -138,9 +138,9 @@ test("mistakesLeft counts down and four mistakes ends the game with remaining gr
   assert.equal(mistakesLeft(state), MAX_MISTAKES);
   const wrongGuesses = [
     [0, 1, 4, 5],
-    [0, 1, 4, 5],
-    [0, 1, 4, 5],
-    [0, 1, 4, 5],
+    [0, 1, 4, 6],
+    [0, 1, 4, 7],
+    [0, 2, 4, 5],
   ];
   for (const guess of wrongGuesses) {
     for (const i of guess) state = toggleTile(state, i);
@@ -215,4 +215,46 @@ test("formatShare passes a difficulty-tagged label through untouched", () => {
   state = submitGuess(puzzle(), state);
   const text = formatShare("Clusters Hard #3", state);
   assert.match(text, /^Clusters Hard #3\n/);
+});
+
+function pick(state, indexes) {
+  return indexes.reduce((s, i) => toggleTile(s, i), state);
+}
+
+test("repeating the same wrong four costs no extra mistake", () => {
+  let state = createState(initialOrder(puzzle()));
+  state = submitGuess(puzzle(), pick(state, [0, 1, 2, 4]));
+  assert.equal(state.mistakes, 1);
+  state = pick(state, [0, 1, 2, 4]);
+  state = submitGuess(puzzle(), state);
+  assert.equal(state.mistakes, 1);
+  assert.deepEqual(state.lastResult, { type: "duplicate" });
+  assert.deepEqual(state.selected, [0, 1, 2, 4]);
+});
+
+test("a different wrong four still counts as a mistake", () => {
+  let state = createState(initialOrder(puzzle()));
+  state = submitGuess(puzzle(), pick(state, [0, 1, 2, 4]));
+  state = submitGuess(puzzle(), pick(state, [0, 1, 4, 5]));
+  assert.equal(state.mistakes, 2);
+  assert.equal(state.lastResult.type, "wrong");
+});
+
+test("the same four picked in another order is still a repeat", () => {
+  let state = createState(initialOrder(puzzle()));
+  state = submitGuess(puzzle(), pick(state, [0, 1, 2, 4]));
+  state = submitGuess(puzzle(), pick(state, [4, 2, 0, 1]));
+  assert.equal(state.mistakes, 1);
+  assert.equal(state.lastResult.type, "duplicate");
+});
+
+test("a saved state from before guesses were tracked still plays", () => {
+  const { guesses, ...old } = createState(initialOrder(puzzle()));
+  assert.deepEqual(guesses, []);
+  let state = submitGuess(puzzle(), pick({ ...old, mistakes: 1 }, [0, 1, 2, 4]));
+  assert.equal(state.mistakes, 2);
+  state = submitGuess(puzzle(), pick(state, [0, 1, 2, 4]));
+  assert.equal(state.mistakes, 2);
+  state = submitGuess(puzzle(), pick(deselectAll(state), [0, 1, 2, 3]));
+  assert.equal(state.solvedGroups.length, 1);
 });
