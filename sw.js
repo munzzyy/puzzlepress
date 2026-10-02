@@ -4,7 +4,7 @@
   PRECACHE changes so old caches get cleared on activate.
 */
 
-const CACHE_VERSION = 25;
+const CACHE_VERSION = 26;
 const CACHE_NAME = `puzzlepress-v${CACHE_VERSION}`;
 
 const GAMES = ["wordrow", "clusters", "heptagram", "minigrid", "wordweave", "edgeways", "sudoku"];
@@ -76,12 +76,16 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
+  // Archive links add ?date= to a precached page; the page reads the query itself.
+  const isNavigation = event.request.mode === "navigate";
+  const hasQuery = new URL(event.request.url).search !== "";
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
+    caches.match(event.request, isNavigation ? { ignoreSearch: true } : undefined).then((cached) => {
       if (cached) return cached;
       return fetch(event.request)
         .then((response) => {
-          if (response.ok && response.type === "basic") {
+          if (response.ok && response.type === "basic" && !(isNavigation && hasQuery)) {
             const copy = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           }

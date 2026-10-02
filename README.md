@@ -111,12 +111,12 @@ bank.
 ## Tests
 
 ```
-node --test assets/shared.test.mjs games/*/core.test.mjs
+node --test assets/shared.test.mjs games/*/core.test.mjs tests/sw.test.mjs
 python3 -m pytest -q
 ```
 
 The node suites cover game logic (all of it lives in `games/<id>/core.js`
-with no DOM in sight). The pytest suites check every bank against its schema
+with no DOM in sight) and how the service worker matches cached pages. The pytest suites check every bank against its schema
 and invariants: sudoku uniqueness, wordweave grids tiling fully, minigrid
 clues matching their answers, and so on. `test_bank_history.py` pins every
 bank's pre-growth prefix by hash, so a future growth pass can only append.
