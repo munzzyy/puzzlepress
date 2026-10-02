@@ -68,7 +68,7 @@
 </div>
 
 <script type="module">
-import { store, todayKey, lastDiff, getShareLine, share, dayIndex } from "./assets/shared.js";
+import { store, todayKey, lastDiff, getShareLine, share, dayIndex, currentStreak } from "./assets/shared.js";
 
 const SITE_URL = "https://puzzlepress.munzzyy.dev/";
 const HUB_EPOCH = "2026-08-10";
@@ -161,7 +161,7 @@ function renderCombinedStats() {
   for (const g of GAMES) {
     const diff = lastDiff(g.id, g.defaultDiff || "medium");
     const meta = store(g.id, diff).loadMeta();
-    streak += meta.streak;
+    streak += currentStreak(meta);
     best += meta.maxStreak;
   }
   document.getElementById("combined-stats").textContent =

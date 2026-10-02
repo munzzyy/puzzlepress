@@ -45,6 +45,7 @@ const {
   share,
   recordDaily,
   dayRolledOver,
+  currentStreak,
 } = await import("./shared.js");
 
 test("dayIndex is 0 on the epoch date itself", () => {
@@ -398,6 +399,26 @@ test("statsHTML renders played/win rate/streak/best for the given difficulty", (
   assert.match(html, /Hard difficulty/);
   assert.match(html, />2<\/div>\s*<div class="pp-stat__label">Played</);
   assert.match(html, />50%<\/div>/);
+});
+
+test("a streak reads 0 once a day has been skipped, and Best keeps it", () => {
+  globalThis.localStorage.clear();
+  for (let d = 1; d <= 5; d++) recordResult("clusters", true, "medium", new Date(2026, 8, d));
+  const meta = store("clusters", "medium").loadMeta();
+  assert.equal(currentStreak(meta, new Date(2026, 9, 1)), 0);
+  assert.equal(currentStreak(meta, new Date(2026, 8, 6)), 5);
+  assert.equal(currentStreak(meta, new Date(2026, 8, 5)), 5);
+  assert.equal(currentStreak({ ...meta, last: null }, new Date(2026, 8, 5)), 0);
+
+  const html = statsHTML("clusters", "medium", new Date(2026, 9, 1));
+  assert.match(html, />0<\/div>\s*<div class="pp-stat__label">Streak</);
+  assert.match(html, />5<\/div>\s*<div class="pp-stat__label">Best</);
+});
+
+test("the hub sums live streaks, not stored ones", () => {
+  const hub = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(hub, /streak \+= currentStreak\(meta\)/);
+  assert.doesNotMatch(hub, /streak \+= meta\.streak/);
 });
 
 test("statsHTML defaults to medium when no difficulty is given", () => {

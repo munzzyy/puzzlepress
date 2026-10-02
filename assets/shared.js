@@ -321,8 +321,15 @@ export function watchDayRollover(archive) {
   return check;
 }
 
+/** The stored streak while it is still alive (last played today or yesterday), else 0. */
+export function currentStreak(meta, now = new Date()) {
+  if (!meta.last) return 0;
+  const gap = Math.round((localDateFromKey(todayKey(now)) - localDateFromKey(meta.last)) / DAY_MS);
+  return gap <= 1 ? meta.streak : 0;
+}
+
 /** Small stats block markup for one difficulty, styled by .pp-stats in site.css. */
-export function statsHTML(gameId, diff = "medium") {
+export function statsHTML(gameId, diff = "medium", now = new Date()) {
   const meta = store(gameId, diff).loadMeta();
   const winPct = meta.played > 0 ? Math.round((meta.wins / meta.played) * 100) : 0;
   const stat = (value, label) =>
@@ -334,7 +341,7 @@ export function statsHTML(gameId, diff = "medium") {
     `<div class="pp-stats">` +
     stat(meta.played, "Played") +
     stat(`${winPct}%`, "Win rate") +
-    stat(meta.streak, "Streak") +
+    stat(currentStreak(meta, now), "Streak") +
     stat(meta.maxStreak, "Best") +
     `</div>`
   );
