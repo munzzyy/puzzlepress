@@ -279,9 +279,10 @@ function updateCellVisuals() {
       if (state.revealed[k]) cellDiv.dataset.revealed = "true";
       else delete cellDiv.dataset.revealed;
 
+      const mark = state.checked[k] === "wrong" ? ", marked wrong" : state.revealed[k] ? ", revealed" : "";
       input.setAttribute(
         "aria-label",
-        `Row ${r + 1}, column ${c + 1}${letter ? `, letter ${letter}` : ", blank"}`
+        `Row ${r + 1}, column ${c + 1}${letter ? `, letter ${letter}` : ", blank"}${mark}`
       );
     }
   }

@@ -177,6 +177,7 @@ function renderLetters() {
     const active = state.buffer.includes(letter);
     btn.dataset.active = active ? "true" : "false";
     btn.dataset.used = used.has(letter) ? "true" : "false";
+    btn.setAttribute("aria-label", used.has(letter) ? `Letter ${letter}, used` : `Letter ${letter}`);
     btn.disabled = state.solved || !canAppendLetter(state.buffer, letter, state.sides);
   }
 }

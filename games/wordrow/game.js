@@ -12,7 +12,17 @@ import {
   watchDayRollover,
 } from "../../assets/shared.js";
 
-import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText, guessList } from "./core.js";
+import {
+  WORD_LENGTH,
+  keyboardStates,
+  createGame,
+  submitGuess,
+  isGameOver,
+  shareText,
+  guessList,
+  describeGuess,
+  stateWord,
+} from "./core.js";
 import { BLOCKED_WORDS } from "../../assets/blocklist.js";
 
 const GAME_ID = "wordrow";
@@ -191,8 +201,10 @@ function startRandomGame() {
 // ---------- rendering ----------
 
 function tileHTML(letter, state) {
-  const attr = state ? ` data-state="${state}"` : "";
-  return `<div class="pp-tile"${attr}>${letter ? letter.toUpperCase() : ""}</div>`;
+  const text = letter ? letter.toUpperCase() : "";
+  // aria-label is not allowed on a plain div, so evaluated tiles become labelled images.
+  const attr = state ? ` data-state="${state}" role="img" aria-label="${text}, ${stateWord(state)}"` : "";
+  return `<div class="pp-tile"${attr}>${text}</div>`;
 }
 
 function renderBoard() {
@@ -245,7 +257,12 @@ function renderKeyboard() {
       .map((key) => {
         const wide = key === "enter" || key === "back" ? " wr-key--wide" : "";
         const st = states[key] ? ` data-state="${states[key]}"` : "";
-        const label = key === "enter" ? "Enter" : key === "back" ? "Backspace" : key.toUpperCase();
+        const label =
+          key === "enter"
+            ? "Enter"
+            : key === "back"
+              ? "Backspace"
+              : key.toUpperCase() + (states[key] ? `, ${stateWord(states[key])}` : "");
         return (
           `<button type="button" class="wr-key${wide}" data-key="${key}"${st} aria-label="${label}">` +
           `${keyLabel(key)}</button>`
@@ -281,15 +298,24 @@ function renderToolbar() {
 
 function renderStatus() {
   const state = activeState();
+  let visible = "";
   if (mode === "random") {
-    els.status.textContent = state.status === "playing" ? "Free play" : "";
-    return;
+    visible = state.status === "playing" ? "Free play" : "";
+  } else if (state.status === "playing") {
+    visible = `Guess ${state.guesses.length + 1} of ${state.maxGuesses}`;
   }
-  if (state.status === "playing") {
-    els.status.textContent = `Guess ${state.guesses.length + 1} of ${state.maxGuesses}`;
-  } else {
-    els.status.textContent = "";
+  const last = state.guesses.length - 1;
+  // Colors are the only other cue, so the last row is read out here, where the live region announces it.
+  const spoken = last >= 0 ? `${describeGuess(state.guesses[last], state.evaluations[last])}. ` : "";
+  if (els.status.textContent === spoken + visible) return; // rewriting a live region re-announces it on every keypress
+  els.status.innerHTML = "";
+  if (spoken) {
+    const hidden = document.createElement("span");
+    hidden.className = "pp-visually-hidden";
+    hidden.textContent = spoken;
+    els.status.appendChild(hidden);
   }
+  els.status.appendChild(document.createTextNode(visible));
 }
 
 function renderResult() {

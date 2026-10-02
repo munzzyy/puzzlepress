@@ -40,6 +40,22 @@ export function evaluateGuess(guess, answer) {
   return result;
 }
 
+const STATE_WORDS = { correct: "correct", present: "in word", absent: "not in word" };
+
+/** Spoken name of a tile or key state, e.g. "in word". */
+export function stateWord(state) {
+  return STATE_WORDS[state] || "";
+}
+
+/** One evaluated guess read out letter by letter, e.g. "C correct, R in word, A not in word". */
+export function describeGuess(guess, evaluation) {
+  return guess
+    .toUpperCase()
+    .split("")
+    .map((letter, i) => `${letter} ${stateWord(evaluation[i])}`)
+    .join(", ");
+}
+
 /**
  * Best state seen for each letter across all guesses so far, correct beats
  * present beats absent. Used to color the on-screen keyboard.

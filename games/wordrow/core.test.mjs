@@ -283,3 +283,19 @@ test("every answer stays guessable once blocked words leave the guess list", asy
     for (const answer of bank[diff].answers) assert.ok(allowed.has(answer), `${diff} answer ${answer}`);
   }
 });
+
+test("describeGuess reads each letter with its state", async () => {
+  const { describeGuess } = await import("./core.js");
+  assert.equal(
+    describeGuess("crane", evaluateGuess("crane", "cline")),
+    "C correct, R not in word, A not in word, N correct, E correct"
+  );
+});
+
+test("describeGuess tells a repeated letter's present copy from its absent one", async () => {
+  const { describeGuess } = await import("./core.js");
+  assert.equal(
+    describeGuess("eerie", evaluateGuess("eerie", "tread")),
+    "E in word, E not in word, R in word, I not in word, E not in word"
+  );
+});
