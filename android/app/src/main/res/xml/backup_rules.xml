@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and older read fullBackupContent and abort the whole backup
+     on a <data-extraction-rules> root, so they get their own file. -->
+<full-backup-content />
