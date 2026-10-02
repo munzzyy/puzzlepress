@@ -2,14 +2,13 @@ import {
   pickDaily,
   store,
   diffTabs,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   formatDateLabel,
   share,
   confettiBurst,
   initChrome,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
   modal,
 } from "../../assets/shared.js";
 import {
@@ -370,11 +369,10 @@ function finishCurrent() {
   setCurrentState(finish(state));
 
   if (isDailyView() && !archive.isArchive) {
-    recordResult(GAME_ID, won, activeDifficulty);
     const score = totalScore(state.found, puzzle.letters);
     const rank = rankForScore(score, puzzle.maxScore);
     const hintNote = state.usedHints ? " (used hints)" : "";
-    setShareLine(GAME_ID, todayKey(), `${rank.name} - ${score} points${hintNote}`);
+    recordDaily(GAME_ID, won, activeDifficulty, archive, `${rank.name} - ${score} points${hintNote}`);
   }
   if (isDailyView()) {
     persistCurrent();
@@ -511,6 +509,7 @@ async function init() {
     helpHTML: HELP_HTML,
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
+  watchDayRollover(archive);
 
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));
 

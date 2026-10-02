@@ -2,15 +2,14 @@ import {
   pickDaily,
   store,
   diffTabs,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   statsHTML,
   share,
   toast,
   confettiBurst,
   initChrome,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
 } from "../../assets/shared.js";
 
 import { WORD_LENGTH, keyboardStates, createGame, submitGuess, isGameOver, shareText } from "./core.js";
@@ -404,10 +403,9 @@ function finishSubmit(next) {
   setActiveState(next);
 
   if (isGameOver(next) && mode === "daily" && !archive.isArchive) {
-    recordResult(GAME_ID, next.status === "won", activeDifficulty);
     const score = next.status === "won" ? String(next.guesses.length) : "X";
     const mark = next.hardMode ? "*" : "";
-    setShareLine(GAME_ID, todayKey(), `${score}/${next.maxGuesses}${mark}`);
+    recordDaily(GAME_ID, next.status === "won", activeDifficulty, archive, `${score}/${next.maxGuesses}${mark}`);
   }
 
   renderAll();
@@ -481,6 +479,7 @@ async function boot() {
     helpHTML: HELP_HTML,
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
+  watchDayRollover(archive);
 
   applyContrastPref(loadContrastPref());
 

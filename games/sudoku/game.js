@@ -2,13 +2,12 @@ import {
   pickDaily,
   store,
   diffTabs,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   share,
   confettiBurst,
   initChrome,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
 } from "../../assets/shared.js";
 import {
   parseCells,
@@ -465,8 +464,7 @@ function checkWin() {
     t.runningSince = null;
   }
   if (!archive.isArchive) {
-    recordResult(GAME_ID, true, activeDifficulty);
-    setShareLine(GAME_ID, todayKey(), `${LABELS[activeDifficulty]} in ${fmtTime(t.elapsedMs)}`);
+    recordDaily(GAME_ID, true, activeDifficulty, archive, `${LABELS[activeDifficulty]} in ${fmtTime(t.elapsedMs)}`);
   }
   confettiBurst();
   showDone(t.elapsedMs, false);
@@ -633,6 +631,7 @@ async function main() {
     helpHTML: HELP_HTML,
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
+  watchDayRollover(archive);
 
   migrateLegacySudoku();
   dayStores = Object.fromEntries(DIFFICULTIES.map((d) => [d, store(GAME_ID, d)]));

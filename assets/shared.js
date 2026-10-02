@@ -243,7 +243,8 @@ export function recordResult(gameId, won, diff = "medium", now = new Date()) {
   const meta = s.loadMeta();
   const today = todayKey(now);
 
-  if (meta.last === today) {
+  // A later day already on record means this result is stale; moving `last` back would corrupt the streak.
+  if (meta.last && meta.last >= today) {
     return meta;
   }
 
@@ -277,6 +278,47 @@ export function setShareLine(gameId, dateKey, line) {
 /** The line a game recorded for that date, or null if it wasn't played. */
 export function getShareLine(gameId, dateKey) {
   return readStorage(shareLineKey(gameId, dateKey));
+}
+
+/**
+ * Records a finished live daily against the day the page resolved at load
+ * (resolveArchiveDay's result), not the wall clock, so a game left open past
+ * midnight files its result under the puzzle's own day. Archive days never
+ * touch stats.
+ */
+export function recordDaily(gameId, won, diff, archive, line) {
+  if (archive.isArchive) return store(gameId, diff).loadMeta();
+  const meta = recordResult(gameId, won, diff, archive.now);
+  setShareLine(gameId, archive.dateKey, line);
+  return meta;
+}
+
+/** True once the local day has moved past the live daily this page loaded. */
+export function dayRolledOver(archive, now = new Date()) {
+  return !archive.isArchive && todayKey(now) !== archive.dateKey;
+}
+
+/**
+ * When the page comes back into view on a later day, offers a link to the
+ * new puzzle. It never reloads by itself: some games keep unsaved input.
+ */
+export function watchDayRollover(archive) {
+  const check = () => {
+    if (document.visibilityState === "hidden" || !dayRolledOver(archive)) return;
+    if (document.querySelector(".pp-rollover-banner")) return;
+    const banner = document.createElement("div");
+    banner.className = "pp-archive-banner pp-rollover-banner";
+    banner.setAttribute("role", "status");
+    banner.innerHTML =
+      `<div class="pp-archive-banner__inner">` +
+      `<span>Midnight has passed. This is the puzzle for ${formatDateLabel(archive.dateKey)}.</span>` +
+      `<a href="index.html">Play today's</a></div>`;
+    const mount = document.getElementById("pp-chrome") || document.body;
+    mount.appendChild(banner);
+  };
+  document.addEventListener("visibilitychange", check);
+  window.addEventListener("pageshow", check);
+  return check;
 }
 
 /** Small stats block markup for one difficulty, styled by .pp-stats in site.css. */

@@ -1,15 +1,14 @@
 import {
   dayIndex,
   store,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   share,
   toast,
   confettiBurst,
   initChrome,
   diffTabs,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
 } from "../../assets/shared.js";
 import {
   createState,
@@ -372,13 +371,12 @@ function handleComplete() {
   confettiBurst();
   showComplete(elapsed);
   if (!archive.isArchive) {
-    recordResult(GAME_ID, true, diff);
     const mins = Math.floor(elapsed / 60);
     const secs = elapsed % 60;
     const time = `${mins}:${String(secs).padStart(2, "0")}`;
     const hints = states[diff].hintsUsedCount;
     const hintNote = hints > 0 ? ` (${hints} hint${hints === 1 ? "" : "s"})` : "";
-    setShareLine(GAME_ID, todayKey(), `${time}${hintNote}`);
+    recordDaily(GAME_ID, true, diff, archive, `${time}${hintNote}`);
   }
 }
 
@@ -657,6 +655,7 @@ async function main() {
     helpHTML: HELP_HTML,
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
+  watchDayRollover(archive);
 
   try {
     const res = await fetch("../../data/wordweave.json");

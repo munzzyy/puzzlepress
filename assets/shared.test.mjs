@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
 
 class MemoryStorage {
   constructor() {
@@ -42,6 +43,8 @@ const {
   setShareLine,
   getShareLine,
   share,
+  recordDaily,
+  dayRolledOver,
 } = await import("./shared.js");
 
 test("dayIndex is 0 on the epoch date itself", () => {
@@ -324,6 +327,66 @@ test("recordResult keeps maxStreak once a streak later drops", () => {
   const meta = recordResult("wordrow", true, "medium", new Date(2026, 7, 13));
   assert.equal(meta.streak, 1);
   assert.equal(meta.maxStreak, 2);
+});
+
+test("recordDaily files a result finished after midnight under the puzzle's own day", () => {
+  globalThis.localStorage.clear();
+  const archive = resolveArchiveDay("2026-08-10", null, new Date(2026, 9, 1, 23, 58));
+  recordDaily("wordrow", true, "medium", archive, "3/6");
+  assert.equal(store("wordrow").loadMeta().last, "2026-10-01");
+  assert.equal(getShareLine("wordrow", "2026-10-01"), "3/6");
+  assert.equal(getShareLine("wordrow", "2026-10-02"), null);
+
+  const meta = recordResult("wordrow", false, "medium", new Date(2026, 9, 2, 10));
+  assert.equal(meta.played, 2);
+  assert.equal(meta.lastWon, false);
+  assert.equal(meta.last, "2026-10-02");
+});
+
+test("recordResult never moves last backwards", () => {
+  globalThis.localStorage.clear();
+  recordResult("wordrow", true, "medium", new Date(2026, 9, 3));
+  const meta = recordResult("wordrow", false, "medium", new Date(2026, 9, 2));
+  assert.equal(meta.last, "2026-10-03");
+  assert.equal(meta.played, 1);
+  assert.equal(store("wordrow").loadMeta().played, 1);
+});
+
+test("recordDaily leaves stats and share lines alone on an archive day", () => {
+  globalThis.localStorage.clear();
+  const archive = resolveArchiveDay("2026-08-10", "2026-09-01", new Date(2026, 9, 1, 12));
+  assert.equal(archive.isArchive, true);
+  const meta = recordDaily("wordrow", true, "medium", archive, "3/6");
+  assert.equal(meta.played, 0);
+  assert.equal(getShareLine("wordrow", "2026-09-01"), null);
+});
+
+test("dayRolledOver flips at the first local midnight after the page loaded", () => {
+  const live = resolveArchiveDay("2026-08-10", null, new Date(2026, 9, 1, 23, 58));
+  assert.equal(dayRolledOver(live, new Date(2026, 9, 1, 23, 59)), false);
+  assert.equal(dayRolledOver(live, new Date(2026, 9, 2, 0, 1)), true);
+  const past = resolveArchiveDay("2026-08-10", "2026-09-01", new Date(2026, 9, 1, 23, 58));
+  assert.equal(dayRolledOver(past, new Date(2026, 9, 2, 0, 1)), false);
+});
+
+test("every game records through recordDaily and watches for the day rolling over", () => {
+  const gamesDir = new URL("../games/", import.meta.url);
+  const ids = readdirSync(gamesDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+  assert.equal(ids.length, 7);
+  for (const id of ids) {
+    const src = readFileSync(new URL(`${id}/game.js`, gamesDir), "utf8");
+    assert.doesNotMatch(src, /(^|[^A-Za-z])(recordResult|setShareLine)\(/, `${id} records with the wall clock`);
+    assert.match(src, /recordDaily\(GAME_ID,[^\n]*\barchive\b/, `${id} does not call recordDaily`);
+    assert.match(src, /watchDayRollover\(archive\)/, `${id} does not watch for rollover`);
+  }
+  const hub = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const body = hub.match(/function renderDay\(\) \{([\s\S]*?)\n\}/);
+  assert.ok(body, "index.html has no renderDay");
+  for (const fn of ["renderGrid", "renderCombinedStats", "renderDateline", "renderShareToday"]) {
+    assert.match(body[1], new RegExp(`${fn}\\(\\)`), `renderDay skips ${fn}`);
+  }
+  assert.match(hub, /addEventListener\("visibilitychange"[\s\S]{0,120}renderDay\(\)/);
+  assert.match(hub, /addEventListener\("pageshow"[\s\S]{0,80}renderDay\(\)/);
 });
 
 test("statsHTML renders played/win rate/streak/best for the given difficulty", () => {

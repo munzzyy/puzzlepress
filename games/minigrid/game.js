@@ -1,15 +1,14 @@
 import {
   pickDaily,
   store,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   diffTabs,
   share,
   toast,
   confettiBurst,
   initChrome,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
 } from "../../assets/shared.js";
 import * as core from "./core.js";
 
@@ -37,6 +36,7 @@ initChrome({
   helpHTML: HELP_HTML,
   archiveDate: archive.isArchive ? archive.dateKey : null,
 });
+watchDayRollover(archive);
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => (
@@ -404,10 +404,9 @@ function showComplete(justSolved) {
   if (justSolved) {
     confettiBurst();
     if (!isRandomMode && !archive.isArchive) {
-      recordResult(GAME_ID, true, activeDifficulty);
       const time = core.formatTime(core.elapsedMs(activeState()));
       const note = activeState().usedHelp ? " (with help)" : "";
-      setShareLine(GAME_ID, todayKey(), `Solved in ${time}${note}`);
+      recordDaily(GAME_ID, true, activeDifficulty, archive, `Solved in ${time}${note}`);
     }
     toast("Solved!");
   }

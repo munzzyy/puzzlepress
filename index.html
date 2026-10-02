@@ -251,11 +251,23 @@ function wireThemeToggle() {
   });
 }
 
-renderGrid();
-renderCombinedStats();
-renderDateline();
-renderShareToday();
+function renderDay() {
+  renderGrid();
+  renderCombinedStats();
+  renderDateline();
+  renderShareToday();
+}
+
+renderDay();
 wireThemeToggle();
+
+// The Android app and back-forward cache resume this page without reloading it, possibly on a later day.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") renderDay();
+});
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) renderDay();
+});
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

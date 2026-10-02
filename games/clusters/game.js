@@ -2,14 +2,13 @@ import {
   initChrome,
   store,
   dayIndex,
-  recordResult,
+  recordDaily,
   resolveArchiveDay,
   share,
   toast,
   confettiBurst,
   diffTabs,
-  setShareLine,
-  todayKey,
+  watchDayRollover,
 } from "../../assets/shared.js";
 import * as core from "./core.js";
 
@@ -108,8 +107,7 @@ function persistStatsIfDone(difficulty) {
   if (freePlay || archive.isArchive) return;
   const state = states[difficulty];
   if (!core.isOver(state)) return;
-  recordResult(GAME_ID, state.status === "won", difficulty);
-  setShareLine(GAME_ID, todayKey(), core.resultLine(state));
+  recordDaily(GAME_ID, state.status === "won", difficulty, archive, core.resultLine(state));
 }
 
 // ---------- rendering ----------
@@ -379,6 +377,7 @@ async function init() {
     helpHTML: HELP_HTML,
     archiveDate: archive.isArchive ? archive.dateKey : null,
   });
+  watchDayRollover(archive);
 
   els.submit.addEventListener("click", onSubmit);
   els.deselect.addEventListener("click", onDeselect);
