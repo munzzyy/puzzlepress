@@ -206,6 +206,19 @@ umbrella understand undertake universe upstairs vacation valuable variable veget
 version veteran village violence visible visitor vitamin volcano voluntary warranty
 waterfall watermelon weekend welcome whatever whenever wherever whisper wildlife wireless
 withdraw without witness wonderful worksheet workshop
+frozen wizard lizard zigzag zombie blazer frenzy gazebo horizon ozone razor cozy zinc
+amazing amazed graze citizen dozing hazy lazy pretzel quartz zany zest oxygen explain
+explore expert complex anxious axle boxing deluxe excuse exhale exile exotic expire export
+expose extend extinct flexible galaxy hoax jinx luxury mixture paradox reflex saxophone
+sixty textile texture xylophone climax context example except excite exclaim exclude execute
+exhaust exhibit expect expense explode exploit extract extreme fixture mixer mixing mixed
+remix sixth exchange explosion expansion jigsaw joyful jumbo jockey jargon injure enjoyment
+jumper joker jewelry jersey jingle judo junction jumpsuit adjust journey justice object
+reject inject hijack janitor jeans jerk joystick judgment juicy jumpy majesty majority
+pajamas rejoice adjective jackpot acquire antique aquarium banquet bouquet conquer
+earthquake equator equation frequent inquire liquor mosque plaque quench quiver quiz request
+require squeak squint squirm quality quarter liquid unique boutique critique inquiry quantum
+question quickly quietly quirky quoted squeal squirt equipment mosquito quarantine
 """
 
 # Runtime dictionary: broader, since it just needs to recognize any

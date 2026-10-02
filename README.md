@@ -160,8 +160,8 @@ CI always runs the full suite, slow tests included.
   repeat. Wordweave is 201/200/200, good until late February 2027. Minigrid
   is 200/148/200: its medium tier is whatever fills are left after easy and
   hard take theirs, and the curated vocabulary runs out first, so medium
-  repeats from January 5, 2027. Edgeways is 365/195/90; its hard tier needs a
-  J, Q, X or Z on the square and repeats from November 8, 2026. Wordrow's
+  repeats from January 5, 2027. Edgeways is 365/268/365, so only its medium
+  tier repeats inside the first year, from May 5, 2027. Wordrow's
   answer pools are 301/795/245, and its guess dictionary is separate and
   much larger. A repeat is the same puzzle as its earlier day, not a broken
   one.
