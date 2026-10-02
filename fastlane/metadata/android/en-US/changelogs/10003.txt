@@ -1,0 +1,1 @@
+A game left open past midnight now records against the right day. Edgeways has a full year of hard puzzles and takes 84 real words it used to refuse. Wordrow, Minigrid and Edgeways tell screen readers more. Clusters no longer counts a repeated guess as a mistake. Archive days open offline. Backups now work on Android 7 to 11.

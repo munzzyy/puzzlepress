@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.3 - 2026-10-02
 
 Leave a game open past midnight and it used to file the result under the
 wrong day. Now it records against the puzzle's own date. Come back to the
@@ -21,8 +21,7 @@ revealed. Edgeways letters say when they are used.
 Smaller fixes. Clusters does not take a mistake for sending the same four
 tiles twice. Archive days open offline. On Android 7 to 11 the app's
 backups had been failing without a word, so a restore lost every streak.
-That is fixed in the next release of the app (see the
-[Roadmap](https://github.com/munzzyy/puzzlepress#roadmap)).
+They work now.
 
 ## 1.0.2 - 2026-10-01
 

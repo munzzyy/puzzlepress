@@ -184,12 +184,8 @@ CI always runs the full suite, slow tests included.
 
 ## Roadmap
 
-What is left needs a release, a store review or a decision. None of it is code.
+What is left needs a store review or a decision. None of it is code.
 
-- Android 1.0.3. Everything under Unreleased in the
-  [changelog](CHANGELOG.md) reaches the website when it deploys, but the
-  app only gets it through a signed release. That release is not cut yet.
-  The backup fix for Android 7 to 11 is app-only, so it waits on this too.
 - F-Droid. The app is submitted
   ([fdroiddata!50148](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/50148))
   and waiting on review. Until it is in, use the releases page or Tern.
