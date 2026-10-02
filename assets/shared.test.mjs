@@ -330,9 +330,10 @@ test("recordResult keeps maxStreak once a streak later drops", () => {
   assert.equal(meta.maxStreak, 2);
 });
 
-test("recordDaily files a result finished after midnight under the puzzle's own day", () => {
+test("recordDaily files a result finished after midnight under the puzzle's own day", (t) => {
   globalThis.localStorage.clear();
   const archive = resolveArchiveDay("2026-08-10", null, new Date(2026, 9, 1, 23, 58));
+  t.mock.timers.enable({ apis: ["Date"], now: new Date(2026, 9, 2, 0, 3) });
   recordDaily("wordrow", true, "medium", archive, "3/6");
   assert.equal(store("wordrow").loadMeta().last, "2026-10-01");
   assert.equal(getShareLine("wordrow", "2026-10-01"), "3/6");
