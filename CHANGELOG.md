@@ -9,8 +9,9 @@ Streaks that lapsed show 0 instead of the old number; Best keeps it.
 
 Edgeways hard would have started repeating on November 8 with only 90
 puzzles. It has a full year now and medium is up to 268. Spice, hospice
-and 86 other real words that Edgeways refused now count. Slurs and crude
-words are out as guesses in Edgeways and Wordrow both.
+and 82 other real words that Edgeways refused now count. Edgeways and
+Wordrow also turn away the same slurs and crude words as the other games,
+and that shared list grew from 127 words to 202.
 
 Wordrow now reads each guess to screen readers one letter at a time. It
 says whether each one is correct, in the word or not in it, and the keys

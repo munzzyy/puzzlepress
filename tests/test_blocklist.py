@@ -15,6 +15,10 @@ def test_blocklist_reads_the_list_the_games_use():
     assert all(w.isalpha() and w.islower() for w in BLOCKED_WORDS)
 
 
+def test_blocklist_holds_words_edgeways_and_wordrow_would_otherwise_take():
+    assert {"fuck", "motherfucker", "shithead", "squaws", "retardate", "chinkier", "kraut", "pussy"} <= BLOCKED_WORDS
+
+
 def test_heptagram_generator_never_offers_a_blocked_word(tmp_path):
     wordlist = tmp_path / "words.txt"
     wordlist.write_text("rapist\npianist\nporn\nhorn\n", encoding="utf-8")
