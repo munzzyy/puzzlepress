@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.4 - 2026-10-03
+
+Your streaks live on your phone and nowhere else, for real now. The app's
+own backup settings let Android copy saved progress into its cloud backup
+even though the listing said otherwise; both the modern and legacy backup
+rules now exclude everything from cloud backup, while a direct
+device-to-device transfer still carries streaks over to a new phone.
+
+Also stops the wrapped app from trying to register the website's service
+worker, which was never packaged inside it and only ever failed quietly.
+The website itself keeps registering it as before.
+
 ## 1.0.3 - 2026-10-02
 
 Leave a game open past midnight and it used to file the result under the

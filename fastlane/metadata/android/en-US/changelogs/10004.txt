@@ -1,0 +1,1 @@
+Your streaks now stay off Android's cloud backup entirely, matching what the listing has always said. A direct phone-to-phone transfer still carries them. Also fixes a quiet failure where the wrapped app tried to register the website's service worker.
