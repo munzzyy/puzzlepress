@@ -269,7 +269,7 @@ window.addEventListener("pageshow", (e) => {
   if (e.persisted) renderDay();
 });
 
-if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && location.hostname !== "appassets.androidplatform.net") {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
   });

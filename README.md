@@ -189,11 +189,6 @@ What is left needs a store review or a decision. None of it is code.
 - F-Droid. The app is submitted
   ([fdroiddata!50148](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/50148))
   and waiting on review. Until it is in, use the releases page or Tern.
-- Whether streaks belong in Android's cloud backup. The app lets Android
-  copy its saved progress into the phone's own backup, which is also how
-  it moves to a new phone, but the store listing says your streaks live on
-  your phone and nowhere else. One of those has to change, and which one
-  is still an open call.
 
 ## Support
 

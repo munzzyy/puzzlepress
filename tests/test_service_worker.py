@@ -17,6 +17,7 @@ SW = ROOT / "sw.js"
 # (CACHE_VERSION, precache_hash()), oldest first. Append only.
 SW_PINS = [
     (31, "25ba9f53da9ab3a73ecc45ad298ece85a757b1d0f7a49d8b6496eb6fe1d245da"),
+    (32, "c11b421ba73b17e2c760bdcee77f18578733354c6207a9680a2b467b09755786"),
 ]
 
 ROOT_FILES = ["index.html", "archive.html", "404.html", "robots.txt", "manifest.webmanifest"]

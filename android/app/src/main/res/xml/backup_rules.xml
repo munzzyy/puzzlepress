@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Android 11 and older read fullBackupContent and abort the whole backup
-     on a <data-extraction-rules> root, so they get their own file. -->
-<full-backup-content />
+     on a <data-extraction-rules> root, so they get their own file. There is
+     no device-transfer channel this far back, so backup is excluded
+     entirely rather than letting it ride along with cloud auto-backup. -->
+<full-backup-content>
+    <exclude domain="root" path="." />
+</full-backup-content>
